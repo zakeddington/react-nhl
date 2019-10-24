@@ -1,0 +1,105 @@
+@import '../../../styles/config/variables';
+@import '../../../styles/config/mixins';
+
+// Schedule Nav Bar
+// -----------------------------------------------------------------+
+
+.schedule-nav {
+  align-items: center;
+  background: $color-grey-dark;
+  border: 1px solid $color-grey-dark;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 2rem;
+  margin-bottom: 3em;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  display: flex;
+}
+
+.react-datepicker__navigation {
+  @include text-hide;
+  height: 0;
+}
+
+.datepicker-trigger {
+  align-items: center;
+  background: $color-grey-dark;
+  border: none;
+  color: $color-white;
+  display: flex;
+  font-weight: 700;
+  height: 100%;
+  min-height: 2rem;
+  text-transform: uppercase;
+  transition: all $anim-speed $anim-ease;
+
+  .svg-icon {
+    fill: $color-white;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  &:hover,
+  &:focus {
+    background: $color-grey-light;
+    color: $color-grey-dark;
+
+    .svg-icon {
+      fill: $color-grey-dark;
+    }
+  }
+}
+
+.schedule-nav-items {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  font-weight: 700;
+  margin-bottom: 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  li {
+    display: flex;
+    flex: 1;
+    margin: 0;
+
+    @media (max-width: $breakpoint-mobile-max) {
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(6),
+      &:nth-child(7) {
+        display: none;
+      }
+    }
+
+    .schedule-nav-item {
+      background: $color-grey-dark;
+      border: none;
+      color: $color-white;
+      display: block;
+      text-decoration: none;
+      transition: all $anim-speed $anim-ease;
+      width: 100%;
+
+      @media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
+        font-size: 0.8rem;
+      }
+
+      &:hover,
+      &:focus {
+        background: $color-grey-light;
+        color: $color-grey-dark;
+      }
+
+      &.is-active {
+        background: $color-white;
+        color: $color-grey-dark;
+        cursor: default;
+      }
+    }
+  }
+}

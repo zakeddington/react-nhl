@@ -1,0 +1,19 @@
+@import '../../styles/config/variables';
+
+// Global header
+// -----------------------------------------------------------------+
+
+.site-header {
+  background: $color-grey-dark;
+  padding: 10px 0;
+
+  a {
+    color: $color-white;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $color-link;
+    }
+  }
+}

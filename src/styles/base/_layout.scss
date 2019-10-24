@@ -1,0 +1,33 @@
+
+// General Page Structure
+// -----------------------------------------------------------------+
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	background: $color-grey-light;
+	min-width: $container-width-mobile;
+	padding: 0;
+	width: 100%;
+}
+
+.site-content {
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: $container-width-desktop-wide;
+	padding-left: $gutter-width;
+	padding-right: $gutter-width;
+	position: relative;
+	width: 100%;
+}
+
+img {
+	display: inline-block;
+	margin: auto;
+}

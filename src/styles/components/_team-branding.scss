@@ -1,0 +1,91 @@
+
+// Team Branding
+// -----------------------------------------------------------------+
+
+$team-color-1  : #ce1126; // Devils
+$team-color-2  : #003893; // Islanders
+$team-color-3  : #0038a8; // Rangers
+$team-color-4  : #f74902; // Flyers
+$team-color-5  : #111;    // Penguins
+$team-color-6  : #111;    // Bruins
+$team-color-7  : #002654; // Sabres
+$team-color-8  : #af1e2d; // Canadiens
+$team-color-9  : #ce1126; // Senators
+$team-color-10 : #002868; // Maple Leafs
+$team-color-12 : #ce1126; // Hurricanes
+$team-color-13 : #002654; // Panthers
+$team-color-14 : #002868; // Lightning
+$team-color-15 : #ce1126; // Capitals
+$team-color-16 : #ce1126; // Blackhawks
+$team-color-17 : #ce1126; // Red Wings
+$team-color-18 : #fcb514; // Predators
+$team-color-19 : #002654; // Blues
+$team-color-20 : #ce1126; // Flames
+$team-color-21 : #75263d; // Avalanche
+$team-color-22 : #0038a8; // Oilers
+$team-color-23 : #002868; // Canucks
+$team-color-24 : #111;    // Ducks
+$team-color-25 : #006847; // Stars
+$team-color-26 : #111;    // Kings
+$team-color-28 : #006d75; // Sharks
+$team-color-29 : #002654; // Blue Jackets
+$team-color-30 : #af1e2d; // Wild
+$team-color-52 : #002654; // Jets
+$team-color-53 : #8c2633; // Coyotes
+$team-color-54 : #85714d; // Golden Knights
+
+$team-ids:
+	1 $team-color-1,
+	2 $team-color-2,
+	3 $team-color-3,
+	4 $team-color-4,
+	5 $team-color-5,
+	6 $team-color-6,
+	7 $team-color-7,
+	8 $team-color-8,
+	9 $team-color-9,
+	10 $team-color-10,
+	12 $team-color-12,
+	13 $team-color-13,
+	14 $team-color-14,
+	15 $team-color-15,
+	16 $team-color-16,
+	17 $team-color-17,
+	18 $team-color-18,
+	19 $team-color-19,
+	20 $team-color-20,
+	21 $team-color-21,
+	22 $team-color-22,
+	23 $team-color-23,
+	24 $team-color-24,
+	25 $team-color-25,
+	26 $team-color-26,
+	28 $team-color-28,
+	29 $team-color-29,
+	30 $team-color-30,
+	52 $team-color-52,
+	53 $team-color-53,
+	54 $team-color-54;
+
+@each $team in $team-ids {
+	$id: nth($team, 1);
+	$color: nth($team, 2);
+
+	.team-#{$id} {
+		&.team-color,
+		.team-color {
+			color: $color;
+		}
+
+		&.team-background,
+		.team-background {
+			background-color: $color;
+			color: $color-white;
+		}
+
+		&.team-border,
+		.team-border {
+			border-color: $color;
+		}
+	}
+}

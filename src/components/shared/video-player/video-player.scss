@@ -1,0 +1,54 @@
+@import '../../../styles/config/variables';
+
+// Video Player
+// -----------------------------------------------------------------+
+
+.video-trigger {
+  background: none;
+  border: none;
+  display: block;
+  overflow: hidden;
+  padding: 56.25% 0 0;
+  position: relative;
+  width: 100%;
+
+  img {
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .video-play-icon {
+    height: 8rem;
+    width: 8rem;
+
+    @media (max-width: $breakpoint-mobile-max) {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .video-play-icon {
+      opacity: 1;
+    }
+  }
+}
+
+.video-title {
+  background: rgba($color-black, 0.5);
+  color: $color-white;
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  left: 0;
+  padding: 1rem;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-default;
+}

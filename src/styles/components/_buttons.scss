@@ -1,0 +1,39 @@
+
+// Buttons
+// -----------------------------------------------------------------+
+
+.button {
+	background: none;
+	border: none;
+	display: inline-block;
+	font-family: $font-main;
+	font-weight: 700;
+	margin: 0 auto 0.5rem;
+	padding: 0.5rem 1rem;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all $anim-speed ease-in;
+
+	.svg-icon {
+		fill: $color-grey-dark;
+	}
+
+	&:hover,
+	&:focus {
+		color: $color-link-hover;
+		text-decoration: none;
+
+		.svg-icon {
+			fill: $color-link-hover;
+		}
+	}
+
+	&--icon-left {
+		padding-left: 0.25rem;
+
+		.svg-icon {
+			margin-right: 0.25rem;
+		}
+	}
+}

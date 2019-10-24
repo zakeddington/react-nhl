@@ -1,0 +1,86 @@
+
+// Team/Player Stats Tables
+// -----------------------------------------------------------------+
+
+.stats-table {
+  overflow-x: auto;
+  width: 100%;
+
+  table {
+    background: $color-white;
+    font-size: 0.875rem;
+    margin: 0;
+    text-align: right;
+    width: 100%;
+  }
+
+  tr {
+    border-bottom: 1px solid $color-grey-med;
+    position: relative;
+
+    &:hover {
+      background: $color-grey-light;
+    }
+
+    &.total {
+      background: $color-grey-med;
+
+      td {
+        font-weight: 600;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: 0.5em;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 5%;
+
+    &:first-child {
+      padding-left: 1.5rem;
+    }
+
+    &:last-child {
+      padding-right: 1.5rem;
+    }
+
+    @media (max-width: $breakpoint-mobile-max) {
+      min-width: 4rem;
+      width: 4rem;
+    }
+
+    &.stats-table--name {
+      width: 20%;
+
+      @media (max-width: $breakpoint-mobile-max) {
+        left: 5.5rem;
+        min-width: 12rem;
+        width: 12rem;
+      }
+    }
+  }
+
+  th {
+    background: $color-grey-med;
+    font-weight: 600;
+  }
+
+  td {
+    background: $color-white;
+    font-weight: 500;
+  }
+
+  @media (max-width: $breakpoint-mobile-max) {
+    .stats-table--pinned {
+      position: absolute;
+      z-index: $z-index-default;
+    }
+
+    //.stats-table--spacer {
+    //  padding-left: 17rem;
+    //}
+  }
+}
+

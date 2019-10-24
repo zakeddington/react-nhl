@@ -1,0 +1,118 @@
+@import '../../../styles/config/variables';
+
+// Schedule Results
+// -----------------------------------------------------------------+
+
+.schedule-results-games {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3em;
+
+  a {
+    background: rgba($color-white, 0.5);
+    border: 1px solid rgba($color-grey, 0.2);
+    color: $color-grey-dark;
+    height: 100%;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    transition: all $anim-speed $anim-ease;
+
+    &:hover,
+    &:focus {
+      background: $color-white;
+      box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0 10px 10px 0;
+
+    @media (min-width: $breakpoint-desktop-min) {
+      flex-basis: 33.3%;
+
+      &:nth-child(3n+3) {
+        padding-right: 0;
+      }
+    }
+
+    @media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
+      flex-basis: 50%;
+
+      &:nth-child(even) {
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: $breakpoint-mobile-max) {
+      flex-basis: 100%;
+      padding-right: 0;
+    }
+
+    &.is-preview {
+      .schedule-results-score {
+        display: none;
+      }
+    }
+
+    &.is-away-winner {
+      .home {
+        color: $color-grey-med-dark;
+      }
+
+      .away {
+        font-weight: 700;
+      }
+    }
+
+    &.is-home-winner {
+      .home {
+        font-weight: 700;
+      }
+
+      .away {
+        color: $color-grey-med-dark;
+      }
+    }
+  }
+
+  .schedule-results-team {
+    align-items: center;
+    display: flex;
+    padding-top: 0.5em;
+
+    .team-logo {
+      height: 2em;
+      margin-right: 1em;
+      width: 2em;
+    }
+  }
+
+  .schedule-results-name {
+    flex: 6;
+    line-height: 1.2;
+  }
+
+  .schedule-results-record {
+    clear: both;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0.5em 0;
+  }
+
+  .schedule-results-score {
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: right;
+  }
+
+  .schedule-results-game-status {
+    border-bottom: 1px solid $color-grey-med;
+    font-size: 0.75rem;
+  }
+}

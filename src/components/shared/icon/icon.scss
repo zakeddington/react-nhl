@@ -1,0 +1,43 @@
+@import '../../../styles/config/mixins';
+@import '../../../styles/config/variables';
+
+// Base styles
+// -----------------------------------------------------------------+
+
+#svg-defs {
+  @include offscreen();
+}
+
+.svg-icon {
+  display: inline-block;
+  fill: $color-grey-dark;
+  height: 1rem;
+  line-height: 1rem;
+  transition: all $anim-speed $anim-ease;
+  vertical-align: middle;
+  width: 1rem;
+}
+
+// Icon specific styles
+// -----------------------------------------------------------------+
+
+.video-play-icon {
+  display: block;
+  fill: $color-white;
+  filter: drop-shadow(0 0 1rem rgba($color-black, 0.5));
+  left: 50%;
+  opacity: 0.9;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: $breakpoint-mobile-max) {
+    filter: drop-shadow(0 0 0.25rem rgba($color-black, 0.5));
+  }
+}
+
+.team-logo {
+  display: block;
+  height: 50px;
+  width: 50px;
+}
