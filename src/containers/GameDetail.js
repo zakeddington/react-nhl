@@ -23,7 +23,6 @@ class GameDetail extends Component {
 
 		this.props.dispatch(actions.fetchGameDetail(gameId));
 		this.props.dispatch(actions.fetchGameContent(gameId));
-		this.props.dispatch(actions.fetchPeriodSummary(gameId));
 	}
 
 	render() {

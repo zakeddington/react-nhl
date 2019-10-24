@@ -11,12 +11,27 @@ import GameDetailService from '../../services/GameDetailService';
 export function fetchGameDetail(gameId) {
 	return async(dispatch, getState) => {
 		try {
-			const gameDetail = await GameDetailService.getGameDetail(gameId);
+			const data = await GameDetailService.getGameData(gameId);
 
-			// console.log('actions fetchGameDetail', gameDetail);
+			try {
+        const gameDetail = await GameDetailService.processGameData(data);
+        dispatch({ type: types.GAME_DETAIL_FETCHED, gameDetail });
+      } catch (error) {
+			  console.error(error);
+        dispatch({ type: types.GAME_DETAIL_FAILED });
+      }
 
-			dispatch({ type: types.GAME_DETAIL_FETCHED, gameDetail });
+      try {
+        const periodSummary = await GameDetailService.processPeriodSummary(data);
+        dispatch({ type: types.PERIOD_SUMMARY_FETCHED, periodSummary });
+      } catch (error) {
+        console.error(error);
+        dispatch({ type: types.PERIOD_SUMMARY_FAILED });
+      }
+
 		} catch (error) {
+      dispatch({ type: types.GAME_DETAIL_FAILED });
+      dispatch({ type: types.PERIOD_SUMMARY_FAILED });
 			console.error(error);
 		}
 	};
@@ -25,27 +40,18 @@ export function fetchGameDetail(gameId) {
 export function fetchGameContent(gameId) {
 	return async(dispatch, getState) => {
 		try {
-			const gameContent = await GameDetailService.getGameContent(gameId);
+			const data = await GameDetailService.getGameContent(gameId);
 
-			// console.log('actions fetchGameContent', gameContent);
+      try {
+        const gameContent = await GameDetailService.processGameContent(data);
+        dispatch({ type: types.GAME_CONTENT_FETCHED, gameContent });
+      } catch (error) {
+        console.error(error);
+        dispatch({ type: types.GAME_CONTENT_FAILED });
+      }
 
-			dispatch({ type: types.GAME_CONTENT_FETCHED, gameContent });
 		} catch (error) {
 			dispatch({ type: types.GAME_CONTENT_FAILED });
-			console.error(error);
-		}
-	};
-}
-
-export function fetchPeriodSummary(gameId) {
-	return async(dispatch, getState) => {
-		try {
-			const periodSummary = await GameDetailService.getPeriodSummary(gameId);
-
-			// console.log('actions fetchPeriodSummary', periodSummary);
-
-			dispatch({ type: types.PERIOD_SUMMARY_FETCHED, periodSummary });
-		} catch (error) {
 			console.error(error);
 		}
 	};

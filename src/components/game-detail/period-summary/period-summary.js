@@ -149,10 +149,19 @@ class PeriodSummary extends Component {
 		);
 	}
 
+  renderNoContent() {
+    return (
+      <h2 className="error-msg">No period summary available.</h2>
+    );
+  }
+
 	render() {
 		let data = this.props.periodSummary;
 
 		if (data.length || Object.keys(data).length) {
+      if (data.error) {
+        return this.renderNoContent();
+      }
 			return this.renderContent(data);
 		}
 

@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import CONSTANTS from '../../../config/Constants';
 import Icon from '../../shared/icon/icon';
+import './datepicker.scss';
 import './schedule-nav.scss';
 
 class DatepickerTrigger extends Component {
@@ -70,11 +71,7 @@ class ScheduleNav extends Component {
 			let urlDate = curDateObj.day.format(CONSTANTS.momentOptions.apiFormat);
 
       curNavDates.forEach((navDate) => {
-				if (curDateObj.day === navDate.day) {
-					navDate.isActive = true;
-				} else {
-					navDate.isActive = false;
-				}
+				navDate.isActive = curDateObj.day === navDate.day;
 			});
 
 			this.setState({

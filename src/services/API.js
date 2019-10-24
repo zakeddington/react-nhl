@@ -65,9 +65,7 @@ class API {
 			throw new Error(`NHLService getAllGames failed, HTTP status ${response.status}`);
 		}
 
-		const data = await response.json();
-
-		return data;
+		return await response.json();
 	}
 }
 

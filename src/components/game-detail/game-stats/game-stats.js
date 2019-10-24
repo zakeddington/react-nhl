@@ -70,10 +70,19 @@ class GameStats extends Component {
 		);
 	}
 
+  renderNoContent() {
+    return (
+      <h2 className="error-msg">No game stats available.</h2>
+    );
+  }
+
 	render() {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
+      if (data.error) {
+        return this.renderNoContent();
+      }
 			return this.renderContent(data);
 		}
 

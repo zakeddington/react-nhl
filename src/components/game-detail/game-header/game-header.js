@@ -50,10 +50,21 @@ class GameHeader extends Component {
 		);
 	}
 
+  renderNoContent() {
+    return (
+      <header className="game-header">
+        <h2 className="error-msg">No game details available.</h2>
+      </header>
+    );
+  }
+
 	render() {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
+      if (data.error) {
+        return this.renderNoContent();
+      }
 			return this.renderContent(data);
 		}
 

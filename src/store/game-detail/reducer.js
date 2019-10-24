@@ -19,6 +19,10 @@ export default function reduce(state = initialState, action = {}) {
 			return state.merge({
 				gameDetail: action.gameDetail
 			});
+    case types.GAME_DETAIL_FAILED:
+      return state.merge({
+        gameDetail: {error: true}
+      });
 		case types.GAME_CONTENT_FETCHED:
 			return state.merge({
 				gameContent: action.gameContent
@@ -31,6 +35,10 @@ export default function reduce(state = initialState, action = {}) {
 			return state.merge({
 				periodSummary: action.periodSummary
 			});
+    case types.PERIOD_SUMMARY_FAILED:
+      return state.merge({
+        periodSummary: {error: true}
+      });
 		default:
 			return state;
 	}
