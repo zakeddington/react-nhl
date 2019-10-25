@@ -51,8 +51,6 @@ class VideoCarousel extends Component {
   renderContent() {
     const { videos, selectedVideo, selectedVideoIndex } = this.state;
 
-    console.log('renderContent', this.state);
-    
     let thumbs = videos.map((video, i) => {
       let activeClass = i === selectedVideoIndex ? 'is-active' : '';
 

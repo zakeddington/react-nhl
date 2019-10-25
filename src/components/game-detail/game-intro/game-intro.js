@@ -38,7 +38,6 @@ class GameIntro extends Component {
 	}
 
 	render() {
-	  console.log('render intro');
 		let data = this.props.gameContent;
 
 		if (data.length || Object.keys(data).length) {

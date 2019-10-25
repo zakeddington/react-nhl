@@ -14,7 +14,7 @@ import CONSTANTS from '../config/Constants';
 
 class Schedule extends Component {
 
-	componentWillMount() {
+	componentDidMount() {
 		let today = this.props.scheduleStartDate.format(CONSTANTS.momentOptions.apiFormat);
 		this.props.dispatch(actions.fetchScheduleGames(today, today));
 	}

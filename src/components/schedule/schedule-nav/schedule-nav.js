@@ -18,7 +18,12 @@ class DatepickerTrigger extends Component {
 }
 
 class ScheduleNav extends Component {
-	componentWillMount() {
+	state = {
+		selectedDate: this.props.scheduleStartDate,
+		navDates: [],
+	};
+
+	componentDidMount() {
 		this.setNavDates(this.props.scheduleStartDate);
 	}
 
