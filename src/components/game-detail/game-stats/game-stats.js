@@ -40,7 +40,6 @@ class GameStats extends Component {
 
 		return (
 			<div className="team-stats">
-				<h3 className="header-title">Team Stats</h3>
         <div className="stats-table game-stats">
           <table>
             <thead>

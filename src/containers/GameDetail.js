@@ -14,6 +14,8 @@ import Stars from '../components/game-detail/stars/stars';
 import GameStats from '../components/game-detail/game-stats/game-stats';
 import PeriodSummary from '../components/game-detail/period-summary/period-summary';
 import Icon from '../components/shared/icon/icon';
+import Tabs from '../components/shared/tabs/tabs';
+import Tab from '../components/shared/tabs/tab';
 
 class GameDetail extends Component {
 
@@ -38,8 +40,14 @@ class GameDetail extends Component {
 					<Scoreboard gameDetail={this.props.gameDetail} />
 					<Stars gameDetail={this.props.gameDetail} />
 				</div>
-				<GameStats gameDetail={this.props.gameDetail} />
-				<PeriodSummary periodSummary={this.props.periodSummary} />
+				<Tabs>
+					<Tab id="tab-period-summary" tabTitle="Period Summary">
+						<PeriodSummary periodSummary={this.props.periodSummary} />
+					</Tab>
+					<Tab id="tab-team-stats" tabTitle="Team Stats">
+						<GameStats gameDetail={this.props.gameDetail} />
+					</Tab>
+				</Tabs>
 			</div>
 		);
 	}

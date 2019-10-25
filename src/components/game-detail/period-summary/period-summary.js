@@ -143,7 +143,6 @@ class PeriodSummary extends Component {
 
 		return (
 			<div className="period-summary">
-				<h2 className="header-title">Period Summary</h2>
 				{periods}
 			</div>
 		);
