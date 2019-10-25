@@ -2,7 +2,6 @@
 // they act as utility facades that abstract the details for complex operations
 // normally, our interface to any sort of server API will be as a service
 
-import _ from 'lodash';
 import CONSTANTS from '../config/Constants';
 import API from './API';
 import UTILS from './Utils';
@@ -11,10 +10,10 @@ class ScheduleService {
 
 	async getScheduleGames(dateFrom, dateTo, params) {
 		const data = await API.getSchedule(dateFrom, dateTo, params);
-		const dates = _.get(data, 'dates');
+    const { dates } = data;
 		let results = [];
 
-		_.forEach(dates, (date) => {
+    dates.forEach((date) => {
 			let curDate = new Date(date.date.replace(/-/g, '/'));
 
 			let curResults = {
@@ -22,14 +21,14 @@ class ScheduleService {
 				games: []
 			};
 
-			_.flatMapDeep(date.games, (game) => {
-				let startTime = new Date(game.gameDate).toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
-				let gameStatus = UTILS.getGameStatus(game.linescore);
-				let curStatus;
+      date.games.forEach((game) => {
+				const startTime = new Date(game.gameDate).toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
+				const gameStatus = UTILS.getGameStatus(game.linescore);
+        const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
+        const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
+				let curStatus = '';
 				let awayScore = '';
 				let homeScore = '';
-				let awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
-				let homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
 
 				if (gameStatus.length) {
 					curStatus = gameStatus;
@@ -64,7 +63,7 @@ class ScheduleService {
 			results.push(curResults);
 		});
 
-		console.log('ScheduleService results', results);
+		// console.log('ScheduleService results', results);
 
 		if (!dates) {
 			throw new Error(`ScheduleService getScheduleGames failed, dates not returned`);
