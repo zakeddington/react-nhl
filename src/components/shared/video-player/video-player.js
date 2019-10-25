@@ -6,24 +6,30 @@ class VideoPlayer extends Component {
 
 	state = {
 		showVideo: this.props.showVideo
-	}
+	};
 
-	onClick() {
+	onPosterClick() {
 		this.setState({showVideo: true});
 	}
 
 	renderPoster() {
 		return(
-			<button className="video-trigger" onClick={() => this.onClick()}>
+			<button className="video-trigger" onClick={() => this.onPosterClick()}>
 				<img src={this.props.poster} alt={this.props.altText} />
 				<Icon iconId="play-circle-filled" iconClass="video-play-icon" />
+        <span className="video-title">
+          {this.props.title}<span> [{this.props.duration}]</span>
+        </span>
 			</button>
 		)
 	}
 
 	renderVideo() {
+	  const { video, poster, isAutoPlay, onVideoEvent } = this.props;
+
 		return(
-			<video src={this.props.video} poster={this.props.poster} controls autoPlay="true" />
+			<video src={video} poster={poster} muted controls autoPlay={isAutoPlay}
+        onPlay={(e) => onVideoEvent(e)} onEnded={(e) => onVideoEvent(e)} />
 		)
 	}
 

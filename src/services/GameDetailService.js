@@ -245,14 +245,12 @@ class GameDetailService {
     const previewData = data.editorial.preview.items[0];
     const recapData = data.editorial.recap.items[0];
     const mediaData = data.media.epg;
-
-    let isRecap = false;
-    let title;
-    let desc;
-    let poster;
-    let posterAltText;
-    let recapVideo;
-    let recapPoster;
+    const highlights = data.highlights.gameCenter.items;
+    let title = '';
+    let desc = '';
+    let poster = '';
+    let posterAltText = '';
+    const videos = [];
 
     if (previewData) {
       title = previewData.headline;
@@ -262,32 +260,71 @@ class GameDetailService {
     }
 
     if (recapData) {
-      isRecap = true;
       title = recapData.headline;
       desc = recapData.seoDescription;
+    }
 
+    if (mediaData) {
       mediaData.forEach((item) => {
-        if (item.title === 'Recap') {
-          let videos = item.items[0].playbacks;
-          recapPoster = item.items[0].image.cuts['1136x640'].src;
+        const isRecapVideo = item.title === 'Recap';
+        const isCondensedGame = item.title === 'Extended Highlights';
 
-          videos.forEach((video) => {
-            if (video.name === 'FLASH_1800K_960X540') {
-              recapVideo = video.url;
+        if (isRecapVideo || isCondensedGame) {
+          if (item.items.length) {
+            const curItem = this.createVideoData(item.items[0]);
+
+            if (isCondensedGame) {
+              curItem.title = 'Condensed Game';
+              videos.splice(0, 0, curItem);
+            } else {
+              curItem.title = 'Game Recap';
+              videos.push(curItem);
             }
-          });
+          }
         }
       });
     }
 
+    if (highlights) {
+      highlights.forEach((item) => {
+        const curItem = this.createVideoData(item);
+        videos.push(curItem);
+      });
+    }
+
     return {
-      isRecap,
       title,
       desc,
       poster,
       posterAltText,
-      recapVideo,
-      recapPoster,
+      videos,
+    };
+  }
+
+  createVideoData(data) {
+    // console.log(data);
+    const title = data.title;
+    const playbacks = data.playbacks;
+    const duration = data.duration;
+    const thumb = data.image.cuts['640x360'].src;
+    const poster = data.image.cuts['1136x640'].src;
+    const posterAltText = data.image.altText;
+    let url = '';
+
+    playbacks.forEach((video) => {
+      if (video.name === 'FLASH_1800K_960X540') {
+        url = video.url;
+      }
+    });
+
+    return {
+      title,
+      duration,
+      url,
+      poster,
+      thumb,
+      posterAltText,
+      showVideoPlayer: false,
     };
   }
 }

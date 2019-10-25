@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loader from '../../shared/loader/loader';
-import VideoPlayer from '../../shared/video-player/video-player';
+import VideoCarousel from '../../shared/video-carousel/video-carousel';
 import './game-intro.scss';
 
 class GameIntro extends Component {
@@ -18,8 +18,8 @@ class GameIntro extends Component {
 				<p>{data.desc}</p>
 				<div className="game-intro-media">
 					{
-						data.isRecap ? (
-							<VideoPlayer showVideo={false} poster={data.recapPoster} video={data.recapVideo} altText={data.posterAltText} />
+						data.videos.length ? (
+              <VideoCarousel data={data} />
 						) : (
 							<img src={data.poster} alt={data.posterAltText} />
 						)
@@ -38,6 +38,7 @@ class GameIntro extends Component {
 	}
 
 	render() {
+	  console.log('render intro');
 		let data = this.props.gameContent;
 
 		if (data.length || Object.keys(data).length) {

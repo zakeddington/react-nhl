@@ -22,6 +22,7 @@
 // -----------------------------------------------------------------+
 
 .video-play-icon {
+  border-radius: 50%;
   display: block;
   fill: $color-white;
   filter: drop-shadow(0 0 1rem rgba($color-black, 0.5));
@@ -33,6 +34,12 @@
 
   @media (max-width: $breakpoint-mobile-max) {
     filter: drop-shadow(0 0 0.25rem rgba($color-black, 0.5));
+  }
+
+  [class*='trigger']:hover &,
+  [class*='trigger']:focus & {
+    background: rgba($color-black, 0.5);
+    opacity: 1;
   }
 }
 
