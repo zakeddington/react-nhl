@@ -1,4 +1,5 @@
 @import '../../../styles/config/variables';
+@import '../../../styles/config/animations';
 
 .tabs {
   &--nav {
@@ -41,6 +42,7 @@
     display: none;
 
     &.is-active {
+			animation: fade-in $anim-speed forwards $anim-ease;
       display: block;
       opacity: 0;
     }
