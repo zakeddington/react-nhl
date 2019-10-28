@@ -5,6 +5,7 @@ import Header from './components/global/global-header';
 import Schedule from './containers/Schedule';
 import GameDetail from './containers/GameDetail';
 import CONSTANTS from './config/Constants';
+import './styles/app.scss';
 
 class App extends Component {
 	render() {

@@ -237,6 +237,130 @@ class GameDetailService {
 		return shootoutPlays;
 	}
 
+	async processTeamStats(data) {
+		const awayPlayers = data.liveData.boxscore.teams.away.players;
+		const homePlayers = data.liveData.boxscore.teams.home.players;
+		const awayStats = this.createPlayerData(awayPlayers);
+		const homeStats = this.createPlayerData(homePlayers);
+		const gameStatus = UTILS.getGameStatus(data.liveData.linescore);
+		const isPreview = !gameStatus.length;
+		const showNoResults = (!awayStats && !homeStats);
+		const results = {
+			showNoResults,
+			isPreview,
+			teams: [
+				{
+					id: data.gameData.teams.away.id,
+					name: data.gameData.teams.away.name,
+					stats: awayStats,
+				},
+				{
+					id: data.gameData.teams.home.id,
+					name: data.gameData.teams.home.name,
+					stats: homeStats,
+				}
+			]
+		};
+
+		// console.log('processTeamStats', results);
+
+		return results;
+	}
+
+	createPlayerData(players) {
+		const stats = [];
+		const forwards = [];
+		const defense = [];
+		const goalies = [];
+
+		Object.keys(players).forEach((key) => {
+			const player = players[key];
+			if (Object.keys(player.stats).length) {
+				const playerData = {
+					id: player.person.id,
+					number: player.jerseyNumber,
+					name: player.person.fullName,
+					pos: player.position.abbreviation,
+				};
+
+				switch (player.position.code) {
+					case 'D':
+						defense.push(
+							Object.assign({
+								stats: this.getStatPercent(player.stats.skaterStats, 'faceOffWins', 'faceoffTaken', 'faceOffPercent'),
+							}, playerData)
+						);
+						break;
+					case 'G':
+						goalies.push(
+							Object.assign({
+								stats: this.getSavePercent(player.stats.goalieStats, 'saves', 'shots', 'savePercent'),
+							}, playerData)
+						);
+						break;
+					default:
+						forwards.push(
+							Object.assign({
+								stats: this.getStatPercent(player.stats.skaterStats, 'faceOffWins', 'faceoffTaken', 'faceOffPercent'),
+							}, playerData)
+						);
+						break;
+				}
+			}
+		});
+
+		if (!forwards.length && !defense.length && !goalies.length) {
+			return null;
+		}
+
+		forwards.sort((a, b) => a.number - b.number);
+		defense.sort((a, b) => a.number - b.number);
+		goalies.sort((a, b) => a.number - b.number);
+
+		stats.push({
+			position: 'Forwards',
+			players: forwards,
+		});
+
+		stats.push({
+			position: 'Defense',
+			players: defense,
+		});
+
+		stats.push({
+			position: 'Goalies',
+			players: goalies,
+		});
+
+		return stats;
+	}
+
+	getStatPercent(playerData, winPropName, totalPropName, newProp) {
+		const data = playerData;
+		const wins = data[winPropName];
+		const total = data[totalPropName];
+		data[newProp] = '-';
+
+		if (total) {
+			data[newProp] = Math.round((wins / total) * 100);
+		}
+
+		return data;
+	}
+
+	getSavePercent(playerData, winPropName, totalPropName, newProp) {
+		const data = playerData;
+		const wins = data[winPropName];
+		const total = data[totalPropName];
+		data[newProp] = '-';
+
+		if (total) {
+			data[newProp] = Math.round((wins / total) * 1000) / 1000;
+		}
+
+		return data;
+	}
+
   async getGameContent(gameId) {
     return await API.getGameContent(gameId);
   }

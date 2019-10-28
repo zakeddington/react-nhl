@@ -11,8 +11,9 @@ import GameHeader from '../components/game-detail/game-header/game-header';
 import GameIntro from '../components/game-detail/game-intro/game-intro';
 import Scoreboard from '../components/game-detail/scoreboard/scoreboard';
 import Stars from '../components/game-detail/stars/stars';
-import GameStats from '../components/game-detail/game-stats/game-stats';
 import PeriodSummary from '../components/game-detail/period-summary/period-summary';
+import GameStats from '../components/game-detail/game-stats/game-stats';
+import TeamStats from '../components/game-detail/team-stats/team-stats';
 import Icon from '../components/shared/icon/icon';
 import Tabs from '../components/shared/tabs/tabs';
 import Tab from '../components/shared/tabs/tab';
@@ -46,6 +47,7 @@ class GameDetail extends Component {
 					</Tab>
 					<Tab id="tab-team-stats" tabTitle="Team Stats">
 						<GameStats gameDetail={this.props.gameDetail} />
+						<TeamStats teamStats={this.props.teamStats} />
 					</Tab>
 				</Tabs>
 			</div>
@@ -59,10 +61,12 @@ function mapStateToProps(state) {
 	const gameDetail = reducer.getGameDetail(state);
 	const gameContent = reducer.getGameContent(state);
 	const periodSummary = reducer.getPeriodSummary(state);
+	const teamStats = reducer.getTeamStats(state);
 	return {
 		gameDetail,
 		gameContent,
 		periodSummary,
+		teamStats,
 	};
 }
 

@@ -2,9 +2,12 @@ import { Component } from 'react';
 
 class Tab extends Component {
   render() {
-    return (
-      this.props.children
-    )
+  	if (this.props.children) {
+			return (
+				this.props.children
+			)
+		}
+    return null;
   }
 }
 

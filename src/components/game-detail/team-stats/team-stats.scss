@@ -1,0 +1,48 @@
+@import '../../../styles/config/variables';
+
+// Game Stats Table
+// -----------------------------------------------------------------+
+
+.team-stats--tabs {
+	.team-logo {
+		background: $color-white;
+		border-radius: 50%;
+		display: inline-block;
+		margin-right: 0.5rem;
+		padding: 5px;
+
+		@media (max-width: $breakpoint-mobile-max) {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: $breakpoint-mobile-max) {
+	.stats-table--spacer {
+		padding-left: 17rem;
+	}
+}
+
+.goalie-stats {
+	td {
+		width: 8.33%;
+
+		&.stats-table--jersey {
+			width: 5%;
+
+			@media (max-width: $breakpoint-tablet-max) {
+				min-width: 4rem;
+				width: 4rem;
+			}
+		}
+
+		&.stats-table--name {
+			width: 20%;
+
+			@media (max-width: $breakpoint-tablet-max) {
+				min-width: 12rem;
+				width: 12rem;
+			}
+		}
+	}
+}

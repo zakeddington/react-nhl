@@ -11,6 +11,7 @@ const initialState = immutable({
 	gameDetail: {},
 	gameContent: {},
 	periodSummary: {},
+	teamStats: {},
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -35,10 +36,18 @@ export default function reduce(state = initialState, action = {}) {
 			return state.merge({
 				periodSummary: action.periodSummary
 			});
-    case types.PERIOD_SUMMARY_FAILED:
-      return state.merge({
-        periodSummary: {error: true}
-      });
+		case types.PERIOD_SUMMARY_FAILED:
+			return state.merge({
+				periodSummary: {error: true}
+			});
+		case types.TEAM_STATS_FETCHED:
+			return state.merge({
+				teamStats: action.teamStats
+			});
+		case types.TEAM_STATS_FAILED:
+			return state.merge({
+				teamStats: {error: true}
+			});
 		default:
 			return state;
 	}
@@ -56,4 +65,8 @@ export function getGameContent(state) {
 
 export function getPeriodSummary(state) {
 	return state.game.periodSummary;
+}
+
+export function getTeamStats(state) {
+	return state.game.teamStats;
 }

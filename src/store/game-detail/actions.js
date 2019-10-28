@@ -21,17 +21,26 @@ export function fetchGameDetail(gameId) {
         dispatch({ type: types.GAME_DETAIL_FAILED });
       }
 
-      try {
-        const periodSummary = await GameDetailService.processPeriodSummary(data);
-        dispatch({ type: types.PERIOD_SUMMARY_FETCHED, periodSummary });
-      } catch (error) {
-        console.error(error);
-        dispatch({ type: types.PERIOD_SUMMARY_FAILED });
-      }
+			try {
+				const periodSummary = await GameDetailService.processPeriodSummary(data);
+				dispatch({ type: types.PERIOD_SUMMARY_FETCHED, periodSummary });
+			} catch (error) {
+				console.error(error);
+				dispatch({ type: types.PERIOD_SUMMARY_FAILED });
+			}
+
+			try {
+				const teamStats = await GameDetailService.processTeamStats(data);
+				dispatch({ type: types.TEAM_STATS_FETCHED, teamStats });
+			} catch (error) {
+				console.error(error);
+				dispatch({ type: types.TEAM_STATS_FAILED });
+			}
 
 		} catch (error) {
       dispatch({ type: types.GAME_DETAIL_FAILED });
-      dispatch({ type: types.PERIOD_SUMMARY_FAILED });
+			dispatch({ type: types.PERIOD_SUMMARY_FAILED });
+      dispatch({ type: types.TEAM_STATS_FAILED });
 			console.error(error);
 		}
 	};
