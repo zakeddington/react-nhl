@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-// import CONSTANTS from '../../../config/Constants';
+import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
-// import Icon from '../../shared/icon/icon';
 import Tabs from "../../shared/tabs/tabs";
 import Tab from "../../shared/tabs/tab";
 import './team-stats.scss';
@@ -14,9 +13,9 @@ class TeamStats extends Component {
 		);
 	}
 
-	getSkaterStats(playersByPosition, key) {
-		// console.log('getSkaterStats data', data);
-		const players = playersByPosition.map((player) => {
+	getSkaterStats(group, key) {
+		// console.log('getSkaterStats group', group);
+		const players = group.players.map((player) => {
 			return (
 				<tr key={player.id}>
 					<td className="stats-table--pinned stats-table--jersey">{player.number}</td>
@@ -46,7 +45,7 @@ class TeamStats extends Component {
 					<thead>
 					<tr>
 						<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
-						<th className="stats-table--pinned stats-table--name text-left">{playersByPosition.position}</th>
+						<th className="stats-table--pinned stats-table--name text-left">{group.position}</th>
 						<th className="stats-table--spacer tooltip">G <span className="tooltip-content">Goals</span></th>
 						<th className="tooltip">A <span className="tooltip-content">Assists</span></th>
 						<th className="tooltip">P <span className="tooltip-content">Points</span></th>
@@ -72,9 +71,9 @@ class TeamStats extends Component {
 		)
 	}
 
-	getGoalieStats(playersByPosition, key) {
-		// console.log('getGoalieStats data', data);
-		const players = playersByPosition.map((player) => {
+	getGoalieStats(group, key) {
+		// console.log('getGoalieStats group', group);
+		const players = group.players.map((player) => {
 			return (
 				<tr key={player.id}>
 					<td className="stats-table--pinned stats-table--jersey">{player.number}</td>
@@ -98,7 +97,7 @@ class TeamStats extends Component {
 					<thead>
 					<tr>
 						<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
-						<th className="stats-table--pinned stats-table--name text-left">{playersByPosition.position}</th>
+						<th className="stats-table--pinned stats-table--name text-left">{group.position}</th>
 						<th className="stats-table--spacer tooltip">GA <span className="tooltip-content">Goals Against</span></th>
 						<th className="tooltip">SA <span className="tooltip-content">Shots Against</span></th>
 						<th className="tooltip">SV <span className="tooltip-content">Saves</span></th>
@@ -128,21 +127,21 @@ class TeamStats extends Component {
 				const players = team.stats.map((group) => {
 					const key = `${team.id}-${group.position}`;
 					if (group.position === 'Goalies') {
-						return this.getGoalieStats(group.players, key);
+						return this.getGoalieStats(group, key);
 					} else {
-						return this.getSkaterStats(group.players, key);
+						return this.getSkaterStats(group, key);
 					}
 				});
 
 				return (
-					<Tab key={team.id} id={`tab-team-stats-${team.id}`} tabTitle={team.name}>
+					<Tab key={team.id} id={`tab-team-stats-${team.id}`} tabTitle={team.name} iconId={team.id} iconType={CONSTANTS.iconType.logo}>
 						{players}
 					</Tab>
 				)
 			});
 
 			return (
-				<Tabs key="tabs-team-stats">
+				<Tabs key="tabs-team-stats" tabsClass="team-stats--tabs">
 					{teamStats}
 				</Tabs>
 			);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Icon from '../../shared/icon/icon';
 import './tabs.scss';
 
 class Tabs extends Component {
@@ -16,13 +17,17 @@ class Tabs extends Component {
 
     if (tabs) {
 			return (
-				<div className="tabs">
+				<div className={`tabs ${this.props.tabsClass}`}>
 					<ol className="tabs--nav">
 						{tabs.map((tab, i) => {
 							const classActive = tab.props.id === activeTab.props.id ? 'is-active' : '';
 							return (
 								<li key={tab.props.tabTitle} className="tabs--nav-item">
 									<button className={`tabs--nav-link ${classActive}`} onClick={(e) => this.onTabClick(e, i)}>
+										{
+											tab.props.iconId &&
+											<Icon iconId={tab.props.iconId} iconType={tab.props.iconType} iconClass={tab.props.iconClass} />
+										}
 										{tab.props.tabTitle}
 									</button>
 								</li>
