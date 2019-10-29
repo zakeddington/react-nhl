@@ -1,10 +1,10 @@
-const API_BASE_URL = 'https://statsapi.web.nhl.com/api/v1/';
+const API_STATS_URL = 'https://statsapi.web.nhl.com/api/v1/';
 
 class API {
 	getSchedule(strStart, strEnd, arrParams) {
 		return new Promise((resolve, reject) => {
 			try {
-				let url = `${API_BASE_URL}schedule`;
+				let url = `${API_STATS_URL}schedule`;
 				let params = '';
 
 				if (arrParams) {
@@ -23,7 +23,7 @@ class API {
 	getGame(gameId) {
 		return new Promise((resolve, reject) => {
 			try {
-				let url = `${API_BASE_URL}game/${gameId}/feed/live`;
+				let url = `${API_STATS_URL}game/${gameId}/feed/live`;
 				resolve(this.getData(url));
 			} catch(e) {
 				reject(e);
@@ -34,7 +34,18 @@ class API {
 	getGameContent(gameId) {
 		return new Promise((resolve, reject) => {
 			try {
-				let url = `${API_BASE_URL}game/${gameId}/content`;
+				let url = `${API_STATS_URL}game/${gameId}/content`;
+				resolve(this.getData(url));
+			} catch(e) {
+				reject(e);
+			}
+		});
+	}
+
+	getPlayerDetail(playerId) {
+		return new Promise((resolve, reject) => {
+			try {
+				const url = `${API_STATS_URL}people/${playerId}?expand=person.stats&stats=yearByYear,careerRegularSeason,yearByYearPlayoffs,careerPlayoffs&expand=stats.team&site=en_nhl`;
 				resolve(this.getData(url));
 			} catch(e) {
 				reject(e);

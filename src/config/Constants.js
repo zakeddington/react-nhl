@@ -35,6 +35,7 @@ const Constants = {
 	momentOptions: {
 		apiFormat:  'YYYY-MM-DD',
 		displayFormat: 'ddd, MMM D',
+		birthFormat: 'MMMM D, YYYY',
 	},
 
 	dateOptions: {

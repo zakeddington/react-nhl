@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Loader from '../../shared/loader/loader';
 import PlayerPhoto from '../../shared/player-photo/player-photo';
 import './stars.scss';
+import Modal from '../../shared/modal/modal';
+import ModalPlayerDetailContent from '../../shared/modal/modal-player-detail-content';
 
 class Stars extends Component {
 
@@ -19,7 +21,9 @@ class Stars extends Component {
 		let stars = data.stars.map((star) => {
 			return (
 				<div key={Math.random()} className="stars-player">
-					<PlayerPhoto playerId={star.id} />
+					<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">
+						<PlayerPhoto playerId={star.id} />
+					</Modal>
 					<span className="stars-name">
 						{star.name}
 						<span className="stars-team-name">{star.teamName}</span>

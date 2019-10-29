@@ -14,10 +14,11 @@ class Tabs extends Component {
 
   render() {
     const { tabs, activeTab } = this.state;
+    const tabsClass = this.props.tabsClass ? this.props.tabsClass : '';
 
     if (tabs) {
 			return (
-				<div className={`tabs ${this.props.tabsClass}`}>
+				<div className={`tabs ${tabsClass}`}>
 					<ol className="tabs--nav">
 						{tabs.map((tab, i) => {
 							const classActive = tab.props.id === activeTab.props.id ? 'is-active' : '';
@@ -37,7 +38,6 @@ class Tabs extends Component {
 					<div>
 						{this.props.children.map((child) => {
 							const classActive = child.props.id === activeTab.props.id ? 'is-active' : '';
-
 							return (
 								<div key={child.props.id} className={`tabs--content ${classActive}`}>{child}</div>
 							);
