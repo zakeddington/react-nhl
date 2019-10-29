@@ -118,7 +118,6 @@
         display: block;
         position: relative;
         transition: all $anim-speed-fast $anim-ease;
-        z-index: $z-index-default;
       }
 
       .is-active & {
@@ -144,7 +143,6 @@
     .video-play-icon {
       height: 4rem;
       width: 4rem;
-      z-index: $z-index-default;
 
       @media (max-width: $breakpoint-mobile-max) {
         height: 3rem;

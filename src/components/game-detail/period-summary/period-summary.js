@@ -3,6 +3,8 @@ import CONSTANTS from '../../../config/Constants';
 import Icon from '../../shared/icon/icon';
 import PlayerPhoto from '../../shared/player-photo/player-photo';
 import './period-summary.scss';
+import ModalPlayerDetailContent from "../../shared/modal/modal-player-detail-content";
+import Modal from "../../shared/modal/modal";
 
 class PeriodSummary extends Component {
 	renderShootoutPlays(period) {
@@ -14,11 +16,18 @@ class PeriodSummary extends Component {
           </div>
           <div className="period-summary-time"/>
           <div className="period-summary-photo">
-            <PlayerPhoto playerId={play.shooter.id} />
+						<Modal content={<ModalPlayerDetailContent contentId={play.shooter.id}/>} modalClass="player-detail">
+							<PlayerPhoto playerId={play.shooter.id} />
+						</Modal>
           </div>
           <div className="period-summary-player-info">
 						<span className="period-summary-player">
-							<span className="period-summary-name">{play.shooter.name}{play.shooter.desc ? ',' : ''}</span>
+							<span className="period-summary-name">
+								<Modal content={<ModalPlayerDetailContent contentId={play.shooter.id}/>} modalClass="player-detail">
+									{play.shooter.name}
+								</Modal>
+								{play.shooter.desc ? ',' : ''}
+							</span>
 							<span className="period-summary-goal-desc">{play.shooter.desc}</span>
 						</span>
           </div>
@@ -54,11 +63,17 @@ class PeriodSummary extends Component {
 						</div>
 						<div className="period-summary-time">{goal.time}</div>
 						<div className="period-summary-photo">
-							<PlayerPhoto playerId={goal.scorer.id} />
+							<Modal content={<ModalPlayerDetailContent contentId={goal.scorer.id}/>} modalClass="player-detail">
+								<PlayerPhoto playerId={goal.scorer.id} />
+							</Modal>
 						</div>
 						<div className="period-summary-player-info">
 							<span className="period-summary-player">
-								<span className="period-summary-name">{goal.scorer.name} ({goal.scorer.total}),</span>
+								<span className="period-summary-name">
+									<Modal content={<ModalPlayerDetailContent contentId={goal.scorer.id}/>} modalClass="player-detail">
+										{goal.scorer.name}
+									</Modal> ({goal.scorer.total}),
+								</span>
 								<span className="period-summary-goal-desc">
 								{goal.scorer.desc}
 								{
@@ -78,7 +93,9 @@ class PeriodSummary extends Component {
                   goal.assists.map((assist, i) => {
 										return (
 											<span key={assist.name}>
-												{assist.name} ({assist.total}){i < goal.assists.length - 1 && ', '}
+												<Modal content={<ModalPlayerDetailContent contentId={assist.id}/>} modalClass="player-detail">
+													{assist.name}
+												</Modal> ({assist.total}){i < goal.assists.length - 1 && ', '}
 											</span>
 										)
 									})
@@ -110,11 +127,17 @@ class PeriodSummary extends Component {
 						</div>
 						<div className="period-summary-time">{penalty.time}</div>
 						<div className="period-summary-photo">
-							<PlayerPhoto playerId={penalty.penaltyOn.id} />
+							<Modal content={<ModalPlayerDetailContent contentId={penalty.penaltyOn.id}/>} modalClass="player-detail">
+								<PlayerPhoto playerId={penalty.penaltyOn.id} />
+							</Modal>
 						</div>
 						<div className="period-summary-player-info">
 							<span className="period-summary-player">
-								<span className="period-summary-name">{penalty.penaltyOn.name}</span>
+								<span className="period-summary-name">
+									<Modal content={<ModalPlayerDetailContent contentId={penalty.penaltyOn.id}/>} modalClass="player-detail">
+										{penalty.penaltyOn.name}
+									</Modal>
+								</span>
 							</span>
 							<span className="period-summary-details">{penalty.penaltyMin} Minutes for {penalty.penaltyType}</span>
 						</div>

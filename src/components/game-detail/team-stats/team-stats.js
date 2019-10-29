@@ -4,6 +4,8 @@ import Loader from '../../shared/loader/loader';
 import Tabs from "../../shared/tabs/tabs";
 import Tab from "../../shared/tabs/tab";
 import './team-stats.scss';
+import ModalPlayerDetailContent from "../../shared/modal/modal-player-detail-content";
+import Modal from "../../shared/modal/modal";
 
 class TeamStats extends Component {
 
@@ -19,7 +21,10 @@ class TeamStats extends Component {
 			return (
 				<tr key={player.id}>
 					<td className="stats-table--pinned stats-table--jersey">{player.number}</td>
-					<td className="stats-table--pinned text-left stats-table--name">{player.name}, {player.pos}</td>
+					<td className="stats-table--pinned text-left stats-table--name">
+						<Modal content={<ModalPlayerDetailContent contentId={player.id}/>} modalClass="player-detail">
+							{player.name}
+						</Modal>, {player.pos}</td>
 					<td className="stats-table--spacer">{player.stats.goals}</td>
 					<td>{player.stats.assists}</td>
 					<td>{player.stats.goals + player.stats.assists}</td>
@@ -77,7 +82,10 @@ class TeamStats extends Component {
 			return (
 				<tr key={player.id}>
 					<td className="stats-table--pinned stats-table--jersey">{player.number}</td>
-					<td className="stats-table--pinned stats-table--name text-left">{player.name}, {player.pos}</td>
+					<td className="stats-table--pinned stats-table--name text-left">
+						<Modal content={<ModalPlayerDetailContent contentId={player.id}/>} modalClass="player-detail">
+							{player.name}
+						</Modal>, {player.pos}</td>
 					<td className="stats-table--spacer">{player.stats.shots - player.stats.saves}</td>
 					<td>{player.stats.shots}</td>
 					<td>{player.stats.saves}</td>

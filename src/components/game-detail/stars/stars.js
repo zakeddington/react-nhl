@@ -25,7 +25,9 @@ class Stars extends Component {
 						<PlayerPhoto playerId={star.id} />
 					</Modal>
 					<span className="stars-name">
-						{star.name}
+						<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">
+							{star.name}
+						</Modal>
 						<span className="stars-team-name">{star.teamName}</span>
 					</span>
 					<span className="stars-stat">{star.stat1}</span>
