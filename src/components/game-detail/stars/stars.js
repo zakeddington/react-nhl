@@ -17,6 +17,7 @@ class Stars extends Component {
 				<div key={Math.random()} className="stars-player">
 					<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">
 						<PlayerPhoto playerId={star.id} />
+						<span className="offscreen">Open player details for {star.name} in modal window</span>
 					</Modal>
 					<span className="stars-name">
 						<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">

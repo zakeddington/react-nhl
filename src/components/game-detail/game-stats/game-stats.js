@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
+import ErrorMessage from '../../shared/error/error-message';
 import Icon from '../../shared/icon/icon';
 import './game-stats.scss';
 
@@ -63,7 +64,7 @@ class GameStats extends Component {
 
   renderNoContent() {
     return (
-      <h2 className="error-msg">No game stats available.</h2>
+			<ErrorMessage errorMsg="No game stats available." />
     );
   }
 

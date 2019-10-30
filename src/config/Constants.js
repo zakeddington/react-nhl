@@ -20,6 +20,7 @@ const Constants = {
   },
 
   imgUrl: {
+		base: '/assets/images/',
     icon: {
       base: '/assets/images/icons.svg#icon-',
     },

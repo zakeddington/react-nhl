@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
+import ErrorMessage from '../../shared/error/error-message';
 import Tabs from '../../shared/tabs/tabs';
 import Tab from '../../shared/tabs/tab';
 import Modal from '../../shared/modal/modal';
@@ -18,6 +19,7 @@ class TeamStats extends Component {
 					<td className="stats-table--pinned text-left stats-table--name">
 						<Modal content={<ModalPlayerDetailContent contentId={player.id}/>} modalClass="player-detail">
 							{player.name}
+							<span className="offscreen">Open player details for {player.name} in modal window</span>
 						</Modal>, {player.pos}</td>
 					<td className="stats-table--spacer">{player.stats.goals}</td>
 					<td>{player.stats.assists}</td>
@@ -79,6 +81,7 @@ class TeamStats extends Component {
 					<td className="stats-table--pinned stats-table--name text-left">
 						<Modal content={<ModalPlayerDetailContent contentId={player.id}/>} modalClass="player-detail">
 							{player.name}
+							<span className="offscreen">Open player details for {player.name} in modal window</span>
 						</Modal>, {player.pos}</td>
 					<td className="stats-table--spacer">{player.stats.shots - player.stats.saves}</td>
 					<td>{player.stats.shots}</td>
@@ -154,7 +157,7 @@ class TeamStats extends Component {
 
 	renderNoContent() {
 		return (
-			<h2 className="error-msg">No team stats available.</h2>
+			<ErrorMessage errorMsg="No team stats available." />
 		);
 	}
 

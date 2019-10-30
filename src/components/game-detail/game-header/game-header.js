@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
 import Icon from '../../shared/icon/icon';
+import ErrorMessage from '../../shared/error/error-message';
 import './game-header.scss';
 
 class GameHeader extends Component {
@@ -9,6 +10,7 @@ class GameHeader extends Component {
 	renderContent(data) {
 		return (
 			<header className="game-header">
+				<h1 className="offscreen">{data.date} : {data.teams.away.name} {data.teams.away.score} - {data.teams.home.name} {data.teams.home.score}</h1>
 				<div className="col game-header-date-info">
 					<span className="game-header-date">{data.date}</span>
 					{
@@ -47,7 +49,7 @@ class GameHeader extends Component {
   renderNoContent() {
     return (
       <header className="game-header">
-        <h2 className="error-msg">No game details available.</h2>
+				<ErrorMessage errorMsg="No game details available." />
       </header>
     );
   }

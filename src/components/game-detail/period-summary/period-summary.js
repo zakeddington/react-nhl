@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
+import ErrorMessage from '../../shared/error/error-message';
 import Icon from '../../shared/icon/icon';
 import PlayerPhoto from '../../shared/player-photo/player-photo';
 import Modal from '../../shared/modal/modal';
@@ -19,6 +20,7 @@ class PeriodSummary extends Component {
           <div className="period-summary-photo">
 						<Modal content={<ModalPlayerDetailContent contentId={play.shooter.id}/>} modalClass="player-detail">
 							<PlayerPhoto playerId={play.shooter.id} />
+							<span className="offscreen">Open player details for {play.shooter.name} in modal window</span>
 						</Modal>
           </div>
           <div className="period-summary-player-info">
@@ -26,6 +28,7 @@ class PeriodSummary extends Component {
 							<span className="period-summary-name">
 								<Modal content={<ModalPlayerDetailContent contentId={play.shooter.id}/>} modalClass="player-detail">
 									{play.shooter.name}
+									<span className="offscreen">Open player details for {play.shooter.name} in modal window</span>
 								</Modal>
 								{play.shooter.desc ? ',' : ''}
 							</span>
@@ -66,6 +69,7 @@ class PeriodSummary extends Component {
 						<div className="period-summary-photo">
 							<Modal content={<ModalPlayerDetailContent contentId={goal.scorer.id}/>} modalClass="player-detail">
 								<PlayerPhoto playerId={goal.scorer.id} />
+								<span className="offscreen">Open player details for {goal.scorer.name} in modal window</span>
 							</Modal>
 						</div>
 						<div className="period-summary-player-info">
@@ -73,6 +77,7 @@ class PeriodSummary extends Component {
 								<span className="period-summary-name">
 									<Modal content={<ModalPlayerDetailContent contentId={goal.scorer.id}/>} modalClass="player-detail">
 										{goal.scorer.name}
+										<span className="offscreen">Open player details for {goal.scorer.name} in modal window</span>
 									</Modal> ({goal.scorer.total}),
 								</span>
 								<span className="period-summary-goal-desc">
@@ -96,6 +101,7 @@ class PeriodSummary extends Component {
 											<span key={assist.name}>
 												<Modal content={<ModalPlayerDetailContent contentId={assist.id}/>} modalClass="player-detail">
 													{assist.name}
+													<span className="offscreen">Open player details for {assist.name} in modal window</span>
 												</Modal> ({assist.total}){i < goal.assists.length - 1 && ', '}
 											</span>
 										)
@@ -130,6 +136,7 @@ class PeriodSummary extends Component {
 						<div className="period-summary-photo">
 							<Modal content={<ModalPlayerDetailContent contentId={penalty.penaltyOn.id}/>} modalClass="player-detail">
 								<PlayerPhoto playerId={penalty.penaltyOn.id} />
+								<span className="offscreen">Open player details for {penalty.penaltyOn.name} in modal window</span>
 							</Modal>
 						</div>
 						<div className="period-summary-player-info">
@@ -137,6 +144,7 @@ class PeriodSummary extends Component {
 								<span className="period-summary-name">
 									<Modal content={<ModalPlayerDetailContent contentId={penalty.penaltyOn.id}/>} modalClass="player-detail">
 										{penalty.penaltyOn.name}
+										<span className="offscreen">Open player details for {penalty.penaltyOn.name} in modal window</span>
 									</Modal>
 								</span>
 							</span>
@@ -174,7 +182,7 @@ class PeriodSummary extends Component {
 
   renderNoContent() {
     return (
-      <h2 className="error-msg">No period summary available.</h2>
+			<ErrorMessage errorMsg="No period summary available." />
     );
   }
 

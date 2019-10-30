@@ -28,6 +28,7 @@ class Schedule extends Component {
 					scheduleStartDate={this.props.scheduleStartDate}
 					scheduleIsLoading={this.props.scheduleIsLoading}
 				/>
+				<h1>Scores</h1>
 				<ScheduleResults scheduleGames={this.props.scheduleGames} scheduleIsLoading={this.props.scheduleIsLoading} />
 			</div>
 		);

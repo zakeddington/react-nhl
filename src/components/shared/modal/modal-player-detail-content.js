@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import PlayerDetailService from '../../../services/PlayerDetailService';
 import Loader from '../loader/loader';
+import ErrorMessage from '../error/error-message';
 import PlayerPhoto from '../player-photo/player-photo';
 import Tabs from '../tabs/tabs';
 import Tab from '../tabs/tab';
@@ -288,7 +289,7 @@ class ModalPlayerDetailContent extends Component {
 			}
 		} else {
 			return (
-				<h2 className="error-msg">No regular season stats available.</h2>
+				<ErrorMessage errorMsg="No regular season stats available." />
 			)
 		}
 	}
@@ -308,7 +309,7 @@ class ModalPlayerDetailContent extends Component {
 			}
 		} else {
 			return (
-				<h2 className="error-msg">No playoff stats available.</h2>
+				<ErrorMessage errorMsg="No playoff stats available." />
 			)
 		}
 	}
@@ -361,7 +362,7 @@ class ModalPlayerDetailContent extends Component {
 	renderNoContent() {
 		return (
 			<div className="modal--content">
-				<h2 className="error-msg">No player details available.</h2>
+				<ErrorMessage errorMsg="No player details available." />
 			</div>
 		);
 	}

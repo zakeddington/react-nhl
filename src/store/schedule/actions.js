@@ -16,7 +16,7 @@ export function fetchScheduleGames(dateFrom, dateTo) {
 			];
 			dispatch({ type: types.SCHEDULE_GAMES_FETCHING });
 			const scheduleGames = await ScheduleService.getScheduleGames(dateFrom, dateTo, params);
-			
+
 			if (scheduleGames.length) {
 				dispatch({ type: types.SCHEDULE_GAMES_FETCHED, scheduleGames });
 			} else {

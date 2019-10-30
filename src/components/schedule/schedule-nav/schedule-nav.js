@@ -12,6 +12,7 @@ class DatepickerTrigger extends Component {
 		return (
 			<button className="datepicker-trigger" onClick={() => this.props.onClick()} value={this.props.value}>
 				<Icon iconId="calendar" />
+				<span className="offscreen">Select a date from calendar</span>
 			</button>
 		)
 	}

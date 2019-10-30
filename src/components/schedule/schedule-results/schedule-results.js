@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
+import ErrorMessage from '../../shared/error/error-message';
 import Icon from '../../shared/icon/icon';
 import './schedule-results.scss';
 
@@ -46,7 +47,7 @@ class ScheduleResults extends Component {
 
 			return (
 				<div key={date.date} className="schedule-results-group">
-					<h3>{date.date}</h3>
+					<h2>{date.date}</h2>
 					<ul className="schedule-results-games">
 						{games}
 					</ul>
@@ -63,7 +64,7 @@ class ScheduleResults extends Component {
 
 	renderNoContent() {
 		return (
-			<h2 className="error-msg">There are no games scheduled on this date.</h2>
+			<ErrorMessage errorMsg="There are no games scheduled on this date." />
 		)
 	}
 
