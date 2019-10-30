@@ -16,9 +16,15 @@ export function fetchScheduleGames(dateFrom, dateTo) {
 			];
 			dispatch({ type: types.SCHEDULE_GAMES_FETCHING });
 			const scheduleGames = await ScheduleService.getScheduleGames(dateFrom, dateTo, params);
-			dispatch({ type: types.SCHEDULE_GAMES_FETCHED, scheduleGames });
+			
+			if (scheduleGames.length) {
+				dispatch({ type: types.SCHEDULE_GAMES_FETCHED, scheduleGames });
+			} else {
+				dispatch({ type: types.SCHEDULE_GAMES_FAILED });
+			}
 		} catch (error) {
 			console.error(error);
+			dispatch({ type: types.SCHEDULE_GAMES_FAILED });
 		}
 	};
 }

@@ -6,6 +6,7 @@
 
 import * as types from './actionTypes';
 import immutable from 'seamless-immutable';
+import CONSTANTS from '../../config/Constants';
 
 const initialState = immutable({
 	gameDetail: {},
@@ -22,7 +23,7 @@ export default function reduce(state = initialState, action = {}) {
 			});
     case types.GAME_DETAIL_FAILED:
       return state.merge({
-        gameDetail: {error: true}
+        gameDetail: CONSTANTS.NO_DATA
       });
 		case types.GAME_CONTENT_FETCHED:
 			return state.merge({
@@ -30,7 +31,7 @@ export default function reduce(state = initialState, action = {}) {
 			});
 		case types.GAME_CONTENT_FAILED:
 			return state.merge({
-				gameContent: {error: true}
+				gameContent: CONSTANTS.NO_DATA
 			});
 		case types.PERIOD_SUMMARY_FETCHED:
 			return state.merge({
@@ -38,7 +39,7 @@ export default function reduce(state = initialState, action = {}) {
 			});
 		case types.PERIOD_SUMMARY_FAILED:
 			return state.merge({
-				periodSummary: {error: true}
+				periodSummary: CONSTANTS.NO_DATA
 			});
 		case types.TEAM_STATS_FETCHED:
 			return state.merge({
@@ -46,7 +47,7 @@ export default function reduce(state = initialState, action = {}) {
 			});
 		case types.TEAM_STATS_FAILED:
 			return state.merge({
-				teamStats: {error: true}
+				teamStats: CONSTANTS.NO_DATA
 			});
 		default:
 			return state;

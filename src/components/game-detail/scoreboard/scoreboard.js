@@ -22,17 +22,7 @@ class Scoreboard extends Component {
 		)
 	}
 
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
-
 	renderContent(data) {
-		if (data.isPreview) {
-			return null;
-		}
-
 		return (
 			<div className="scoreboard">
 				<h3 className="header-title">{data.gameStatus}</h3>
@@ -68,11 +58,17 @@ class Scoreboard extends Component {
     return null;
   }
 
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.error) {
+      if (data.showNoResults || data.isPreview) {
         return this.renderNoContent();
       }
 			return this.renderContent(data);

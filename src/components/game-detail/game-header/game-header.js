@@ -6,12 +6,6 @@ import './game-header.scss';
 
 class GameHeader extends Component {
 
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
-
 	renderContent(data) {
 		return (
 			<header className="game-header">
@@ -58,11 +52,17 @@ class GameHeader extends Component {
     );
   }
 
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.error) {
+      if (data.showNoResults) {
         return this.renderNoContent();
       }
 			return this.renderContent(data);

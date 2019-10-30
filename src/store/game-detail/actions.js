@@ -38,10 +38,10 @@ export function fetchGameDetail(gameId) {
 			}
 
 		} catch (error) {
+			console.error(error);
       dispatch({ type: types.GAME_DETAIL_FAILED });
 			dispatch({ type: types.PERIOD_SUMMARY_FAILED });
       dispatch({ type: types.TEAM_STATS_FAILED });
-			console.error(error);
 		}
 	};
 }
@@ -60,8 +60,8 @@ export function fetchGameContent(gameId) {
       }
 
 		} catch (error) {
-			dispatch({ type: types.GAME_CONTENT_FAILED });
 			console.error(error);
+			dispatch({ type: types.GAME_CONTENT_FAILED });
 		}
 	};
 }

@@ -26,6 +26,11 @@ export default function reduce(state = initialState, action = {}) {
 				scheduleGames: action.scheduleGames,
 				scheduleIsLoading: false,
 			});
+		case types.SCHEDULE_GAMES_FAILED:
+			return state.merge({
+				scheduleGames: CONSTANTS.NO_DATA,
+				scheduleIsLoading: false,
+			});
 		default:
 			return state;
 	}

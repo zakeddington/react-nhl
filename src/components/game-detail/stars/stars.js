@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import Loader from '../../shared/loader/loader';
 import PlayerPhoto from '../../shared/player-photo/player-photo';
-import './stars.scss';
 import Modal from '../../shared/modal/modal';
 import ModalPlayerDetailContent from '../../shared/modal/modal-player-detail-content';
+import './stars.scss';
 
 class Stars extends Component {
-
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
 
 	renderContent(data) {
 		if (data.isPreview || !data.stars) {
@@ -50,11 +44,17 @@ class Stars extends Component {
     return null;
   }
 
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.error) {
+      if (data.showNoResults || data.isPreview) {
         return this.renderNoContent();
       }
 			return this.renderContent(data);

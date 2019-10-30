@@ -6,18 +6,6 @@ import './schedule-results.scss';
 
 class ScheduleResults extends Component {
 
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
-
-	renderNoContent() {
-		return (
-			<h2>There are no games scheduled on this date.</h2>
-		)
-	}
-
 	renderContent(data) {
 		let dates = data.map((date) => {
 			let games = date.games.map((game, i) => {
@@ -73,6 +61,18 @@ class ScheduleResults extends Component {
 		);
 	}
 
+	renderNoContent() {
+		return (
+			<h2 className="error-msg">There are no games scheduled on this date.</h2>
+		)
+	}
+
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.scheduleGames;
 
@@ -81,10 +81,11 @@ class ScheduleResults extends Component {
 		}
 
 		if (data.length || Object.keys(data).length) {
+			if (data.showNoResults) {
+				return this.renderNoContent();
+			}
 			return this.renderContent(data);
 		}
-
-		return this.renderNoContent();
 	}
 }
 

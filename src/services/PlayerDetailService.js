@@ -65,7 +65,6 @@ class PlayerDetailService {
 		}
 
 		const results = {
-			showNoResults: false,
 			id,
 			name: player.fullName,
 			height: player.height,

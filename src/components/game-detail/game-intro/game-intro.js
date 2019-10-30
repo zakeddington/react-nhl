@@ -5,12 +5,6 @@ import './game-intro.scss';
 
 class GameIntro extends Component {
 
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
-
 	renderContent(data) {
 		return (
 			<div className="game-intro">
@@ -30,10 +24,12 @@ class GameIntro extends Component {
 	}
 
 	renderNoContent() {
+		return null;
+	}
+
+	renderLoading() {
 		return (
-			<div className="game-intro">
-				<h2>No content available</h2>
-			</div>
+			<Loader />
 		);
 	}
 
@@ -41,7 +37,7 @@ class GameIntro extends Component {
 		let data = this.props.gameContent;
 
 		if (data.length || Object.keys(data).length) {
-			if (data.error) {
+			if (data.showNoResults) {
 				return this.renderNoContent();
 			}
 			return this.renderContent(data);

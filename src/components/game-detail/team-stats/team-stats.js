@@ -1,19 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
-import Tabs from "../../shared/tabs/tabs";
-import Tab from "../../shared/tabs/tab";
+import Tabs from '../../shared/tabs/tabs';
+import Tab from '../../shared/tabs/tab';
+import Modal from '../../shared/modal/modal';
+import ModalPlayerDetailContent from '../../shared/modal/modal-player-detail-content';
 import './team-stats.scss';
-import ModalPlayerDetailContent from "../../shared/modal/modal-player-detail-content";
-import Modal from "../../shared/modal/modal";
 
 class TeamStats extends Component {
-
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
 
 	getSkaterStats(group, key) {
 		// console.log('getSkaterStats group', group);
@@ -164,11 +158,17 @@ class TeamStats extends Component {
 		);
 	}
 
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.teamStats;
 
 		if (data.length || Object.keys(data).length) {
-			if (data.error) {
+			if (data.showNoResults || data.isPreview) {
 				return this.renderNoContent();
 			}
 			return this.renderContent(data);

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
 import Icon from '../../shared/icon/icon';
@@ -25,12 +25,6 @@ class GameStats extends Component {
 				<td>{stats.takeaways}</td>
 			</tr>
 		)
-	}
-
-	renderLoading() {
-		return (
-			<Loader />
-		);
 	}
 
 	renderContent(data) {
@@ -73,11 +67,17 @@ class GameStats extends Component {
     );
   }
 
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.error) {
+			if (data.showNoResults || data.isPreview) {
         return this.renderNoContent();
       }
 			return this.renderContent(data);

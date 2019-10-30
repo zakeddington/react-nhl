@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
+import Loader from '../../shared/loader/loader';
 import Icon from '../../shared/icon/icon';
 import PlayerPhoto from '../../shared/player-photo/player-photo';
+import Modal from '../../shared/modal/modal';
+import ModalPlayerDetailContent from '../../shared/modal/modal-player-detail-content';
 import './period-summary.scss';
-import ModalPlayerDetailContent from "../../shared/modal/modal-player-detail-content";
-import Modal from "../../shared/modal/modal";
 
 class PeriodSummary extends Component {
 	renderShootoutPlays(period) {
@@ -177,17 +178,23 @@ class PeriodSummary extends Component {
     );
   }
 
+	renderLoading() {
+		return (
+			<Loader />
+		);
+	}
+
 	render() {
 		let data = this.props.periodSummary;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.error) {
-        return this.renderNoContent();
-      }
+			if (data.showNoResults) {
+				return this.renderNoContent();
+			}
 			return this.renderContent(data);
 		}
 
-		return null;
+		return this.renderLoading();
 	}
 }
 

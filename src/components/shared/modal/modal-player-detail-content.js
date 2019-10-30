@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CONSTANTS from '../../../config/Constants';
 import PlayerDetailService from '../../../services/PlayerDetailService';
 import Loader from '../loader/loader';
 import PlayerPhoto from '../player-photo/player-photo';
@@ -27,10 +28,16 @@ class ModalPlayerDetailContent extends Component {
 				})
 			} catch (error) {
 				console.error(error);
+				this.setState({
+					data: CONSTANTS.NO_DATA,
+				})
 			}
 
 		} catch (error) {
 			console.error(error);
+			this.setState({
+				data: CONSTANTS.NO_DATA,
+			})
 		}
 	}
 
@@ -306,12 +313,6 @@ class ModalPlayerDetailContent extends Component {
 		}
 	}
 
-	renderLoading() {
-		return (
-			<Loader />
-		);
-	}
-
 	renderContent() {
 		const { data } = this.state;
 
@@ -358,14 +359,26 @@ class ModalPlayerDetailContent extends Component {
 	}
 
 	renderNoContent() {
-		return null;
+		return (
+			<div className="modal--content">
+				<h2 className="error-msg">No player details available.</h2>
+			</div>
+		);
+	}
+
+	renderLoading() {
+		return (
+			<div className="modal--content">
+				<Loader />
+			</div>
+		);
 	}
 
 	render() {
 		const { data } = this.state;
 
 		if (data.length || Object.keys(data).length) {
-			if (data.error) {
+			if (data.showNoResults) {
 				return this.renderNoContent();
 			}
 			return this.renderContent();

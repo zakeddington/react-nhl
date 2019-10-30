@@ -180,7 +180,11 @@ class GameDetailService {
       });
     }
 
-    return periodPlays;
+		if (periodPlays.length) {
+			return periodPlays;
+		}
+
+		return CONSTANTS.NO_DATA;
   }
 
 	getShootoutSummary(data) {
@@ -245,7 +249,8 @@ class GameDetailService {
 		const gameStatus = UTILS.getGameStatus(data.liveData.linescore);
 		const isPreview = !gameStatus.length;
 		const showNoResults = (!awayStats && !homeStats);
-		const results = {
+
+		return {
 			showNoResults,
 			isPreview,
 			teams: [
@@ -261,10 +266,6 @@ class GameDetailService {
 				}
 			]
 		};
-
-		// console.log('processTeamStats', results);
-
-		return results;
 	}
 
 	createPlayerData(players) {

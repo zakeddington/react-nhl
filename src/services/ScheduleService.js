@@ -66,7 +66,8 @@ class ScheduleService {
 		// console.log('ScheduleService results', results);
 
 		if (!dates) {
-			throw new Error(`ScheduleService getScheduleGames failed, dates not returned`);
+			// throw new Error(`ScheduleService getScheduleGames failed, dates not returned`);
+			return CONSTANTS.noData;
 		}
 
 		return results;
