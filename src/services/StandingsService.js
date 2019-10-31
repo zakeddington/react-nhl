@@ -15,6 +15,7 @@ class StandingsService {
 
 		arrTeams.forEach((team) => {
 			teams.push({
+				id: team.team.id,
 				rank: parseInt(team[rankProp], 10),
 				name: team.team.name,
 				games: team.gamesPlayed,
@@ -127,7 +128,7 @@ class StandingsService {
 
 		return [
 			{
-				name: 'NHL',
+				name: 'League',
 				teams,
 			}
 		];

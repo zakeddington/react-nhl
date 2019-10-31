@@ -3,6 +3,7 @@ import CONSTANTS from '../../../config/Constants';
 import StandingsService from '../../../services/StandingsService';
 import Loader from '../loader/loader';
 import ErrorMessage from '../error/error-message';
+import Icon from '../icon/icon';
 import Tabs from '../tabs/tabs';
 import Tab from '../tabs/tab';
 import './drawer-standings.scss';
@@ -63,7 +64,10 @@ class DrawerStandings extends Component {
 							return (
 								<tr key={team.name}>
 									<td>{team.rank}</td>
-									<td className="standings--team-name text-left">{team.name}</td>
+									<td className="standings--team text-left">
+										<Icon iconId={team.id} iconType={CONSTANTS.iconType.logo} />
+										<span className="standings--team-name">{team.name}</span>
+									</td>
 									<td>{team.games}</td>
 									<td>{team.wins}</td>
 									<td>{team.losses}</td>
