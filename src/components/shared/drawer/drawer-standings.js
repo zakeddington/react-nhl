@@ -41,41 +41,55 @@ class DrawerStandings extends Component {
 		}
 	}
 
+	renderTable(group) {
+		return (
+			<div key={group.name} className="stats-table standings">
+				<table>
+					<thead>
+					<tr>
+						<th className="text-left" colSpan="2">{group.name}</th>
+						<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
+						<th className="tooltip">W <span className="tooltip-content">Wins (2pts)</span></th>
+						<th className="tooltip">L <span className="tooltip-content">Losses (0pts)</span></th>
+						<th className="tooltip">OT <span className="tooltip-content">Overtime/Shootout Loss (1pt)</span></th>
+						<th className="tooltip">PTS <span className="tooltip-content">Points</span></th>
+					</tr>
+					</thead>
+					<tbody>
+					{
+						group.teams.map((team) => {
+							return (
+								<tr key={team.name}>
+									<td>{team.rank}</td>
+									<td className="standings--team-name text-left">{team.name}</td>
+									<td>{team.games}</td>
+									<td>{team.wins}</td>
+									<td>{team.losses}</td>
+									<td>{team.ot}</td>
+									<td>{team.points}</td>
+								</tr>
+							)
+						})
+					}
+					</tbody>
+				</table>
+			</div>
+		)
+	}
+
 	renderDivisionStandings() {
 		const { data } = this.state;
 
-		return data.map((group) => {
+		return data.map((conference) => {
+			console.log('conference', conference);
 			return (
-				<div key={group.division.name} className="stats-table standings">
-					<table>
-						<thead>
-						<tr>
-							<th className="text-left" colSpan="2">{group.division.name}</th>
-							<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
-							<th className="tooltip">W <span className="tooltip-content">Wins (2pts)</span></th>
-							<th className="tooltip">L <span className="tooltip-content">Losses (0pts)</span></th>
-							<th className="tooltip">OT <span className="tooltip-content">Overtime/Shootout Loss (1pt)</span></th>
-							<th className="tooltip">PTS <span className="tooltip-content">Points</span></th>
-						</tr>
-						</thead>
-						<tbody>
-						{
-							group.teamRecords.map((team) => {
-								return (
-									<tr key={team.team.name}>
-										<td>{team.divisionRank}</td>
-										<td className="standings--team-name text-left">{team.team.name}</td>
-										<td>{team.gamesPlayed}</td>
-										<td>{team.leagueRecord.wins}</td>
-										<td>{team.leagueRecord.losses}</td>
-										<td>{team.leagueRecord.ot}</td>
-										<td>{team.points}</td>
-									</tr>
-								)
-							})
-						}
-						</tbody>
-					</table>
+				<div key={`division-standings-${conference.name}`} className="standings--conference">
+					<h2>{conference.name}</h2>
+					{
+						conference.division.map((division) => {
+							return this.renderTable(division);
+						})
+					}
 				</div>
 			)
 		})

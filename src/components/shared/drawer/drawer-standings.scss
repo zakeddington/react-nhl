@@ -4,14 +4,20 @@
 // -----------------------------------------------------------------+
 
 .standings {
+	overflow-x: visible;
+
 	table {
 		font-size: 0.75rem;
 	}
 
 	th,
 	td {
-
 		padding: 0.25rem;
+
+		@media (max-width: $breakpoint-mobile-max) {
+			min-width: auto;
+			width: auto;
+		}
 
 		&.standings--team-name {
 			width: 45%;
@@ -29,5 +35,9 @@
 	th {
 		background: $color-grey-dark;
 		color: $color-white;
+	}
+
+	&--conference {
+		margin-bottom: 2rem;
 	}
 }

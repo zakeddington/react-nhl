@@ -19,7 +19,9 @@
     position: relative;
 
     &:hover {
-      background: $color-grey-light;
+			td {
+				background: $color-grey-light;
+			}
     }
 
     &.total {
