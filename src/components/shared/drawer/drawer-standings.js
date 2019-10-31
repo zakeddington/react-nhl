@@ -3,6 +3,8 @@ import CONSTANTS from '../../../config/Constants';
 import StandingsService from '../../../services/StandingsService';
 import Loader from '../loader/loader';
 import ErrorMessage from '../error/error-message';
+import Tabs from '../tabs/tabs';
+import Tab from '../tabs/tab';
 import './drawer-standings.scss';
 
 class DrawerStandings extends Component {
@@ -43,7 +45,7 @@ class DrawerStandings extends Component {
 
 	renderTable(group) {
 		return (
-			<div key={group.name} className="stats-table standings">
+			<div key={group.name} className="stats-table standings--group">
 				<table>
 					<thead>
 					<tr>
@@ -78,10 +80,9 @@ class DrawerStandings extends Component {
 	}
 
 	renderDivisionStandings() {
-		const { data } = this.state;
+		const { division } = this.state.data;
 
-		return data.map((conference) => {
-			console.log('conference', conference);
+		return division.map((conference) => {
 			return (
 				<div key={`division-standings-${conference.name}`} className="standings--conference">
 					<h2>{conference.name}</h2>
@@ -95,14 +96,54 @@ class DrawerStandings extends Component {
 		})
 	}
 
+	renderConferenceStandings() {
+		const { conference } = this.state.data;
+
+		return conference.map((conference) => {
+			return (
+				<div key={`conference-standings-${conference.name}`} className="standings--conference">
+					<h2>{conference.name}</h2>
+					{
+						this.renderTable(conference)
+					}
+				</div>
+			)
+		})
+	}
+
+	renderLeagueStandings() {
+		const { league } = this.state.data;
+
+		return league.map((league) => {
+			return (
+				<div key={`league-standings-${league.name}`} className="standings--league">
+					<h2>{league.name}</h2>
+					{
+						this.renderTable(league)
+					}
+				</div>
+			)
+		})
+	}
+
 	renderContent() {
 		const { data } = this.state;
 
 		console.log('drawer content', data);
 
 		return (
-			<div className="drawer--content">
-				{ this.renderDivisionStandings() }
+			<div className="drawer--content standings">
+				<Tabs key="tabs-standings" tabsClass="standings--tabs">
+					<Tab key="tab-division-standings" id="tab-division-standings" tabTitle="Division">
+						{ this.renderDivisionStandings() }
+					</Tab>
+					<Tab key="tab-conference-standings" id="tab-conference-standings" tabTitle="Conference">
+						{ this.renderConferenceStandings() }
+					</Tab>
+					<Tab key="tab-league-standings" id="tab-league-standings" tabTitle="League">
+						{ this.renderLeagueStandings() }
+					</Tab>
+				</Tabs>
 			</div>
 		);
 	}

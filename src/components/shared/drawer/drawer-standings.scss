@@ -4,7 +4,25 @@
 // -----------------------------------------------------------------+
 
 .standings {
-	overflow-x: visible;
+
+	h2 {
+		font-size: 1.25rem;
+	}
+
+	&--tabs {
+		.tabs--nav {
+			margin-bottom: 1rem;
+
+			&-link {
+				font-size: 0.875rem;
+				padding: 0.5rem 1rem;
+			}
+		}
+	}
+
+	&--group {
+		overflow-x: visible;
+	}
 
 	table {
 		font-size: 0.75rem;

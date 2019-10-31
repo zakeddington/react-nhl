@@ -10,12 +10,12 @@ class StandingsService {
 		return await API.getStandings(playerId);
 	}
 
-	createTeamData(arrTeams) {
+	createTeamData(arrTeams, rankProp) {
 		const teams = [];
 
 		arrTeams.forEach((team) => {
 			teams.push({
-				rank: team.divisionRank,
+				rank: parseInt(team[rankProp], 10),
 				name: team.team.name,
 				games: team.gamesPlayed,
 				wins: team.leagueRecord.wins,
@@ -28,8 +28,7 @@ class StandingsService {
 		return teams;
 	}
 
-	async processStandingsData(data) {
-		console.log('processStandingsData', data);
+	createDivisionStandings(data) {
 		let atl = [];
 		let met = [];
 		let cen = [];
@@ -38,15 +37,15 @@ class StandingsService {
 		data.records.forEach((group) => {
 			if (group.conference.name === 'Eastern') {
 				if (group.division.name === 'Atlantic') {
-					atl = this.createTeamData(group.teamRecords);
+					atl = this.createTeamData(group.teamRecords, 'divisionRank');
 				} else if (group.division.name === 'Metropolitan') {
-					met = this.createTeamData(group.teamRecords);
+					met = this.createTeamData(group.teamRecords, 'divisionRank');
 				}
 			} else if (group.conference.name === 'Western') {
 				if (group.division.name === 'Central') {
-					cen = this.createTeamData(group.teamRecords);
+					cen = this.createTeamData(group.teamRecords, 'divisionRank');
 				} else if (group.division.name === 'Pacific') {
-					pac = this.createTeamData(group.teamRecords);
+					pac = this.createTeamData(group.teamRecords, 'divisionRank');
 				}
 			}
 		});
@@ -79,6 +78,68 @@ class StandingsService {
 				]
 			}
 		];
+	}
+
+	createConferenceStandings(data) {
+		let east = [];
+		let west = [];
+
+		data.records.forEach((group) => {
+			if (group.conference.name === 'Eastern') {
+				let eastTeams = this.createTeamData(group.teamRecords, 'conferenceRank');
+				eastTeams.map((team) => {
+					return east.push(team);
+				})
+			} else if (group.conference.name === 'Western') {
+				let westTeams = this.createTeamData(group.teamRecords, 'conferenceRank');
+				westTeams.map((team) => {
+					return west.push(team);
+				})
+			}
+		});
+
+		east.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
+		west.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
+
+		return [
+			{
+				name: 'Eastern',
+				teams: east,
+			},
+			{
+				name: 'Western',
+				teams: west,
+			}
+		];
+	}
+
+	createLeagueStandings(data) {
+		let teams = [];
+
+		data.records.forEach((group) => {
+			let curTeams = this.createTeamData(group.teamRecords, 'leagueRank');
+			curTeams.map((team) => {
+				return teams.push(team);
+			})
+		});
+
+		teams.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
+
+		return [
+			{
+				name: 'NHL',
+				teams,
+			}
+		];
+	}
+
+	async processStandingsData(data) {
+		console.log('processStandingsData', data);
+		return {
+			division: this.createDivisionStandings(data),
+			conference: this.createConferenceStandings(data),
+			league: this.createLeagueStandings(data),
+		}
 
 		// return data.records;
 	}
