@@ -58,6 +58,13 @@ const Constants = {
 		timeZoneName : 'short',
 	},
 
+	anim: {
+		speed: {
+			base: 500,
+			fast: 300,
+		}
+	},
+
 	isMobileView: null,
 	isTabletView: null,
 	isDesktopView: null,

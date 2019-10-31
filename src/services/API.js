@@ -20,6 +20,17 @@ class API {
 		});
 	}
 
+	getStandings() {
+		return new Promise((resolve, reject) => {
+			try {
+				let url = `${API_STATS_URL}standings`;
+				resolve(this.getData(url));
+			} catch(e) {
+				reject(e);
+			}
+		});
+	}
+
 	getGame(gameId) {
 		return new Promise((resolve, reject) => {
 			try {

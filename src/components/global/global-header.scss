@@ -20,4 +20,12 @@
 		display: block;
 		height: 100%;
   }
+
+	.drawer--trigger {
+		color: $color-white;
+		position: absolute;
+		right: $gutter-width;
+		top: 50%;
+		transform: translateY(-50%);
+	}
 }

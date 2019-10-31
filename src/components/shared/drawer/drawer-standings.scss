@@ -1,0 +1,33 @@
+@import '../../../styles/config/variables';
+
+// League standings drawer
+// -----------------------------------------------------------------+
+
+.standings {
+	table {
+		font-size: 0.75rem;
+	}
+
+	th,
+	td {
+
+		padding: 0.25rem;
+
+		&.standings--team-name {
+			width: 45%;
+		}
+
+		&:first-child {
+			padding-left: 0.5rem;
+		}
+
+		&:last-child {
+			padding-right: 1rem;
+		}
+	}
+
+	th {
+		background: $color-grey-dark;
+		color: $color-white;
+	}
+}

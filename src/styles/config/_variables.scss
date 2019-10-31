@@ -25,6 +25,7 @@ $font-path: '/assets/fonts';
 $font-main: 'Montserrat', Helvetica, Arial, sans-serif;
 
 // Animations
+$anim-speed-slow: 0.5s;
 $anim-speed: 0.3s;
 $anim-speed-fast: 0.15s;
 $anim-ease: ease-out;
@@ -49,5 +50,7 @@ $vertical-pad: 20px;
 $z-index-default: 1;
 $z-index-header: 2;
 $z-index-skip-link: 3;
-$z-index-modal-overlay: 4;
-$z-index-modal-window: 5;
+$z-index-drawer-overlay: 4;
+$z-index-drawer: 5;
+$z-index-modal-overlay: 6;
+$z-index-modal-window: 7;
