@@ -10,7 +10,8 @@ class GlobalHeader extends Component {
 	render() {
 		return (
 			<header className="site-header">
-				<div className="flex-container">
+				<div className="site-header--container">
+					<div>
 					{
 						this.props.location.pathname.length > 1 &&
 						<button className="site-header--back button button--icon-left" onClick={this.props.history.goBack}>
@@ -18,6 +19,7 @@ class GlobalHeader extends Component {
 							Back
 						</button>
 					}
+					</div>
 
 					<a href="/" className="site-header--link">
 						<img className="site-header--logo" src={`${CONSTANTS.imgUrl.base}logo-nhl.svg`} alt="NHL logo" />

@@ -6,13 +6,30 @@
 .site-header {
   background: $color-grey-dark;
 	border-bottom: 4px solid $color-white;
-  padding: 10px 0;
+	height: 5rem;
+
+	&--container {
+		align-items: center;
+		display: flex;
+		height: 100%;
+		justify-content: space-between;
+		margin: 0 auto;
+		max-width: $container-width-desktop-wide;
+		padding-left: $gutter-width;
+		padding-right: $gutter-width;
+		position: relative;
+		width: 100%;
+	}
 
 	&--link {
 		display: block;
 		height: 3.5rem;
-		margin: auto;
+		left: 50%;
+		margin: 0;
+		position: absolute;
 		text-decoration: none;
+		top: 50%;
+		transform: translate(-50%, -50%);
 		width: 3.5rem;
 	}
 
