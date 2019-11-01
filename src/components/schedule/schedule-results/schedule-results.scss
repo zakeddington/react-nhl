@@ -16,7 +16,7 @@
     height: 100%;
     padding: 0.5em 1em;
     text-decoration: none;
-    transition: all $anim-speed $anim-ease;
+    transition: all $anim-speed-base $anim-ease;
 
     &:hover,
     &:focus {
@@ -27,7 +27,7 @@
   }
 
   li {
-		animation: fade-in-slide-down $anim-speed forwards $anim-ease;
+		animation: fade-in-slide-down $anim-speed-base forwards $anim-ease;
     display: flex;
     flex-direction: column;
     margin: 0;

@@ -135,7 +135,7 @@ class StandingsService {
 	}
 
 	async processStandingsData(data) {
-		console.log('processStandingsData', data);
+		// console.log('processStandingsData', data);
 		return {
 			division: this.createDivisionStandings(data),
 			conference: this.createConferenceStandings(data),

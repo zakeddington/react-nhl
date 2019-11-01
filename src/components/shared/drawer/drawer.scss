@@ -46,6 +46,7 @@
 		position: fixed;
 		right: -100%;
 		top: 0;
+		// update drawer setTimout if changing $anim-speed-slow
 		transition: all $anim-speed-slow $anim-ease;
 		width: calc(100vw - 1rem);
 		z-index: $z-index-drawer;

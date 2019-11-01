@@ -58,10 +58,12 @@ const Constants = {
 		timeZoneName : 'short',
 	},
 
+	// maps to styles/config/_variables.scss
 	anim: {
 		speed: {
-			base: 500,
-			fast: 300,
+			fast: 150,
+			base: 300,
+			slow: 500,
 		}
 	},
 

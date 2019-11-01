@@ -13,61 +13,77 @@ class Drawer extends Component {
 
 	state = {
 		drawer: null,
-		activeClass: '',
+		isDisabled: false,
+		isOpen: false,
+		isAnimating: false,
 	};
 
-	async onTriggerClick() {
-		this.renderDrawer();
-	}
-
 	onCloseClick() {
-		this.drawerContainer.current.classList.remove(this.activeClass);
-		setTimeout(() => {
-			this.setState({
-				drawer: null,
-			})
-		}, CONSTANTS.anim.speed.fast);
+		if (this.state.isOpen && !this.state.isAnimating) {
+			this.drawerContainer.current.classList.remove(this.activeClass);
 
+			// wait for css transition to complete ($anim-speed-slow)
+			setTimeout(() => {
+				this.setState({
+					drawer: null,
+					isDisabled: false,
+					isOpen: false,
+				})
+			}, CONSTANTS.anim.speed.slow);
+		}
 	}
 
 	onContentClick(e) {
 		e.stopPropagation();
 	}
 
+	async onTriggerClick() {
+		if (!this.state.isOpen && !this.state.isAnimating) {
+			this.setState({
+				isDisabled: true,
+				isAnimating: true,
+				drawer: this.renderDrawer()
+			}, () => {
+				this.animateDrawer()
+			})
+		}
+	}
+
 	animateDrawer() {
+		this.drawerContainer.current.classList.add(this.activeClass);
+
+		// wait for css transition to complete ($anim-speed-slow)
 		setTimeout(() => {
-			this.drawerContainer.current.classList.add(this.activeClass);
-		}, CONSTANTS.anim.speed.fast);
+			this.setState({
+				isOpen: true,
+				isAnimating: false,
+			})
+		}, CONSTANTS.anim.speed.slow);
 	}
 
 	renderDrawer() {
-		const { content } = this.props;
-		const drawerClass = this.props.drawerClass ? this.props.drawerClass : '';
+		const { content, drawerClass } = this.props;
+		const containerClass = drawerClass ? drawerClass : '';
 
-		const drawer =
+		return (
 			<div className="drawer--overlay" onClick={() => this.onCloseClick()}>
-				<div className={`drawer--container ${drawerClass}`} onClick={(e) => this.onContentClick(e)} ref={this.drawerContainer}>
+				<div className={`drawer--container ${containerClass}`} onClick={(e) => this.onContentClick(e)} ref={this.drawerContainer}>
 					<button className="drawer--close" onClick={() => this.onCloseClick()}>
 						<Icon iconId="close" iconClass="drawer--close-icon" />
 						<span className="offscreen">close drawer</span>
 					</button>
 					{content}
 				</div>
-			</div>;
-
-		this.setState({
-			drawer: drawer,
-			// activeClass: 'is-active',
-		}, () => {
-			this.animateDrawer()
-		})
+			</div>
+		)
 	}
 
 	render() {
 		const { iconId, label } = this.props;
+		const { isDisabled } = this.state;
 		return (
 			<div className="drawer">
-				<button className="drawer--trigger button button--icon-right" onClick={() => this.onTriggerClick()}>
+				<button className="drawer--trigger button button--icon-right" onClick={() => this.onTriggerClick()} disabled={isDisabled}>
 					{label}
 					{
 						iconId &&

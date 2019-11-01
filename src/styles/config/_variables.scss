@@ -24,10 +24,11 @@ $font-path: '/assets/fonts';
 // Fonts
 $font-main: 'Montserrat', Helvetica, Arial, sans-serif;
 
-// Animations
-$anim-speed-slow: 0.5s;
-$anim-speed: 0.3s;
-$anim-speed-fast: 0.15s;
+// Animations - maps to config/Constants.js
+$anim-speed-fast: 150ms;
+$anim-speed-base: 300ms;
+$anim-speed-slow: 500ms;
+
 $anim-ease: ease-out;
 
 // Media Queries

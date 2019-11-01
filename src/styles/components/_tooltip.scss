@@ -18,7 +18,7 @@
 		position: absolute;
 		top: 90%;
 		transform: translateX(-50%);
-		transition: all $anim-speed $anim-ease;
+		transition: all $anim-speed-base $anim-ease;
 		visibility: hidden;
 		white-space: nowrap;
 		z-index: $z-index-default;

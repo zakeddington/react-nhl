@@ -12,7 +12,7 @@
   height: 60px;
   margin: 0 auto;
   overflow: hidden;
-  transition: all $anim-speed $anim-ease;
+  transition: all $anim-speed-base $anim-ease;
   width: 60px;
 
   @media (min-width: $breakpoint-desktop-min) {

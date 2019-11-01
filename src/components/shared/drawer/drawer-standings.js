@@ -21,11 +21,9 @@ class DrawerStandings extends Component {
 	async getData() {
 		try {
 			const data = await StandingsService.getStandingsData();
-			console.log('DrawerStandings getData', data);
 
 			try {
 				const standings = await StandingsService.processStandingsData(data);
-				console.log('DrawerStandings standings', standings);
 				this.setState({
 					data: standings,
 				})
@@ -131,10 +129,6 @@ class DrawerStandings extends Component {
 	}
 
 	renderContent() {
-		const { data } = this.state;
-
-		console.log('drawer content', data);
-
 		return (
 			<div className="drawer--content standings">
 				<Tabs key="tabs-standings" tabsClass="standings--tabs">

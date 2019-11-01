@@ -34,7 +34,7 @@
   height: 100%;
   min-height: 2rem;
   text-transform: uppercase;
-  transition: all $anim-speed $anim-ease;
+  transition: all $anim-speed-base $anim-ease;
 
   .svg-icon {
     fill: $color-white;
@@ -82,7 +82,7 @@
       color: $color-white;
       display: block;
       text-decoration: none;
-      transition: all $anim-speed $anim-ease;
+      transition: all $anim-speed-base $anim-ease;
       width: 100%;
 
       @media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {

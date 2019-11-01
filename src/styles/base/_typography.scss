@@ -25,7 +25,7 @@ html {
 
 a {
 	color: $color-link;
-	transition: color $anim-speed ease-in;
+	transition: color $anim-speed-base ease-in;
 
 	&:focus,
 	&:hover {
