@@ -8,7 +8,6 @@ import './global-header.scss';
 
 class GlobalHeader extends Component {
 	render() {
-		console.log(this.props);
 		return (
 			<header className="site-header">
 				<div className="flex-container">

@@ -14,7 +14,6 @@ import Stars from '../components/game-detail/stars/stars';
 import PeriodSummary from '../components/game-detail/period-summary/period-summary';
 import GameStats from '../components/game-detail/game-stats/game-stats';
 import TeamStats from '../components/game-detail/team-stats/team-stats';
-import Icon from '../components/shared/icon/icon';
 import Tabs from '../components/shared/tabs/tabs';
 import Tab from '../components/shared/tabs/tab';
 
