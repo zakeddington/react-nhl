@@ -31,10 +31,6 @@ class GameDetail extends Component {
 	render() {
 		return (
 			<div className="site-content container">
-				<button className="button button--icon-left" onClick={this.props.history.goBack}>
-					<Icon iconId="arrow-left" />
-					Back
-				</button>
 				<GameHeader gameDetail={this.props.gameDetail} />
 				<GameIntro gameContent={this.props.gameContent} />
 				<div className="scoreboard-stars">

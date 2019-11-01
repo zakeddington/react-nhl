@@ -21,11 +21,25 @@
 		height: 100%;
   }
 
+	&--back,
 	.drawer--trigger {
 		color: $color-white;
-		position: absolute;
-		right: $gutter-width;
-		top: 50%;
-		transform: translateY(-50%);
+		font-size: 0.875rem;
+
+		.svg-icon {
+			fill: $color-grey-med;
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+
+		&:hover,
+		&:focus {
+			color: $color-white;
+			text-decoration: underline;
+
+			.svg-icon {
+				fill: $color-white;
+			}
+		}
 	}
 }

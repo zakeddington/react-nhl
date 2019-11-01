@@ -48,7 +48,7 @@ class Drawer extends Component {
 			<div className="drawer--overlay" onClick={() => this.onCloseClick()}>
 				<div className={`drawer--container ${drawerClass}`} onClick={(e) => this.onContentClick(e)} ref={this.drawerContainer}>
 					<button className="drawer--close" onClick={() => this.onCloseClick()}>
-						<Icon iconId="close"/>
+						<Icon iconId="close" iconClass="drawer--close-icon" />
 						<span className="offscreen">close drawer</span>
 					</button>
 					{content}
@@ -64,10 +64,15 @@ class Drawer extends Component {
 	}
 
 	render() {
+		const { iconId, label } = this.props;
 		return (
 			<div className="drawer">
-				<button className="drawer--trigger" onClick={() => this.onTriggerClick()}>
-					{this.props.label}
+				<button className="drawer--trigger button button--icon-right" onClick={() => this.onTriggerClick()}>
+					{label}
+					{
+						iconId &&
+						<Icon iconId={iconId} />
+					}
 				</button>
 				{this.state.drawer}
 			</div>
