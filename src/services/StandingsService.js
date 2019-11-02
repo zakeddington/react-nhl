@@ -6,17 +6,29 @@ import API from './API';
 
 class StandingsService {
 
-	async getStandingsData(playerId) {
-		return await API.getStandings(playerId);
+	async getStandingsData() {
+		const season = await API.getStandings();
+		const wildcard = await API.getWildcardStandings();
+
+		return {
+			season,
+			wildcard,
+		};
 	}
 
-	createTeamData(arrTeams, rankProp) {
+	createTeamData(arrTeams, rankProp, altRankProp) {
 		const teams = [];
 
 		arrTeams.forEach((team) => {
+			let rank = parseInt(team[rankProp], 10);
+
+			if (rank === 0) {
+				rank = parseInt(team[altRankProp], 10);
+			}
+
 			teams.push({
 				id: team.team.id,
-				rank: parseInt(team[rankProp], 10),
+				rank,
 				name: team.team.name,
 				games: team.gamesPlayed,
 				wins: team.leagueRecord.wins,
@@ -134,12 +146,84 @@ class StandingsService {
 		];
 	}
 
+	createWildcardStandings(data) {
+		let atl = [];
+		let met = [];
+		let cen = [];
+		let pac = [];
+		let wildEast = [];
+		let wildWest = [];
+
+		data.records.forEach((group) => {
+			if (group.conference.name === 'Eastern') {
+				if (group.standingsType === 'wildCard') {
+					wildEast = this.createTeamData(group.teamRecords, 'wildCardRank', 'divisionRank');
+				} else {
+					if (group.division.name === 'Atlantic') {
+						atl = this.createTeamData(group.teamRecords, 'wildCardRank', 'divisionRank');
+					} else if (group.division.name === 'Metropolitan') {
+						met = this.createTeamData(group.teamRecords, 'wildCardRank', 'divisionRank');
+					}
+				}
+
+			} else if (group.conference.name === 'Western') {
+				if (group.standingsType === 'wildCard') {
+					wildWest = this.createTeamData(group.teamRecords, 'wildCardRank', 'divisionRank');
+				} else {
+					if (group.division.name === 'Central') {
+						cen = this.createTeamData(group.teamRecords, 'wildCardRank', 'divisionRank');
+					} else if (group.division.name === 'Pacific') {
+						pac = this.createTeamData(group.teamRecords, 'wildCardRank', 'divisionRank');
+					}
+				}
+			}
+		});
+
+		return [
+			{
+				name: 'Eastern',
+				division: [
+					{
+						name: 'Atlantic',
+						teams: atl,
+					},
+					{
+						name: 'Metropolitan',
+						teams: met,
+					},
+					{
+						name: 'Wild Card',
+						teams: wildEast,
+					}
+				]
+			},
+			{
+				name: 'Western',
+				division: [
+					{
+						name: 'Central',
+						teams: cen,
+					},
+					{
+						name: 'Pacific',
+						teams: pac,
+					},
+					{
+						name: 'Wild Card',
+						teams: wildWest,
+					}
+				]
+			}
+		];
+	}
+
 	async processStandingsData(data) {
 		// console.log('processStandingsData', data);
 		return {
-			division: this.createDivisionStandings(data),
-			conference: this.createConferenceStandings(data),
-			league: this.createLeagueStandings(data),
+			division: this.createDivisionStandings(data.season),
+			conference: this.createConferenceStandings(data.season),
+			league: this.createLeagueStandings(data.season),
+			wildcard: this.createWildcardStandings(data.wildcard),
 		}
 
 		// return data.records;

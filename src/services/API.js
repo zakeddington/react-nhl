@@ -1,3 +1,6 @@
+import moment from 'moment';
+import CONSTANTS from '../config/Constants';
+
 const API_STATS_URL = 'https://statsapi.web.nhl.com/api/v1/';
 
 class API {
@@ -24,6 +27,18 @@ class API {
 		return new Promise((resolve, reject) => {
 			try {
 				let url = `${API_STATS_URL}standings`;
+				resolve(this.getData(url));
+			} catch(e) {
+				reject(e);
+			}
+		});
+	}
+
+	getWildcardStandings() {
+		const startDate = moment().format(CONSTANTS.momentOptions.apiFormat);
+		return new Promise((resolve, reject) => {
+			try {
+				let url = `${API_STATS_URL}standings/wildCardWithLeaders?date=${startDate}`;
 				resolve(this.getData(url));
 			} catch(e) {
 				reject(e);

@@ -128,6 +128,23 @@ class DrawerStandings extends Component {
 		})
 	}
 
+	renderWildcardStandings() {
+		const { wildcard } = this.state.data;
+
+		return wildcard.map((conference) => {
+			return (
+				<div key={`wildcard-standings-${conference.name}`} className="standings--conference">
+					<h2>{conference.name}</h2>
+					{
+						conference.division.map((division) => {
+							return this.renderTable(division);
+						})
+					}
+				</div>
+			)
+		})
+	}
+
 	renderContent() {
 		return (
 			<div className="drawer--content standings">
@@ -140,6 +157,9 @@ class DrawerStandings extends Component {
 					</Tab>
 					<Tab key="tab-league-standings" id="tab-league-standings" tabTitle="League">
 						{ this.renderLeagueStandings() }
+					</Tab>
+					<Tab key="tab-wildcard-standings" id="tab-wildcard-standings" tabTitle="Wildcard">
+						{ this.renderWildcardStandings() }
 					</Tab>
 				</Tabs>
 			</div>
