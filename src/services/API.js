@@ -14,7 +14,7 @@ class API {
 					params = `&${this.getQueryParams(arrParams)}`;
 				}
 
-				url += `?startDate=${strStart}&endDate=${strEnd}${params}`;
+				url += `?startDate=${strStart}&endDate=${strEnd}${params},schedule.broadcasts`;
 
 				resolve(this.getData(url));
 			} catch(e) {

@@ -4,13 +4,12 @@
 // avoid having view logic & local component state in them, use "dumb" components instead
 
 import React, { Component } from 'react';
-// import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actions from '../store/schedule/actions';
 import * as reducer from '../store/schedule/reducer';
+import CONSTANTS from '../config/Constants';
 import ScheduleNav from '../components/schedule/schedule-nav/schedule-nav';
 import ScheduleResults from '../components/schedule/schedule-results/schedule-results';
-import CONSTANTS from '../config/Constants';
 
 class Schedule extends Component {
 

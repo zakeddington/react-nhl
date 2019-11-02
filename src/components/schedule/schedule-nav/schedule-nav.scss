@@ -12,6 +12,57 @@
   flex-wrap: wrap;
   line-height: 2rem;
   margin-bottom: 3em;
+
+	&--items {
+		display: flex;
+		flex-grow: 1;
+		flex-wrap: wrap;
+		font-weight: 700;
+		margin-bottom: 0;
+		text-align: center;
+		text-transform: uppercase;
+
+		li {
+			display: flex;
+			flex: 1;
+			margin: 0;
+
+			@media (max-width: $breakpoint-mobile-max) {
+				&:nth-child(1),
+				&:nth-child(2),
+				&:nth-child(6),
+				&:nth-child(7) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&--item {
+		background: $color-grey-dark;
+		border: none;
+		color: $color-white;
+		display: block;
+		text-decoration: none;
+		transition: all $anim-speed-base $anim-ease;
+		width: 100%;
+
+		@media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
+			font-size: 0.8rem;
+		}
+
+		&:hover,
+		&:focus {
+			background: $color-grey-light;
+			color: $color-grey-dark;
+		}
+
+		&.is-active {
+			background: $color-white;
+			color: $color-grey-dark;
+			cursor: default;
+		}
+	}
 }
 
 .react-datepicker-wrapper,
@@ -53,53 +104,3 @@
   }
 }
 
-.schedule-nav-items {
-  display: flex;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  font-weight: 700;
-  margin-bottom: 0;
-  text-align: center;
-  text-transform: uppercase;
-
-  li {
-    display: flex;
-    flex: 1;
-    margin: 0;
-
-    @media (max-width: $breakpoint-mobile-max) {
-      &:nth-child(1),
-      &:nth-child(2),
-      &:nth-child(6),
-      &:nth-child(7) {
-        display: none;
-      }
-    }
-
-    .schedule-nav-item {
-      background: $color-grey-dark;
-      border: none;
-      color: $color-white;
-      display: block;
-      text-decoration: none;
-      transition: all $anim-speed-base $anim-ease;
-      width: 100%;
-
-      @media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
-        font-size: 0.8rem;
-      }
-
-      &:hover,
-      &:focus {
-        background: $color-grey-light;
-        color: $color-grey-dark;
-      }
-
-      &.is-active {
-        background: $color-white;
-        color: $color-grey-dark;
-        cursor: default;
-      }
-    }
-  }
-}

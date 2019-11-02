@@ -27,6 +27,7 @@ class ScheduleService {
         const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
         const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
 				let curStatus = '';
+				let broadcasts = [];
 				let awayScore = '';
 				let homeScore = '';
 
@@ -38,9 +39,16 @@ class ScheduleService {
 					curStatus = startTime;
 				}
 
+				if (game.broadcasts) {
+					game.broadcasts.forEach((network) => {
+						broadcasts.push(network.name);
+					});
+				}
+
 				let gameDetail = {
 					id: game.gamePk,
 					gameStatus: curStatus,
+					broadcasts: broadcasts.join(', '),
 					teams: {
 						away: {
 							id: game.teams.away.team.id,

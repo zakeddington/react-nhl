@@ -105,7 +105,7 @@ class ScheduleNav extends Component {
 		let activeClass = dateObj.isActive ? 'is-active' : '';
 
 		return (
-			<Link to={`${CONSTANTS.routePaths.schedule}${urlDate}`} className={`schedule-nav-item ${activeClass}`} onClick={(e) => this.onNavClick(e, dateObj)}>
+			<Link to={`${CONSTANTS.routePaths.schedule}${urlDate}`} className={`schedule-nav--item ${activeClass}`} onClick={(e) => this.onNavClick(e, dateObj)}>
 				{displayDay}
 			</Link>
 		)
@@ -121,7 +121,7 @@ class ScheduleNav extends Component {
 					selected={this.state.selectedDate.toDate()}
 					onChange={(dateStr) => this.onDatePickerChange(dateStr)}
 					todayButton="Today" />
-				<ul className="schedule-nav-items">
+				<ul className="schedule-nav--items">
 					{
 						navDates.map((navDate) => {
 							return (
