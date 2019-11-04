@@ -4,7 +4,10 @@
 
 .tooltip {
   cursor: default;
-	position: relative;
+
+	@media (min-width: $breakpoint-tablet-min) {
+		position: relative;
+	}
 
 	.tooltip-content {
 		background: rgba($color-black, 0.8);
@@ -26,6 +29,10 @@
 
 	&:hover,
 	&:focus {
+		@media (max-width: $breakpoint-mobile-max) {
+			position: relative; // prevent overlapping pinned headers on stat tables
+		}
+
 		.tooltip-content {
 			opacity: 1;
 			visibility: visible;

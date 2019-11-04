@@ -49,21 +49,21 @@ class ModalPlayerDetailContent extends Component {
 				<table>
 					<thead>
 					<tr>
-						<th className="stats-table--pinned text-left">Season</th>
-						<th className="stats-table--spacer text-left">Team</th>
-						<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
-						<th className="tooltip">GS <span className="tooltip-content">Games Started</span></th>
-						<th className="tooltip">W <span className="tooltip-content">Wins</span></th>
-						<th className="tooltip">L <span className="tooltip-content">Losses</span></th>
-						<th className="tooltip">T <span className="tooltip-content">Ties</span></th>
-						<th className="tooltip">OT <span className="tooltip-content">Overtime Losses</span></th>
-						<th className="tooltip">SA <span className="tooltip-content">Shots Against</span></th>
-						<th className="tooltip">GA <span className="tooltip-content">Goals Against</span></th>
-						<th className="tooltip">GAA <span className="tooltip-content">Goals Against Average</span></th>
-						<th className="tooltip">SV <span className="tooltip-content">Saves</span></th>
-						<th className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></th>
-						<th className="tooltip">SO <span className="tooltip-content">Shutouts</span></th>
-						<th className="tooltip">MIN <span className="tooltip-content">Minutes</span></th>
+						<th className="text-left">Season</th>
+						<th className="text-left">Team</th>
+						<th><span className="tooltip">GP <span className="tooltip-content">Games Played</span></span></th>
+						<th><span className="tooltip">GS <span className="tooltip-content">Games Started</span></span></th>
+						<th><span className="tooltip">W <span className="tooltip-content">Wins</span></span></th>
+						<th><span className="tooltip">L <span className="tooltip-content">Losses</span></span></th>
+						<th><span className="tooltip">T <span className="tooltip-content">Ties</span></span></th>
+						<th><span className="tooltip">OT <span className="tooltip-content">Overtime Losses</span></span></th>
+						<th><span className="tooltip">SA <span className="tooltip-content">Shots Against</span></span></th>
+						<th><span className="tooltip">GA <span className="tooltip-content">Goals Against</span></span></th>
+						<th><span className="tooltip">GAA <span className="tooltip-content">Goals Against Average</span></span></th>
+						<th><span className="tooltip">SV <span className="tooltip-content">Saves</span></span></th>
+						<th><span className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></span></th>
+						<th><span className="tooltip">SO <span className="tooltip-content">Shutouts</span></span></th>
+						<th><span className="tooltip">MIN <span className="tooltip-content">Minutes</span></span></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -71,8 +71,8 @@ class ModalPlayerDetailContent extends Component {
 						data.seasonStats.map((season) => {
 							return (
 								<tr key={`player-detail-goalie-stats-season-${season.season}-${season.team.abbreviation}`}>
-									<td className=" stats-table--pinned text-left">{season.season}</td>
-									<td className=" stats-table--spacer text-left">{season.team.abbreviation}</td>
+									<td className="text-left">{season.season}</td>
+									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
 									<td>{season.stats.gamesStarted}</td>
 									<td>{season.stats.wins}</td>
@@ -103,25 +103,25 @@ class ModalPlayerDetailContent extends Component {
 				<table>
 					<thead>
 					<tr>
-						<th className="stats-table--pinned text-left">Season</th>
-						<th className="stats-table--spacer text-left">Team</th>
-						<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
-						<th className="tooltip">G <span className="tooltip-content">Goals</span></th>
-						<th className="tooltip">A <span className="tooltip-content">Assists</span></th>
-						<th className="tooltip">P <span className="tooltip-content">Points</span></th>
-						<th className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></th>
-						<th className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></th>
-						<th className="tooltip">PPG <span className="tooltip-content">Power Play Goals</span></th>
-						<th className="tooltip">PPP <span className="tooltip-content">Power Play Points</span></th>
-						<th className="tooltip">SHG <span className="tooltip-content">Shorthanded Goals</span></th>
-						<th className="tooltip">SHP <span className="tooltip-content">Shorthanded Points</span></th>
-						<th className="tooltip">GWG <span className="tooltip-content">Game Winning Goals</span></th>
-						<th className="tooltip">OTG <span className="tooltip-content">Overtime Goals</span></th>
-						<th className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></th>
-						<th className="tooltip">S% <span className="tooltip-content">Shooting Percentage</span></th>
-						<th className="tooltip">HT <span className="tooltip-content">Hits</span></th>
-						<th className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></th>
-						<th className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></th>
+						<th className="text-left">Season</th>
+						<th className="text-left">Team</th>
+						<th><span className="tooltip">GP <span className="tooltip-content">Games Played</span></span></th>
+						<th><span className="tooltip">G <span className="tooltip-content">Goals</span></span></th>
+						<th><span className="tooltip">A <span className="tooltip-content">Assists</span></span></th>
+						<th><span className="tooltip">P <span className="tooltip-content">Points</span></span></th>
+						<th><span className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></span></th>
+						<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
+						<th><span className="tooltip">PPG <span className="tooltip-content">Power Play Goals</span></span></th>
+						<th><span className="tooltip">PPP <span className="tooltip-content">Power Play Points</span></span></th>
+						<th><span className="tooltip">SHG <span className="tooltip-content">Shorthanded Goals</span></span></th>
+						<th><span className="tooltip">SHP <span className="tooltip-content">Shorthanded Points</span></span></th>
+						<th><span className="tooltip">GWG <span className="tooltip-content">Game Winning Goals</span></span></th>
+						<th><span className="tooltip">OTG <span className="tooltip-content">Overtime Goals</span></span></th>
+						<th><span className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></span></th>
+						<th><span className="tooltip">S% <span className="tooltip-content">Shooting Percentage</span></span></th>
+						<th><span className="tooltip">HT <span className="tooltip-content">Hits</span></span></th>
+						<th><span className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></span></th>
+						<th><span className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></span></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -129,8 +129,8 @@ class ModalPlayerDetailContent extends Component {
 						data.seasonStats.map((season) => {
 							return (
 								<tr key={`player-detail-goalie-stats-playoff-${season.season}-${season.team.abbreviation}`}>
-									<td className="stats-table--pinned text-left">{season.season}</td>
-									<td className="stats-table--spacer text-left">{season.team.abbreviation}</td>
+									<td className="text-left">{season.season}</td>
+									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
 									<td>{season.stats.goals}</td>
 									<td>{season.stats.assists}</td>
@@ -165,21 +165,21 @@ class ModalPlayerDetailContent extends Component {
 				<table>
 					<thead>
 					<tr>
-						<th className="stats-table--pinned text-left">Season</th>
-						<th className="stats-table--spacer text-left">Team</th>
-						<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
-						<th className="tooltip">GS <span className="tooltip-content">Games Started</span></th>
-						<th className="tooltip">W <span className="tooltip-content">Wins</span></th>
-						<th className="tooltip">L <span className="tooltip-content">Losses</span></th>
-						<th className="tooltip">T <span className="tooltip-content">Ties</span></th>
-						<th className="tooltip">OT <span className="tooltip-content">Overtime Losses</span></th>
-						<th className="tooltip">SA <span className="tooltip-content">Shots Against</span></th>
-						<th className="tooltip">GA <span className="tooltip-content">Goals Against</span></th>
-						<th className="tooltip">GAA <span className="tooltip-content">Goals Against Average</span></th>
-						<th className="tooltip">SV <span className="tooltip-content">Saves</span></th>
-						<th className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></th>
-						<th className="tooltip">SO <span className="tooltip-content">Shutouts</span></th>
-						<th className="tooltip">MIN <span className="tooltip-content">Minutes</span></th>
+						<th className="text-left">Season</th>
+						<th className="text-left">Team</th>
+						<th><span className="tooltip">GP <span className="tooltip-content">Games Played</span></span></th>
+						<th><span className="tooltip">GS <span className="tooltip-content">Games Started</span></span></th>
+						<th><span className="tooltip">W <span className="tooltip-content">Wins</span></span></th>
+						<th><span className="tooltip">L <span className="tooltip-content">Losses</span></span></th>
+						<th><span className="tooltip">T <span className="tooltip-content">Ties</span></span></th>
+						<th><span className="tooltip">OT <span className="tooltip-content">Overtime Losses</span></span></th>
+						<th><span className="tooltip">SA <span className="tooltip-content">Shots Against</span></span></th>
+						<th><span className="tooltip">GA <span className="tooltip-content">Goals Against</span></span></th>
+						<th><span className="tooltip">GAA <span className="tooltip-content">Goals Against Average</span></span></th>
+						<th><span className="tooltip">SV <span className="tooltip-content">Saves</span></span></th>
+						<th><span className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></span></th>
+						<th><span className="tooltip">SO <span className="tooltip-content">Shutouts</span></span></th>
+						<th><span className="tooltip">MIN <span className="tooltip-content">Minutes</span></span></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -187,8 +187,8 @@ class ModalPlayerDetailContent extends Component {
 						data.playoffStats.map((season) => {
 							return (
 								<tr key={`player-detail-goalie-stats-playoff-${season.season}-${season.team.abbreviation}`}>
-									<td className="stats-table--pinned text-left">{season.season}</td>
-									<td className="stats-table--spacer text-left">{season.team.abbreviation}</td>
+									<td className="text-left">{season.season}</td>
+									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
 									<td>{season.stats.gamesStarted}</td>
 									<td>{season.stats.wins}</td>
@@ -219,25 +219,25 @@ class ModalPlayerDetailContent extends Component {
 				<table>
 					<thead>
 					<tr>
-						<th className="stats-table--pinned text-left">Season</th>
-						<th className="stats-table--spacer text-left">Team</th>
-						<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
-						<th className="tooltip">G <span className="tooltip-content">Goals</span></th>
-						<th className="tooltip">A <span className="tooltip-content">Assists</span></th>
-						<th className="tooltip">P <span className="tooltip-content">Points</span></th>
-						<th className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></th>
-						<th className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></th>
-						<th className="tooltip">PPG <span className="tooltip-content">Power Play Goals</span></th>
-						<th className="tooltip">PPP <span className="tooltip-content">Power Play Points</span></th>
-						<th className="tooltip">SHG <span className="tooltip-content">Shorthanded Goals</span></th>
-						<th className="tooltip">SHP <span className="tooltip-content">Shorthanded Points</span></th>
-						<th className="tooltip">GWG <span className="tooltip-content">Game Winning Goals</span></th>
-						<th className="tooltip">OTG <span className="tooltip-content">Overtime Goals</span></th>
-						<th className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></th>
-						<th className="tooltip">S% <span className="tooltip-content">Shooting Percentage</span></th>
-						<th className="tooltip">HT <span className="tooltip-content">Hits</span></th>
-						<th className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></th>
-						<th className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></th>
+						<th className="text-left">Season</th>
+						<th className="text-left">Team</th>
+						<th><span className="tooltip">GP <span className="tooltip-content">Games Played</span></span></th>
+						<th><span className="tooltip">G <span className="tooltip-content">Goals</span></span></th>
+						<th><span className="tooltip">A <span className="tooltip-content">Assists</span></span></th>
+						<th><span className="tooltip">P <span className="tooltip-content">Points</span></span></th>
+						<th><span className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></span></th>
+						<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
+						<th><span className="tooltip">PPG <span className="tooltip-content">Power Play Goals</span></span></th>
+						<th><span className="tooltip">PPP <span className="tooltip-content">Power Play Points</span></span></th>
+						<th><span className="tooltip">SHG <span className="tooltip-content">Shorthanded Goals</span></span></th>
+						<th><span className="tooltip">SHP <span className="tooltip-content">Shorthanded Points</span></span></th>
+						<th><span className="tooltip">GWG <span className="tooltip-content">Game Winning Goals</span></span></th>
+						<th><span className="tooltip">OTG <span className="tooltip-content">Overtime Goals</span></span></th>
+						<th><span className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></span></th>
+						<th><span className="tooltip">S% <span className="tooltip-content">Shooting Percentage</span></span></th>
+						<th><span className="tooltip">HT <span className="tooltip-content">Hits</span></span></th>
+						<th><span className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></span></th>
+						<th><span className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></span></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -245,8 +245,8 @@ class ModalPlayerDetailContent extends Component {
 						data.playoffStats.map((season) => {
 							return (
 								<tr key={`player-detail-skater-stats-playoff-${season.season}-${season.team.abbreviation}`}>
-									<td className="stats-table--pinned text-left">{season.season}</td>
-									<td className="stats-table--spacer text-left">{season.team.abbreviation}</td>
+									<td className="text-left">{season.season}</td>
+									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
 									<td>{season.stats.goals}</td>
 									<td>{season.stats.assists}</td>

@@ -39,14 +39,14 @@ class GameStats extends Component {
 					<thead>
 						<tr>
 							<th className="stats-table--pinned">&nbsp;</th>
-							<th className="stats-table--spacer tooltip">SOG <span className="tooltip-content">Shots on Goal</span></th>
-							<th className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></th>
-							<th className="tooltip">PP <span className="tooltip-content">Power Play Goals/Opportunities</span></th>
-							<th className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></th>
-							<th className="tooltip">HT <span className="tooltip-content">Hits</span></th>
-							<th className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></th>
-							<th className="tooltip">GV <span className="tooltip-content">Giveaways</span></th>
-							<th className="tooltip">TK <span className="tooltip-content">Takeaways</span></th>
+							<th className="stats-table--spacer"><span className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></span></th>
+							<th><span className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></span></th>
+							<th><span className="tooltip">PP <span className="tooltip-content">Power Play Goals/Opportunities</span></span></th>
+							<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
+							<th><span className="tooltip">HT <span className="tooltip-content">Hits</span></span></th>
+							<th><span className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></span></th>
+							<th><span className="tooltip">GV <span className="tooltip-content">Giveaways</span></span></th>
+							<th><span className="tooltip">TK <span className="tooltip-content">Takeaways</span></span></th>
 						</tr>
 					</thead>
 					<tbody>

@@ -76,8 +76,8 @@
 
   @media (max-width: $breakpoint-mobile-max) {
     .stats-table--pinned {
+			border-right: 1px solid $color-grey-med;
       position: absolute;
-      z-index: $z-index-default;
     }
 
     .stats-table--spacer {

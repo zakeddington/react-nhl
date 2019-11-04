@@ -47,21 +47,21 @@ class TeamStats extends Component {
 					<tr>
 						<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
 						<th className="stats-table--pinned stats-table--name text-left">{group.position}</th>
-						<th className="stats-table--spacer tooltip">G <span className="tooltip-content">Goals</span></th>
-						<th className="tooltip">A <span className="tooltip-content">Assists</span></th>
-						<th className="tooltip">P <span className="tooltip-content">Points</span></th>
-						<th className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></th>
-						<th className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></th>
-						<th className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></th>
-						<th className="tooltip">HT <span className="tooltip-content">Hits</span></th>
-						<th className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></th>
-						<th className="tooltip">GV <span className="tooltip-content">Giveaways</span></th>
-						<th className="tooltip">TK <span className="tooltip-content">Takeaways</span></th>
-						<th className="tooltip">FW <span className="tooltip-content">Faceoff Win</span></th>
-						<th className="tooltip">FL <span className="tooltip-content">Faceoff Loss</span></th>
-						<th className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></th>
-						<th className="tooltip">TOI <span className="tooltip-content">Total On Ice Time</span></th>
-						<th className="tooltip">PP TOI <span className="tooltip-content">Power Play Total On Ice Time</span></th>
+						<th className="stats-table--spacer"><span className="tooltip">G <span className="tooltip-content">Goals</span></span></th>
+						<th><span className="tooltip">A <span className="tooltip-content">Assists</span></span></th>
+						<th><span className="tooltip">P <span className="tooltip-content">Points</span></span></th>
+						<th><span className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></span></th>
+						<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
+						<th><span className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></span></th>
+						<th><span className="tooltip">HT <span className="tooltip-content">Hits</span></span></th>
+						<th><span className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></span></th>
+						<th><span className="tooltip">GV <span className="tooltip-content">Giveaways</span></span></th>
+						<th><span className="tooltip">TK <span className="tooltip-content">Takeaways</span></span></th>
+						<th><span className="tooltip">FW <span className="tooltip-content">Faceoff Win</span></span></th>
+						<th><span className="tooltip">FL <span className="tooltip-content">Faceoff Loss</span></span></th>
+						<th><span className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></span></th>
+						<th><span className="tooltip">TOI <span className="tooltip-content">Total On Ice Time</span></span></th>
+						<th><span className="tooltip">PP TOI <span className="tooltip-content">Power Play Total On Ice Time</span></span></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -103,15 +103,15 @@ class TeamStats extends Component {
 					<tr>
 						<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
 						<th className="stats-table--pinned stats-table--name text-left">{group.position}</th>
-						<th className="stats-table--spacer tooltip">GA <span className="tooltip-content">Goals Against</span></th>
-						<th className="tooltip">SA <span className="tooltip-content">Shots Against</span></th>
-						<th className="tooltip">SV <span className="tooltip-content">Saves</span></th>
-						<th className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></th>
-						<th className="tooltip">EV <span className="tooltip-content">Even Strength Saves-Shots</span></th>
-						<th className="tooltip">PP <span className="tooltip-content">Power Play Saves-Shots</span></th>
-						<th className="tooltip">SH <span className="tooltip-content">Shorthanded Saves-Shots</span></th>
-						<th className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></th>
-						<th className="tooltip">TOI <span className="tooltip-content">Total On Ice Time</span></th>
+						<th className="stats-table--spacer"><span className="tooltip">GA <span className="tooltip-content">Goals Against</span></span></th>
+						<th><span className="tooltip">SA <span className="tooltip-content">Shots Against</span></span></th>
+						<th><span className="tooltip">SV <span className="tooltip-content">Saves</span></span></th>
+						<th><span className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></span></th>
+						<th><span className="tooltip">EV <span className="tooltip-content">Even Strength Saves-Shots</span></span></th>
+						<th><span className="tooltip">PP <span className="tooltip-content">Power Play Saves-Shots</span></span></th>
+						<th><span className="tooltip">SH <span className="tooltip-content">Shorthanded Saves-Shots</span></span></th>
+						<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
+						<th><span className="tooltip">TOI <span className="tooltip-content">Total On Ice Time</span></span></th>
 					</tr>
 					</thead>
 					<tbody>
