@@ -45,17 +45,17 @@ const Constants = {
 	},
 
 	dateOptions: {
-		weekday : 'long',
-		year    : 'numeric',
-		month   : 'long',
-		day     : 'numeric',
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
 	},
 
 	timeOptions: {
-		timeZone     : 'America/New_York',
-		hour         : '2-digit',
-		minute       : '2-digit',
-		timeZoneName : 'short',
+		timeZone: 'America/New_York',
+		hour: '2-digit',
+		minute: '2-digit',
+		timeZoneName: 'short',
 	},
 
 	// maps to styles/config/_variables.scss

@@ -3,37 +3,39 @@
  * @description  Create pseudo 'breakpointChange' event
  */
 
-import Constants from 'scripts/config/Constants';
-import Events from 'scripts/config/Events';
+import CONSTANTS from '../config/Constants';
+import EVENTS from '../config/Events';
 
 const BreakpointChange = function() {
 
-	let $elIndicator = $('<div></div>',{
-		'id': 'breakpoint-indicator'
-	}).appendTo($('body'));
+	let elIndicator = document.createElement('div');
+	elIndicator.setAttribute('id', 'breakpoint-indicator');
+	document.body.appendChild(elIndicator);
 
-	let zIndex = $elIndicator.css('z-index');
+	let zIndex = getComputedStyle(elIndicator).zIndex;
 
-	let updateConstants = function() {
-		Constants.currentBreakpoint = Constants.breakpoints[zIndex];
-		Constants.isMobileView = Constants.currentBreakpoint === 'mobile' ? true : false;
-		Constants.isTabletView = Constants.currentBreakpoint === 'tablet' ? true : false;
-		Constants.isDesktopView = Constants.currentBreakpoint === 'desktop' ? true : false;
+	let updateConstants = () => {
+		CONSTANTS.currentBreakpoint = CONSTANTS.breakpoints[zIndex];
+		CONSTANTS.isMobileView = CONSTANTS.currentBreakpoint === 'mobile';
+		CONSTANTS.isTabletView = CONSTANTS.currentBreakpoint === 'tablet';
+		CONSTANTS.isDesktopView = CONSTANTS.currentBreakpoint === 'desktop';
 	};
 	updateConstants();
 
-	$(window).on('resize', function(event) {
-		let newZI = $elIndicator.css('z-index');
+	window.addEventListener('resize', () => {
+		let newZI = getComputedStyle(elIndicator).zIndex;
+
 		if (newZI !== zIndex) {
 			zIndex = newZI;
 			updateConstants();
 
-			$.event.trigger(Events.BREAKPOINT_CHANGE, {
-				breakpoint: Constants.breakpoints[zIndex],
-				mobile: Constants.isMobileView,
-				tablet: Constants.isTabletView,
-				desktop: Constants.isDesktopView
+			let evt = new Event(EVENTS.BREAKPOINT_CHANGE, {
+				breakpoint: CONSTANTS.breakpoints[zIndex],
+				mobile: CONSTANTS.isMobileView,
+				tablet: CONSTANTS.isTabletView,
+				desktop: CONSTANTS.isDesktopView
 			});
+			window.dispatchEvent(evt);
 		}
 	});
 };

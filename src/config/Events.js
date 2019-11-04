@@ -4,7 +4,6 @@
  */
 
 const Events = {
-	WINDOW_RESIZE_END: 'onWindowResizeEnd',
 	BREAKPOINT_CHANGE: 'onBreakpointChange',
 };
 
