@@ -107,6 +107,7 @@ class PlayerDetailService {
 
 				const results = {
 					season,
+					rowClass: '',
 					team: {
 						abbreviation: item.team.abbreviation,
 						id: item.team.id,
@@ -129,6 +130,7 @@ class PlayerDetailService {
 
 			return {
 				season: 'Total',
+				rowClass: 'total',
 				team: {
 					abbreviation: '',
 					id: '',

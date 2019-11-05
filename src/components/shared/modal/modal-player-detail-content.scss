@@ -68,6 +68,14 @@
 		}
 	}
 
+	.player-stats {
+		overflow-x: hidden;
+		
+		@media (max-width: $breakpoint-tablet-max) {
+			overflow-x: auto;
+		}
+	}
+
 	@media (max-width: $breakpoint-mobile-max) {
 		.stats-table--pinned {
 			min-width: 7rem;

@@ -9,6 +9,7 @@ html {
 body {
 	background: $color-grey-light;
 	min-width: $container-width-mobile;
+	overflow-x: hidden;
 	padding: 0;
 	width: 100%;
 }

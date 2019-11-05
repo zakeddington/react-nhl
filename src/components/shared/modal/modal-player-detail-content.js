@@ -70,7 +70,7 @@ class ModalPlayerDetailContent extends Component {
 					{
 						data.seasonStats.map((season) => {
 							return (
-								<tr key={`player-detail-goalie-stats-season-${season.season}-${season.team.abbreviation}`}>
+								<tr key={`player-detail-goalie-stats-season-${season.season}-${season.team.abbreviation}`} className={season.rowClass}>
 									<td className="text-left">{season.season}</td>
 									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
@@ -128,7 +128,7 @@ class ModalPlayerDetailContent extends Component {
 					{
 						data.seasonStats.map((season) => {
 							return (
-								<tr key={`player-detail-goalie-stats-playoff-${season.season}-${season.team.abbreviation}`}>
+								<tr key={`player-detail-goalie-stats-playoff-${season.season}-${season.team.abbreviation}`} className={season.rowClass}>
 									<td className="text-left">{season.season}</td>
 									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
@@ -186,7 +186,7 @@ class ModalPlayerDetailContent extends Component {
 					{
 						data.playoffStats.map((season) => {
 							return (
-								<tr key={`player-detail-goalie-stats-playoff-${season.season}-${season.team.abbreviation}`}>
+								<tr key={`player-detail-goalie-stats-playoff-${season.season}-${season.team.abbreviation}`} className={season.rowClass}>
 									<td className="text-left">{season.season}</td>
 									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>
@@ -244,7 +244,7 @@ class ModalPlayerDetailContent extends Component {
 					{
 						data.playoffStats.map((season) => {
 							return (
-								<tr key={`player-detail-skater-stats-playoff-${season.season}-${season.team.abbreviation}`}>
+								<tr key={`player-detail-skater-stats-playoff-${season.season}-${season.team.abbreviation}`} className={season.rowClass}>
 									<td className="text-left">{season.season}</td>
 									<td className="text-left">{season.team.abbreviation}</td>
 									<td>{season.stats.games}</td>

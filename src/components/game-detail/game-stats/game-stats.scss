@@ -12,8 +12,6 @@
 
   th,
   td {
-    width: 10%;
-
     @media (max-width: $breakpoint-mobile-max) {
       height: 40px;
       min-width: 50px;
@@ -23,12 +21,11 @@
       &:first-child {
         height: 39px;
         min-width: 60px;
-        padding-left: 15px;
         width: 60px;
       }
 
       &.stats-table--spacer {
-        padding-left: 75px;
+        padding-left: 65px;
       }
     }
   }
@@ -44,22 +41,23 @@
   td {
     font-weight: 600;
 
+		@media (min-width: $breakpoint-desktop-min) {
+			&.game-stats--team {
+				padding-left: 1.5rem;
+			}
+		}
+
     @media (min-width: $breakpoint-tablet-min) {
       font-size: 1.5rem;
     }
   }
 
   &--team {
-    text-align: left;
     white-space: nowrap;
 
     @media (min-width: $breakpoint-desktop-min) {
+			text-align: left;
       width: 20%;
-    }
-
-    @media (min-width: $breakpoint-tablet-min) {
-      font-size: 1.125rem;
-      padding-left: 2em;
     }
 
     .team-logo {
