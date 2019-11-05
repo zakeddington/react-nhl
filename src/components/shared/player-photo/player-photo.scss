@@ -24,8 +24,8 @@
     display: none;
   }
 
-  &:hover,
-  &:focus {
+  .modal--trigger:hover &,
+	.modal--trigger:focus & {
     border-color: $color-grey-dark;
   }
 

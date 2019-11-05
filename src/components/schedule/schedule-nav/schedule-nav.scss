@@ -55,6 +55,7 @@
 		&:focus {
 			background: $color-grey-light;
 			color: $color-grey-dark;
+			outline: none;
 
 			.svg-icon {
 				fill: $color-grey-dark;
@@ -101,6 +102,7 @@
   &:focus {
     background: $color-grey-light;
     color: $color-grey-dark;
+		outline: none;
 
     .svg-icon {
       fill: $color-grey-dark;

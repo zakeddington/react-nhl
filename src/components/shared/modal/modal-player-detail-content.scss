@@ -70,7 +70,7 @@
 
 	.player-stats {
 		overflow-x: hidden;
-		
+
 		@media (max-width: $breakpoint-tablet-max) {
 			overflow-x: auto;
 		}
