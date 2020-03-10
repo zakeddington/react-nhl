@@ -13,179 +13,179 @@ class GameDetailService {
 	}
 
 	async processGameData(data) {
-    const periodGoals = data.liveData.linescore.periods;
-    const shootoutGoals = data.liveData.linescore.shootoutInfo;
-    const boxscoreTeams = data.liveData.boxscore.teams;
-    const stars = data.liveData.decisions;
+		const periodGoals = data.liveData.linescore.periods;
+		const shootoutGoals = data.liveData.linescore.shootoutInfo;
+		const boxscoreTeams = data.liveData.boxscore.teams;
+		const stars = data.liveData.decisions;
 
-    const date = new Date(data.gameData.datetime.dateTime);
-    const curDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
-    const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
-    const awayScore = data.liveData.linescore.teams.away.goals;
-    const homeScore = data.liveData.linescore.teams.home.goals;
-    const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
-    const gameStatus = UTILS.getGameStatus(data.liveData.linescore);
-    let curStars;
-    let curStatus;
-    let isPreview = true;
+		const date = new Date(data.gameData.datetime.dateTime);
+		const curDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
+		const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
+		const awayScore = data.liveData.linescore.teams.away.goals;
+		const homeScore = data.liveData.linescore.teams.home.goals;
+		const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
+		const gameStatus = UTILS.getGameStatus(data.liveData.linescore);
+		let curStars;
+		let curStatus;
+		let isPreview = true;
 
-    if (gameStatus.length) {
-      curStatus = gameStatus;
-      isPreview = false;
-    } else {
-      curStatus = startTime;
-    }
+		if (gameStatus.length) {
+			curStatus = gameStatus;
+			isPreview = false;
+		} else {
+			curStatus = startTime;
+		}
 
-    if (Object.keys(stars).length) {
-      const firstStar = UTILS.getStarStats(stars.firstStar, boxscoreTeams);
-      const secondStar = UTILS.getStarStats(stars.secondStar, boxscoreTeams);
-      const thirdStar = UTILS.getStarStats(stars.thirdStar, boxscoreTeams);
+		if (Object.keys(stars).length) {
+			const firstStar = UTILS.getStarStats(stars.firstStar, boxscoreTeams);
+			const secondStar = UTILS.getStarStats(stars.secondStar, boxscoreTeams);
+			const thirdStar = UTILS.getStarStats(stars.thirdStar, boxscoreTeams);
 
-      curStars = [firstStar, secondStar, thirdStar];
-    }
+			curStars = [firstStar, secondStar, thirdStar];
+		}
 
-    return {
-      isPreview,
-      date: curDate,
-      gameStatus: curStatus,
-      periodGoals: periods,
-      teams: {
-        away: {
-          id: data.gameData.teams.away.id,
-          city: data.gameData.teams.away.locationName,
-          name: data.gameData.teams.away.teamName,
-          score: awayScore,
-        },
-        home: {
-          id: data.gameData.teams.home.id,
-          city: data.gameData.teams.home.locationName,
-          name: data.gameData.teams.home.teamName,
-          score: homeScore,
-        }
-      },
-      stars: curStars,
-      boxscoreTeams,
-    };
-  }
+		return {
+			isPreview,
+			date: curDate,
+			gameStatus: curStatus,
+			periodGoals: periods,
+			teams: {
+				away: {
+					id: data.gameData.teams.away.id,
+					city: data.gameData.teams.away.locationName,
+					name: data.gameData.teams.away.teamName,
+					score: awayScore,
+				},
+				home: {
+					id: data.gameData.teams.home.id,
+					city: data.gameData.teams.home.locationName,
+					name: data.gameData.teams.home.teamName,
+					score: homeScore,
+				}
+			},
+			stars: curStars,
+			boxscoreTeams,
+		};
+	}
 
 	async processPeriodSummary(data) {
-    const periods = data.liveData.linescore.periods;
-    const scoringIds = data.liveData.plays.scoringPlays;
-    const penaltyIds = data.liveData.plays.penaltyPlays;
-    const allPlays = data.liveData.plays.allPlays;
-    const hasShootout = data.liveData.linescore.hasShootout;
-    const teamAwayId = data.gameData.teams.away.id;
-    const teamHomeId = data.gameData.teams.home.id;
+		const periods = data.liveData.linescore.periods;
+		const scoringIds = data.liveData.plays.scoringPlays;
+		const penaltyIds = data.liveData.plays.penaltyPlays;
+		const allPlays = data.liveData.plays.allPlays;
+		const hasShootout = data.liveData.linescore.hasShootout;
+		const teamAwayId = data.gameData.teams.away.id;
+		const teamHomeId = data.gameData.teams.home.id;
 
-    let periodPlays = [];
+		let periodPlays = [];
 
-    periods.forEach((period) => {
-      let periodName = period.ordinalNum === 'OT' ? 'Overtime' : `${period.ordinalNum} Period`;
+		periods.forEach((period) => {
+			let periodName = period.ordinalNum === 'OT' ? 'Overtime' : `${period.ordinalNum} Period`;
 
-      periodPlays.push({
-        periodName,
-        goals: [],
-        penalties: [],
-        shootoutPlays: [],
-      });
-    });
+			periodPlays.push({
+				periodName,
+				goals: [],
+				penalties: [],
+				shootoutPlays: [],
+			});
+		});
 
-    scoringIds.forEach((id) => {
-      const curPlay = allPlays[id];
-      const curPeriodIndex = curPlay.about.period - 1;
-      const scoringTeamId = curPlay.team.id;
-      let curScorer = {};
-      let curAssists = [];
+		scoringIds.forEach((id) => {
+			const curPlay = allPlays[id];
+			const curPeriodIndex = curPlay.about.period - 1;
+			const scoringTeamId = curPlay.team.id;
+			let curScorer = {};
+			let curAssists = [];
 
-      if (curPeriodIndex < periods.length) {
-        curPlay.players.forEach((player) => {
-          if (player.playerType === 'Scorer') {
-            curScorer = {
-              id: player.player.id,
-              name: player.player.fullName,
-              total: player.seasonTotal,
-              desc: curPlay.result.secondaryType,
-            }
-          }
+			if (curPeriodIndex < periods.length) {
+				curPlay.players.forEach((player) => {
+					if (player.playerType === 'Scorer') {
+						curScorer = {
+							id: player.player.id,
+							name: player.player.fullName,
+							total: player.seasonTotal,
+							desc: curPlay.result.secondaryType,
+						}
+					}
 
-          if (player.playerType === 'Assist') {
-            curAssists.push({
-              id: player.player.id,
-              name: player.player.fullName,
-              total: player.seasonTotal,
-            })
-          }
-        });
+					if (player.playerType === 'Assist') {
+						curAssists.push({
+							id: player.player.id,
+							name: player.player.fullName,
+							total: player.seasonTotal,
+						})
+					}
+				});
 
-        const playDetail = {
-          time: curPlay.about.periodTime,
-          isEmptyNet: curPlay.result.emptyNet,
-          goalType: curPlay.result.strength.code,
-          teamId: scoringTeamId,
-          score: {
-            away: {
-              name: data.gameData.teams.away.triCode,
-              goals: curPlay.about.goals.away,
-              isScoringTeam: scoringTeamId === teamAwayId,
-            },
-            home: {
-              name: data.gameData.teams.home.triCode,
-              goals: curPlay.about.goals.home,
-              isScoringTeam: scoringTeamId === teamHomeId,
-            },
-          },
-          scorer: curScorer,
-          assists: curAssists
-        };
+				const playDetail = {
+					time: curPlay.about.periodTime,
+					isEmptyNet: curPlay.result.emptyNet,
+					goalType: curPlay.result.strength.code,
+					teamId: scoringTeamId,
+					score: {
+						away: {
+							name: data.gameData.teams.away.triCode,
+							goals: curPlay.about.goals.away,
+							isScoringTeam: scoringTeamId === teamAwayId,
+						},
+						home: {
+							name: data.gameData.teams.home.triCode,
+							goals: curPlay.about.goals.home,
+							isScoringTeam: scoringTeamId === teamHomeId,
+						},
+					},
+					scorer: curScorer,
+					assists: curAssists
+				};
 
-        periodPlays[curPeriodIndex].goals.push(playDetail);
-      }
-    });
+				periodPlays[curPeriodIndex].goals.push(playDetail);
+			}
+		});
 
-    penaltyIds.forEach((id) => {
-      const curPlay = allPlays[id];
-      const curPeriodIndex = curPlay.about.period - 1;
-      const penaltyTeamId = curPlay.team.id;
-      let curPenaltyOn = {};
+		penaltyIds.forEach((id) => {
+			const curPlay = allPlays[id];
+			const curPeriodIndex = curPlay.about.period - 1;
+			const penaltyTeamId = curPlay.team.id;
+			let curPenaltyOn = {};
 
-      if (curPeriodIndex < periods.length) {
-        curPlay.players.forEach((player) => {
-          if (player.playerType === 'PenaltyOn') {
-            curPenaltyOn = {
-              id: player.player.id,
-              name: player.player.fullName,
-            }
-          }
-        });
+			if (curPeriodIndex < periods.length) {
+				curPlay.players.forEach((player) => {
+					if (player.playerType === 'PenaltyOn') {
+						curPenaltyOn = {
+							id: player.player.id,
+							name: player.player.fullName,
+						}
+					}
+				});
 
-        const playDetail = {
-          time: curPlay.about.periodTime,
-          teamId: penaltyTeamId,
-          penaltyOn: curPenaltyOn,
-          penaltyType: curPlay.result.secondaryType,
-          penaltyMin: curPlay.result.penaltyMinutes,
-        };
+				const playDetail = {
+					time: curPlay.about.periodTime,
+					teamId: penaltyTeamId,
+					penaltyOn: curPenaltyOn,
+					penaltyType: curPlay.result.secondaryType,
+					penaltyMin: curPlay.result.penaltyMinutes,
+				};
 
-        periodPlays[curPeriodIndex].penalties.push(playDetail);
-      }
-    });
+				periodPlays[curPeriodIndex].penalties.push(playDetail);
+			}
+		});
 
-    if (hasShootout) {
-      const shootoutPlays = this.getShootoutSummary(data);
-      periodPlays.push({
-        periodName: 'Shootout',
-        goals: [],
-        penalties: [],
-        shootoutPlays,
-      });
-    }
+		if (hasShootout) {
+			const shootoutPlays = this.getShootoutSummary(data);
+			periodPlays.push({
+				periodName: 'Shootout',
+				goals: [],
+				penalties: [],
+				shootoutPlays,
+			});
+		}
 
 		if (periodPlays.length) {
 			return periodPlays;
 		}
 
 		return CONSTANTS.NO_DATA;
-  }
+	}
 
 	getShootoutSummary(data) {
 		const playsByPeriod = data.liveData.plays.playsByPeriod;
@@ -193,7 +193,7 @@ class GameDetailService {
 		const allPlays = data.liveData.plays.allPlays;
 		const shootoutPlays = [];
 
-    playIds.forEach((id) => {
+		playIds.forEach((id) => {
 			let curPlay = allPlays[id];
 			let curShooter;
 
@@ -217,10 +217,10 @@ class GameDetailService {
 						break;
 				}
 
-        curPlay.players.forEach((player) => {
+				curPlay.players.forEach((player) => {
 					if (player.playerType === 'Scorer' || player.playerType === 'Shooter') {
 						curShooter = {
-						  id: player.player.id,
+							id: player.player.id,
 							name: player.player.fullName,
 							desc: curPlay.result.secondaryType,
 						}
@@ -362,96 +362,96 @@ class GameDetailService {
 		return data;
 	}
 
-  async getGameContent(gameId) {
-    return await API.getGameContent(gameId);
-  }
+	async getGameContent(gameId) {
+		return await API.getGameContent(gameId);
+	}
 
-  async processGameContent(data) {
-    const previewData = data.editorial.preview.items[0];
-    const recapData = data.editorial.recap.items[0];
-    const mediaData = data.media.epg;
-    const highlights = data.highlights.gameCenter.items;
-    let title = '';
-    let desc = '';
-    let poster = '';
-    let posterAltText = '';
-    const videos = [];
+	async processGameContent(data) {
+		const previewData = data.editorial.preview.items[0];
+		const recapData = data.editorial.recap.items[0];
+		const mediaData = data.media.epg;
+		const highlights = data.highlights.gameCenter.items;
+		let title = '';
+		let desc = '';
+		let poster = '';
+		let posterAltText = '';
+		const videos = [];
 
-    if (previewData) {
-      title = previewData.headline;
-      desc = previewData.seoDescription;
-      poster = previewData.media.image.cuts['1284x722'].src;
-      posterAltText = previewData.media.image.altText;
-    }
+		if (previewData) {
+			title = previewData.headline;
+			desc = previewData.seoDescription;
+			poster = previewData.media.image.cuts['1284x722'].src;
+			posterAltText = previewData.media.image.altText;
+		}
 
-    if (recapData) {
-      title = recapData.headline;
-      desc = recapData.seoDescription;
-    }
+		if (recapData) {
+			title = recapData.headline;
+			desc = recapData.seoDescription;
+		}
 
-    if (mediaData) {
-      mediaData.forEach((item) => {
-        const isRecapVideo = item.title === 'Recap';
-        const isCondensedGame = item.title === 'Extended Highlights';
+		if (mediaData) {
+			mediaData.forEach((item) => {
+				const isRecapVideo = item.title === 'Recap';
+				const isCondensedGame = item.title === 'Extended Highlights';
 
-        if (isRecapVideo || isCondensedGame) {
-          if (item.items.length) {
-            const curItem = this.createVideoData(item.items[0]);
+				if (isRecapVideo || isCondensedGame) {
+					if (item.items.length) {
+						const curItem = this.createVideoData(item.items[0]);
 
-            if (isCondensedGame) {
-              curItem.title = 'Condensed Game';
-              videos.splice(0, 0, curItem);
-            } else {
-              curItem.title = 'Game Recap';
-              videos.push(curItem);
-            }
-          }
-        }
-      });
-    }
+						if (isCondensedGame) {
+							curItem.title = 'Condensed Game';
+							videos.splice(0, 0, curItem);
+						} else {
+							curItem.title = 'Game Recap';
+							videos.push(curItem);
+						}
+					}
+				}
+			});
+		}
 
-    if (highlights) {
-      highlights.forEach((item) => {
-        const curItem = this.createVideoData(item);
-        videos.push(curItem);
-      });
-    }
+		if (highlights) {
+			highlights.forEach((item) => {
+				const curItem = this.createVideoData(item);
+				videos.push(curItem);
+			});
+		}
 
-    return {
-      title,
-      desc,
-      poster,
-      posterAltText,
-      videos,
-    };
-  }
+		return {
+			title,
+			desc,
+			poster,
+			posterAltText,
+			videos,
+		};
+	}
 
-  createVideoData(data) {
-    // console.log(data);
-    const title = data.title;
-    const playbacks = data.playbacks;
-    const duration = data.duration;
-    const thumb = data.image.cuts['640x360'].src;
-    const poster = data.image.cuts['1136x640'].src;
-    const posterAltText = data.image.altText;
-    let url = '';
+	createVideoData(data) {
+		// console.log(data);
+		const title = data.title;
+		const playbacks = data.playbacks;
+		const duration = data.duration;
+		const thumb = data.image.cuts['640x360'].src;
+		const poster = data.image.cuts['1136x640'].src;
+		const posterAltText = data.image.altText;
+		let url = '';
 
-    playbacks.forEach((video) => {
-      if (video.name === 'FLASH_1800K_960X540') {
-        url = video.url;
-      }
-    });
+		playbacks.forEach((video) => {
+			if (video.name === 'FLASH_1800K_960X540') {
+				url = video.url;
+			}
+		});
 
-    return {
-      title,
-      duration,
-      url,
-      poster,
-      thumb,
-      posterAltText,
-      showVideoPlayer: false,
-    };
-  }
+		return {
+			title,
+			duration,
+			url,
+			poster,
+			thumb,
+			posterAltText,
+			showVideoPlayer: false,
+		};
+	}
 }
 
 export default new GameDetailService();

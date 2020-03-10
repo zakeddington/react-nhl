@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
 import Icon from '../../shared/icon/icon';
@@ -41,7 +41,7 @@ class Scoreboard extends Component {
 						</div>
 					</div>
 					{
-            data.periodGoals.map((periods) => {
+						data.periodGoals.map((periods) => {
 							return (
 								<div key={Math.random()} className="col scoreboard-periods">
 									{this.getPeriodGoals(periods)}
@@ -54,13 +54,13 @@ class Scoreboard extends Component {
 		);
 	}
 
-  renderNoContent() {
-    return null;
-  }
+	renderNoContent() {
+		return null;
+	}
 
 	renderLoading() {
 		return (
-			<Loader />
+			<Loader/>
 		);
 	}
 
@@ -68,9 +68,9 @@ class Scoreboard extends Component {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.showNoResults || data.isPreview) {
-        return this.renderNoContent();
-      }
+			if (data.showNoResults || data.isPreview) {
+				return this.renderNoContent();
+			}
 			return this.renderContent(data);
 		}
 

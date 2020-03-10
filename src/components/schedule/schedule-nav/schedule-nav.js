@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import CONSTANTS from '../../../config/Constants';
@@ -9,10 +9,10 @@ import './datepicker.scss';
 import './schedule-nav.scss';
 
 class DatepickerTrigger extends Component {
-	render () {
+	render() {
 		return (
 			<button className="datepicker-trigger" onClick={() => this.props.onClick()} value={this.props.value}>
-				<Icon iconId="calendar" />
+				<Icon iconId="calendar"/>
 				<span className="offscreen">Select a date from calendar</span>
 			</button>
 		)
@@ -39,7 +39,7 @@ class ScheduleNav extends Component {
 
 	// updateSelectedDate = false (only update the nav items, we are coming from nav arrows)
 	setNavDates(centerDate = this.state.selectedDate, updateSelectedDate = true) {
-		const { numSideDays } = this;
+		const {numSideDays} = this;
 
 		let navDates = [{
 			day: centerDate,
@@ -89,7 +89,7 @@ class ScheduleNav extends Component {
 			let curNavDates = this.state.navDates;
 			let urlDate = curDateObj.day.format(CONSTANTS.momentOptions.apiFormat);
 
-      curNavDates.forEach((navDate) => {
+			curNavDates.forEach((navDate) => {
 				navDate.isActive = curDateObj.day === navDate.day;
 			});
 
@@ -103,8 +103,8 @@ class ScheduleNav extends Component {
 	}
 
 	onNavArrowClick(direction) {
-		const { numSideDays } = this;
-		const { navDates } = this.state;
+		const {numSideDays} = this;
+		const {navDates} = this.state;
 		const curStartDate = navDates[0].day;
 		const curEndDate = navDates[navDates.length - 1].day;
 		let newDate;
@@ -139,7 +139,7 @@ class ScheduleNav extends Component {
 
 		return (
 			<Link to={`${CONSTANTS.routePaths.schedule}${urlDate}`} className={`schedule-nav--link ${activeClass}`}
-						onClick={(e) => this.onNavClick(e, dateObj)}>
+				onClick={(e) => this.onNavClick(e, dateObj)}>
 				{displayDay}
 			</Link>
 		)
@@ -151,14 +151,14 @@ class ScheduleNav extends Component {
 		return (
 			<div className="schedule-nav">
 				<DatePicker
-					customInput={<DatepickerTrigger />}
+					customInput={<DatepickerTrigger/>}
 					selected={this.state.selectedDate.toDate()}
 					onChange={(dateStr) => this.onDatePickerChange(dateStr)}
-					todayButton="Today" />
+					todayButton="Today"/>
 				<ul className="schedule-nav--items">
 					<li className="schedule-nav--item schedule-nav--prev">
 						<button className="schedule-nav--link" title="Previous week" onClick={() => this.onNavArrowClick('prev')}>
-							<Icon iconId="arrow-left" />
+							<Icon iconId="arrow-left"/>
 							<span className="offscreen">previous week</span>
 						</button>
 					</li>
@@ -173,7 +173,7 @@ class ScheduleNav extends Component {
 					}
 					<li className="schedule-nav--item schedule-nav--next">
 						<button className="schedule-nav--link" title="Next week" onClick={() => this.onNavArrowClick('next')}>
-							<Icon iconId="arrow-right" />
+							<Icon iconId="arrow-right"/>
 							<span className="offscreen">next week</span>
 						</button>
 					</li>

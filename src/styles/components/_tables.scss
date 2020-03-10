@@ -1,63 +1,62 @@
-
 // Team/Player Stats Tables
 // -----------------------------------------------------------------+
 
 .stats-table {
-  width: 100%;
+	width: 100%;
 
 	@media (max-width: $breakpoint-mobile-max) {
 		overflow-x: auto;
 	}
 
-  table {
-    background: $color-white;
-    font-size: 0.875rem;
-    margin: 0;
-    text-align: right;
-    width: 100%;
-  }
+	table {
+		background: $color-white;
+		font-size: 0.875rem;
+		margin: 0;
+		text-align: right;
+		width: 100%;
+	}
 
-  tr {
-    border-bottom: 1px solid $color-grey-med;
-    position: relative;
+	tr {
+		border-bottom: 1px solid $color-grey-med;
+		position: relative;
 
-    &:hover {
+		&:hover {
 			> td {
 				background: $color-grey-light;
 			}
-    }
+		}
 
-    &.total {
-      td {
+		&.total {
+			td {
 				background: $color-grey-med;
-        font-weight: 600;
-      }
-    }
-  }
+				font-weight: 600;
+			}
+		}
+	}
 
-  th,
-  td {
+	th,
+	td {
 		min-width: 2rem;
-    padding: 5px;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
+		padding: 5px;
+		vertical-align: middle;
+		white-space: nowrap;
+	}
 
-  th {
-    background: $color-grey-med;
-    font-weight: 600;
-  }
+	th {
+		background: $color-grey-med;
+		font-weight: 600;
+	}
 
-  td {
-    background: $color-white;
-    font-weight: 500;
-  }
+	td {
+		background: $color-white;
+		font-weight: 500;
+	}
 
-  @media (max-width: $breakpoint-mobile-max) {
-    .stats-table--pinned {
+	@media (max-width: $breakpoint-mobile-max) {
+		.stats-table--pinned {
 			border-right: 1px solid $color-grey-med;
-      position: absolute;
-    }
-  }
+			position: absolute;
+		}
+	}
 }
 

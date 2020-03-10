@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Icon from '../../shared/icon/icon';
 import './tabs.scss';
 
 class Tabs extends Component {
-  state = {
-    tabs: this.props.children,
-    activeTab: this.props.children[0],
-  };
+	state = {
+		tabs: this.props.children,
+		activeTab: this.props.children[0],
+	};
 
-  onTabClick(e, i) {
-    this.setState({ activeTab: this.props.children[i] });
-  }
+	onTabClick(e, i) {
+		this.setState({activeTab: this.props.children[i]});
+	}
 
-  render() {
-    const { tabs, activeTab } = this.state;
-    const tabsClass = this.props.tabsClass ? this.props.tabsClass : '';
+	render() {
+		const {tabs, activeTab} = this.state;
+		const tabsClass = this.props.tabsClass ? this.props.tabsClass : '';
 
-    if (tabs) {
+		if (tabs) {
 			return (
 				<div className={`tabs ${tabsClass}`}>
 					<ol className="tabs--nav">
@@ -27,7 +27,7 @@ class Tabs extends Component {
 									<button className={`tabs--nav-link ${classActive}`} onClick={(e) => this.onTabClick(e, i)}>
 										{
 											tab.props.iconId &&
-											<Icon iconId={tab.props.iconId} iconType={tab.props.iconType} iconClass={tab.props.iconClass} />
+											<Icon iconId={tab.props.iconId} iconType={tab.props.iconType} iconClass={tab.props.iconClass}/>
 										}
 										{tab.props.tabTitle}
 									</button>
@@ -47,8 +47,8 @@ class Tabs extends Component {
 			);
 		}
 
-    return null;
-  }
+		return null;
+	}
 }
 
 export default Tabs;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Loader from '../../shared/loader/loader';
 import PlayerPhoto from '../../shared/player-photo/player-photo';
 import Modal from '../../shared/modal/modal';
@@ -16,7 +16,7 @@ class Stars extends Component {
 			return (
 				<div key={Math.random()} className="stars-player">
 					<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">
-						<PlayerPhoto playerId={star.id} />
+						<PlayerPhoto playerId={star.id}/>
 						<span className="offscreen">Open player details for {star.name} in modal window</span>
 					</Modal>
 					<span className="stars-name">
@@ -41,13 +41,13 @@ class Stars extends Component {
 		);
 	}
 
-  renderNoContent() {
-    return null;
-  }
+	renderNoContent() {
+		return null;
+	}
 
 	renderLoading() {
 		return (
-			<Loader />
+			<Loader/>
 		);
 	}
 
@@ -55,9 +55,9 @@ class Stars extends Component {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.showNoResults || data.isPreview) {
-        return this.renderNoContent();
-      }
+			if (data.showNoResults || data.isPreview) {
+				return this.renderNoContent();
+			}
 			return this.renderContent(data);
 		}
 

@@ -4,42 +4,42 @@
 // -----------------------------------------------------------------+
 
 .game-stats {
-  margin-bottom: 0;
+	margin-bottom: 0;
 
-  table {
-    text-align: center;
-  }
+	table {
+		text-align: center;
+	}
 
-  th,
-  td {
-    @media (max-width: $breakpoint-mobile-max) {
-      height: 40px;
-      min-width: 50px;
-      padding: 5px;
-      width: 50px;
+	th,
+	td {
+		@media (max-width: $breakpoint-mobile-max) {
+			height: 40px;
+			min-width: 50px;
+			padding: 5px;
+			width: 50px;
 
-      &:first-child {
-        height: 39px;
-        min-width: 60px;
-        width: 60px;
-      }
+			&:first-child {
+				height: 39px;
+				min-width: 60px;
+				width: 60px;
+			}
 
-      &.stats-table--spacer {
-        padding-left: 65px;
-      }
-    }
-  }
+			&.stats-table--spacer {
+				padding-left: 65px;
+			}
+		}
+	}
 
-  th {
-    font-weight: 400;
+	th {
+		font-weight: 400;
 
-    @media (max-width: $breakpoint-mobile-max) {
-      height: 30px;
-    }
-  }
+		@media (max-width: $breakpoint-mobile-max) {
+			height: 30px;
+		}
+	}
 
-  td {
-    font-weight: 600;
+	td {
+		font-weight: 600;
 
 		@media (min-width: $breakpoint-desktop-min) {
 			&.game-stats--team {
@@ -47,37 +47,37 @@
 			}
 		}
 
-    @media (min-width: $breakpoint-tablet-min) {
-      font-size: 1.5rem;
-    }
-  }
+		@media (min-width: $breakpoint-tablet-min) {
+			font-size: 1.5rem;
+		}
+	}
 
-  &--team {
-    white-space: nowrap;
+	&--team {
+		white-space: nowrap;
 
-    @media (min-width: $breakpoint-desktop-min) {
+		@media (min-width: $breakpoint-desktop-min) {
 			text-align: left;
-      width: 20%;
-    }
+			width: 20%;
+		}
 
-    .team-logo {
-      display: inline-block;
-      vertical-align: middle;
+		.team-logo {
+			display: inline-block;
+			vertical-align: middle;
 
-      @media (max-width: $breakpoint-mobile-max) {
-        height: 30px;
-        width: 30px;
-      }
-    }
+			@media (max-width: $breakpoint-mobile-max) {
+				height: 30px;
+				width: 30px;
+			}
+		}
 
-    &-name {
-      display: inline-block;
-      padding-left: 0.5em;
-      vertical-align: middle;
+		&-name {
+			display: inline-block;
+			padding-left: 0.5em;
+			vertical-align: middle;
 
-      @media (max-width: $breakpoint-tablet-max) {
-        display: none;
-      }
-    }
-  }
+			@media (max-width: $breakpoint-tablet-max) {
+				display: none;
+			}
+		}
+	}
 }

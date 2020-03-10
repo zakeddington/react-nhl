@@ -5,13 +5,13 @@
 // -----------------------------------------------------------------+
 
 .schedule-nav {
-  align-items: center;
-  background: $color-grey-dark;
-  border: 1px solid $color-grey-dark;
-  display: flex;
-  flex-wrap: wrap;
-  line-height: 2rem;
-  margin-bottom: 3em;
+	align-items: center;
+	background: $color-grey-dark;
+	border: 1px solid $color-grey-dark;
+	display: flex;
+	flex-wrap: wrap;
+	line-height: 2rem;
+	margin-bottom: 3em;
 
 	&--items {
 		display: flex;
@@ -72,41 +72,41 @@
 
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
-  display: flex;
+	display: flex;
 }
 
 .react-datepicker__navigation {
-  @include text-hide;
-  height: 0;
+	@include text-hide;
+	height: 0;
 }
 
 .datepicker-trigger {
-  align-items: center;
-  background: $color-grey-dark;
-  border: none;
-  color: $color-white;
-  display: flex;
-  font-weight: 700;
-  height: 100%;
-  min-height: 2rem;
-  text-transform: uppercase;
-  transition: all $anim-speed-base $anim-ease;
+	align-items: center;
+	background: $color-grey-dark;
+	border: none;
+	color: $color-white;
+	display: flex;
+	font-weight: 700;
+	height: 100%;
+	min-height: 2rem;
+	text-transform: uppercase;
+	transition: all $anim-speed-base $anim-ease;
 
-  .svg-icon {
-    fill: $color-white;
-    height: 1.5rem;
-    width: 1.5rem;
-  }
+	.svg-icon {
+		fill: $color-white;
+		height: 1.5rem;
+		width: 1.5rem;
+	}
 
-  &:hover,
-  &:focus {
-    background: $color-grey-light;
-    color: $color-grey-dark;
+	&:hover,
+	&:focus {
+		background: $color-grey-light;
+		color: $color-grey-dark;
 		outline: none;
 
-    .svg-icon {
-      fill: $color-grey-dark;
-    }
-  }
+		.svg-icon {
+			fill: $color-grey-dark;
+		}
+	}
 }
 

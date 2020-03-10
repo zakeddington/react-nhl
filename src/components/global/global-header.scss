@@ -4,7 +4,7 @@
 // -----------------------------------------------------------------+
 
 .site-header {
-  background: $color-grey-dark;
+	background: $color-grey-dark;
 	border-bottom: 4px solid $color-white;
 	height: 5rem;
 
@@ -33,10 +33,10 @@
 		width: 3.5rem;
 	}
 
-  &--logo {
+	&--logo {
 		display: block;
 		height: 100%;
-  }
+	}
 
 	&--back,
 	.drawer--trigger {

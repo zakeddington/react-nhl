@@ -4,155 +4,155 @@
 // -----------------------------------------------------------------+
 
 .period-summary {
-  margin: 0 auto 2em;
-  width: 100%;
+	margin: 0 auto 2em;
+	width: 100%;
 }
 
 .period-summary-period {
-  background: $color-white;
-  margin-bottom: 2em;
+	background: $color-white;
+	margin-bottom: 2em;
 
-  &:last-child {
-    border-bottom: 1px solid $color-grey-med;
-  }
+	&:last-child {
+		border-bottom: 1px solid $color-grey-med;
+	}
 }
 
 .period-summary-item {
-  align-items: center;
-  border-bottom: 1px solid $color-grey-med;
-  display: flex;
-  flex-direction: row;
-  font-size: 1.125rem;
-  padding: 1em 2em;
+	align-items: center;
+	border-bottom: 1px solid $color-grey-med;
+	display: flex;
+	flex-direction: row;
+	font-size: 1.125rem;
+	padding: 1em 2em;
 
-  @media (max-width: $breakpoint-mobile-max) {
-    padding: 1em 0.5em;
-  }
+	@media (max-width: $breakpoint-mobile-max) {
+		padding: 1em 0.5em;
+	}
 
-  &:last-child {
-    border-bottom: none;
-  }
+	&:last-child {
+		border-bottom: none;
+	}
 
-  > div {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+	> div {
+		padding-left: 0.5em;
+		padding-right: 0.5em;
 
-    &.period-summary-logo {
-      padding: 0;
+		&.period-summary-logo {
+			padding: 0;
 
-      @media (max-width: $breakpoint-mobile-max) {
-        display: none;
-      }
-    }
-  }
+			@media (max-width: $breakpoint-mobile-max) {
+				display: none;
+			}
+		}
+	}
 }
 
 .period-summary-title {
-  background: $color-grey;
-  color: $color-white;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0.5em 1em;
-  width: 100%;
+	background: $color-grey;
+	color: $color-white;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0.5em 1em;
+	width: 100%;
 }
 
 .period-summary-subtitle {
-  background: $color-grey-light;
-  font-size: 1.125rem;
-  font-weight: 700;
-  margin: 0;
-  padding: 0.5em 1em;
-  text-transform: uppercase;
+	background: $color-grey-light;
+	font-size: 1.125rem;
+	font-weight: 700;
+	margin: 0;
+	padding: 0.5em 1em;
+	text-transform: uppercase;
 }
 
 .period-summary-empty {
-  padding: 1em 0;
+	padding: 1em 0;
 }
 
 .period-summary-time {
-  text-align: center;
-  width: 10%;
+	text-align: center;
+	width: 10%;
 }
 
 .period-summary-player-info {
-  flex: 3;
+	flex: 3;
 
-  .period-summary-player {
-    display: block;
+	.period-summary-player {
+		display: block;
 
-    .period-summary-name {
-      font-weight: 700;
-    }
+		.period-summary-name {
+			font-weight: 700;
+		}
 
-    span {
-      margin-right: 0.5em;
-    }
+		span {
+			margin-right: 0.5em;
+		}
 
-    .period-summary-goal-desc {
-      font-size: 1rem;
+		.period-summary-goal-desc {
+			font-size: 1rem;
 
-      @media (max-width: $breakpoint-mobile-max) {
-        display: block;
-      }
-    }
+			@media (max-width: $breakpoint-mobile-max) {
+				display: block;
+			}
+		}
 
-    .period-summary-goal-type {
-      background: $color-grey-dark;
-      border-radius: 3px;
-      color: $color-white;
-      font-size: 0.875rem;
-      font-weight: 600;
-      padding: 0 0.4em;
-    }
-  }
+		.period-summary-goal-type {
+			background: $color-grey-dark;
+			border-radius: 3px;
+			color: $color-white;
+			font-size: 0.875rem;
+			font-weight: 600;
+			padding: 0 0.4em;
+		}
+	}
 
-  .period-summary-details {
-    display: block;
-    font-size: 0.875rem;
+	.period-summary-details {
+		display: block;
+		font-size: 0.875rem;
 
-    @media (max-width: $breakpoint-mobile-max) {
-      span {
-        display: inline-block;
-      }
-    }
-  }
+		@media (max-width: $breakpoint-mobile-max) {
+			span {
+				display: inline-block;
+			}
+		}
+	}
 }
 
 .period-summary-game-info {
-  text-align: center;
-  width: 10rem;
+	text-align: center;
+	width: 10rem;
 
-  @media (max-width: $breakpoint-mobile-max) {
-    width: 6rem;
-  }
+	@media (max-width: $breakpoint-mobile-max) {
+		width: 6rem;
+	}
 
-  .period-summary-score {
-    border: 1px solid;
-    border-radius: 3px;
-    display: flex;
-    font-size: 0.875rem;
-    font-weight: 600;
-    white-space: nowrap;
+	.period-summary-score {
+		border: 1px solid;
+		border-radius: 3px;
+		display: flex;
+		font-size: 0.875rem;
+		font-weight: 600;
+		white-space: nowrap;
 
-    @media (max-width: $breakpoint-mobile-max) {
-      flex-direction: column;
-    }
+		@media (max-width: $breakpoint-mobile-max) {
+			flex-direction: column;
+		}
 
-    span {
-      width: 50%;
+		span {
+			width: 50%;
 
-      @media (max-width: $breakpoint-mobile-max) {
-        width: 100%;
-      }
-    }
+			@media (max-width: $breakpoint-mobile-max) {
+				width: 100%;
+			}
+		}
 
-    &.no-border {
-      border-color: transparent;
+		&.no-border {
+			border-color: transparent;
 
-      span {
-        border-radius: 3px;
-        width: 100%;
-      }
-    }
-  }
+			span {
+				border-radius: 3px;
+				width: 100%;
+			}
+		}
+	}
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
 import Icon from '../../shared/icon/icon';
@@ -10,7 +10,8 @@ class GameHeader extends Component {
 	renderContent(data) {
 		return (
 			<header className="game-header">
-				<h1 className="offscreen">{data.date} : {data.teams.away.name} {data.teams.away.score} - {data.teams.home.name} {data.teams.home.score}</h1>
+				<h1
+					className="offscreen">{data.date} : {data.teams.away.name} {data.teams.away.score} - {data.teams.home.name} {data.teams.home.score}</h1>
 				<div className="col game-header-date-info">
 					<span className="game-header-date">{data.date}</span>
 					{
@@ -19,7 +20,7 @@ class GameHeader extends Component {
 					}
 				</div>
 				<div className="col game-header-team away">
-					<Icon iconId={data.teams.away.id} iconType={CONSTANTS.iconType.logo} />
+					<Icon iconId={data.teams.away.id} iconType={CONSTANTS.iconType.logo}/>
 					<div className="game-header-team-info">
 						<span className="game-header-city">{data.teams.away.city}</span>
 						<span className="game-header-name">{data.teams.away.name}</span>
@@ -31,7 +32,7 @@ class GameHeader extends Component {
 					}
 				</div>
 				<div className="col game-header-team home">
-					<Icon iconId={data.teams.home.id} iconType={CONSTANTS.iconType.logo} />
+					<Icon iconId={data.teams.home.id} iconType={CONSTANTS.iconType.logo}/>
 					<div className="game-header-team-info">
 						<span className="game-header-city">{data.teams.home.city}</span>
 						<span className="game-header-name">{data.teams.home.name}</span>
@@ -46,17 +47,17 @@ class GameHeader extends Component {
 		);
 	}
 
-  renderNoContent() {
-    return (
-      <header className="game-header">
-				<ErrorMessage errorMsg="No game details available." />
-      </header>
-    );
-  }
+	renderNoContent() {
+		return (
+			<header className="game-header">
+				<ErrorMessage errorMsg="No game details available."/>
+			</header>
+		);
+	}
 
 	renderLoading() {
 		return (
-			<Loader />
+			<Loader/>
 		);
 	}
 
@@ -64,9 +65,9 @@ class GameHeader extends Component {
 		let data = this.props.gameDetail;
 
 		if (data.length || Object.keys(data).length) {
-      if (data.showNoResults) {
-        return this.renderNoContent();
-      }
+			if (data.showNoResults) {
+				return this.renderNoContent();
+			}
 			return this.renderContent(data);
 		}
 

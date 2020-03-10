@@ -21,10 +21,10 @@ export default function reduce(state = initialState, action = {}) {
 			return state.merge({
 				gameDetail: action.gameDetail
 			});
-    case types.GAME_DETAIL_FAILED:
-      return state.merge({
-        gameDetail: CONSTANTS.NO_DATA
-      });
+		case types.GAME_DETAIL_FAILED:
+			return state.merge({
+				gameDetail: CONSTANTS.NO_DATA
+			});
 		case types.GAME_CONTENT_FETCHED:
 			return state.merge({
 				gameContent: action.gameContent

@@ -14,32 +14,32 @@ const Constants = {
 		game: '/game/',
 	},
 
-  iconType: {
-	  icon: 'icon',
-    logo: 'logo',
-  },
+	iconType: {
+		icon: 'icon',
+		logo: 'logo',
+	},
 
-  imgUrl: {
+	imgUrl: {
 		base: '/assets/images/',
-    icon: {
-      base: '/assets/images/icons.svg#icon-',
-    },
-    logoTeams: {
-      base: '/assets/images/logo-teams.svg#team-',
-    },
-    player: {
-      base: '//nhl.bamcontent.com/images/',
-      ext: '@2x.jpg',
-      headshot: 'headshots/current/168x168/',
-      hero: 'actionshots/',
-      arena: 'arena/default/',
-    }
-  },
+		icon: {
+			base: '/assets/images/icons.svg#icon-',
+		},
+		logoTeams: {
+			base: '/assets/images/logo-teams.svg#team-',
+		},
+		player: {
+			base: '//nhl.bamcontent.com/images/',
+			ext: '@2x.jpg',
+			headshot: 'headshots/current/168x168/',
+			hero: 'actionshots/',
+			arena: 'arena/default/',
+		}
+	},
 
 	lang: 'en-US',
 
 	momentOptions: {
-		apiFormat:  'YYYY-MM-DD',
+		apiFormat: 'YYYY-MM-DD',
 		displayFormat: 'ddd, MMM D',
 		birthFormat: 'MMMM D, YYYY',
 	},

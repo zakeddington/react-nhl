@@ -10,10 +10,10 @@ class ScheduleService {
 
 	async getScheduleGames(dateFrom, dateTo, params) {
 		const data = await API.getSchedule(dateFrom, dateTo, params);
-    const { dates } = data;
+		const {dates} = data;
 		let results = [];
 
-    dates.forEach((date) => {
+		dates.forEach((date) => {
 			let curDate = new Date(date.date.replace(/-/g, '/'));
 
 			let curResults = {
@@ -21,11 +21,11 @@ class ScheduleService {
 				games: []
 			};
 
-      date.games.forEach((game) => {
+			date.games.forEach((game) => {
 				const startTime = new Date(game.gameDate).toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
 				const gameStatus = UTILS.getGameStatus(game.linescore);
-        const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
-        const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
+				const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
+				const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
 				let curStatus = '';
 				let broadcasts = [];
 				let awayScore = '';
@@ -63,7 +63,7 @@ class ScheduleService {
 							record: `${game.teams.home.leagueRecord.wins}-${game.teams.home.leagueRecord.losses}${homeOTL}`,
 						}
 					}
-				}
+				};
 
 				curResults.games.push(gameDetail);
 			});

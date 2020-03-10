@@ -1,14 +1,14 @@
-import { Component } from 'react';
+import {Component} from 'react';
 
 class Tab extends Component {
-  render() {
-  	if (this.props.children) {
+	render() {
+		if (this.props.children) {
 			return (
 				this.props.children
 			)
 		}
-    return null;
-  }
+		return null;
+	}
 }
 
 export default Tab;

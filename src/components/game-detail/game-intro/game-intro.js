@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Loader from '../../shared/loader/loader';
 import VideoCarousel from '../../shared/video-carousel/video-carousel';
 import './game-intro.scss';
@@ -13,9 +13,9 @@ class GameIntro extends Component {
 				<div className="game-intro-media">
 					{
 						data.videos.length ? (
-              <VideoCarousel data={data} />
+							<VideoCarousel data={data}/>
 						) : (
-							<img src={data.poster} alt={data.posterAltText} />
+							<img src={data.poster} alt={data.posterAltText}/>
 						)
 					}
 				</div>
@@ -29,7 +29,7 @@ class GameIntro extends Component {
 
 	renderLoading() {
 		return (
-			<Loader />
+			<Loader/>
 		);
 	}
 

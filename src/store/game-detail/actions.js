@@ -9,59 +9,59 @@ import * as types from './actionTypes';
 import GameDetailService from '../../services/GameDetailService';
 
 export function fetchGameDetail(gameId) {
-	return async(dispatch, getState) => {
+	return async (dispatch, getState) => {
 		try {
 			const data = await GameDetailService.getGameData(gameId);
 
 			try {
-        const gameDetail = await GameDetailService.processGameData(data);
-        dispatch({ type: types.GAME_DETAIL_FETCHED, gameDetail });
-      } catch (error) {
-			  console.error(error);
-        dispatch({ type: types.GAME_DETAIL_FAILED });
-      }
+				const gameDetail = await GameDetailService.processGameData(data);
+				dispatch({type: types.GAME_DETAIL_FETCHED, gameDetail});
+			} catch (error) {
+				console.error(error);
+				dispatch({type: types.GAME_DETAIL_FAILED});
+			}
 
 			try {
 				const periodSummary = await GameDetailService.processPeriodSummary(data);
-				dispatch({ type: types.PERIOD_SUMMARY_FETCHED, periodSummary });
+				dispatch({type: types.PERIOD_SUMMARY_FETCHED, periodSummary});
 			} catch (error) {
 				console.error(error);
-				dispatch({ type: types.PERIOD_SUMMARY_FAILED });
+				dispatch({type: types.PERIOD_SUMMARY_FAILED});
 			}
 
 			try {
 				const teamStats = await GameDetailService.processTeamStats(data);
-				dispatch({ type: types.TEAM_STATS_FETCHED, teamStats });
+				dispatch({type: types.TEAM_STATS_FETCHED, teamStats});
 			} catch (error) {
 				console.error(error);
-				dispatch({ type: types.TEAM_STATS_FAILED });
+				dispatch({type: types.TEAM_STATS_FAILED});
 			}
 
 		} catch (error) {
 			console.error(error);
-      dispatch({ type: types.GAME_DETAIL_FAILED });
-			dispatch({ type: types.PERIOD_SUMMARY_FAILED });
-      dispatch({ type: types.TEAM_STATS_FAILED });
+			dispatch({type: types.GAME_DETAIL_FAILED});
+			dispatch({type: types.PERIOD_SUMMARY_FAILED});
+			dispatch({type: types.TEAM_STATS_FAILED});
 		}
 	};
 }
 
 export function fetchGameContent(gameId) {
-	return async(dispatch, getState) => {
+	return async (dispatch, getState) => {
 		try {
 			const data = await GameDetailService.getGameContent(gameId);
 
-      try {
-        const gameContent = await GameDetailService.processGameContent(data);
-        dispatch({ type: types.GAME_CONTENT_FETCHED, gameContent });
-      } catch (error) {
-        console.error(error);
-        dispatch({ type: types.GAME_CONTENT_FAILED });
-      }
+			try {
+				const gameContent = await GameDetailService.processGameContent(data);
+				dispatch({type: types.GAME_CONTENT_FETCHED, gameContent});
+			} catch (error) {
+				console.error(error);
+				dispatch({type: types.GAME_CONTENT_FAILED});
+			}
 
 		} catch (error) {
 			console.error(error);
-			dispatch({ type: types.GAME_CONTENT_FAILED });
+			dispatch({type: types.GAME_CONTENT_FAILED});
 		}
 	};
 }

@@ -2,50 +2,50 @@
 @import '../../../styles/config/animations';
 
 .tabs {
-  &--nav {
-    background: $color-grey-dark;
-    color: $color-white;
-    display: flex;
-    font-size: 1rem;
-    justify-content: center;
-    margin-bottom: 0;
-    padding: 0;
-    width: 100%;
+	&--nav {
+		background: $color-grey-dark;
+		color: $color-white;
+		display: flex;
+		font-size: 1rem;
+		justify-content: center;
+		margin-bottom: 0;
+		padding: 0;
+		width: 100%;
 
-    &-item {
-      margin: 0;
-      padding: 0;
-    }
+		&-item {
+			margin: 0;
+			padding: 0;
+		}
 
-    &-link {
-      background: none;
-      border: none;
-      color: $color-white;
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0;
-      padding: 1rem;
-      transition: all $anim-speed-base ease-in;
+		&-link {
+			background: none;
+			border: none;
+			color: $color-white;
+			font-size: 1rem;
+			font-weight: 700;
+			margin: 0;
+			padding: 1rem;
+			transition: all $anim-speed-base ease-in;
 
-      &:hover,
-      &:focus {
-        background: $color-grey-med-dark;
+			&:hover,
+			&:focus {
+				background: $color-grey-med-dark;
 				outline: none;
-      }
+			}
 
-      &.is-active {
-        background: $color-grey;
-      }
-    }
-  }
+			&.is-active {
+				background: $color-grey;
+			}
+		}
+	}
 
-  &--content {
-    display: none;
+	&--content {
+		display: none;
 
-    &.is-active {
+		&.is-active {
 			animation: fade-in $anim-speed-base forwards $anim-ease;
-      display: block;
-      opacity: 0;
-    }
-  }
+			display: block;
+			opacity: 0;
+		}
+	}
 }

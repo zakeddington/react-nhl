@@ -103,11 +103,11 @@ const Utils = {
 			stat2: stat2,
 			teamName: teamName,
 			teamId: teamId,
-		}
+		};
 
 		return stats;
 	}
-}
+};
 
 
 export default Utils;

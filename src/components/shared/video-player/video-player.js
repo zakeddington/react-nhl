@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Icon from '../icon/icon';
 import './video-player.scss';
 
@@ -13,23 +13,23 @@ class VideoPlayer extends Component {
 	}
 
 	renderPoster() {
-		return(
+		return (
 			<button className="video-trigger" onClick={() => this.onPosterClick()}>
-				<img src={this.props.poster} alt={this.props.altText} />
-				<Icon iconId="play-circle-filled" iconClass="video-play-icon" />
-        <span className="video-title">
-          {this.props.title}<span> [{this.props.duration}]</span>
-        </span>
+				<img src={this.props.poster} alt={this.props.altText}/>
+				<Icon iconId="play-circle-filled" iconClass="video-play-icon"/>
+				<span className="video-title">
+					{this.props.title}<span> [{this.props.duration}]</span>
+				</span>
 			</button>
 		)
 	}
 
 	renderVideo() {
-	  const { video, poster, isAutoPlay, onVideoEvent } = this.props;
+		const {video, poster, isAutoPlay, onVideoEvent} = this.props;
 
-		return(
+		return (
 			<video src={video} poster={poster} muted controls autoPlay={isAutoPlay}
-        onPlay={(e) => onVideoEvent(e)} onEnded={(e) => onVideoEvent(e)} />
+				onPlay={(e) => onVideoEvent(e)} onEnded={(e) => onVideoEvent(e)}/>
 		)
 	}
 

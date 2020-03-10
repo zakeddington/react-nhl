@@ -1,4 +1,3 @@
-
 // Buttons
 // -----------------------------------------------------------------+
 
@@ -39,12 +38,12 @@
 
 		&:hover,
 		&:focus {
-		 color: $color-link-hover;
-		 text-decoration: none;
+			color: $color-link-hover;
+			text-decoration: none;
 
-		 .svg-icon {
-			 fill: $color-link-hover;
-		 }
+			.svg-icon {
+				fill: $color-link-hover;
+			}
 		}
 	}
 }

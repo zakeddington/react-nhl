@@ -2,156 +2,156 @@
 
 .video-carousel {
 
-  &--player {
-    background: $color-grey-dark;
-    display: block;
-    height: 0;
-    overflow: hidden;
-    padding-top: 56.25%;
-    position: relative;
-    width: 100%;
-  }
+	&--player {
+		background: $color-grey-dark;
+		display: block;
+		height: 0;
+		overflow: hidden;
+		padding-top: 56.25%;
+		position: relative;
+		width: 100%;
+	}
 
-  .video-trigger,
-  video {
-    background: $color-grey-dark;
-    border: 1px solid $color-grey-med;
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
+	.video-trigger,
+	video {
+		background: $color-grey-dark;
+		border: 1px solid $color-grey-med;
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
 
-  &--thumbs {
-    background: $color-grey-light;
-    border: 1px solid $color-grey-med;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
+	&--thumbs {
+		background: $color-grey-light;
+		border: 1px solid $color-grey-med;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		white-space: nowrap;
+		width: 100%;
 
-    &-item {
-      min-width: 24%;
-      width: 24%;
+		&-item {
+			min-width: 24%;
+			width: 24%;
 
-      @media (max-width: $breakpoint-mobile-max) {
-        min-width: 45%;
-        width: 45%;
-      }
+			@media (max-width: $breakpoint-mobile-max) {
+				min-width: 45%;
+				width: 45%;
+			}
 
-      &.is-active {
-        background: $color-grey-med;
-        border-left: 1px solid rgba($color-black, 0.1);
-        border-right: 1px solid rgba($color-black, 0.1);
-        cursor: default;
+			&.is-active {
+				background: $color-grey-med;
+				border-left: 1px solid rgba($color-black, 0.1);
+				border-right: 1px solid rgba($color-black, 0.1);
+				cursor: default;
 
-        &:first-child {
-          border-left: none;
-        }
+				&:first-child {
+					border-left: none;
+				}
 
-        &:last-child {
-          border-right: none;
-        }
+				&:last-child {
+					border-right: none;
+				}
 
-        .video-play-icon {
-          display: none;
-        }
-      }
-    }
+				.video-play-icon {
+					display: none;
+				}
+			}
+		}
 
-    &-trigger {
-      background: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 0.75rem;
-      height: 100%;
-      padding: 1rem;
-      text-align: left;
-      white-space: normal;
-      width: 100%;
+		&-trigger {
+			background: none;
+			border: 1px solid transparent;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 0.75rem;
+			height: 100%;
+			padding: 1rem;
+			text-align: left;
+			white-space: normal;
+			width: 100%;
 
-      &:hover,
-      &:focus {
-        .video-carousel--thumbs-poster {
-          border-color: $color-grey-dark;
-        }
+			&:hover,
+			&:focus {
+				.video-carousel--thumbs-poster {
+					border-color: $color-grey-dark;
+				}
 
-        img {
-          transform: scale(1.05);
-        }
-      }
+				img {
+					transform: scale(1.05);
+				}
+			}
 
-      &:focus {
-        background: $color-white;
-        outline: none;
-      }
+			&:focus {
+				background: $color-white;
+				outline: none;
+			}
 
-      .is-active & {
-        cursor: default;
+			.is-active & {
+				cursor: default;
 
-        &:hover,
-        &:focus {
-          .video-carousel--thumbs-poster {
-            border-color: $color-white;
-          }
+				&:hover,
+				&:focus {
+					.video-carousel--thumbs-poster {
+						border-color: $color-white;
+					}
 
-          img {
-            transform: none;
-          }
-        }
-      }
-    }
+					img {
+						transform: none;
+					}
+				}
+			}
+		}
 
-    &-poster {
-      border: 1px solid $color-grey-med;
-      display: block;
-      margin-bottom: 0.5rem;
-      overflow: hidden;
-      position: relative;
+		&-poster {
+			border: 1px solid $color-grey-med;
+			display: block;
+			margin-bottom: 0.5rem;
+			overflow: hidden;
+			position: relative;
 
-      img {
-        display: block;
-        position: relative;
-        transition: all $anim-speed-fast $anim-ease;
-      }
+			img {
+				display: block;
+				position: relative;
+				transition: all $anim-speed-fast $anim-ease;
+			}
 
-      .is-active & {
-        border-color: $color-white;
-        overflow: visible;
-        outline: 3px solid $color-white;
+			.is-active & {
+				border-color: $color-white;
+				overflow: visible;
+				outline: 3px solid $color-white;
 
-        &:before {
-          border-bottom: 15px solid $color-white;
-          border-left: 20px solid transparent;
-          border-right: 20px solid transparent;
-          content: '';
-          height: 0;
-          left: 50%;
-          position: absolute;
-          top: 0;
-          transform: translate(-50%, -100%);
-          width: 0;
-        }
-      }
-    }
+				&:before {
+					border-bottom: 15px solid $color-white;
+					border-left: 20px solid transparent;
+					border-right: 20px solid transparent;
+					content: '';
+					height: 0;
+					left: 50%;
+					position: absolute;
+					top: 0;
+					transform: translate(-50%, -100%);
+					width: 0;
+				}
+			}
+		}
 
-    .video-play-icon {
-      height: 4rem;
-      width: 4rem;
+		.video-play-icon {
+			height: 4rem;
+			width: 4rem;
 
-      @media (max-width: $breakpoint-mobile-max) {
-        height: 3rem;
-        width: 3rem;
-      }
-    }
+			@media (max-width: $breakpoint-mobile-max) {
+				height: 3rem;
+				width: 3rem;
+			}
+		}
 
-    &-title {
-      font-weight: 600;
-    }
-  }
+		&-title {
+			font-weight: 600;
+		}
+	}
 }

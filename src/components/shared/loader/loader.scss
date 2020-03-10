@@ -4,42 +4,42 @@
 // -----------------------------------------------------------------+
 
 .loader {
-  margin: auto;
-  padding: 2rem 0;
-  text-align: center;
-  width: 5em;
+	margin: auto;
+	padding: 2rem 0;
+	text-align: center;
+	width: 5em;
 
-  .loader-circle {
-    animation: bounce 1.4s infinite ease-in-out both;
-    background-color: $color-grey-dark;
-    border-radius: 100%;
-    display: inline-block;
-    height: 1em;
-    margin: 0.2em;
-    width: 1em;
+	.loader-circle {
+		animation: bounce 1.4s infinite ease-in-out both;
+		background-color: $color-grey-dark;
+		border-radius: 100%;
+		display: inline-block;
+		height: 1em;
+		margin: 0.2em;
+		width: 1em;
 
-    &.bounce1 {
-      // animation-delay: 0.5s;
-    }
+		&.bounce1 {
+			// animation-delay: 0.5s;
+		}
 
-    &.bounce2 {
-      animation-delay: 0.2s;
-    }
+		&.bounce2 {
+			animation-delay: 0.2s;
+		}
 
-    &.bounce3 {
-      animation-delay: 0.4s;
-    }
-  }
+		&.bounce3 {
+			animation-delay: 0.4s;
+		}
+	}
 }
 
 @keyframes bounce {
-  0%,
-  80%,
-  100% {
-    transform: scale(0);
-  }
+	0%,
+	80%,
+	100% {
+		transform: scale(0);
+	}
 
-  40% {
-    transform: scale(1);
-  }
+	40% {
+		transform: scale(1);
+	}
 }
