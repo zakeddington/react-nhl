@@ -54,6 +54,10 @@ class VideoCarousel extends Component {
 		let thumbs = videos.map((video, i) => {
 			let activeClass = i === selectedVideoIndex ? 'is-active' : '';
 
+			if (!video.url) {
+				return null;
+			}
+
 			return (
 				<div key={video.url} className={`video-carousel--thumbs-item ${activeClass}`}>
 					<button className="video-carousel--thumbs-trigger" onClick={() => this.setCurrentVideo(i, true)}>
