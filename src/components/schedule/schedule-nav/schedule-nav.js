@@ -8,15 +8,13 @@ import Icon from '../../shared/icon/icon';
 import './datepicker.scss';
 import './schedule-nav.scss';
 
-class DatepickerTrigger extends Component {
-	render() {
-		return (
-			<button className="datepicker-trigger" onClick={() => this.props.onClick()} value={this.props.value}>
-				<Icon iconId="calendar"/>
-				<span className="offscreen">Select a date from calendar</span>
-			</button>
-		)
-	}
+function DatepickerTrigger(props) {
+	return (
+		<button className="datepicker-trigger" onClick={() => props.onClick()} value={props.value}>
+			<Icon iconId="calendar"/>
+			<span className="offscreen">Select a date from calendar</span>
+		</button>
+	)
 }
 
 class ScheduleNav extends Component {
@@ -151,7 +149,7 @@ class ScheduleNav extends Component {
 		return (
 			<div className="schedule-nav">
 				<DatePicker
-					customInput={<DatepickerTrigger/>}
+					customInput={DatepickerTrigger(this.props)}
 					selected={this.state.selectedDate.toDate()}
 					onChange={(dateStr) => this.onDatePickerChange(dateStr)}
 					todayButton="Today"/>
