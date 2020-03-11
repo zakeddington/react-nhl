@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 import CONSTANTS from './config/Constants';
 import breakpointChange from './utilities/BreakpointChange';
 import Header from './components/global/global-header';
@@ -16,7 +15,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Header/>
+				<Header key="global-header"/>
 				<Switch>
 					<Route exact path="/" component={Schedule} />
 					<Route exact path={`${CONSTANTS.routePaths.schedule}:id`} component={Schedule} />
@@ -28,12 +27,4 @@ class App extends Component {
 	}
 }
 
-// injects needed parts of the global state to the component through props
-// in this case we pass everything
-function mapStateToProps(state, ownProps) {
-	return state;
-}
-
-// connect this component with the store
-// and inject 'dispatch' store function through props
-export default connect(mapStateToProps)(App);
+export default App;

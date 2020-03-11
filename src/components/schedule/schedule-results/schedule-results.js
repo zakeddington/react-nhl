@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CONSTANTS from '../../../config/Constants';
 import Loader from '../../shared/loader/loader';
 import ErrorMessage from '../../shared/error/error-message';
@@ -22,7 +23,7 @@ function renderContent(data) {
 
 			return (
 				<li key={game.id} className={classGameStatus}>
-					<a href={`${CONSTANTS.routePaths.game}${game.id}`}>
+					<Link to={`${CONSTANTS.routePaths.game}${game.id}`}>
 						<div className="schedule-results--game-status">
 							<span className="schedule-results--status">{game.gameStatus}</span>
 							<span className="schedule-results--broadcasts">{game.broadcasts}</span>
@@ -41,7 +42,7 @@ function renderContent(data) {
 								</span>
 							<span className="schedule-results--score">{game.teams.home.score}</span>
 						</div>
-					</a>
+					</Link>
 				</li>
 			)
 		});
