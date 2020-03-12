@@ -186,7 +186,7 @@ function PeriodSummary(props) {
 	const data = props.periodSummary;
 	let content;
 
-	if (data.length || Object.keys(data).length) {
+	if (data) {
 		if (data.showNoResults) {
 			content = <ErrorMessage errorMsg="No period summary available."/>;
 		} else {

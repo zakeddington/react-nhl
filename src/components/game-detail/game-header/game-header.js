@@ -6,10 +6,10 @@ import ErrorMessage from '../../shared/error/error-message';
 import './game-header.scss';
 
 function GameHeader(props) {
-	const data = props.gameDetail;
+	const {data} = props;
 	let content;
 
-	if (data.length || Object.keys(data).length) {
+	if (data) {
 		if (data.showNoResults) {
 			content = <ErrorMessage errorMsg="No game details available."/>;
 		} else {

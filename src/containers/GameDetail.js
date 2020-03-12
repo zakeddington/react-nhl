@@ -4,9 +4,6 @@
 // avoid having view logic & local component state in them, use "dumb" components instead
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../store/game-detail/actions';
-import * as reducer from '../store/game-detail/reducer';
 import GameHeader from '../components/game-detail/game-header/game-header';
 import GameIntro from '../components/game-detail/game-intro/game-intro';
 import Scoreboard from '../components/game-detail/scoreboard/scoreboard';
@@ -16,33 +13,117 @@ import GameStats from '../components/game-detail/game-stats/game-stats';
 import TeamStats from '../components/game-detail/team-stats/team-stats';
 import Tabs from '../components/shared/tabs/tabs';
 import Tab from '../components/shared/tabs/tab';
+import GameDetailService from "../services/GameDetailService";
+import CONSTANTS from "../config/Constants";
 
 class GameDetail extends Component {
+
+	state = {
+		gameDetail: null,
+		gameContent: null,
+		periodSummary: null,
+		teamStats: null,
+	};
+
+	fetchGameDetail(gameId) {
+		return (async () => {
+			try {
+				const data = await GameDetailService.getGameData(gameId);
+				let newGameDetail;
+				let newPeriodSummary;
+				let newTeamStats;
+
+				try {
+					newGameDetail = await GameDetailService.processGameData(data);
+				} catch (error) {
+					console.error(error);
+					newGameDetail = CONSTANTS.NO_DATA;
+				}
+
+				try {
+					newPeriodSummary = await GameDetailService.processPeriodSummary(data);
+				} catch (error) {
+					console.error(error);
+					newPeriodSummary = CONSTANTS.NO_DATA;
+				}
+
+				try {
+					newTeamStats = await GameDetailService.processTeamStats(data);
+				} catch (error) {
+					console.error(error);
+					newTeamStats = CONSTANTS.NO_DATA;
+				}
+
+				this.setState({
+					gameDetail: newGameDetail,
+					periodSummary: newPeriodSummary,
+					teamStats: newTeamStats,
+				});
+
+			} catch (error) {
+				console.error(error);
+				this.setState({
+					gameDetail: CONSTANTS.NO_DATA,
+					periodSummary: CONSTANTS.NO_DATA,
+					teamStats: CONSTANTS.NO_DATA,
+				});
+			}
+		})();
+	}
+
+	fetchGameContent(gameId) {
+		return (async () => {
+			try {
+				const data = await GameDetailService.getGameContent(gameId);
+				let newGameContent;
+
+				try {
+					newGameContent = await GameDetailService.processGameContent(data);
+				} catch (error) {
+					console.error(error);
+					newGameContent = CONSTANTS.NO_DATA;
+				}
+
+				this.setState({
+					gameContent: newGameContent,
+				});
+
+			} catch (error) {
+				console.error(error);
+				this.setState({
+					gameContent: CONSTANTS.NO_DATA,
+				});
+			}
+		})();
+	}
 
 	componentDidMount() {
 		let path = this.props.location.pathname;
 		let gameId = path.match(/([^/]*)\/*$/)[1];
 
-		this.props.dispatch(actions.fetchGameDetail(gameId));
-		this.props.dispatch(actions.fetchGameContent(gameId));
+		this.fetchGameDetail(gameId);
+		this.fetchGameContent(gameId);
 	}
 
 	render() {
+		const { gameDetail, gameContent, periodSummary, teamStats } = this.state;
+
 		return (
 			<div className="site-content container">
-				<GameHeader gameDetail={this.props.gameDetail} />
-				<GameIntro gameContent={this.props.gameContent} />
+				<GameHeader data={gameDetail} />
+
+				<GameIntro gameContent={gameContent} />
 				<div className="scoreboard-stars">
-					<Scoreboard gameDetail={this.props.gameDetail} />
-					<Stars gameDetail={this.props.gameDetail} />
+					<Scoreboard gameDetail={gameDetail} />
+					<Stars gameDetail={gameDetail} />
 				</div>
 				<Tabs>
 					<Tab id="tab-period-summary" tabTitle="Period Summary">
-						<PeriodSummary periodSummary={this.props.periodSummary} />
+						<PeriodSummary periodSummary={periodSummary} />
 					</Tab>
 					<Tab id="tab-team-stats" tabTitle="Team Stats">
-						<GameStats gameDetail={this.props.gameDetail} />
-						<TeamStats teamStats={this.props.teamStats} />
+						<GameStats gameDetail={gameDetail} />
+						<TeamStats teamStats={teamStats} />
 					</Tab>
 				</Tabs>
 			</div>
@@ -50,19 +131,4 @@ class GameDetail extends Component {
 	}
 }
 
-// which props do we want to inject, given the global store state?
-// always use selectors here and avoid accessing the state directly
-function mapStateToProps(state) {
-	const gameDetail = reducer.getGameDetail(state);
-	const gameContent = reducer.getGameContent(state);
-	const periodSummary = reducer.getPeriodSummary(state);
-	const teamStats = reducer.getTeamStats(state);
-	return {
-		gameDetail,
-		gameContent,
-		periodSummary,
-		teamStats,
-	};
-}
-
-export default connect(mapStateToProps)(GameDetail);
+export default GameDetail;

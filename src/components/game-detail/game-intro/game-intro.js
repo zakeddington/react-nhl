@@ -7,7 +7,7 @@ function GameIntro(props) {
 	const data = props.gameContent;
 	let content;
 
-	if (data.length || Object.keys(data).length) {
+	if (data) {
 		if (data.showNoResults) {
 			content = '';
 		} else {

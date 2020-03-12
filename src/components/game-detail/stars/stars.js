@@ -43,7 +43,7 @@ function Stars(props) {
 	const data = props.gameDetail;
 	let content;
 
-	if (data.length || Object.keys(data).length) {
+	if (data) {
 		if (data.showNoResults || data.isPreview) {
 			content = '';
 		} else {

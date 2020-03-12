@@ -157,7 +157,7 @@ function TeamStats(props) {
 	const data = props.teamStats;
 	let content;
 
-	if (data.length || Object.keys(data).length) {
+	if (data) {
 		if (data.showNoResults || data.isPreview) {
 			content = <ErrorMessage errorMsg="No team stats available."/>;
 		} else {
