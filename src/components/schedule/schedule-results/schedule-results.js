@@ -65,10 +65,10 @@ function renderContent(data) {
 }
 
 function ScheduleResults(props) {
-	const data = props.scheduleGames;
+	const data = props.games;
 	let content;
 
-	if (data.length || Object.keys(data).length) {
+	if (data) {
 		if (data.showNoResults) {
 			content = <ErrorMessage errorMsg="There are no games scheduled on this date." />;
 		} else {
