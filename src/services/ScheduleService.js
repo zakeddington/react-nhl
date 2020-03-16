@@ -23,6 +23,7 @@ class ScheduleService {
 
 			date.games.forEach((game) => {
 				const startTime = new Date(game.gameDate).toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
+				const startStatus = game.status.detailedState;
 				const gameStatus = UTILS.getGameStatus(game.linescore);
 				const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
 				const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
@@ -35,6 +36,8 @@ class ScheduleService {
 					curStatus = gameStatus;
 					awayScore = game.teams.away.score;
 					homeScore = game.teams.home.score;
+				} else if (startStatus === 'Postponed') {
+					curStatus = 'PPD';
 				} else {
 					curStatus = startTime;
 				}

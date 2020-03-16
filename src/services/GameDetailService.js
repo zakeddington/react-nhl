@@ -21,6 +21,7 @@ class GameDetailService {
 		const date = new Date(data.gameData.datetime.dateTime);
 		const curDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
 		const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
+		const startStatus = data.gameData.status.detailedState;
 		const awayScore = data.liveData.linescore.teams.away.goals;
 		const homeScore = data.liveData.linescore.teams.home.goals;
 		const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
@@ -32,6 +33,8 @@ class GameDetailService {
 		if (gameStatus.length) {
 			curStatus = gameStatus;
 			isPreview = false;
+		} else if (startStatus === 'Postponed') {
+			curStatus = 'PPD';
 		} else {
 			curStatus = startTime;
 		}
