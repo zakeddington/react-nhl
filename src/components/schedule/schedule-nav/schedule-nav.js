@@ -21,7 +21,6 @@ class ScheduleNav extends Component {
 	state = {
 		objStartDate: this.props.startDate,
 		arrDateObjs: [],
-		setActiveState: true,
 	};
 
 	numSideDays = CONSTANTS.isMobileView ? 1 : 3;
@@ -46,9 +45,9 @@ class ScheduleNav extends Component {
 			const prevPropsDateStr = prevPropsDate.format(CONSTANTS.momentOptions.displayFormat);
 
 			if (curDateStr !== prevDateStr) {
-				this.setArrDateObjs(curDate);
+				this.setArrDateObjs(curDate, curPropsDate);
 			} else if (curPropsDateStr !== prevPropsDateStr) {
-				this.setArrDateObjs(curPropsDate);
+				this.setArrDateObjs(curPropsDate, curPropsDate);
 			}
 		}
 	}
@@ -58,36 +57,30 @@ class ScheduleNav extends Component {
 		this.setArrDateObjs();
 	}
 
-	setArrDateObjs(selectedDate = this.state.objStartDate) {
+	setArrDateObjs(selectedDate = this.state.objStartDate, curResultsDate) {
 		const { numSideDays } = this;
-		const { setActiveState } = this.state;
 		const curDates = this.state.arrDateObjs;
 		let dateObjs = curDates;
 		let createNewDates = true;
 
-		// console.log(selectedDate.format(CONSTANTS.momentOptions.displayFormat));
-		// console.log('setActiveState', setActiveState);
-
 		// check if any date matches current results displayed
-		if (setActiveState) {
-			curDates.forEach((date) => {
-				const curDate = date.day.format(CONSTANTS.momentOptions.displayFormat);
-				const objStartDate = selectedDate.format(CONSTANTS.momentOptions.displayFormat);
+		curDates.forEach((date) => {
+			const curDate = date.day.format(CONSTANTS.momentOptions.displayFormat);
+			const objStartDate = selectedDate.format(CONSTANTS.momentOptions.displayFormat);
 
-				if (curDate === objStartDate) {
-					date.isActive = true;
-					createNewDates = false;
-				} else {
-					date.isActive = false;
-				}
-			});
-		}
+			if (curDate === objStartDate) {
+				date.isActive = true;
+				createNewDates = false;
+			} else {
+				date.isActive = false;
+			}
+		});
 
 		// only create new dates array if it's not in the current one
 		if (createNewDates) {
 			dateObjs = [{
 				day: selectedDate,
-				isActive: setActiveState,
+				isActive: true,
 			}];
 
 			for (let i = 0; i < numSideDays; i++) {
@@ -101,12 +94,21 @@ class ScheduleNav extends Component {
 					isActive: false,
 				});
 			}
+
+			// set active state on date that matches displayed results
+			if (curResultsDate) {
+				dateObjs.forEach((date) => {
+					const curDate = date.day.format(CONSTANTS.momentOptions.displayFormat);
+					const resultsDate = curResultsDate.format(CONSTANTS.momentOptions.displayFormat);
+
+					date.isActive = (curDate === resultsDate);
+				});
+			}
 		}
 
 		this.setState({
 			objStartDate: selectedDate,
 			arrDateObjs: dateObjs,
-			setActiveState: true,
 		});
 	}
 
@@ -135,7 +137,6 @@ class ScheduleNav extends Component {
 		// this.setArrDateObjs(newDate, true);
 		this.setState({
 			objStartDate: newDate,
-			setActiveState: false,
 		})
 	}
 
