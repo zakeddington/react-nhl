@@ -1,8 +1,3 @@
-/**
- * Constants
- * @description  Defines application constants
- */
-
 const Constants = {
 
 	NO_DATA: {

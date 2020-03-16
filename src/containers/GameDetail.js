@@ -1,8 +1,3 @@
-// containers are "smart" react components that are aware of redux
-// they are connected to the redux store and listen on part of the app state
-// they use mapStateToProps to specify which parts and use selectors to read them
-// avoid having view logic & local component state in them, use "dumb" components instead
-
 import React, { Component } from 'react';
 import GameHeader from '../components/game-detail/game-header/game-header';
 import GameIntro from '../components/game-detail/game-intro/game-intro';
