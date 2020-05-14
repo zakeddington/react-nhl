@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import ScheduleService from '../services/ScheduleService';
 import CONSTANTS from '../config/Constants';
-import ScheduleNav from '../components/schedule/schedule-nav/schedule-nav';
-import ScheduleResults from '../components/schedule/schedule-results/schedule-results';
+import ScheduleNav from '../components/Schedule/ScheduleNav/ScheduleNav';
+import ScheduleResults from '../components/Schedule/ScheduleResults/ScheduleResults';
 
 class Schedule extends Component {
 

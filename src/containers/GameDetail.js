@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import GameHeader from '../components/game-detail/game-header/game-header';
-import GameIntro from '../components/game-detail/game-intro/game-intro';
-import Scoreboard from '../components/game-detail/scoreboard/scoreboard';
-import Stars from '../components/game-detail/stars/stars';
-import PeriodSummary from '../components/game-detail/period-summary/period-summary';
-import GameStats from '../components/game-detail/game-stats/game-stats';
-import TeamStats from '../components/game-detail/team-stats/team-stats';
-import Tabs from '../components/shared/tabs/tabs';
-import Tab from '../components/shared/tabs/tab';
+import GameHeader from '../components/GameDetail/GameHeader/GameHeader';
+import GameIntro from '../components/GameDetail/GameIntro/GameIntro';
+import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
+import Stars from '../components/GameDetail/Stars/Stars';
+import PeriodSummary from '../components/GameDetail/PeriodSummary/PeriodSummary';
+import GameStats from '../components/GameDetail/GameStats/GameStats';
+import TeamStats from '../components/GameDetail/TeamStats/TeamStats';
+import Tabs from '../components/Shared/Tabs/Tabs';
+import Tab from '../components/Shared/Tabs/Tab';
 import GameDetailService from "../services/GameDetailService";
 import CONSTANTS from "../config/Constants";
 
@@ -109,7 +109,7 @@ class GameDetail extends Component {
 
 				<GameIntro gameContent={gameContent} />
 				<div className="scoreboard-stars">
-					<Scoreboard gameDetail={gameDetail} />
+					<ScoreBoard gameDetail={gameDetail} />
 					<Stars gameDetail={gameDetail} />
 				</div>
 				<Tabs>
