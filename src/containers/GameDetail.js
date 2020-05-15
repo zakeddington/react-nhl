@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CONSTANTS from '../config/Constants';
 import GameHeader from '../components/GameDetail/GameHeader/GameHeader';
 import GameIntro from '../components/GameDetail/GameIntro/GameIntro';
 import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
@@ -8,24 +9,27 @@ import GameStats from '../components/GameDetail/GameStats/GameStats';
 import TeamStats from '../components/GameDetail/TeamStats/TeamStats';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
-import GameDetailService from "../services/GameDetailService";
-import CONSTANTS from "../config/Constants";
+import {
+	GameDetailService,
+	GameDetailInitialState,
+	GameHeaderInitialState,
+	ScoreBoardInitialState,
+	StarsInitialState,
+	GameStatsInitialState,
+} from '../services/GameDetailService';
 
 class GameDetail extends Component {
 
 	state = {
-		showLoader: true,
-		isPreview: true,
-		gameDate: '',
-		gameStatus: '',
+		GameDetailInitialState,
 
-		gameHeaderData: {},
+		gameHeaderData: GameHeaderInitialState,
 		gameHeaderError: false,
-		scoreBoardData: {},
+		scoreBoardData: ScoreBoardInitialState,
 		scoreBoardError: false,
-		starsData: {},
+		starsData: StarsInitialState,
 		starsError: false,
-		gameStatsData: {},
+		gameStatsData: GameStatsInitialState,
 		gameStatsError: false,
 
 		gameContent: null,

@@ -2,17 +2,58 @@ import CONSTANTS from '../config/Constants';
 import API from './API';
 import UTILS from './Utils';
 
-class GameDetailService {
-	state = {
-		gameDetail: {
-			isPreview: true,
-			gameDate: '',
-			gameStatus: '',
-		},
-	}
+export const GameDetailInitialState = {
+	showLoader: true,
+	isPreview: true,
+	gameDate: '',
+	gameStatus: '',
+}
+
+export const GameHeaderInitialState = {
+	awayTeam: {
+		id: null,
+		city: null,
+		name: null,
+		score: null,
+	},
+	homeTeam: {
+		id: null,
+		city: null,
+		name: null,
+		score: null,
+	},
+}
+
+export const ScoreBoardInitialState = {
+	awayTeam: {
+		id: null,
+		name: null,
+	},
+	homeTeam: {
+		id: null,
+		name: null,
+	},
+	periodGoals: [],
+}
+
+export const StarsInitialState = {
+	stars: [],
+}
+
+export const GameStatsInitialState = {
+	gameStats: [],
+}
+
+export const GameDetailService = {
+	state: GameDetailInitialState,
 
 	async getGameData(gameId) {
-		this.state.gameDetail = await API.getGame(gameId);
+		const response = await API.getGame(gameId);
+
+		console.log('response', response);
+
+		Object.assign(this.state, response || {});
+		console.log('this.state', this.state);
 
 		try {
 			await this.getGameDateAndStatus();
@@ -20,18 +61,16 @@ class GameDetailService {
 			console.error(error);
 		}
 
-		return this.state.gameDetail;
-	}
+		return this.state;
+	},
 
 	async getGameDateAndStatus() {
-		const { gameDetail } = this.state;
-
-		const date = new Date(gameDetail.gameData.datetime.dateTime);
-		this.state.gameDetail.gameDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
+		const date = new Date(this.state.gameData.datetime.dateTime);
+		this.state.gameDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
 
 		const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
-		const startStatus = gameDetail.gameData.status.detailedState;
-		const gameStatus = UTILS.getGameStatus(gameDetail.liveData.linescore);
+		const startStatus = this.state.gameData.status.detailedState;
+		const gameStatus = UTILS.getGameStatus(this.state.liveData.linescore);
 		let curStatus;
 		let isPreview = true;
 
@@ -44,15 +83,15 @@ class GameDetailService {
 			curStatus = startTime;
 		}
 
-		this.state.gameDetail.isPreview = isPreview;
-		this.state.gameDetail.gameStatus = curStatus;
-	}
+		this.state.isPreview = isPreview;
+		this.state.gameStatus = curStatus;
+	},
 
 	async processGameHeaderData(data) {
 		const awayScore = data.liveData.linescore.teams.away.goals;
 		const homeScore = data.liveData.linescore.teams.home.goals;
 
-		return {
+		return Object.assign(GameHeaderInitialState, {
 			awayTeam: {
 				id: data.gameData.teams.away.id,
 				city: data.gameData.teams.away.locationName,
@@ -65,8 +104,8 @@ class GameDetailService {
 				name: data.gameData.teams.home.teamName,
 				score: homeScore,
 			},
-		};
-	}
+		});
+	},
 
 	async processScoreBoardData(data) {
 		const periodGoals = data.liveData.linescore.periods;
@@ -75,7 +114,7 @@ class GameDetailService {
 		const homeScore = data.liveData.linescore.teams.home.goals;
 		const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
 
-		return {
+		return Object.assign(ScoreBoardInitialState, {
 			awayTeam: {
 				id: data.gameData.teams.away.id,
 				name: data.gameData.teams.away.teamName,
@@ -85,8 +124,8 @@ class GameDetailService {
 				name: data.gameData.teams.home.teamName,
 			},
 			periodGoals: periods,
-		};
-	}
+		});
+	},
 
 	async processStarsData(data) {
 		const boxscoreTeams = data.liveData.boxscore.teams;
@@ -101,10 +140,10 @@ class GameDetailService {
 			curStars = [firstStar, secondStar, thirdStar];
 		}
 
-		return {
+		return Object.assign(StarsInitialState, {
 			stars: curStars,
-		};
-	}
+		});
+	},
 
 	async processGameStatsData(data) {
 		const awayTeam = data.gameData.teams.away;
@@ -114,10 +153,10 @@ class GameDetailService {
 		const awayGameStats = UTILS.getTeamGameStats(awayTeam, awayBoxscore);
 		const homeGameStats = UTILS.getTeamGameStats(homeTeam, homeBoxscore);
 
-		return {
+		return Object.assign(GameStatsInitialState, {
 			gameStats: [awayGameStats, homeGameStats],
-		}
-	}
+		});
+	},
 
 	async processPeriodSummary(data) {
 		const periods = data.liveData.linescore.periods;
@@ -236,7 +275,7 @@ class GameDetailService {
 		}
 
 		return CONSTANTS.NO_DATA;
-	}
+	},
 
 	getShootoutSummary(data) {
 		const playsByPeriod = data.liveData.plays.playsByPeriod;
@@ -290,7 +329,7 @@ class GameDetailService {
 		});
 
 		return shootoutPlays;
-	}
+	},
 
 	async processTeamStats(data) {
 		const awayPlayers = data.liveData.boxscore.teams.away.players;
@@ -317,7 +356,7 @@ class GameDetailService {
 				}
 			]
 		};
-	}
+	},
 
 	createPlayerData(players) {
 		const stats = [];
@@ -385,7 +424,7 @@ class GameDetailService {
 		});
 
 		return stats;
-	}
+	},
 
 	getStatPercent(playerData, winPropName, totalPropName, newProp) {
 		const data = playerData;
@@ -398,7 +437,7 @@ class GameDetailService {
 		}
 
 		return data;
-	}
+	},
 
 	getSavePercent(playerData, winPropName, totalPropName, newProp) {
 		const data = playerData;
@@ -411,11 +450,11 @@ class GameDetailService {
 		}
 
 		return data;
-	}
+	},
 
 	async getGameContent(gameId) {
 		return await API.getGameContent(gameId);
-	}
+	},
 
 	async processGameContent(data) {
 		const previewData = data.editorial.preview.items[0];
@@ -475,7 +514,7 @@ class GameDetailService {
 			posterAltText,
 			videos,
 		};
-	}
+	},
 
 	createVideoData(data) {
 		// console.log(data);
@@ -511,7 +550,5 @@ class GameDetailService {
 			posterAltText,
 			showVideoPlayer: false,
 		};
-	}
+	},
 }
-
-export default new GameDetailService();

@@ -26,8 +26,7 @@ function GameHeader(props) {
 		} else {
 			content =
 				<>
-					<h1
-						className="offscreen">{gameDate} : {awayTeam.name} {awayTeam.score} - {homeTeam.name} {homeTeam.score}</h1>
+					<h1 className="offscreen">{gameDate} : {awayTeam.name} {awayTeam.score} - {homeTeam.name} {homeTeam.score}</h1>
 					<div className="col game-header-date-info">
 						<span className="game-header-date">{gameDate}</span>
 						<span className="game-header-time">{gameStatus}</span>
