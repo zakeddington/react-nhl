@@ -65,7 +65,6 @@ const Utils = {
 		let starName = star.fullName;
 		let playerKey = `ID${starId}`;
 		let teamName;
-		let teamId;
 		let position;
 		let stat1;
 		let stat2;
@@ -74,11 +73,9 @@ const Utils = {
 
 		if (playerData) {
 			teamName = boxscoreTeams.away.team.triCode;
-			teamId = boxscoreTeams.away.team.id;
 		} else {
 			playerData = boxscoreTeams.home.players[playerKey];
 			teamName = boxscoreTeams.home.team.triCode;
-			teamId = boxscoreTeams.home.team.id;
 		}
 
 		position = playerData.position.code;
@@ -102,10 +99,25 @@ const Utils = {
 			stat1: stat1,
 			stat2: stat2,
 			teamName: teamName,
-			teamId: teamId,
 		};
 
 		return stats;
+	},
+
+	getTeamGameStats(team = {}, boxscore = {}) {
+		return {
+			id: team.id,
+			name: team.teamName,
+			shots: boxscore.shots,
+			faceOffWinPercentage: boxscore.faceOffWinPercentage,
+			powerPlayGoals: boxscore.powerPlayGoals,
+			powerPlayOpportunities: boxscore.powerPlayOpportunities,
+			pim: boxscore.pim,
+			hits: boxscore.hits,
+			blocked: boxscore.blocked,
+			giveaways: boxscore.giveaways,
+			takeaways: boxscore.takeaways,
+		}
 	}
 };
 

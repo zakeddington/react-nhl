@@ -21,26 +21,33 @@ function getPeriodGoals(data) {
 	)
 }
 
-function renderContent(data) {
+function renderContent(props) {
+	const {
+		gameStatus,
+		awayTeam,
+		homeTeam,
+		periodGoals,
+	} = props;
+
 	return (
 		<div className="scoreboard">
-			<h3 className="header-title">{data.gameStatus}</h3>
+			<h3 className="header-title">{gameStatus}</h3>
 			<div className="scoreboard-results">
 				<div className="scoreboard-teams">
 					<div className="scoreboard-item">
 						<span>&nbsp;</span>
 					</div>
 					<div className="scoreboard-item">
-						<Icon iconId={data.teams.away.id} iconType={CONSTANTS.iconType.logo}/>
-						<span>{data.teams.away.name}</span>
+						<Icon iconId={awayTeam.id} iconType={CONSTANTS.iconType.logo}/>
+						<span>{awayTeam.name}</span>
 					</div>
 					<div className="scoreboard-item">
-						<Icon iconId={data.teams.home.id} iconType={CONSTANTS.iconType.logo}/>
-						<span>{data.teams.home.name}</span>
+						<Icon iconId={homeTeam.id} iconType={CONSTANTS.iconType.logo}/>
+						<span>{homeTeam.name}</span>
 					</div>
 				</div>
 				{
-					data.periodGoals.map((periods) => {
+					periodGoals.map((periods) => {
 						return (
 							<div key={Math.random()} className="col scoreboard-periods">
 								{getPeriodGoals(periods)}
@@ -54,17 +61,21 @@ function renderContent(data) {
 }
 
 function ScoreBoard(props) {
-	const data = props.gameDetail;
+	const {
+		showLoader,
+		showNoResults,
+		isPreview,
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults || data.isPreview) {
+	if (showLoader) {
+		content = <Loader/>;
+	} else {
+		if (showNoResults || isPreview) {
 			content = '';
 		} else {
-			content = renderContent(data);
+			content = renderContent(props);
 		}
-	} else {
-		content = <Loader/>;
 	}
 
 	return (
@@ -75,7 +86,19 @@ function ScoreBoard(props) {
 }
 
 ScoreBoard.propTypes = {
-	data: PropTypes.object,
+	showLoader: PropTypes.bool,
+	showNoResults: PropTypes.bool,
+	isPreview: PropTypes.bool,
+	gameStatus: PropTypes.string,
+	awayTeam: PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+	}),
+	homeTeam: PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+	}),
+	periodGoals: PropTypes.array,
 }
 
 export default ScoreBoard;

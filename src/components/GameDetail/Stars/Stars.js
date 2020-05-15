@@ -6,26 +6,25 @@ import Modal from '../../Shared/Modal/Modal';
 import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
 import './Stars.scss';
 
-function renderContent(data) {
-	if (data.isPreview || !data.stars) {
-		return null;
-	}
+function renderContent(starsArray) {
 
-	let stars = data.stars.map((star) => {
+	let stars = starsArray.map((star) => {
+		const { id, name, stat1, stat2, teamName } = star;
+
 		return (
 			<div key={Math.random()} className="stars-player">
-				<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">
-					<PlayerPhoto playerId={star.id}/>
-					<span className="offscreen">Open player details for {star.name} in modal window</span>
+				<Modal content={<ModalPlayerDetailContent contentId={id}/>} modalClass="player-detail">
+					<PlayerPhoto playerId={id}/>
+					<span className="offscreen">Open player details for {name} in modal window</span>
 				</Modal>
 				<span className="stars-name">
-						<Modal content={<ModalPlayerDetailContent contentId={star.id}/>} modalClass="player-detail">
-							{star.name}
+						<Modal content={<ModalPlayerDetailContent contentId={id}/>} modalClass="player-detail">
+							{name}
 						</Modal>
-						<span className="stars-team-name">{star.teamName}</span>
+						<span className="stars-team-name">{teamName}</span>
 					</span>
-				<span className="stars-stat">{star.stat1}</span>
-				<span className="stars-stat">{star.stat2}</span>
+				<span className="stars-stat">{stat1}</span>
+				<span className="stars-stat">{stat2}</span>
 			</div>
 		)
 	});
@@ -41,17 +40,22 @@ function renderContent(data) {
 }
 
 function Stars(props) {
-	const data = props.gameDetail;
+	const {
+		showLoader,
+		showNoResults,
+		isPreview,
+		stars,
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults || data.isPreview) {
+	if (showLoader) {
+		content = <Loader/>;
+	} else {
+		if (showNoResults || isPreview) {
 			content = '';
 		} else {
-			content = renderContent(data);
+			content = renderContent(stars);
 		}
-	} else {
-		content = <Loader/>;
 	}
 
 	return(
@@ -62,7 +66,16 @@ function Stars(props) {
 }
 
 Stars.propTypes = {
-	data: PropTypes.object,
+	showLoader: PropTypes.bool,
+	showNoResults: PropTypes.bool,
+	isPreview: PropTypes.bool,
+	stars: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+		stat1: PropTypes.string,
+		stat2: PropTypes.string,
+		teamName: PropTypes.string,
+	})),
 }
 
 export default Stars;

@@ -3,26 +3,35 @@ import API from './API';
 import UTILS from './Utils';
 
 class GameDetailService {
-
-	async getGameData(gameId) {
-		return await API.getGame(gameId);
+	state = {
+		gameDetail: {
+			isPreview: true,
+			gameDate: '',
+			gameStatus: '',
+		},
 	}
 
-	async processGameData(data) {
-		const periodGoals = data.liveData.linescore.periods;
-		const shootoutGoals = data.liveData.linescore.shootoutInfo;
-		const boxscoreTeams = data.liveData.boxscore.teams;
-		const stars = data.liveData.decisions;
+	async getGameData(gameId) {
+		this.state.gameDetail = await API.getGame(gameId);
 
-		const date = new Date(data.gameData.datetime.dateTime);
-		const curDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
+		try {
+			await this.getGameDateAndStatus();
+		} catch (error) {
+			console.error(error);
+		}
+
+		return this.state.gameDetail;
+	}
+
+	async getGameDateAndStatus() {
+		const { gameDetail } = this.state;
+
+		const date = new Date(gameDetail.gameData.datetime.dateTime);
+		this.state.gameDetail.gameDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
+
 		const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
-		const startStatus = data.gameData.status.detailedState;
-		const awayScore = data.liveData.linescore.teams.away.goals;
-		const homeScore = data.liveData.linescore.teams.home.goals;
-		const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
-		const gameStatus = UTILS.getGameStatus(data.liveData.linescore);
-		let curStars;
+		const startStatus = gameDetail.gameData.status.detailedState;
+		const gameStatus = UTILS.getGameStatus(gameDetail.liveData.linescore);
 		let curStatus;
 		let isPreview = true;
 
@@ -35,6 +44,55 @@ class GameDetailService {
 			curStatus = startTime;
 		}
 
+		this.state.gameDetail.isPreview = isPreview;
+		this.state.gameDetail.gameStatus = curStatus;
+	}
+
+	async processGameHeaderData(data) {
+		const awayScore = data.liveData.linescore.teams.away.goals;
+		const homeScore = data.liveData.linescore.teams.home.goals;
+
+		return {
+			awayTeam: {
+				id: data.gameData.teams.away.id,
+				city: data.gameData.teams.away.locationName,
+				name: data.gameData.teams.away.teamName,
+				score: awayScore,
+			},
+			homeTeam: {
+				id: data.gameData.teams.home.id,
+				city: data.gameData.teams.home.locationName,
+				name: data.gameData.teams.home.teamName,
+				score: homeScore,
+			},
+		};
+	}
+
+	async processScoreBoardData(data) {
+		const periodGoals = data.liveData.linescore.periods;
+		const shootoutGoals = data.liveData.linescore.shootoutInfo;
+		const awayScore = data.liveData.linescore.teams.away.goals;
+		const homeScore = data.liveData.linescore.teams.home.goals;
+		const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
+
+		return {
+			awayTeam: {
+				id: data.gameData.teams.away.id,
+				name: data.gameData.teams.away.teamName,
+			},
+			homeTeam: {
+				id: data.gameData.teams.home.id,
+				name: data.gameData.teams.home.teamName,
+			},
+			periodGoals: periods,
+		};
+	}
+
+	async processStarsData(data) {
+		const boxscoreTeams = data.liveData.boxscore.teams;
+		const stars = data.liveData.decisions;
+		let curStars = [];
+
 		if (Object.keys(stars).length) {
 			const firstStar = UTILS.getStarStats(stars.firstStar, boxscoreTeams);
 			const secondStar = UTILS.getStarStats(stars.secondStar, boxscoreTeams);
@@ -44,27 +102,21 @@ class GameDetailService {
 		}
 
 		return {
-			isPreview,
-			date: curDate,
-			gameStatus: curStatus,
-			periodGoals: periods,
-			teams: {
-				away: {
-					id: data.gameData.teams.away.id,
-					city: data.gameData.teams.away.locationName,
-					name: data.gameData.teams.away.teamName,
-					score: awayScore,
-				},
-				home: {
-					id: data.gameData.teams.home.id,
-					city: data.gameData.teams.home.locationName,
-					name: data.gameData.teams.home.teamName,
-					score: homeScore,
-				}
-			},
 			stars: curStars,
-			boxscoreTeams,
 		};
+	}
+
+	async processGameStatsData(data) {
+		const awayTeam = data.gameData.teams.away;
+		const homeTeam = data.gameData.teams.home;
+		const awayBoxscore = data.liveData.boxscore.teams.away.teamStats.teamSkaterStats;
+		const homeBoxscore = data.liveData.boxscore.teams.home.teamStats.teamSkaterStats;
+		const awayGameStats = UTILS.getTeamGameStats(awayTeam, awayBoxscore);
+		const homeGameStats = UTILS.getTeamGameStats(homeTeam, homeBoxscore);
+
+		return {
+			gameStats: [awayGameStats, homeGameStats],
+		}
 	}
 
 	async processPeriodSummary(data) {

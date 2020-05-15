@@ -14,25 +14,74 @@ import CONSTANTS from "../config/Constants";
 class GameDetail extends Component {
 
 	state = {
-		gameDetail: null,
+		showLoader: true,
+		isPreview: true,
+		gameDate: '',
+		gameStatus: '',
+
+		gameHeaderData: {},
+		gameHeaderError: false,
+		scoreBoardData: {},
+		scoreBoardError: false,
+		starsData: {},
+		starsError: false,
+		gameStatsData: {},
+		gameStatsError: false,
+
 		gameContent: null,
+		gameContentError: false,
 		periodSummary: null,
-		teamStats: null,
+		periodSummaryError: false,
+		newTeamStats: null,
 	};
 
 	fetchGameDetail(gameId) {
 		return (async () => {
 			try {
 				const data = await GameDetailService.getGameData(gameId);
-				let newGameDetail;
+
+				let isPreview = data.isPreview;
+				let gameDate = data.gameDate;
+				let gameStatus = data.gameStatus;
+
+				let gameHeaderData;
+				let gameHeaderError = this.state.gameHeaderError;
+				let scoreBoardData;
+				let scoreBoardError = this.state.scoreBoardError;
+				let starsData;
+				let starsError = this.state.scoreBoardError;
+				let gameStatsData;
+				let gameStatsError = this.state.gameStatsError;
+
 				let newPeriodSummary;
 				let newTeamStats;
 
 				try {
-					newGameDetail = await GameDetailService.processGameData(data);
+					gameHeaderData = await GameDetailService.processGameHeaderData(data);
 				} catch (error) {
 					console.error(error);
-					newGameDetail = CONSTANTS.NO_DATA;
+					gameHeaderError = true;
+				}
+
+				try {
+					scoreBoardData = await GameDetailService.processScoreBoardData(data);
+				} catch (error) {
+					console.error(error);
+					scoreBoardError = true;
+				}
+
+				try {
+					starsData = await GameDetailService.processStarsData(data);
+				} catch (error) {
+					console.error(error);
+					starsError = true;
+				}
+
+				try {
+					gameStatsData = await GameDetailService.processGameStatsData(data);
+				} catch (error) {
+					console.error(error);
+					gameStatsError = true;
 				}
 
 				try {
@@ -50,7 +99,18 @@ class GameDetail extends Component {
 				}
 
 				this.setState({
-					gameDetail: newGameDetail,
+					showLoader: false,
+					isPreview,
+					gameDate,
+					gameStatus,
+					gameHeaderData,
+					gameHeaderError,
+					scoreBoardData,
+					scoreBoardError,
+					starsData,
+					starsError,
+					gameStatsData,
+					gameStatsError,
 					periodSummary: newPeriodSummary,
 					teamStats: newTeamStats,
 				});
@@ -58,7 +118,7 @@ class GameDetail extends Component {
 			} catch (error) {
 				console.error(error);
 				this.setState({
-					gameDetail: CONSTANTS.NO_DATA,
+					showLoader: false,
 					periodSummary: CONSTANTS.NO_DATA,
 					teamStats: CONSTANTS.NO_DATA,
 				});
@@ -101,23 +161,56 @@ class GameDetail extends Component {
 	}
 
 	render() {
-		const { gameDetail, gameContent, periodSummary, teamStats } = this.state;
+		const {
+			showLoader, isPreview, gameDate, gameStatus,
+			gameHeaderData, gameHeaderError,
+			scoreBoardData, scoreBoardError,
+			starsData, starsError,
+			gameStatsData, gameStatsError,
+			gameContent,
+			periodSummary,
+			teamStats
+		} = this.state;
 
 		return (
 			<div className="site-content container">
-				<GameHeader data={gameDetail} />
+				<GameHeader
+					showLoader={showLoader}
+					showNoResults={gameHeaderError}
+					isPreview={isPreview}
+					gameDate={gameDate}
+					gameStatus={gameStatus}
+					awayTeam={gameHeaderData.awayTeam}
+					homeTeam={gameHeaderData.homeTeam} />
 
 				<GameIntro gameContent={gameContent} />
 				<div className="scoreboard-stars">
-					<ScoreBoard gameDetail={gameDetail} />
-					<Stars gameDetail={gameDetail} />
+					<ScoreBoard
+						showLoader={showLoader}
+						showNoResults={scoreBoardError}
+						isPreview={isPreview}
+						gameStatus={gameStatus}
+						awayTeam={scoreBoardData.awayTeam}
+						homeTeam={scoreBoardData.homeTeam}
+						periodGoals={scoreBoardData.periodGoals} />
+
+					<Stars
+						showLoader={showLoader}
+						showNoResults={starsError}
+						isPreview={isPreview}
+						stars={starsData.stars} />
 				</div>
 				<Tabs>
 					<Tab id="tab-period-summary" tabTitle="Period Summary">
 						<PeriodSummary periodSummary={periodSummary} />
 					</Tab>
 					<Tab id="tab-team-stats" tabTitle="Team Stats">
-						<GameStats gameDetail={gameDetail} />
+						<GameStats
+							showLoader={showLoader}
+							showNoResults={gameStatsError}
+							isPreview={isPreview}
+							gameStats={gameStatsData.gameStats} />
+
 						<TeamStats teamStats={teamStats} />
 					</Tab>
 				</Tabs>

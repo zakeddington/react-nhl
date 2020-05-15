@@ -6,14 +6,12 @@ import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
 import './GameStats.scss';
 
-function getTeamStats(data, name) {
-	let stats = data.teamStats.teamSkaterStats;
-	let teamId = data.team.id;
+function getTeamStats(stats) {
 	return (
-		<tr key={data.team.name}>
+		<tr key={stats.name}>
 			<td className="stats-table--pinned game-stats--team">
-				<Icon iconId={teamId} iconType={CONSTANTS.iconType.logo}/>
-				<span className="game-stats--team-name">{name}</span>
+				<Icon iconId={stats.id} iconType={CONSTANTS.iconType.logo}/>
+				<span className="game-stats--team-name">{stats.name}</span>
 			</td>
 			<td className="stats-table--spacer">{stats.shots}</td>
 			<td>{stats.faceOffWinPercentage}</td>
@@ -49,10 +47,9 @@ function renderContent(data) {
 				</thead>
 				<tbody>
 				{
-					getTeamStats(data.boxscoreTeams.away, data.teams.away.name)
-				}
-				{
-					getTeamStats(data.boxscoreTeams.home, data.teams.home.name)
+					data.map((team) => {
+						return getTeamStats(team);
+					})
 				}
 				</tbody>
 			</table>
@@ -61,17 +58,22 @@ function renderContent(data) {
 }
 
 function GameStats(props) {
-	const data = props.gameDetail;
+	const {
+		showLoader,
+		showNoResults,
+		isPreview,
+		gameStats,
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults || data.isPreview) {
+	if (showLoader) {
+		content = <Loader/>;
+	} else {
+		if (showNoResults || isPreview) {
 			content = <ErrorMessage errorMsg="No game stats available."/>;
 		} else {
-			content = renderContent(data);
+			content = renderContent(gameStats);
 		}
-	} else {
-		content = <Loader/>;
 	}
 
 	return (
@@ -82,7 +84,23 @@ function GameStats(props) {
 }
 
 GameStats.propTypes = {
-	data: PropTypes.object,
+	showLoader: PropTypes.bool,
+	showNoResults: PropTypes.bool,
+	isPreview: PropTypes.bool,
+	gameStatus: PropTypes.string,
+	gameStats: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+		shots: PropTypes.number,
+		faceOffWinPercentage: PropTypes.string,
+		powerPlayGoals: PropTypes.number,
+		powerPlayOpportunities: PropTypes.number,
+		pim: PropTypes.number,
+		hits: PropTypes.number,
+		blocked: PropTypes.number,
+		giveaways: PropTypes.number,
+		takeaways: PropTypes.number,
+	})),
 }
 
 export default GameStats;

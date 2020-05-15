@@ -7,52 +7,57 @@ import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import './GameHeader.scss';
 
 function GameHeader(props) {
-	const {data} = props;
+	const {
+		showLoader,
+		showNoResults,
+		isPreview,
+		gameDate,
+		gameStatus,
+		awayTeam,
+		homeTeam
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults) {
+	if (showLoader) {
+		content = <Loader/>;
+	} else {
+		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No game details available."/>;
 		} else {
 			content =
 				<>
 					<h1
-						className="offscreen">{data.date} : {data.teams.away.name} {data.teams.away.score} - {data.teams.home.name} {data.teams.home.score}</h1>
+						className="offscreen">{gameDate} : {awayTeam.name} {awayTeam.score} - {homeTeam.name} {homeTeam.score}</h1>
 					<div className="col game-header-date-info">
-						<span className="game-header-date">{data.date}</span>
-						{
-							data.isPreview &&
-							<span className="game-header-time">{data.gameStatus}</span>
-						}
+						<span className="game-header-date">{gameDate}</span>
+						<span className="game-header-time">{gameStatus}</span>
 					</div>
 					<div className="col game-header-team away">
-						<Icon iconId={data.teams.away.id} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={awayTeam.id} iconType={CONSTANTS.iconType.logo}/>
 						<div className="game-header-team-info">
-							<span className="game-header-city">{data.teams.away.city}</span>
-							<span className="game-header-name">{data.teams.away.name}</span>
-							<span className="game-header-record">{data.teams.away.record}</span>
+							<span className="game-header-city">{awayTeam.city}</span>
+							<span className="game-header-name">{awayTeam.name}</span>
+							{/*<span className="game-header-record">{awayRecord}</span>*/}
 						</div>
 						{
-							!data.isPreview &&
-							<div className="game-header-score">{data.teams.away.score}</div>
+							!isPreview &&
+							<div className="game-header-score">{awayTeam.score}</div>
 						}
 					</div>
 					<div className="col game-header-team home">
-						<Icon iconId={data.teams.home.id} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={homeTeam.id} iconType={CONSTANTS.iconType.logo}/>
 						<div className="game-header-team-info">
-							<span className="game-header-city">{data.teams.home.city}</span>
-							<span className="game-header-name">{data.teams.home.name}</span>
-							<span className="game-header-record">{data.teams.home.record}</span>
+							<span className="game-header-city">{homeTeam.city}</span>
+							<span className="game-header-name">{homeTeam.name}</span>
+							{/*<span className="game-header-record">{homeRecord}</span>*/}
 						</div>
 						{
-							!data.isPreview &&
-							<div className="game-header-score">{data.teams.home.score}</div>
+							!isPreview &&
+							<div className="game-header-score">{homeTeam.score}</div>
 						}
 					</div>
 				</>;
 		}
-	} else {
-		content = <Loader/>;
 	}
 
 	return (
@@ -63,7 +68,23 @@ function GameHeader(props) {
 }
 
 GameHeader.propTypes = {
-	data: PropTypes.object,
+	showLoader: PropTypes.bool,
+	showNoResults: PropTypes.bool,
+	isPreview: PropTypes.bool,
+	gameDate: PropTypes.string,
+	gameStatus: PropTypes.string,
+	awayTeam: PropTypes.shape({
+		id: PropTypes.number,
+		city: PropTypes.string,
+		name: PropTypes.string,
+		score: PropTypes.number,
+	}),
+	homeTeam: PropTypes.shape({
+		id: PropTypes.number,
+		city: PropTypes.string,
+		name: PropTypes.string,
+		score: PropTypes.number,
+	}),
 }
 
 export default GameHeader;
