@@ -68,6 +68,8 @@ function ScoreBoard(props) {
 	} = props;
 	let content;
 
+	console.log('ScoreBoard', props);
+
 	if (showLoader) {
 		content = <Loader/>;
 	} else {

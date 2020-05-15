@@ -1,59 +1,30 @@
-import CONSTANTS from '../config/Constants';
-import API from './API';
-import UTILS from './Utils';
+import CONSTANTS from '../../config/Constants';
+import API from '../API';
 
-export const GameDetailInitialState = {
-	showLoader: true,
-	isPreview: true,
-	gameDate: '',
-	gameStatus: '',
-}
+import GetGameStatus from './GetGameStatus';
+import GetPeriodStats from './GetPeriodStats';
+import GetStarStats from './GetStarStats';
+import GetTeamGameStats from './GetTeamGameStats';
+import GetShootoutPlays from './GetShootoutPlays';
+import GetScoringPlays from './GetScoringPlays';
+import GetPenaltyPlays from './GetPenaltyPlays';
 
-export const GameHeaderInitialState = {
-	awayTeam: {
-		id: null,
-		city: null,
-		name: null,
-		score: null,
-	},
-	homeTeam: {
-		id: null,
-		city: null,
-		name: null,
-		score: null,
-	},
-}
+import {
+	GameDetailInitialState,
+	GameHeaderInitialState,
+	ScoreBoardInitialState,
+	StarsInitialState,
+	GameStatsInitialState,
+	// PeriodSummaryInitialState,
+} from './GameDetailInitialState';
 
-export const ScoreBoardInitialState = {
-	awayTeam: {
-		id: null,
-		name: null,
-	},
-	homeTeam: {
-		id: null,
-		name: null,
-	},
-	periodGoals: [],
-}
-
-export const StarsInitialState = {
-	stars: [],
-}
-
-export const GameStatsInitialState = {
-	gameStats: [],
-}
-
-export const GameDetailService = {
+const GameDetailService = {
 	state: GameDetailInitialState,
 
 	async getGameData(gameId) {
 		const response = await API.getGame(gameId);
 
-		console.log('response', response);
-
 		Object.assign(this.state, response || {});
-		console.log('this.state', this.state);
 
 		try {
 			await this.getGameDateAndStatus();
@@ -70,7 +41,7 @@ export const GameDetailService = {
 
 		const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
 		const startStatus = this.state.gameData.status.detailedState;
-		const gameStatus = UTILS.getGameStatus(this.state.liveData.linescore);
+		const gameStatus = GetGameStatus(this.state.liveData.linescore);
 		let curStatus;
 		let isPreview = true;
 
@@ -112,7 +83,7 @@ export const GameDetailService = {
 		const shootoutGoals = data.liveData.linescore.shootoutInfo;
 		const awayScore = data.liveData.linescore.teams.away.goals;
 		const homeScore = data.liveData.linescore.teams.home.goals;
-		const periods = UTILS.getPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
+		const periods = GetPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
 
 		return Object.assign(ScoreBoardInitialState, {
 			awayTeam: {
@@ -133,9 +104,9 @@ export const GameDetailService = {
 		let curStars = [];
 
 		if (Object.keys(stars).length) {
-			const firstStar = UTILS.getStarStats(stars.firstStar, boxscoreTeams);
-			const secondStar = UTILS.getStarStats(stars.secondStar, boxscoreTeams);
-			const thirdStar = UTILS.getStarStats(stars.thirdStar, boxscoreTeams);
+			const firstStar = GetStarStats(stars.firstStar, boxscoreTeams);
+			const secondStar = GetStarStats(stars.secondStar, boxscoreTeams);
+			const thirdStar = GetStarStats(stars.thirdStar, boxscoreTeams);
 
 			curStars = [firstStar, secondStar, thirdStar];
 		}
@@ -150,8 +121,8 @@ export const GameDetailService = {
 		const homeTeam = data.gameData.teams.home;
 		const awayBoxscore = data.liveData.boxscore.teams.away.teamStats.teamSkaterStats;
 		const homeBoxscore = data.liveData.boxscore.teams.home.teamStats.teamSkaterStats;
-		const awayGameStats = UTILS.getTeamGameStats(awayTeam, awayBoxscore);
-		const homeGameStats = UTILS.getTeamGameStats(homeTeam, homeBoxscore);
+		const awayGameStats = GetTeamGameStats(awayTeam, awayBoxscore);
+		const homeGameStats = GetTeamGameStats(homeTeam, homeBoxscore);
 
 		return Object.assign(GameStatsInitialState, {
 			gameStats: [awayGameStats, homeGameStats],
@@ -164,11 +135,12 @@ export const GameDetailService = {
 		const penaltyIds = data.liveData.plays.penaltyPlays;
 		const allPlays = data.liveData.plays.allPlays;
 		const hasShootout = data.liveData.linescore.hasShootout;
-		const teamAwayId = data.gameData.teams.away.id;
-		const teamHomeId = data.gameData.teams.home.id;
+		const awayTeam = data.gameData.teams.away;
+		const homeTeam = data.gameData.teams.home;
 
 		let periodPlays = [];
 
+		// create object for each period, ot, and shootout
 		periods.forEach((period) => {
 			let periodName = period.ordinalNum === 'OT' ? 'Overtime' : `${period.ordinalNum} Period`;
 
@@ -180,88 +152,15 @@ export const GameDetailService = {
 			});
 		});
 
-		scoringIds.forEach((id) => {
-			const curPlay = allPlays[id];
-			const curPeriodIndex = curPlay.about.period - 1;
-			const scoringTeamId = curPlay.team.id;
-			let curScorer = {};
-			let curAssists = [];
+		// add scoring plays for each period
+		periodPlays = GetScoringPlays(periodPlays, allPlays, scoringIds, periods, awayTeam, homeTeam);
 
-			if (curPeriodIndex < periods.length) {
-				curPlay.players.forEach((player) => {
-					if (player.playerType === 'Scorer') {
-						curScorer = {
-							id: player.player.id,
-							name: player.player.fullName,
-							total: player.seasonTotal,
-							desc: curPlay.result.secondaryType,
-						}
-					}
+		// add penalties for each period
+		periodPlays = GetPenaltyPlays(periodPlays, allPlays, penaltyIds, periods);
 
-					if (player.playerType === 'Assist') {
-						curAssists.push({
-							id: player.player.id,
-							name: player.player.fullName,
-							total: player.seasonTotal,
-						})
-					}
-				});
-
-				const playDetail = {
-					time: curPlay.about.periodTime,
-					isEmptyNet: curPlay.result.emptyNet,
-					goalType: curPlay.result.strength.code,
-					teamId: scoringTeamId,
-					score: {
-						away: {
-							name: data.gameData.teams.away.triCode,
-							goals: curPlay.about.goals.away,
-							isScoringTeam: scoringTeamId === teamAwayId,
-						},
-						home: {
-							name: data.gameData.teams.home.triCode,
-							goals: curPlay.about.goals.home,
-							isScoringTeam: scoringTeamId === teamHomeId,
-						},
-					},
-					scorer: curScorer,
-					assists: curAssists
-				};
-
-				periodPlays[curPeriodIndex].goals.push(playDetail);
-			}
-		});
-
-		penaltyIds.forEach((id) => {
-			const curPlay = allPlays[id];
-			const curPeriodIndex = curPlay.about.period - 1;
-			const penaltyTeamId = curPlay.team.id;
-			let curPenaltyOn = {};
-
-			if (curPeriodIndex < periods.length) {
-				curPlay.players.forEach((player) => {
-					if (player.playerType === 'PenaltyOn') {
-						curPenaltyOn = {
-							id: player.player.id,
-							name: player.player.fullName,
-						}
-					}
-				});
-
-				const playDetail = {
-					time: curPlay.about.periodTime,
-					teamId: penaltyTeamId,
-					penaltyOn: curPenaltyOn,
-					penaltyType: curPlay.result.secondaryType,
-					penaltyMin: curPlay.result.penaltyMinutes,
-				};
-
-				periodPlays[curPeriodIndex].penalties.push(playDetail);
-			}
-		});
-
+		// add shootout plays
 		if (hasShootout) {
-			const shootoutPlays = this.getShootoutSummary(data);
+			const shootoutPlays = GetShootoutPlays(data);
 			periodPlays.push({
 				periodName: 'Shootout',
 				goals: [],
@@ -270,65 +169,9 @@ export const GameDetailService = {
 			});
 		}
 
-		if (periodPlays.length) {
-			return periodPlays;
-		}
-
-		return CONSTANTS.NO_DATA;
-	},
-
-	getShootoutSummary(data) {
-		const playsByPeriod = data.liveData.plays.playsByPeriod;
-		const playIds = playsByPeriod[4].plays;
-		const allPlays = data.liveData.plays.allPlays;
-		const shootoutPlays = [];
-
-		playIds.forEach((id) => {
-			let curPlay = allPlays[id];
-			let curShooter;
-
-			if (curPlay.players) {
-				const shootingTeamId = curPlay.team.id;
-				let isGoal = false;
-				let shotResult = '';
-
-				switch (curPlay.result.event) {
-					case 'Goal':
-						isGoal = true;
-						shotResult = 'Goal';
-						break;
-					case 'Shot':
-						shotResult = 'Save';
-						break;
-					case 'Missed Shot':
-						shotResult = 'Miss';
-						break;
-					default:
-						break;
-				}
-
-				curPlay.players.forEach((player) => {
-					if (player.playerType === 'Scorer' || player.playerType === 'Shooter') {
-						curShooter = {
-							id: player.player.id,
-							name: player.player.fullName,
-							desc: curPlay.result.secondaryType,
-						}
-					}
-				});
-
-				let playDetail = {
-					shooter: curShooter,
-					isGoal,
-					shotResult,
-					teamId: shootingTeamId,
-				};
-
-				shootoutPlays.push(playDetail);
-			}
-		});
-
-		return shootoutPlays;
+		return {
+			periodSummary: periodPlays,
+		};
 	},
 
 	async processTeamStats(data) {
@@ -336,7 +179,7 @@ export const GameDetailService = {
 		const homePlayers = data.liveData.boxscore.teams.home.players;
 		const awayStats = this.createPlayerData(awayPlayers);
 		const homeStats = this.createPlayerData(homePlayers);
-		const gameStatus = UTILS.getGameStatus(data.liveData.linescore);
+		const gameStatus = GetGameStatus(data.liveData.linescore);
 		const isPreview = !gameStatus.length;
 		const showNoResults = (!awayStats && !homeStats);
 
@@ -552,3 +395,5 @@ export const GameDetailService = {
 		};
 	},
 }
+
+export default GameDetailService;

@@ -61,7 +61,6 @@ function GameStats(props) {
 	const {
 		showLoader,
 		showNoResults,
-		isPreview,
 		gameStats,
 	} = props;
 	let content;
@@ -69,7 +68,7 @@ function GameStats(props) {
 	if (showLoader) {
 		content = <Loader/>;
 	} else {
-		if (showNoResults || isPreview) {
+		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No game stats available."/>;
 		} else {
 			content = renderContent(gameStats);
@@ -86,7 +85,6 @@ function GameStats(props) {
 GameStats.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
-	isPreview: PropTypes.bool,
 	gameStatus: PropTypes.string,
 	gameStats: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,

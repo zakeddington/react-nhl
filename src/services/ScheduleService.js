@@ -1,6 +1,7 @@
 import CONSTANTS from '../config/Constants';
 import API from './API';
-import UTILS from './Utils';
+import GetGameStatus from './GameDetail/GetGameStatus';
+
 
 class ScheduleService {
 
@@ -20,7 +21,7 @@ class ScheduleService {
 			date.games.forEach((game) => {
 				const startTime = new Date(game.gameDate).toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
 				const startStatus = game.status.detailedState;
-				const gameStatus = UTILS.getGameStatus(game.linescore);
+				const gameStatus = GetGameStatus(game.linescore);
 				const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';
 				const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
 				let curStatus = '';

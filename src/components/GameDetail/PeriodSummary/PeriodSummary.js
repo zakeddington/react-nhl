@@ -48,8 +48,10 @@ function renderShootoutPlays(period) {
 	});
 }
 
-function renderContent(data) {
-	const periods = data.map((period) => {
+function renderContent(props) {
+	const { periodSummary	} = props;
+
+	const periods = periodSummary.map((period) => {
 		if (period.shootoutPlays.length) {
 			let shootoutPlays = renderShootoutPlays(period);
 			return (
@@ -184,17 +186,22 @@ function renderContent(data) {
 }
 
 function PeriodSummary(props) {
-	const data = props.periodSummary;
+	const {
+		showLoader,
+		showNoResults,
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults) {
+	console.log('PeriodSummary', props);
+
+	if (showLoader) {
+		content = <Loader/>;
+	} else {
+		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No period summary available."/>;
 		} else {
-			content = renderContent(data);
+			content = renderContent(props);
 		}
-	} else {
-		content = <Loader/>;
 	}
 
 	return (
@@ -205,7 +212,9 @@ function PeriodSummary(props) {
 }
 
 PeriodSummary.propTypes = {
-	data: PropTypes.object,
+	showLoader: PropTypes.bool,
+	showNoResults: PropTypes.bool,
+	periodSummary: PropTypes.array,
 }
 
 export default PeriodSummary;
