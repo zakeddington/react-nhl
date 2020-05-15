@@ -1,49 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
-import Icon from '../../Shared/Icon/Icon';
-import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
-import Modal from '../../Shared/Modal/Modal';
-import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
+import PeriodSummaryGoal from './PeriodSummaryGoal';
+import PeriodSummaryPenalty from './PeriodSummaryPenalty';
 import './PeriodSummary.scss';
+import PeriodSummaryShootoutPlay from "./PenaltySummaryShootoutPlay";
 
 function renderShootoutPlays(period) {
-	return period.shootoutPlays.map((play, index) => {
+	return period.shootoutPlays.map((play, i) => {
+		const {
+			shooter,
+			isGoal,
+			shotResult,
+			teamId,
+		} = play;
+
 		return (
-			<div key={index} className="period-summary-item">
-				<div className="period-summary-logo">
-					<Icon iconId={play.teamId} iconType={CONSTANTS.iconType.logo}/>
-				</div>
-				<div className="period-summary-time"/>
-				<div className="period-summary-photo">
-					<Modal content={<ModalPlayerDetailContent contentId={play.shooter.id}/>} modalClass="player-detail">
-						<PlayerPhoto playerId={play.shooter.id}/>
-						<span className="offscreen">Open player details for {play.shooter.name} in modal window</span>
-					</Modal>
-				</div>
-				<div className="period-summary-player-info">
-						<span className="period-summary-player">
-							<span className="period-summary-name">
-								<Modal content={<ModalPlayerDetailContent contentId={play.shooter.id}/>} modalClass="player-detail">
-									{play.shooter.name}
-									<span className="offscreen">Open player details for {play.shooter.name} in modal window</span>
-								</Modal>
-								{play.shooter.desc ? ',' : ''}
-							</span>
-							<span className="period-summary-goal-desc">{play.shooter.desc}</span>
-						</span>
-				</div>
-				<div className="period-summary-game-info">
-						<span className={`period-summary-score team-${play.teamId} no-border`}>
-							{
-								play.isGoal ? <span className="team-background">{play.shotResult}</span> :
-									<span>{play.shotResult}</span>
-							}
-						</span>
-				</div>
-			</div>
+			<PeriodSummaryShootoutPlay
+				key={`shootout-${i}`}
+				shooter={shooter}
+				isGoal={isGoal}
+				shotResult={shotResult}
+				teamId={teamId}
+			/>
 		)
 	});
 }
@@ -61,65 +41,31 @@ function renderContent(props) {
 				</div>
 			)
 		}
+
 		let goals = period.goals.map((goal) => {
+			const {
+				time,
+				isEmptyNet,
+				goalType,
+				teamId,
+				awayScore,
+				homeScore,
+				scorer,
+				assists,
+			} = goal;
+
 			return (
-				<div key={goal.time} className="period-summary-item">
-					<div className="period-summary-logo">
-						<Icon iconId={goal.teamId} iconType={CONSTANTS.iconType.logo}/>
-					</div>
-					<div className="period-summary-time">{goal.time}</div>
-					<div className="period-summary-photo">
-						<Modal content={<ModalPlayerDetailContent contentId={goal.scorer.id}/>} modalClass="player-detail">
-							<PlayerPhoto playerId={goal.scorer.id}/>
-							<span className="offscreen">Open player details for {goal.scorer.name} in modal window</span>
-						</Modal>
-					</div>
-					<div className="period-summary-player-info">
-							<span className="period-summary-player">
-								<span className="period-summary-name">
-									<Modal content={<ModalPlayerDetailContent contentId={goal.scorer.id}/>} modalClass="player-detail">
-										{goal.scorer.name}
-										<span className="offscreen">Open player details for {goal.scorer.name} in modal window</span>
-									</Modal> ({goal.scorer.total}),
-								</span>
-								<span className="period-summary-goal-desc">
-								{goal.scorer.desc}
-									{
-										goal.isEmptyNet &&
-										" (Empty Net)"
-									}
-								</span>
-								{
-									goal.goalType !== 'EVEN' &&
-									<span className="period-summary-goal-type">
-										{goal.goalType}
-									</span>
-								}
-							</span>
-						<span className="period-summary-details">
-								{
-									goal.assists.map((assist, i) => {
-										return (
-											<span key={assist.name}>
-												<Modal content={<ModalPlayerDetailContent contentId={assist.id}/>} modalClass="player-detail">
-													{assist.name}
-													<span className="offscreen">Open player details for {assist.name} in modal window</span>
-												</Modal> ({assist.total}){i < goal.assists.length - 1 && ', '}
-											</span>
-										)
-									})
-								}
-							</span>
-					</div>
-					<div className="period-summary-game-info">
-							<span className={`period-summary-score team-${goal.teamId} team-border`}>
-								<span
-									className={goal.score.away.isScoringTeam ? 'team-background' : ''}>{goal.score.away.name} {goal.score.away.goals}</span>
-								<span
-									className={goal.score.home.isScoringTeam ? 'team-background' : ''}>{goal.score.home.name} {goal.score.home.goals}</span>
-							</span>
-					</div>
-				</div>
+				<PeriodSummaryGoal
+					key={time}
+					time={time}
+					isEmptyNet={isEmptyNet}
+					goalType={goalType}
+					teamId={teamId}
+					awayScore={awayScore}
+					homeScore={homeScore}
+					scorer={scorer}
+					assists={assists}
+				/>
 			)
 		});
 
@@ -131,32 +77,23 @@ function renderContent(props) {
 		}
 
 		let penalties = period.penalties.map((penalty, i) => {
+			const {
+				time,
+				teamId,
+				penaltyOn,
+				penaltyType,
+				penaltyMin,
+			} = penalty;
+
 			return (
-				<div key={`${penalty.time}-${i}`} className="period-summary-item">
-					<div className="period-summary-logo">
-						<Icon iconId={penalty.teamId} iconType={CONSTANTS.iconType.logo}/>
-					</div>
-					<div className="period-summary-time">{penalty.time}</div>
-					<div className="period-summary-photo">
-						<Modal content={<ModalPlayerDetailContent contentId={penalty.penaltyOn.id}/>} modalClass="player-detail">
-							<PlayerPhoto playerId={penalty.penaltyOn.id}/>
-							<span className="offscreen">Open player details for {penalty.penaltyOn.name} in modal window</span>
-						</Modal>
-					</div>
-					<div className="period-summary-player-info">
-							<span className="period-summary-player">
-								<span className="period-summary-name">
-									<Modal content={<ModalPlayerDetailContent contentId={penalty.penaltyOn.id}/>}
-										modalClass="player-detail">
-										{penalty.penaltyOn.name}
-										<span className="offscreen">Open player details for {penalty.penaltyOn.name} in modal window</span>
-									</Modal>
-								</span>
-							</span>
-						<span className="period-summary-details">{penalty.penaltyMin} Minutes for {penalty.penaltyType}</span>
-					</div>
-					<div className="period-summary-game-info"/>
-				</div>
+				<PeriodSummaryPenalty
+					key={`${time}-${i}`}
+					time={time}
+					teamId={teamId}
+					penaltyOn={penaltyOn}
+					penaltyType={penaltyType}
+					penaltyMin={penaltyMin}
+				/>
 			)
 		});
 
@@ -214,7 +151,12 @@ function PeriodSummary(props) {
 PeriodSummary.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
-	periodSummary: PropTypes.array,
+	periodSummary: PropTypes.arrayOf(PropTypes.shape({
+		periodName: PropTypes.string,
+		goals: PropTypes.array,
+		penalties: PropTypes.array,
+		shootoutPlays: PropTypes.array,
+	})),
 }
 
 export default PeriodSummary;

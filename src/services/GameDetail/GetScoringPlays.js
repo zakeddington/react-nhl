@@ -33,17 +33,15 @@ function GetScoringPlays(periodPlays, allPlays, scoringIds, periods, awayTeam, h
 				isEmptyNet: curPlay.result.emptyNet,
 				goalType: curPlay.result.strength.code,
 				teamId: scoringTeamId,
-				score: {
-					away: {
-						name: awayTeam.triCode,
-						goals: curPlay.about.goals.away,
-						isScoringTeam: scoringTeamId === awayTeam.id,
-					},
-					home: {
-						name: homeTeam.triCode,
-						goals: curPlay.about.goals.home,
-						isScoringTeam: scoringTeamId === homeTeam.id,
-					},
+				awayScore: {
+					name: awayTeam.triCode,
+					goals: curPlay.about.goals.away,
+					isScoringTeam: scoringTeamId === awayTeam.id,
+				},
+				homeScore: {
+					name: homeTeam.triCode,
+					goals: curPlay.about.goals.home,
+					isScoringTeam: scoringTeamId === homeTeam.id,
 				},
 				scorer: curScorer,
 				assists: curAssists
