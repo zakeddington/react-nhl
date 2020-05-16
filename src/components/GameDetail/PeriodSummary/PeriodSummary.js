@@ -129,8 +129,6 @@ function PeriodSummary(props) {
 	} = props;
 	let content;
 
-	console.log('PeriodSummary', props);
-
 	if (showLoader) {
 		content = <Loader/>;
 	} else {

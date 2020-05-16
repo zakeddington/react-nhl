@@ -49,16 +49,18 @@ class GameDetail extends Component {
 				let gameDate = data.gameDate;
 				let gameStatus = data.gameStatus;
 
-				let gameHeaderData;
-				let gameHeaderError = this.state.gameHeaderError;
-				let scoreBoardData;
-				let scoreBoardError = this.state.scoreBoardError;
-				let starsData;
-				let starsError = this.state.scoreBoardError;
-				let gameStatsData;
-				let gameStatsError = this.state.gameStatsError;
-				let periodSummaryData;
-				let periodSummaryError = this.state.periodSummaryError;
+				let {
+					gameHeaderData,
+					gameHeaderError,
+					scoreBoardData,
+					scoreBoardError,
+					starsData,
+					starsError,
+					gameStatsData,
+					gameStatsError,
+					periodSummaryData,
+					periodSummaryError,
+				} = this.state;
 
 				let newTeamStats;
 
