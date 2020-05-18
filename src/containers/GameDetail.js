@@ -14,8 +14,9 @@ import {
 	GameHeaderInitialState,
 	ScoreBoardInitialState,
 	StarsInitialState,
-	GameStatsInitialState,
 	PeriodSummaryInitialState,
+	GameStatsInitialState,
+	TeamStatsInitialState,
 } from '../services/GameDetail/GameDetailInitialState';
 import GameDetailService from '../services/GameDetail/GameDetailService';
 
@@ -30,14 +31,15 @@ class GameDetail extends Component {
 		scoreBoardError: false,
 		starsData: StarsInitialState,
 		starsError: false,
-		gameStatsData: GameStatsInitialState,
-		gameStatsError: false,
 		periodSummaryData: PeriodSummaryInitialState,
 		periodSummaryError: false,
+		gameStatsData: GameStatsInitialState,
+		gameStatsError: false,
+		teamStatsData: TeamStatsInitialState,
+		teamStatsError: false,
 
 		gameContent: null,
 		gameContentError: false,
-		newTeamStats: null,
 	};
 
 	fetchGameDetail(gameId) {
@@ -56,13 +58,13 @@ class GameDetail extends Component {
 					scoreBoardError,
 					starsData,
 					starsError,
-					gameStatsData,
-					gameStatsError,
 					periodSummaryData,
 					periodSummaryError,
+					gameStatsData,
+					gameStatsError,
+					teamStatsData,
+					teamStatsError,
 				} = this.state;
-
-				let newTeamStats;
 
 				try {
 					gameHeaderData = await GameDetailService.processGameHeaderData(data);
@@ -86,13 +88,6 @@ class GameDetail extends Component {
 				}
 
 				try {
-					gameStatsData = await GameDetailService.processGameStatsData(data);
-				} catch (error) {
-					console.error(error);
-					gameStatsError = true;
-				}
-
-				try {
 					periodSummaryData = await GameDetailService.processPeriodSummary(data);
 				} catch (error) {
 					console.error(error);
@@ -100,10 +95,17 @@ class GameDetail extends Component {
 				}
 
 				try {
-					newTeamStats = await GameDetailService.processTeamStats(data);
+					gameStatsData = await GameDetailService.processGameStatsData(data);
 				} catch (error) {
 					console.error(error);
-					newTeamStats = CONSTANTS.NO_DATA;
+					gameStatsError = true;
+				}
+
+				try {
+					teamStatsData = await GameDetailService.processTeamStats(data);
+				} catch (error) {
+					console.error(error);
+					teamStatsError = true;
 				}
 
 				this.setState({
@@ -117,18 +119,18 @@ class GameDetail extends Component {
 					scoreBoardError,
 					starsData,
 					starsError,
-					gameStatsData,
-					gameStatsError,
 					periodSummaryData,
 					periodSummaryError,
-					teamStats: newTeamStats,
+					gameStatsData,
+					gameStatsError,
+					teamStatsData,
+					teamStatsError,
 				});
 
 			} catch (error) {
 				console.error(error);
 				this.setState({
 					showLoader: false,
-					teamStats: CONSTANTS.NO_DATA,
 				});
 			}
 		})();
@@ -174,10 +176,10 @@ class GameDetail extends Component {
 			gameHeaderData, gameHeaderError,
 			scoreBoardData, scoreBoardError,
 			starsData, starsError,
-			gameStatsData, gameStatsError,
 			periodSummaryData, periodSummaryError,
+			gameStatsData, gameStatsError,
+			teamStatsData, teamStatsError,
 			gameContent,
-			teamStats
 		} = this.state;
 
 		return (
@@ -192,6 +194,7 @@ class GameDetail extends Component {
 					homeTeam={gameHeaderData.homeTeam} />
 
 				<GameIntro gameContent={gameContent} />
+
 				<div className="scoreboard-stars">
 					<ScoreBoard
 						showLoader={showLoader}
@@ -223,7 +226,10 @@ class GameDetail extends Component {
 								showNoResults={gameStatsError}
 								gameStats={gameStatsData.gameStats} />
 
-							<TeamStats teamStats={teamStats} />
+							<TeamStats
+								showLoader={showLoader}
+								showNoResults={teamStatsError}
+								teamStats={teamStatsData.teamStats} />
 						</Tab>
 					</Tabs>
 				}

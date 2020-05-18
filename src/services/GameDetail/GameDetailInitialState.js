@@ -37,10 +37,58 @@ export const StarsInitialState = {
 	stars: [],
 }
 
+export const PeriodSummaryInitialState = {
+	periodSummary: [],
+}
+
 export const GameStatsInitialState = {
 	gameStats: [],
 }
 
-export const PeriodSummaryInitialState = {
-	periodSummary: [],
+export const TeamStatsInitialState = {
+	teamStats: [],
+}
+
+export const PlayerStatsInitialState = {
+	id: null,
+	name: '',
+	number: null,
+	pos: '',
+}
+
+export const SkaterStatsInitialState = {
+	assists: null,
+	blocked: null,
+	evenTimeOnIce: '',
+	faceOffPercent: null,
+	faceOffWins: null,
+	faceoffTaken: null,
+	giveaways: null,
+	goals: null,
+	hits: null,
+	penaltyMinutes: null,
+	plusMinus: null,
+	powerPlayAssists: null,
+	powerPlayGoals: null,
+	powerPlayTimeOnIce: '',
+	shortHandedAssists: null,
+	shortHandedGoals: null,
+	shortHandedTimeOnIce: '',
+	shots: null,
+	takeaways: null,
+	timeOnIce: '',
+}
+
+export const GoalieStatsInitialState = {
+	shots: null,
+	saves: null,
+	savePercent: null,
+	evenSaves: null,
+	evenShotsAgainst: null,
+	powerPlaySaves: null,
+	powerPlayShotsAgainst: null,
+	shortHandedSaves: null,
+	shortHandedShotsAgainst: null,
+	pim: null,
+	timeOnIce: null,
 }
