@@ -4,14 +4,14 @@ import CONSTANTS from '../../../config/Constants';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
-import './GameStats.scss';
+import './TeamStats.scss';
 
-function getTeamStats(stats) {
+function renderTeamStatsRow(stats) {
 	return (
 		<tr key={stats.name}>
-			<td className="stats-table--pinned game-stats--team">
+			<td className="stats-table--pinned team-stats--team">
 				<Icon iconId={stats.id} iconType={CONSTANTS.iconType.logo}/>
-				<span className="game-stats--team-name">{stats.name}</span>
+				<span className="team-stats--team-name">{stats.name}</span>
 			</td>
 			<td className="stats-table--spacer">{stats.shots}</td>
 			<td>{stats.faceOffWinPercentage}</td>
@@ -27,7 +27,7 @@ function getTeamStats(stats) {
 
 function renderContent(data) {
 	return (
-		<div className="stats-table game-stats">
+		<div className="stats-table team-stats">
 			<table>
 				<thead>
 				<tr>
@@ -48,7 +48,7 @@ function renderContent(data) {
 				<tbody>
 				{
 					data.map((team) => {
-						return getTeamStats(team);
+						return renderTeamStatsRow(team);
 					})
 				}
 				</tbody>
@@ -57,11 +57,11 @@ function renderContent(data) {
 	)
 }
 
-function GameStats(props) {
+function TeamStats(props) {
 	const {
 		showLoader,
 		showNoResults,
-		gameStats,
+		teamStats,
 	} = props;
 	let content;
 
@@ -71,7 +71,7 @@ function GameStats(props) {
 		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No game stats available."/>;
 		} else {
-			content = renderContent(gameStats);
+			content = renderContent(teamStats);
 		}
 	}
 
@@ -82,11 +82,11 @@ function GameStats(props) {
 	)
 }
 
-GameStats.propTypes = {
+TeamStats.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
 	gameStatus: PropTypes.string,
-	gameStats: PropTypes.arrayOf(PropTypes.shape({
+	teamStats: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
 		shots: PropTypes.number,
@@ -101,4 +101,4 @@ GameStats.propTypes = {
 	})),
 }
 
-export default GameStats;
+export default TeamStats;

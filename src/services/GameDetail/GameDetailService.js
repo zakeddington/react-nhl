@@ -4,7 +4,7 @@ import API from '../API';
 import GetGameStatus from './GetGameStatus';
 import GetPeriodStats from './GetPeriodStats';
 import GetStarStats from './GetStarStats';
-import GetTeamGameStats from './GetTeamGameStats';
+import GetTeamStats from './GetTeamStats';
 import GetShootoutPlays from './GetShootoutPlays';
 import GetScoringPlays from './GetScoringPlays';
 import GetPenaltyPlays from './GetPenaltyPlays';
@@ -15,7 +15,7 @@ import {
 	GameHeaderInitialState,
 	ScoreBoardInitialState,
 	StarsInitialState,
-	GameStatsInitialState,
+	TeamStatsInitialState,
 	PeriodSummaryInitialState,
 } from './GameDetailInitialState';
 
@@ -162,16 +162,16 @@ const GameDetailService = {
 		});
 	},
 
-	async processGameStatsData(data) {
+	async processTeamStatsData(data) {
 		const awayTeam = data.gameData.teams.away;
 		const homeTeam = data.gameData.teams.home;
 		const awayBoxscore = data.liveData.boxscore.teams.away.teamStats.teamSkaterStats;
 		const homeBoxscore = data.liveData.boxscore.teams.home.teamStats.teamSkaterStats;
-		const awayGameStats = GetTeamGameStats(awayTeam, awayBoxscore);
-		const homeGameStats = GetTeamGameStats(homeTeam, homeBoxscore);
+		const awayTeamStats = GetTeamStats(awayTeam, awayBoxscore);
+		const homeTeamStats = GetTeamStats(homeTeam, homeBoxscore);
 
-		return Object.assign(GameStatsInitialState, {
-			gameStats: [awayGameStats, homeGameStats],
+		return Object.assign(TeamStatsInitialState, {
+			teamStats: [awayTeamStats, homeTeamStats],
 		});
 	},
 

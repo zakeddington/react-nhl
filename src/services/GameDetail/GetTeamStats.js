@@ -1,5 +1,5 @@
 
-function GetTeamGameStats(team = {}, boxscore = {}) {
+function GetTeamStats(team = {}, boxscore = {}) {
 	return {
 		id: team.id,
 		name: team.teamName,
@@ -15,4 +15,4 @@ function GetTeamGameStats(team = {}, boxscore = {}) {
 	}
 }
 
-export default GetTeamGameStats;
+export default GetTeamStats;

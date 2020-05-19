@@ -1,9 +1,9 @@
 @import '../../../styles/config/variables';
 
-// Game Stats Table
+// Team Stats Table
 // -----------------------------------------------------------------+
 
-.game-stats {
+.team-stats {
 	margin-bottom: 0;
 
 	table {
@@ -42,7 +42,7 @@
 		font-weight: 600;
 
 		@media (min-width: $breakpoint-desktop-min) {
-			&.game-stats--team {
+			&.team-stats--team {
 				padding-left: 1.5rem;
 			}
 		}
