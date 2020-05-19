@@ -41,22 +41,26 @@ export const PeriodSummaryInitialState = {
 	periodSummary: [],
 }
 
+// TODO: refactor stats
+// rename GameStats > Team Stats
+// rename TeamStats > Player Stats
+// clarify initial state objects
 export const GameStatsInitialState = {
 	gameStats: [],
 }
 
-export const TeamStatsInitialState = {
-	teamStats: [],
+export const PlayerStatsInitialState = {
+	playerStats: [],
 }
 
-export const PlayerStatsInitialState = {
+export const PlayerBaseStatsInitialState = {
 	id: null,
 	name: '',
 	number: null,
 	pos: '',
 }
 
-export const SkaterStatsInitialState = {
+export const PlayerSkaterStatsInitialState = {
 	assists: null,
 	blocked: null,
 	evenTimeOnIce: '',
@@ -79,7 +83,7 @@ export const SkaterStatsInitialState = {
 	timeOnIce: '',
 }
 
-export const GoalieStatsInitialState = {
+export const PlayerGoalieStatsInitialState = {
 	shots: null,
 	saves: null,
 	savePercent: null,

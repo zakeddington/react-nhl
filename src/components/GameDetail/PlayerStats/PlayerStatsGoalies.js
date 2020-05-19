@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../Shared/Modal/Modal';
 import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
-import './TeamStats.scss';
+import './PlayerStats.scss';
 
 function GoalieStats(data) {
 	return (
@@ -26,14 +26,14 @@ function GoalieStats(data) {
 	);
 }
 
-function TeamStatsGoalies(props) {
+function PlayerStatsGoalies(props) {
 	const {
 		position,
 		players,
 	} = props;
 
 	return (
-		<div className="stats-table team-stats goalie-stats">
+		<div className="stats-table player-stats goalie-stats">
 			<table>
 				<thead>
 				<tr>
@@ -62,7 +62,7 @@ function TeamStatsGoalies(props) {
 	)
 }
 
-TeamStatsGoalies.propTypes = {
+PlayerStatsGoalies.propTypes = {
 	position: PropTypes.string,
 	players: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
@@ -86,4 +86,4 @@ TeamStatsGoalies.propTypes = {
 	})),
 }
 
-export default TeamStatsGoalies;
+export default PlayerStatsGoalies;

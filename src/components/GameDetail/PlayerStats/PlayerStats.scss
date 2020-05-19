@@ -1,9 +1,9 @@
 @import '../../../styles/config/variables';
 
-// Game Stats Table
+// Player Stats Table
 // -----------------------------------------------------------------+
 
-.team-stats--tabs {
+.player-stats--tabs {
 	.team-logo {
 		background: $color-white;
 		border-radius: 50%;
@@ -17,7 +17,7 @@
 	}
 }
 
-.team-stats {
+.player-stats {
 	.stats-table--jersey {
 		border-right: none;
 		min-width: 2.5rem;

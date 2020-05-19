@@ -5,41 +5,41 @@ import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../../Shared/Tabs/Tabs';
 import Tab from '../../Shared/Tabs/Tab';
-import TeamStatsSkaters from './TeamStatsSkaters';
-import TeamStatsGoalies from './TeamStatsGoalies';
-import './TeamStats.scss';
+import PlayerStatsSkaters from './PlayerStatsSkaters';
+import PlayerStatsGoalies from './PlayerStatsGoalies';
+import './PlayerStats.scss';
 
 
 function renderContent(data) {
-	const teamStats = data.map((team) => {
+	const playerStats = data.map((team) => {
 		const players = team.stats.map((group) => {
 			const key = `${team.id}-${group.position}`;
 			if (group.position === 'Goalies') {
-				return <TeamStatsGoalies key={key} position={group.position} players={group.players} />;
+				return <PlayerStatsGoalies key={key} position={group.position} players={group.players} />;
 			} else {
-				return <TeamStatsSkaters key={key} position={group.position} players={group.players} />;
+				return <PlayerStatsSkaters key={key} position={group.position} players={group.players} />;
 			}
 		});
 
 		return (
-			<Tab key={team.id} id={`tab-team-stats-${team.id}`} tabTitle={team.name} iconId={team.id} iconType={CONSTANTS.iconType.logo}>
+			<Tab key={team.id} id={`tab-player-stats-${team.id}`} tabTitle={team.name} iconId={team.id} iconType={CONSTANTS.iconType.logo}>
 				{players}
 			</Tab>
 		)
 	});
 
 	return (
-		<Tabs key="tabs-team-stats" tabsClass="team-stats--tabs">
-			{teamStats}
+		<Tabs key="tabs-player-stats" tabsClass="player-stats--tabs">
+			{playerStats}
 		</Tabs>
 	);
 }
 
-function TeamStats(props) {
+function PlayerStats(props) {
 	const {
 		showLoader,
 		showNoResults,
-		teamStats,
+		playerStats,
 	} = props;
 	let content;
 
@@ -49,7 +49,7 @@ function TeamStats(props) {
 		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No team stats available."/>;
 		} else {
-			content = renderContent(teamStats);
+			content = renderContent(playerStats);
 		}
 	}
 
@@ -61,14 +61,14 @@ function TeamStats(props) {
 }
 
 
-TeamStats.propTypes = {
+PlayerStats.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
-	teamStats: PropTypes.arrayOf(PropTypes.shape({
+	playerStats: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
 		stats: PropTypes.array,
 	})),
 }
 
-export default TeamStats;
+export default PlayerStats;

@@ -6,7 +6,7 @@ import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
 import Stars from '../components/GameDetail/Stars/Stars';
 import PeriodSummary from '../components/GameDetail/PeriodSummary/PeriodSummary';
 import GameStats from '../components/GameDetail/GameStats/GameStats';
-import TeamStats from '../components/GameDetail/TeamStats/TeamStats';
+import PlayerStats from '../components/GameDetail/PlayerStats/PlayerStats';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
 import {
@@ -16,7 +16,7 @@ import {
 	StarsInitialState,
 	PeriodSummaryInitialState,
 	GameStatsInitialState,
-	TeamStatsInitialState,
+	PlayerStatsInitialState,
 } from '../services/GameDetail/GameDetailInitialState';
 import GameDetailService from '../services/GameDetail/GameDetailService';
 
@@ -35,8 +35,8 @@ class GameDetail extends Component {
 		periodSummaryError: false,
 		gameStatsData: GameStatsInitialState,
 		gameStatsError: false,
-		teamStatsData: TeamStatsInitialState,
-		teamStatsError: false,
+		playerStatsData: PlayerStatsInitialState,
+		playerStatsError: false,
 
 		gameContent: null,
 		gameContentError: false,
@@ -62,8 +62,8 @@ class GameDetail extends Component {
 					periodSummaryError,
 					gameStatsData,
 					gameStatsError,
-					teamStatsData,
-					teamStatsError,
+					playerStatsData,
+					playerStatsError,
 				} = this.state;
 
 				try {
@@ -102,10 +102,10 @@ class GameDetail extends Component {
 				}
 
 				try {
-					teamStatsData = await GameDetailService.processTeamStats(data);
+					playerStatsData = await GameDetailService.processPlayerStats(data);
 				} catch (error) {
 					console.error(error);
-					teamStatsError = true;
+					playerStatsError = true;
 				}
 
 				this.setState({
@@ -123,8 +123,8 @@ class GameDetail extends Component {
 					periodSummaryError,
 					gameStatsData,
 					gameStatsError,
-					teamStatsData,
-					teamStatsError,
+					playerStatsData,
+					playerStatsError,
 				});
 
 			} catch (error) {
@@ -178,7 +178,7 @@ class GameDetail extends Component {
 			starsData, starsError,
 			periodSummaryData, periodSummaryError,
 			gameStatsData, gameStatsError,
-			teamStatsData, teamStatsError,
+			playerStatsData, playerStatsError,
 			gameContent,
 		} = this.state;
 
@@ -220,16 +220,16 @@ class GameDetail extends Component {
 								showNoResults={periodSummaryError}
 								periodSummary={periodSummaryData.periodSummary} />
 						</Tab>
-						<Tab id="tab-team-stats" tabTitle="Team Stats">
+						<Tab id="tab-player-stats" tabTitle="Team Stats">
 							<GameStats
 								showLoader={showLoader}
 								showNoResults={gameStatsError}
 								gameStats={gameStatsData.gameStats} />
 
-							<TeamStats
+							<PlayerStats
 								showLoader={showLoader}
-								showNoResults={teamStatsError}
-								teamStats={teamStatsData.teamStats} />
+								showNoResults={playerStatsError}
+								playerStats={playerStatsData.playerStats} />
 						</Tab>
 					</Tabs>
 				}

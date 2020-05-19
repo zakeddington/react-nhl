@@ -175,14 +175,14 @@ const GameDetailService = {
 		});
 	},
 
-	async processTeamStats(data) {
+	async processPlayerStats(data) {
 		const awayPlayers = data.liveData.boxscore.teams.away.players;
 		const homePlayers = data.liveData.boxscore.teams.home.players;
 		const awayStats = GetPlayerStats(awayPlayers);
 		const homeStats = GetPlayerStats(homePlayers);
 
 		return {
-			teamStats: [
+			playerStats: [
 				{
 					id: data.gameData.teams.away.id,
 					name: data.gameData.teams.away.name,
