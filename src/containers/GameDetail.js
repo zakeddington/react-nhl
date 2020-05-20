@@ -6,7 +6,7 @@ import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
 import Stars from '../components/GameDetail/Stars/Stars';
 import PeriodSummary from '../components/GameDetail/PeriodSummary/PeriodSummary';
 import TeamStats from '../components/GameDetail/TeamStats/TeamStats';
-import PlayerStats from '../components/GameDetail/PlayerStats/PlayerStats';
+import PlayerStatsByTeam from '../components/GameDetail/PlayerStats/PlayerStatsByTeam';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
 import {
@@ -16,7 +16,7 @@ import {
 	StarsInitialState,
 	PeriodSummaryInitialState,
 	TeamStatsInitialState,
-	PlayerStatsInitialState,
+	PlayerStatsByTeamInitialState,
 } from '../services/GameDetail/GameDetailInitialState';
 import GameDetailService from '../services/GameDetail/GameDetailService';
 
@@ -35,7 +35,7 @@ class GameDetail extends Component {
 		periodSummaryError: false,
 		teamStatsData: TeamStatsInitialState,
 		teamStatsError: false,
-		playerStatsData: PlayerStatsInitialState,
+		playerStatsData: PlayerStatsByTeamInitialState,
 		playerStatsError: false,
 
 		gameContent: null,
@@ -226,10 +226,10 @@ class GameDetail extends Component {
 								showNoResults={teamStatsError}
 								teamStats={teamStatsData.teamStats} />
 
-							<PlayerStats
+							<PlayerStatsByTeam
 								showLoader={showLoader}
 								showNoResults={playerStatsError}
-								playerStats={playerStatsData.playerStats} />
+								playerStatsByTeam={playerStatsData.playerStatsByTeam} />
 						</Tab>
 					</Tabs>
 				}

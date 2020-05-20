@@ -8,7 +8,7 @@ import GetTeamStats from './GetTeamStats';
 import GetShootoutPlays from './GetShootoutPlays';
 import GetScoringPlays from './GetScoringPlays';
 import GetPenaltyPlays from './GetPenaltyPlays';
-import GetPlayerStats from './GetPlayerStats';
+import GetPlayerStatsByTeam from './GetPlayerStatsByTeam';
 
 import {
 	GameDetailInitialState,
@@ -17,6 +17,7 @@ import {
 	StarsInitialState,
 	TeamStatsInitialState,
 	PeriodSummaryInitialState,
+	PlayerStatsByTeamInitialState,
 } from './GameDetailInitialState';
 
 const GameDetailService = {
@@ -176,25 +177,16 @@ const GameDetailService = {
 	},
 
 	async processPlayerStats(data) {
+		const awayTeam = data.gameData.teams.away;
+		const homeTeam = data.gameData.teams.home;
 		const awayPlayers = data.liveData.boxscore.teams.away.players;
 		const homePlayers = data.liveData.boxscore.teams.home.players;
-		const awayStats = GetPlayerStats(awayPlayers);
-		const homeStats = GetPlayerStats(homePlayers);
+		const awayPlayerStats = GetPlayerStatsByTeam(awayTeam, awayPlayers);
+		const homePlayerStats = GetPlayerStatsByTeam(homeTeam, homePlayers);
 
-		return {
-			playerStats: [
-				{
-					id: data.gameData.teams.away.id,
-					name: data.gameData.teams.away.name,
-					stats: awayStats,
-				},
-				{
-					id: data.gameData.teams.home.id,
-					name: data.gameData.teams.home.name,
-					stats: homeStats,
-				}
-			]
-		};
+		return Object.assign(PlayerStatsByTeamInitialState, {
+			playerStatsByTeam: [awayPlayerStats, homePlayerStats],
+		});
 	},
 
 	async getGameContent(gameId) {

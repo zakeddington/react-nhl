@@ -1,4 +1,5 @@
 import {
+	PlayerStatsByPositionBaseInitialState,
 	PlayerBaseStatsInitialState,
 	PlayerSkaterStatsInitialState,
 	PlayerGoalieStatsInitialState,
@@ -18,8 +19,8 @@ function GetSavePercent(saves, shots) {
 	return '-';
 }
 
-function GetPlayerStats(players) {
-	const stats = [];
+function GetPlayerStatsByPosition(players) {
+	const playerStatsByPosition = [];
 	const forwards = [];
 	const defense = [];
 	const goalies = [];
@@ -63,22 +64,28 @@ function GetPlayerStats(players) {
 	defense.sort((a, b) => a.number - b.number);
 	goalies.sort((a, b) => a.number - b.number);
 
-	stats.push({
-		position: 'Forwards',
-		players: forwards,
-	});
+	playerStatsByPosition.push(
+		Object.assign({}, PlayerStatsByPositionBaseInitialState, {
+			position: 'Forwards',
+			playerStats: forwards,
+		})
+	);
 
-	stats.push({
-		position: 'Defense',
-		players: defense,
-	});
+	playerStatsByPosition.push(
+		Object.assign({}, PlayerStatsByPositionBaseInitialState, {
+			position: 'Defense',
+			playerStats: defense,
+		})
+	);
 
-	stats.push({
-		position: 'Goalies',
-		players: goalies,
-	});
+	playerStatsByPosition.push(
+		Object.assign({}, PlayerStatsByPositionBaseInitialState, {
+			position: 'Goalies',
+			playerStats: goalies,
+		})
+	);
 
-	return stats;
+	return playerStatsByPosition;
 }
 
-export default GetPlayerStats;
+export default GetPlayerStatsByPosition;

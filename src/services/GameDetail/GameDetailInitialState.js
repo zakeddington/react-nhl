@@ -45,10 +45,25 @@ export const TeamStatsInitialState = {
 	teamStats: [],
 }
 
-export const PlayerStatsInitialState = {
+// Player Stats components
+export const PlayerStatsByTeamInitialState = {
+	playerStatsByTeam: [],
+}
+
+// playerStatsByTeam contains these objects for each team
+export const PlayerStatsByTeamBaseInitialState = {
+	id: null,
+	name: '',
+	playerStatsByPosition: [],
+}
+
+// playerStatsByPosition contains this for each pos (forward, defense, goalies)
+export const PlayerStatsByPositionBaseInitialState = {
+	position: '',
 	playerStats: [],
 }
 
+// playerStats contains this + position specific stats
 export const PlayerBaseStatsInitialState = {
 	id: null,
 	name: '',

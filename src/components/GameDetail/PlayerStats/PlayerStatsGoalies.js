@@ -4,7 +4,7 @@ import Modal from '../../Shared/Modal/Modal';
 import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
 import './PlayerStats.scss';
 
-function GoalieStats(data) {
+function renderGoalieStats(data) {
 	return (
 		<tr key={data.id}>
 			<td className="stats-table--pinned stats-table--jersey">{data.number}</td>
@@ -29,7 +29,7 @@ function GoalieStats(data) {
 function PlayerStatsGoalies(props) {
 	const {
 		position,
-		players,
+		playerStats,
 	} = props;
 
 	return (
@@ -52,8 +52,8 @@ function PlayerStatsGoalies(props) {
 				</thead>
 				<tbody>
 				{
-					players.map((player) => {
-						return (GoalieStats(player))
+					playerStats.map((player) => {
+						return (renderGoalieStats(player))
 					})
 				}
 				</tbody>
@@ -64,7 +64,7 @@ function PlayerStatsGoalies(props) {
 
 PlayerStatsGoalies.propTypes = {
 	position: PropTypes.string,
-	players: PropTypes.arrayOf(PropTypes.shape({
+	playerStats: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
 		number: PropTypes.string,

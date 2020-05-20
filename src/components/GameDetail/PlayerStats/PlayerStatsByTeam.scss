@@ -1,0 +1,18 @@
+@import '../../../styles/config/variables';
+
+// Player Stats tab switcher
+// -----------------------------------------------------------------+
+
+.player-stats--tabs {
+	.team-logo {
+		background: $color-white;
+		border-radius: 50%;
+		display: inline-block;
+		margin-right: 0.5rem;
+		padding: 5px;
+
+		@media (max-width: $breakpoint-mobile-max) {
+			display: none;
+		}
+	}
+}

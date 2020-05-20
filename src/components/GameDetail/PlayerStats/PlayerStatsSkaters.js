@@ -4,7 +4,7 @@ import Modal from '../../Shared/Modal/Modal';
 import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
 import './PlayerStats.scss';
 
-function SkaterStats(data) {
+function renderSkaterStats(data) {
 	return (
 		<tr key={data.id}>
 			<td className="stats-table--pinned stats-table--jersey">{data.number}</td>
@@ -35,7 +35,7 @@ function SkaterStats(data) {
 function PlayerStatsSkaters(props) {
 	const {
 		position,
-		players,
+		playerStats,
 	} = props;
 
 	return (
@@ -64,8 +64,8 @@ function PlayerStatsSkaters(props) {
 				</thead>
 				<tbody>
 				{
-					players.map((player) => {
-						return (SkaterStats(player))
+					playerStats.map((player) => {
+						return (renderSkaterStats(player))
 					})
 				}
 				</tbody>
@@ -76,7 +76,7 @@ function PlayerStatsSkaters(props) {
 
 PlayerStatsSkaters.propTypes = {
 	position: PropTypes.string,
-	players: PropTypes.arrayOf(PropTypes.shape({
+	playerStats: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
 		number: PropTypes.string,
