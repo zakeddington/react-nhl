@@ -1,9 +1,3 @@
-import {
-	PlayerStatsByPositionBaseInitialState,
-	PlayerBaseStatsInitialState,
-	PlayerSkaterStatsInitialState,
-	PlayerGoalieStatsInitialState,
-} from './GameDetailInitialState';
 
 function GetFaceOffPercent(wins, total) {
 	if (total) {
@@ -29,26 +23,26 @@ function GetPlayerStatsByPosition(players) {
 		const player = players[key];
 
 		if (Object.keys(player.stats).length) {
-			let playerData = Object.assign({}, PlayerBaseStatsInitialState, {
+			let playerData = {
 				id: player.person.id,
 				number: player.jerseyNumber,
 				name: player.person.fullName,
 				pos: player.position.abbreviation,
-			});
+			};
 
 			switch (player.position.code) {
 				case 'D':
-					let defenseStats = Object.assign(playerData, PlayerSkaterStatsInitialState, player.stats.skaterStats);
+					let defenseStats = Object.assign(playerData, player.stats.skaterStats);
 					defenseStats.faceOffPercent = GetFaceOffPercent(defenseStats.faceOffWins, defenseStats.faceoffTaken);
 					defense.push(defenseStats);
 					break;
 				case 'G':
-					let goalieStats = Object.assign(playerData, PlayerGoalieStatsInitialState, player.stats.goalieStats);
+					let goalieStats = Object.assign(playerData, player.stats.goalieStats);
 					goalieStats.savePercent = GetSavePercent(goalieStats.saves, goalieStats.shots);
 					goalies.push(goalieStats);
 					break;
 				default:
-					let forwardStats = Object.assign(playerData, PlayerSkaterStatsInitialState, player.stats.skaterStats);
+					let forwardStats = Object.assign(playerData, player.stats.skaterStats);
 					forwardStats.faceOffPercent = GetFaceOffPercent(forwardStats.faceOffWins, forwardStats.faceoffTaken);
 					forwards.push(forwardStats);
 					break;
@@ -64,26 +58,20 @@ function GetPlayerStatsByPosition(players) {
 	defense.sort((a, b) => a.number - b.number);
 	goalies.sort((a, b) => a.number - b.number);
 
-	playerStatsByPosition.push(
-		Object.assign({}, PlayerStatsByPositionBaseInitialState, {
-			position: 'Forwards',
-			playerStats: forwards,
-		})
-	);
+	playerStatsByPosition.push({
+		position: 'Forwards',
+		playerStats: forwards,
+	});
 
-	playerStatsByPosition.push(
-		Object.assign({}, PlayerStatsByPositionBaseInitialState, {
-			position: 'Defense',
-			playerStats: defense,
-		})
-	);
+	playerStatsByPosition.push({
+		position: 'Defense',
+		playerStats: defense,
+	});
 
-	playerStatsByPosition.push(
-		Object.assign({}, PlayerStatsByPositionBaseInitialState, {
-			position: 'Goalies',
-			playerStats: goalies,
-		})
-	);
+	playerStatsByPosition.push({
+		position: 'Goalies',
+		playerStats: goalies,
+	});
 
 	return playerStatsByPosition;
 }

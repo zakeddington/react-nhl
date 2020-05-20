@@ -9,33 +9,32 @@ import TeamStats from '../components/GameDetail/TeamStats/TeamStats';
 import PlayerStatsByTeam from '../components/GameDetail/PlayerStats/PlayerStatsByTeam';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
-import {
-	GameDetailInitialState,
-	GameHeaderInitialState,
-	ScoreBoardInitialState,
-	StarsInitialState,
-	PeriodSummaryInitialState,
-	TeamStatsInitialState,
-	PlayerStatsByTeamInitialState,
-} from '../services/GameDetail/GameDetailInitialState';
+
 import GameDetailService from '../services/GameDetail/GameDetailService';
+import {GameDetailInitialState} from '../services/GameDetail/GameDetailService';
 
 class GameDetail extends Component {
-
 	state = {
 		...GameDetailInitialState,
 
-		gameHeaderData: GameHeaderInitialState,
+		gameHeaderData: {
+			awayTeam: {},
+			homeTeam: {},
+		},
 		gameHeaderError: false,
-		scoreBoardData: ScoreBoardInitialState,
+		scoreBoardData: {
+			awayTeam: {},
+			homeTeam: {},
+			periodGoals: [],
+		},
 		scoreBoardError: false,
-		starsData: StarsInitialState,
+		starsData: [],
 		starsError: false,
-		periodSummaryData: PeriodSummaryInitialState,
+		periodSummaryData: [],
 		periodSummaryError: false,
-		teamStatsData: TeamStatsInitialState,
+		teamStatsData: [],
 		teamStatsError: false,
-		playerStatsData: PlayerStatsByTeamInitialState,
+		playerStatsData: [],
 		playerStatsError: false,
 
 		gameContent: null,
@@ -209,7 +208,7 @@ class GameDetail extends Component {
 						showLoader={showLoader}
 						showNoResults={starsError}
 						isPreview={isPreview}
-						stars={starsData.stars} />
+						stars={starsData} />
 				</div>
 				{
 					!isPreview &&
@@ -218,18 +217,18 @@ class GameDetail extends Component {
 							<PeriodSummary
 								showLoader={showLoader}
 								showNoResults={periodSummaryError}
-								periodSummary={periodSummaryData.periodSummary} />
+								periodSummary={periodSummaryData} />
 						</Tab>
 						<Tab id="tab-player-stats" tabTitle="Team Stats">
 							<TeamStats
 								showLoader={showLoader}
 								showNoResults={teamStatsError}
-								teamStats={teamStatsData.teamStats} />
+								teamStats={teamStatsData} />
 
 							<PlayerStatsByTeam
 								showLoader={showLoader}
 								showNoResults={playerStatsError}
-								playerStatsByTeam={playerStatsData.playerStatsByTeam} />
+								playerStatsByTeam={playerStatsData} />
 						</Tab>
 					</Tabs>
 				}

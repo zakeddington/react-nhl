@@ -10,15 +10,12 @@ import GetScoringPlays from './GetScoringPlays';
 import GetPenaltyPlays from './GetPenaltyPlays';
 import GetPlayerStatsByTeam from './GetPlayerStatsByTeam';
 
-import {
-	GameDetailInitialState,
-	GameHeaderInitialState,
-	ScoreBoardInitialState,
-	StarsInitialState,
-	TeamStatsInitialState,
-	PeriodSummaryInitialState,
-	PlayerStatsByTeamInitialState,
-} from './GameDetailInitialState';
+export const GameDetailInitialState = {
+	showLoader: true,
+	isPreview: true,
+	gameDate: '',
+	gameStatus: '',
+}
 
 const GameDetailService = {
 	state: GameDetailInitialState,
@@ -64,7 +61,7 @@ const GameDetailService = {
 		const awayScore = data.liveData.linescore.teams.away.goals;
 		const homeScore = data.liveData.linescore.teams.home.goals;
 
-		return Object.assign(GameHeaderInitialState, {
+		return {
 			awayTeam: {
 				id: data.gameData.teams.away.id,
 				city: data.gameData.teams.away.locationName,
@@ -77,7 +74,7 @@ const GameDetailService = {
 				name: data.gameData.teams.home.teamName,
 				score: homeScore,
 			},
-		});
+		}
 	},
 
 	async processScoreBoardData(data) {
@@ -87,7 +84,7 @@ const GameDetailService = {
 		const homeScore = data.liveData.linescore.teams.home.goals;
 		const periods = GetPeriodStats(periodGoals, awayScore, homeScore, shootoutGoals);
 
-		return Object.assign(ScoreBoardInitialState, {
+		return {
 			awayTeam: {
 				id: data.gameData.teams.away.id,
 				name: data.gameData.teams.away.teamName,
@@ -97,7 +94,7 @@ const GameDetailService = {
 				name: data.gameData.teams.home.teamName,
 			},
 			periodGoals: periods,
-		});
+		}
 	},
 
 	async processStarsData(data) {
@@ -113,9 +110,7 @@ const GameDetailService = {
 			curStars = [firstStar, secondStar, thirdStar];
 		}
 
-		return Object.assign(StarsInitialState, {
-			stars: curStars,
-		});
+		return curStars;
 	},
 
 	async processPeriodSummary(data) {
@@ -158,9 +153,7 @@ const GameDetailService = {
 			});
 		}
 
-		return Object.assign(PeriodSummaryInitialState, {
-			periodSummary: periodPlays,
-		});
+		return periodPlays;
 	},
 
 	async processTeamStatsData(data) {
@@ -171,9 +164,7 @@ const GameDetailService = {
 		const awayTeamStats = GetTeamStats(awayTeam, awayBoxscore);
 		const homeTeamStats = GetTeamStats(homeTeam, homeBoxscore);
 
-		return Object.assign(TeamStatsInitialState, {
-			teamStats: [awayTeamStats, homeTeamStats],
-		});
+		return [awayTeamStats, homeTeamStats];
 	},
 
 	async processPlayerStats(data) {
@@ -184,9 +175,7 @@ const GameDetailService = {
 		const awayPlayerStats = GetPlayerStatsByTeam(awayTeam, awayPlayers);
 		const homePlayerStats = GetPlayerStatsByTeam(homeTeam, homePlayers);
 
-		return Object.assign(PlayerStatsByTeamInitialState, {
-			playerStatsByTeam: [awayPlayerStats, homePlayerStats],
-		});
+		return [awayPlayerStats, homePlayerStats];
 	},
 
 	async getGameContent(gameId) {
