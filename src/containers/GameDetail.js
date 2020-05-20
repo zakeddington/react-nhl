@@ -17,25 +17,26 @@ class GameDetail extends Component {
 	state = {
 		...GameDetailInitialState,
 
-		gameHeaderData: {
+		dataGameHeader: {
 			awayTeam: {},
 			homeTeam: {},
 		},
-		gameHeaderError: false,
-		scoreBoardData: {
+		dataScoreBoard: {
 			awayTeam: {},
 			homeTeam: {},
 			periodGoals: [],
 		},
-		scoreBoardError: false,
-		starsData: [],
-		starsError: false,
-		periodSummaryData: [],
-		periodSummaryError: false,
-		teamStatsData: [],
-		teamStatsError: false,
-		playerStatsData: [],
-		playerStatsError: false,
+		dataStars: [],
+		dataPeriodSummary: [],
+		dataTeamStats: [],
+		dataPlayerStats: [],
+
+		isGameHeaderError: false,
+		isScoreBoardError: false,
+		isStarsError: false,
+		isPeriodSummaryError: false,
+		isTeamStatsError: false,
+		isPlayerStatsError: false,
 
 		gameContent: null,
 		gameContentError: false,
@@ -51,60 +52,60 @@ class GameDetail extends Component {
 				let gameStatus = data.gameStatus;
 
 				let {
-					gameHeaderData,
-					gameHeaderError,
-					scoreBoardData,
-					scoreBoardError,
-					starsData,
-					starsError,
-					periodSummaryData,
-					periodSummaryError,
-					teamStatsData,
-					teamStatsError,
-					playerStatsData,
-					playerStatsError,
+					dataGameHeader,
+					dataScoreBoard,
+					dataStars,
+					dataPeriodSummary,
+					dataTeamStats,
+					dataPlayerStats,
+					isGameHeaderError,
+					isScoreBoardError,
+					isStarsError,
+					isPeriodSummaryError,
+					isTeamStatsError,
+					isPlayerStatsError,
 				} = this.state;
 
 				try {
-					gameHeaderData = await GameDetailService.processGameHeaderData(data);
+					dataGameHeader = await GameDetailService.processGameHeaderData(data);
 				} catch (error) {
 					console.error(error);
-					gameHeaderError = true;
+					isGameHeaderError = true;
 				}
 
 				try {
-					scoreBoardData = await GameDetailService.processScoreBoardData(data);
+					dataScoreBoard = await GameDetailService.processScoreBoardData(data);
 				} catch (error) {
 					console.error(error);
-					scoreBoardError = true;
+					isScoreBoardError = true;
 				}
 
 				try {
-					starsData = await GameDetailService.processStarsData(data);
+					dataStars = await GameDetailService.processStarsData(data);
 				} catch (error) {
 					console.error(error);
-					starsError = true;
+					isStarsError = true;
 				}
 
 				try {
-					periodSummaryData = await GameDetailService.processPeriodSummary(data);
+					dataPeriodSummary = await GameDetailService.processPeriodSummary(data);
 				} catch (error) {
 					console.error(error);
-					periodSummaryError = true;
+					isPeriodSummaryError = true;
 				}
 
 				try {
-					teamStatsData = await GameDetailService.processTeamStatsData(data);
+					dataTeamStats = await GameDetailService.processTeamStatsData(data);
 				} catch (error) {
 					console.error(error);
-					teamStatsError = true;
+					isTeamStatsError = true;
 				}
 
 				try {
-					playerStatsData = await GameDetailService.processPlayerStats(data);
+					dataPlayerStats = await GameDetailService.processPlayerStats(data);
 				} catch (error) {
 					console.error(error);
-					playerStatsError = true;
+					isPlayerStatsError = true;
 				}
 
 				this.setState({
@@ -112,18 +113,18 @@ class GameDetail extends Component {
 					isPreview,
 					gameDate,
 					gameStatus,
-					gameHeaderData,
-					gameHeaderError,
-					scoreBoardData,
-					scoreBoardError,
-					starsData,
-					starsError,
-					periodSummaryData,
-					periodSummaryError,
-					teamStatsData,
-					teamStatsError,
-					playerStatsData,
-					playerStatsError,
+					dataGameHeader,
+					dataScoreBoard,
+					dataStars,
+					dataPeriodSummary,
+					dataTeamStats,
+					dataPlayerStats,
+					isGameHeaderError,
+					isScoreBoardError,
+					isStarsError,
+					isPeriodSummaryError,
+					isTeamStatsError,
+					isPlayerStatsError,
 				});
 
 			} catch (error) {
@@ -171,13 +172,22 @@ class GameDetail extends Component {
 
 	render() {
 		const {
-			showLoader, isPreview, gameDate, gameStatus,
-			gameHeaderData, gameHeaderError,
-			scoreBoardData, scoreBoardError,
-			starsData, starsError,
-			periodSummaryData, periodSummaryError,
-			teamStatsData, teamStatsError,
-			playerStatsData, playerStatsError,
+			showLoader,
+			isPreview,
+			gameDate,
+			gameStatus,
+			dataGameHeader,
+			dataScoreBoard,
+			dataStars,
+			dataPeriodSummary,
+			dataTeamStats,
+			dataPlayerStats,
+			isGameHeaderError,
+			isScoreBoardError,
+			isStarsError,
+			isPeriodSummaryError,
+			isTeamStatsError,
+			isPlayerStatsError,
 			gameContent,
 		} = this.state;
 
@@ -185,30 +195,30 @@ class GameDetail extends Component {
 			<div className="site-content container">
 				<GameHeader
 					showLoader={showLoader}
-					showNoResults={gameHeaderError}
+					showNoResults={isGameHeaderError}
 					isPreview={isPreview}
 					gameDate={gameDate}
 					gameStatus={gameStatus}
-					awayTeam={gameHeaderData.awayTeam}
-					homeTeam={gameHeaderData.homeTeam} />
+					awayTeam={dataGameHeader.awayTeam}
+					homeTeam={dataGameHeader.homeTeam} />
 
 				<GameIntro gameContent={gameContent} />
 
 				<div className="scoreboard-stars">
 					<ScoreBoard
 						showLoader={showLoader}
-						showNoResults={scoreBoardError}
+						showNoResults={isScoreBoardError}
 						isPreview={isPreview}
 						gameStatus={gameStatus}
-						awayTeam={scoreBoardData.awayTeam}
-						homeTeam={scoreBoardData.homeTeam}
-						periodGoals={scoreBoardData.periodGoals} />
+						awayTeam={dataScoreBoard.awayTeam}
+						homeTeam={dataScoreBoard.homeTeam}
+						periodGoals={dataScoreBoard.periodGoals} />
 
 					<Stars
 						showLoader={showLoader}
-						showNoResults={starsError}
+						showNoResults={isStarsError}
 						isPreview={isPreview}
-						stars={starsData} />
+						stars={dataStars} />
 				</div>
 				{
 					!isPreview &&
@@ -216,19 +226,19 @@ class GameDetail extends Component {
 						<Tab id="tab-period-summary" tabTitle="Period Summary">
 							<PeriodSummary
 								showLoader={showLoader}
-								showNoResults={periodSummaryError}
-								periodSummary={periodSummaryData} />
+								showNoResults={isPeriodSummaryError}
+								periodSummary={dataPeriodSummary} />
 						</Tab>
 						<Tab id="tab-player-stats" tabTitle="Team Stats">
 							<TeamStats
 								showLoader={showLoader}
-								showNoResults={teamStatsError}
-								teamStats={teamStatsData} />
+								showNoResults={isTeamStatsError}
+								teamStats={dataTeamStats} />
 
 							<PlayerStatsByTeam
 								showLoader={showLoader}
-								showNoResults={playerStatsError}
-								playerStatsByTeam={playerStatsData} />
+								showNoResults={isPlayerStatsError}
+								playerStatsByTeam={dataPlayerStats} />
 						</Tab>
 					</Tabs>
 				}
