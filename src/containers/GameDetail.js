@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CONSTANTS from '../config/Constants';
 import GameHeader from '../components/GameDetail/GameHeader/GameHeader';
 import GameIntro from '../components/GameDetail/GameIntro/GameIntro';
 import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
@@ -30,6 +29,10 @@ class GameDetail extends Component {
 		dataPeriodSummary: [],
 		dataTeamStats: [],
 		dataPlayerStats: [],
+		dataGameContent: {
+			intro: {},
+			videos: [],
+		},
 
 		isGameHeaderError: false,
 		isScoreBoardError: false,
@@ -37,6 +40,7 @@ class GameDetail extends Component {
 		isPeriodSummaryError: false,
 		isTeamStatsError: false,
 		isPlayerStatsError: false,
+		isGameContentError: false,
 
 		gameContent: null,
 		gameContentError: false,
@@ -140,23 +144,29 @@ class GameDetail extends Component {
 		return (async () => {
 			try {
 				const data = await GameDetailService.getGameContent(gameId);
-				let newGameContent;
+
+				let {
+					dataGameContent,
+					isGameContentError,
+				} = this.state;
 
 				try {
-					newGameContent = await GameDetailService.processGameContent(data);
+					dataGameContent = await GameDetailService.processGameContent(data);
 				} catch (error) {
 					console.error(error);
-					newGameContent = CONSTANTS.NO_DATA;
+					isGameContentError = true;
 				}
 
 				this.setState({
-					gameContent: newGameContent,
+					showGameContentLoader: false,
+					dataGameContent,
+					isGameContentError,
 				});
 
 			} catch (error) {
 				console.error(error);
 				this.setState({
-					gameContent: CONSTANTS.NO_DATA,
+					showGameContentLoader: false,
 				});
 			}
 		})();
@@ -173,6 +183,7 @@ class GameDetail extends Component {
 	render() {
 		const {
 			showLoader,
+			showGameContentLoader,
 			isPreview,
 			gameDate,
 			gameStatus,
@@ -182,13 +193,14 @@ class GameDetail extends Component {
 			dataPeriodSummary,
 			dataTeamStats,
 			dataPlayerStats,
+			dataGameContent,
+			isGameContentError,
 			isGameHeaderError,
 			isScoreBoardError,
 			isStarsError,
 			isPeriodSummaryError,
 			isTeamStatsError,
 			isPlayerStatsError,
-			gameContent,
 		} = this.state;
 
 		return (
@@ -202,7 +214,11 @@ class GameDetail extends Component {
 					awayTeam={dataGameHeader.awayTeam}
 					homeTeam={dataGameHeader.homeTeam} />
 
-				<GameIntro gameContent={gameContent} />
+				<GameIntro
+					showLoader={showGameContentLoader}
+					showNoResults={isGameContentError}
+					intro={dataGameContent.intro}
+					videos={dataGameContent.videos} />
 
 				<div className="scoreboard-stars">
 					<ScoreBoard

@@ -5,30 +5,37 @@ import VideoCarousel from '../../Shared/VideoCarousel/VideoCarousel';
 import './GameIntro.scss';
 
 function GameIntro(props) {
-	const data = props.gameContent;
+	const {
+		showLoader,
+		showNoResults,
+		intro,
+		videos,
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults) {
+	console.log(props);
+
+	if (showLoader) {
+		content = <Loader/>;
+	} else {
+		if (showNoResults) {
 			content = '';
 		} else {
 			content =
 				<div className="game-intro">
-					<h2>{data.title}</h2>
-					<p>{data.desc}</p>
+					<h2>{intro.title}</h2>
+					<p>{intro.desc}</p>
 					<div className="game-intro-media">
 						{
-							data.videos.length ? (
-								<VideoCarousel data={data}/>
+							videos.length ? (
+								<VideoCarousel videos={videos}/>
 							) : (
-								<img src={data.poster} alt={data.posterAltText}/>
+								<img src={intro.poster} alt={intro.posterAltText}/>
 							)
 						}
 					</div>
-				</div>
+				</div>;
 		}
-	} else {
-		content = <Loader/>;
 	}
 
 	return (
@@ -39,7 +46,23 @@ function GameIntro(props) {
 }
 
 GameIntro.propTypes = {
-	data: PropTypes.object,
+	showLoader: PropTypes.bool,
+	showNoResults: PropTypes.bool,
+	intro: PropTypes.shape({
+		title: PropTypes.string,
+		desc: PropTypes.string,
+		poster: PropTypes.string,
+		posterAltText: PropTypes.string,
+	}),
+	videos: PropTypes.arrayOf(PropTypes.shape({
+		title: PropTypes.string,
+		duration: PropTypes.string,
+		url: PropTypes.string,
+		poster: PropTypes.string,
+		thumb: PropTypes.string,
+		posterAltText: PropTypes.string,
+		showVideoPlayer: PropTypes.bool,
+	})),
 }
 
 export default GameIntro;

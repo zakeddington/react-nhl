@@ -7,9 +7,9 @@ import './VideoCarousel.scss';
 class VideoCarousel extends Component {
 
 	state = {
-		maxVideoIndex: this.props.data.videos.length - 1,
+		maxVideoIndex: this.props.videos.length - 1,
 		selectedVideoIndex: 1,
-		videos: this.props.data.videos,
+		videos: this.props.videos,
 		selectedVideo: {},
 	};
 
@@ -92,7 +92,7 @@ class VideoCarousel extends Component {
 	}
 
 	render() {
-		const {videos} = this.props.data;
+		const {videos} = this.props;
 
 		if (videos.length || Object.keys(videos).length) {
 			if (videos.error) {
