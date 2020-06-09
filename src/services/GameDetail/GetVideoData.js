@@ -1,6 +1,5 @@
 
 function GetVideoData(data) {
-	// console.log(data);
 	const title = data.title;
 	const playbacks = data.playbacks;
 	const duration = data.duration;

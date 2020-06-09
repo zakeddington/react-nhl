@@ -10,7 +10,7 @@ import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
 
 import GameDetailService from '../services/GameDetail/GameDetailService';
-import {GameDetailInitialState} from '../services/GameDetail/GameDetailService';
+import { GameDetailInitialState } from '../services/GameDetail/GameDetailService';
 
 class GameDetail extends Component {
 	state = {
@@ -41,9 +41,6 @@ class GameDetail extends Component {
 		isTeamStatsError: false,
 		isPlayerStatsError: false,
 		isGameContentError: false,
-
-		gameContent: null,
-		gameContentError: false,
 	};
 
 	fetchGameDetail(gameId) {

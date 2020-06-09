@@ -13,8 +13,6 @@ function GameIntro(props) {
 	} = props;
 	let content;
 
-	console.log(props);
-
 	if (showLoader) {
 		content = <Loader/>;
 	} else {
