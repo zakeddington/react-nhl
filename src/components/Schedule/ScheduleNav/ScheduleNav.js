@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -123,8 +123,8 @@ class ScheduleNav extends Component {
 	}
 
 	onNavArrowClick(direction) {
-		const {numSideDays} = this;
-		const {arrDateObjs} = this.state;
+		const { numSideDays } = this;
+		const { arrDateObjs } = this.state;
 		const curStartDate = arrDateObjs[0].day;
 		const curEndDate = arrDateObjs[arrDateObjs.length - 1].day;
 		let newDate;

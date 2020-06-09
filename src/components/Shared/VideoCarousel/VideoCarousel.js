@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 import Icon from '../Icon/Icon';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
@@ -34,7 +34,7 @@ class VideoCarousel extends Component {
 	}
 
 	onVideoEnd() {
-		const {selectedVideoIndex, maxVideoIndex} = this.state;
+		const { selectedVideoIndex, maxVideoIndex } = this.state;
 		const nextIndex = selectedVideoIndex + 1;
 
 		if (selectedVideoIndex < maxVideoIndex) {
@@ -49,7 +49,7 @@ class VideoCarousel extends Component {
 	}
 
 	renderContent() {
-		const {videos, selectedVideo, selectedVideoIndex} = this.state;
+		const { videos, selectedVideo, selectedVideoIndex } = this.state;
 
 		let thumbs = videos.map((video, i) => {
 			let activeClass = i === selectedVideoIndex ? 'is-active' : '';
@@ -92,7 +92,7 @@ class VideoCarousel extends Component {
 	}
 
 	render() {
-		const {videos} = this.props;
+		const { videos } = this.props;
 
 		if (videos.length || Object.keys(videos).length) {
 			if (videos.error) {

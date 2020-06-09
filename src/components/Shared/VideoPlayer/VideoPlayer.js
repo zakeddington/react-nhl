@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Icon from '../Icon/Icon';
 import './VideoPlayer.scss';
 
@@ -25,7 +25,7 @@ class VideoPlayer extends Component {
 	}
 
 	renderVideo() {
-		const {video, poster, isAutoPlay, onVideoEvent} = this.props;
+		const { video, poster, isAutoPlay, onVideoEvent } = this.props;
 
 		return (
 			<video src={video} poster={poster} muted controls autoPlay={isAutoPlay}

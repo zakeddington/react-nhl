@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Icon from '../Icon/Icon';
 import './Tabs.scss';
 
@@ -13,7 +13,7 @@ class Tabs extends Component {
 	}
 
 	render() {
-		const {tabs, activeTab} = this.state;
+		const { tabs, activeTab } = this.state;
 		const tabsClass = this.props.tabsClass ? this.props.tabsClass : '';
 
 		if (tabs) {

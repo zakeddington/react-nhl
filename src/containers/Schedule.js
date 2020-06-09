@@ -15,7 +15,7 @@ class Schedule extends Component {
 	};
 
 	componentDidMount() {
-		const {startDateObj} = this.state;
+		const { startDateObj } = this.state;
 		this.fetchScheduleGames(startDateObj, startDateObj);
 	}
 
