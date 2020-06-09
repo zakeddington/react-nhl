@@ -114,7 +114,7 @@ class ScheduleNav extends Component {
 	}
 
 	onNavClick(e, dateObj) {
-		if (this.props.scheduleIsLoading) {
+		if (this.props.isScheduleLoading) {
 			e.preventDefault();
 		} else {
 			let urlDate = dateObj.day.format(CONSTANTS.momentOptions.apiFormat);
@@ -208,7 +208,7 @@ class ScheduleNav extends Component {
 
 ScheduleNav.propTypes = {
 	history: PropTypes.object,
-	scheduleIsLoading: PropTypes.bool,
+	isScheduleLoading: PropTypes.bool,
 	startDate: PropTypes.object,
 }
 

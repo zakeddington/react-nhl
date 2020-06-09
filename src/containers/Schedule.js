@@ -8,9 +8,10 @@ import ScheduleResults from '../components/Schedule/ScheduleResults/ScheduleResu
 class Schedule extends Component {
 
 	state = {
-		games: [],
+		dataScheduleResults: [],
+		isScheduleResultsError: false,
 		startDateObj: this.getStartDateObj(),
-		isLoading: true,
+		isScheduleLoading: true,
 	};
 
 	componentDidMount() {
@@ -44,11 +45,12 @@ class Schedule extends Component {
 	fetchScheduleGames(objDateFrom, objDateTo) {
 		this.setState({
 			startDateObj: objDateFrom,
-			isLoading: true,
+			isScheduleLoading: true,
 		});
 
 		return (async () => {
-			let games;
+			let dataScheduleResults = [];
+			let isScheduleResultsError = false;
 
 			try {
 				const params = [
@@ -60,34 +62,42 @@ class Schedule extends Component {
 				const data = await ScheduleService.getScheduleGames(dateFrom, dateTo, params);
 
 				if (data.length) {
-					games = data;
-				} else {
-					games = CONSTANTS.NO_DATA;
+					dataScheduleResults = data;
 				}
 			} catch (error) {
 				console.error(error);
-				games = CONSTANTS.NO_DATA;
+				isScheduleResultsError = true;
 			}
 
 			this.setState({
-				games,
-				isLoading: false,
+				dataScheduleResults,
+				isScheduleResultsError,
+				isScheduleLoading: false,
 			})
 		})();
 	}
 
 	render() {
-		const { games, startDateObj, isLoading } = this.state;
+		const {
+			dataScheduleResults,
+			isScheduleResultsError,
+			startDateObj,
+			isScheduleLoading
+		} = this.state;
 
 		return (
 			<div className="site-content container">
 				<ScheduleNav
 					history={this.props.history}
 					startDate={startDateObj}
-					scheduleIsLoading={isLoading}
+					isScheduleLoading={isScheduleLoading}
 				/>
 				<h1>Scores</h1>
-				<ScheduleResults games={games} scheduleIsLoading={isLoading} />
+				<ScheduleResults
+					results={dataScheduleResults}
+					showError={isScheduleResultsError}
+					showLoader={isScheduleLoading}
+				/>
 			</div>
 		);
 	}

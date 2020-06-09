@@ -7,14 +7,14 @@ class ScheduleService {
 
 	async getScheduleGames(dateFrom, dateTo, params) {
 		const data = await API.getSchedule(dateFrom, dateTo, params);
-		const {dates} = data;
+		const { dates } = data;
 		let results = [];
 
 		dates.forEach((date) => {
 			let curDate = new Date(date.date.replace(/-/g, '/'));
 
 			let curResults = {
-				date: curDate.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions),
+				gameDate: curDate.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions),
 				games: []
 			};
 
@@ -49,19 +49,17 @@ class ScheduleService {
 					id: game.gamePk,
 					gameStatus: curStatus,
 					broadcasts: broadcasts.join(', '),
-					teams: {
-						away: {
-							id: game.teams.away.team.id,
-							name: game.teams.away.team.name,
-							score: awayScore,
-							record: `${game.teams.away.leagueRecord.wins}-${game.teams.away.leagueRecord.losses}${awayOTL}`,
-						},
-						home: {
-							id: game.teams.home.team.id,
-							name: game.teams.home.team.name,
-							score: homeScore,
-							record: `${game.teams.home.leagueRecord.wins}-${game.teams.home.leagueRecord.losses}${homeOTL}`,
-						}
+					awayTeam: {
+						id: game.teams.away.team.id,
+						name: game.teams.away.team.name,
+						score: awayScore,
+						record: `${game.teams.away.leagueRecord.wins}-${game.teams.away.leagueRecord.losses}${awayOTL}`,
+					},
+					homeTeam: {
+						id: game.teams.home.team.id,
+						name: game.teams.home.team.name,
+						score: homeScore,
+						record: `${game.teams.home.leagueRecord.wins}-${game.teams.home.leagueRecord.losses}${homeOTL}`,
 					}
 				};
 
@@ -70,13 +68,6 @@ class ScheduleService {
 
 			results.push(curResults);
 		});
-
-		// console.log('ScheduleService results', results);
-
-		if (!dates) {
-			// throw new Error(`ScheduleService getScheduleGames failed, dates not returned`);
-			return CONSTANTS.noData;
-		}
 
 		return results;
 	}

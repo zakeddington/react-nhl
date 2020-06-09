@@ -13,7 +13,7 @@ function renderContent(data) {
 			let classGameStatus = '';
 
 			if (game.gameStatus.includes("Final")) {
-				if (game.teams.home.score > game.teams.away.score) {
+				if (game.homeTeam.score > game.awayTeam.score) {
 					classGameStatus = 'is-home-winner';
 				} else {
 					classGameStatus = 'is-away-winner';
@@ -30,18 +30,18 @@ function renderContent(data) {
 							<span className="schedule-results--broadcasts">{game.broadcasts}</span>
 						</div>
 						<div className="schedule-results--team away">
-							<Icon iconId={game.teams.away.id} iconType={CONSTANTS.iconType.logo} />
-							<span className="schedule-results--name">{game.teams.away.name}
-								<span className="schedule-results--record">({game.teams.away.record})</span>
+							<Icon iconId={game.awayTeam.id} iconType={CONSTANTS.iconType.logo} />
+							<span className="schedule-results--name">{game.awayTeam.name}
+								<span className="schedule-results--record">({game.awayTeam.record})</span>
 								</span>
-							<span className="schedule-results--score">{game.teams.away.score}</span>
+							<span className="schedule-results--score">{game.awayTeam.score}</span>
 						</div>
 						<div className="schedule-results--team home">
-							<Icon iconId={game.teams.home.id} iconType={CONSTANTS.iconType.logo} />
-							<span className="schedule-results--name">{game.teams.home.name}
-								<span className="schedule-results--record">({game.teams.home.record})</span>
+							<Icon iconId={game.homeTeam.id} iconType={CONSTANTS.iconType.logo} />
+							<span className="schedule-results--name">{game.homeTeam.name}
+								<span className="schedule-results--record">({game.homeTeam.record})</span>
 								</span>
-							<span className="schedule-results--score">{game.teams.home.score}</span>
+							<span className="schedule-results--score">{game.homeTeam.score}</span>
 						</div>
 					</Link>
 				</li>
@@ -49,8 +49,8 @@ function renderContent(data) {
 		});
 
 		return (
-			<div key={date.date} className="schedule-results--group">
-				<h2>{date.date}</h2>
+			<div key={date.gameDate} className="schedule-results--group">
+				<h2>{date.gameDate}</h2>
 				<ul className="schedule-results--games">
 					{games}
 				</ul>
@@ -66,17 +66,23 @@ function renderContent(data) {
 }
 
 function ScheduleResults(props) {
-	const data = props.games;
+	const {
+		showLoader,
+		showError,
+		results,
+	} = props;
 	let content;
 
-	if (data) {
-		if (data.showNoResults) {
-			content = <ErrorMessage errorMsg="There are no games scheduled on this date." />;
-		} else {
-			content = renderContent(data);
-		}
-	} else {
+	if (showLoader) {
 		content = <Loader/>;
+	} else {
+		if (showError) {
+			content = <ErrorMessage errorMsg="Something went terribly wrong, and it's probably your fault." />;
+		} else if (results.length) {
+			content = renderContent(results);
+		} else {
+			content = <ErrorMessage errorMsg="There are no games scheduled on this date." />;
+		}
 	}
 
 	return (
@@ -87,8 +93,28 @@ function ScheduleResults(props) {
 }
 
 ScheduleResults.propTypes = {
-	// games: PropTypes.array,
-	scheduleIsLoading: PropTypes.bool,
+	showLoader: PropTypes.bool,
+	showError: PropTypes.bool,
+	results: PropTypes.arrayOf(PropTypes.shape({
+		gameDate: PropTypes.string,
+		games: PropTypes.arrayOf(PropTypes.shape({
+			broadcasts: PropTypes.string,
+			gameStatus: PropTypes.string,
+			id: PropTypes.number,
+			awayTeam: PropTypes.shape({
+				id: PropTypes.number,
+				name: PropTypes.string,
+				record: PropTypes.string,
+				score: PropTypes.number,
+			}),
+			homeTeam: PropTypes.shape({
+				id: PropTypes.number,
+				name: PropTypes.string,
+				record: PropTypes.string,
+				score: PropTypes.number,
+			}),
+		})),
+	})),
 }
 
 export default ScheduleResults;
