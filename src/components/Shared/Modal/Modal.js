@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 import './Modal.scss';
 
@@ -23,8 +24,7 @@ class Modal extends Component {
 	}
 
 	renderModal() {
-		const { content } = this.props;
-		const modalClass = this.props.modalClass ? this.props.modalClass : '';
+		const { content, modalClass } = this.props;
 
 		const modal =
 			<div className="modal--overlay" onClick={() => this.onCloseClick()}>
@@ -52,6 +52,12 @@ class Modal extends Component {
 			</div>
 		);
 	}
+}
+
+Modal.propTypes = {
+	children: PropTypes.node,
+	content: PropTypes.element,
+	modalClass: PropTypes.string,
 }
 
 export default Modal;

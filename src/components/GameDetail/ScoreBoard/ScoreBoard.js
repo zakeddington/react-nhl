@@ -38,11 +38,11 @@ function renderContent(props) {
 						<span>&nbsp;</span>
 					</div>
 					<div className="scoreboard-item">
-						<Icon iconId={awayTeam.id} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${awayTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
 						<span>{awayTeam.name}</span>
 					</div>
 					<div className="scoreboard-item">
-						<Icon iconId={homeTeam.id} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${homeTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
 						<span>{homeTeam.name}</span>
 					</div>
 				</div>

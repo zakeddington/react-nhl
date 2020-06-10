@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 import './Tabs.scss';
 
@@ -49,6 +50,11 @@ class Tabs extends Component {
 
 		return null;
 	}
+}
+
+Tabs.propTypes = {
+	children: PropTypes.node,
+	tabsClass: PropTypes.string,
 }
 
 export default Tabs;

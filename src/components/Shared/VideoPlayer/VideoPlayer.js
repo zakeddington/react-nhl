@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 import './VideoPlayer.scss';
 
@@ -40,6 +41,17 @@ class VideoPlayer extends Component {
 
 		return this.renderPoster();
 	}
+}
+
+VideoPlayer.propTypes = {
+	altText: PropTypes.string,
+	duration: PropTypes.string,
+	isAutoPlay: PropTypes.bool,
+	onVideoEvent: PropTypes.func,
+	poster: PropTypes.string,
+	showVideo: PropTypes.bool,
+	title: PropTypes.string,
+	video: PropTypes.string,
 }
 
 export default VideoPlayer;

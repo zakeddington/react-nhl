@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 import Icon from '../Icon/Icon';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
@@ -103,6 +104,18 @@ class VideoCarousel extends Component {
 
 		return this.renderLoading();
 	}
+}
+
+VideoCarousel.propTypes = {
+	videos: PropTypes.arrayOf(PropTypes.shape({
+		title: PropTypes.string,
+		duration: PropTypes.string,
+		url: PropTypes.string,
+		poster: PropTypes.string,
+		thumb: PropTypes.string,
+		posterAltText: PropTypes.string,
+		showVideoPlayer: PropTypes.bool,
+	})),
 }
 
 export default VideoCarousel;

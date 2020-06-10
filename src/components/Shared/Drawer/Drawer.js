@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CONSTANTS from '../../../config/Constants';
 import Icon from '../Icon/Icon';
 import './Drawer.scss';
@@ -94,6 +95,12 @@ class Drawer extends Component {
 			</div>
 		);
 	}
+}
+
+Drawer.propTypes = {
+	content: PropTypes.element,
+	iconId: PropTypes.string,
+	label: PropTypes.string,
 }
 
 export default Drawer;

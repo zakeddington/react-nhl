@@ -63,7 +63,7 @@ class DrawerStandings extends Component {
 								<tr key={team.name}>
 									<td>{team.rank}</td>
 									<td className="standings--team text-left">
-										<Icon iconId={team.id} iconType={CONSTANTS.iconType.logo} />
+										<Icon iconId={`${team.id}`} iconType={CONSTANTS.iconType.logo} />
 										<span className="standings--team-name">{team.name}</span>
 									</td>
 									<td>{team.games}</td>

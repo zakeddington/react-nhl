@@ -14,7 +14,7 @@ function renderContent(playerStatsByTeam) {
 			{
 				playerStatsByTeam.map((team) => {
 					return (
-						<Tab key={team.id} id={`tab-player-stats-${team.id}`} tabTitle={team.name} iconId={team.id}
+						<Tab key={team.id} id={`tab-player-stats-${team.id}`} tabTitle={team.name} iconId={`${team.id}`}
 							iconType={CONSTANTS.iconType.logo}>
 							<PlayerStatsByPosition playerStatsByPosition={team.playerStatsByPosition}/>
 						</Tab>

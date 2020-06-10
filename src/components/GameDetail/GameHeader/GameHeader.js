@@ -32,7 +32,7 @@ function GameHeader(props) {
 						<span className="game-header-time">{gameStatus}</span>
 					</div>
 					<div className="col game-header-team away">
-						<Icon iconId={awayTeam.id} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${awayTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
 						<div className="game-header-team-info">
 							<span className="game-header-city">{awayTeam.city}</span>
 							<span className="game-header-name">{awayTeam.name}</span>
@@ -44,7 +44,7 @@ function GameHeader(props) {
 						}
 					</div>
 					<div className="col game-header-team home">
-						<Icon iconId={homeTeam.id} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${homeTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
 						<div className="game-header-team-info">
 							<span className="game-header-city">{homeTeam.city}</span>
 							<span className="game-header-name">{homeTeam.name}</span>

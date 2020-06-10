@@ -22,7 +22,7 @@ function PeriodSummaryGoal(props) {
 	return (
 		<div className="period-summary-item">
 			<div className="period-summary-logo">
-				<Icon iconId={teamId} iconType={CONSTANTS.iconType.logo}/>
+				<Icon iconId={`${teamId}`} iconType={CONSTANTS.iconType.logo}/>
 			</div>
 			<div className="period-summary-time">{time}</div>
 			<div className="period-summary-photo">

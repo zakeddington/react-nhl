@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './PlayerPhoto.scss';
 import CONSTANTS from "../../../config/Constants";
 
@@ -10,6 +11,10 @@ function PlayerPhoto(props) {
 			<div className="photo" style={{backgroundImage: `url(${url})`}} />
 		</div>
 	)
+}
+
+PlayerPhoto.propTypes = {
+	playerId: PropTypes.number,
 }
 
 export default PlayerPhoto;

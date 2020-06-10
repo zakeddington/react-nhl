@@ -10,7 +10,7 @@ function renderTeamStatsRow(stats) {
 	return (
 		<tr key={stats.name}>
 			<td className="stats-table--pinned team-stats--team">
-				<Icon iconId={stats.id} iconType={CONSTANTS.iconType.logo}/>
+				<Icon iconId={`${stats.id}`} iconType={CONSTANTS.iconType.logo}/>
 				<span className="team-stats--team-name">{stats.name}</span>
 			</td>
 			<td className="stats-table--spacer">{stats.shots}</td>

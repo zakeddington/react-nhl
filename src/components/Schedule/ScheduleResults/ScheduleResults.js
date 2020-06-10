@@ -30,14 +30,14 @@ function renderContent(data) {
 							<span className="schedule-results--broadcasts">{game.broadcasts}</span>
 						</div>
 						<div className="schedule-results--team away">
-							<Icon iconId={game.awayTeam.id} iconType={CONSTANTS.iconType.logo} />
+							<Icon iconId={`${game.awayTeam.id}`} iconType={CONSTANTS.iconType.logo} />
 							<span className="schedule-results--name">{game.awayTeam.name}
 								<span className="schedule-results--record">({game.awayTeam.record})</span>
 								</span>
 							<span className="schedule-results--score">{game.awayTeam.score}</span>
 						</div>
 						<div className="schedule-results--team home">
-							<Icon iconId={game.homeTeam.id} iconType={CONSTANTS.iconType.logo} />
+							<Icon iconId={`${game.homeTeam.id}`} iconType={CONSTANTS.iconType.logo} />
 							<span className="schedule-results--name">{game.homeTeam.name}
 								<span className="schedule-results--record">({game.homeTeam.record})</span>
 								</span>
