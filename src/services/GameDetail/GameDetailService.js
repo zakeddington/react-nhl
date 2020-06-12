@@ -4,7 +4,7 @@ import API from '../API';
 import GetGameStatus from './GetGameStatus';
 import GetPeriodStats from './GetPeriodStats';
 import GetStarStats from './GetStarStats';
-import GetTeamStats from './GetTeamStats';
+import GetBoxscoreTeam from './GetBoxscoreTeam';
 import GetShootoutPlays from './GetShootoutPlays';
 import GetScoringPlays from './GetScoringPlays';
 import GetPenaltyPlays from './GetPenaltyPlays';
@@ -158,15 +158,15 @@ const GameDetailService = {
 		return periodPlays;
 	},
 
-	async processTeamStatsData(data) {
+	async processBoxscoreTeamsData(data) {
 		const awayTeam = data.gameData.teams.away;
 		const homeTeam = data.gameData.teams.home;
 		const awayBoxscore = data.liveData.boxscore.teams.away.teamStats.teamSkaterStats;
 		const homeBoxscore = data.liveData.boxscore.teams.home.teamStats.teamSkaterStats;
-		const awayTeamStats = GetTeamStats(awayTeam, awayBoxscore);
-		const homeTeamStats = GetTeamStats(homeTeam, homeBoxscore);
+		const awayBoxscoreTeam = GetBoxscoreTeam(awayTeam, awayBoxscore);
+		const homeBoxscoreTeam = GetBoxscoreTeam(homeTeam, homeBoxscore);
 
-		return [awayTeamStats, homeTeamStats];
+		return [awayBoxscoreTeam, homeBoxscoreTeam];
 	},
 
 	async processPlayerStats(data) {

@@ -3,7 +3,7 @@
 // Team Stats Table
 // -----------------------------------------------------------------+
 
-.team-stats {
+.boxscore-teams {
 	margin-bottom: 0;
 
 	table {
@@ -42,7 +42,7 @@
 		font-weight: 600;
 
 		@media (min-width: $breakpoint-desktop-min) {
-			&.team-stats--team {
+			&.boxscore-teams--team {
 				padding-left: 1.5rem;
 			}
 		}

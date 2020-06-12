@@ -4,7 +4,7 @@ import GameIntro from '../components/GameDetail/GameIntro/GameIntro';
 import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
 import Stars from '../components/GameDetail/Stars/Stars';
 import PeriodSummary from '../components/GameDetail/PeriodSummary/PeriodSummary';
-import TeamStats from '../components/GameDetail/TeamStats/TeamStats';
+import BoxscoreTeams from '../components/GameDetail/BoxscoreTeams/BoxscoreTeams';
 import PlayerStatsByTeam from '../components/GameDetail/PlayerStats/PlayerStatsByTeam';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
@@ -27,7 +27,7 @@ class GameDetail extends Component {
 		},
 		dataStars: [],
 		dataPeriodSummary: [],
-		dataTeamStats: [],
+		dataBoxscoreTeams: [],
 		dataPlayerStats: [],
 		dataGameContent: {
 			intro: {},
@@ -38,7 +38,7 @@ class GameDetail extends Component {
 		isScoreBoardError: false,
 		isStarsError: false,
 		isPeriodSummaryError: false,
-		isTeamStatsError: false,
+		isBoxscoreTeamsError: false,
 		isPlayerStatsError: false,
 		isGameContentError: false,
 	};
@@ -57,13 +57,13 @@ class GameDetail extends Component {
 					dataScoreBoard,
 					dataStars,
 					dataPeriodSummary,
-					dataTeamStats,
+					dataBoxscoreTeams,
 					dataPlayerStats,
 					isGameHeaderError,
 					isScoreBoardError,
 					isStarsError,
 					isPeriodSummaryError,
-					isTeamStatsError,
+					isBoxscoreTeamsError,
 					isPlayerStatsError,
 				} = this.state;
 
@@ -96,10 +96,10 @@ class GameDetail extends Component {
 				}
 
 				try {
-					dataTeamStats = await GameDetailService.processTeamStatsData(data);
+					dataBoxscoreTeams = await GameDetailService.processBoxscoreTeamsData(data);
 				} catch (error) {
 					console.error(error);
-					isTeamStatsError = true;
+					isBoxscoreTeamsError = true;
 				}
 
 				try {
@@ -118,13 +118,13 @@ class GameDetail extends Component {
 					dataScoreBoard,
 					dataStars,
 					dataPeriodSummary,
-					dataTeamStats,
+					dataBoxscoreTeams,
 					dataPlayerStats,
 					isGameHeaderError,
 					isScoreBoardError,
 					isStarsError,
 					isPeriodSummaryError,
-					isTeamStatsError,
+					isBoxscoreTeamsError,
 					isPlayerStatsError,
 				});
 
@@ -188,7 +188,7 @@ class GameDetail extends Component {
 			dataScoreBoard,
 			dataStars,
 			dataPeriodSummary,
-			dataTeamStats,
+			dataBoxscoreTeams,
 			dataPlayerStats,
 			dataGameContent,
 			isGameContentError,
@@ -196,7 +196,7 @@ class GameDetail extends Component {
 			isScoreBoardError,
 			isStarsError,
 			isPeriodSummaryError,
-			isTeamStatsError,
+			isBoxscoreTeamsError,
 			isPlayerStatsError,
 		} = this.state;
 
@@ -242,11 +242,11 @@ class GameDetail extends Component {
 								showNoResults={isPeriodSummaryError}
 								periodSummary={dataPeriodSummary} />
 						</Tab>
-						<Tab id="tab-player-stats" tabTitle="Team Stats">
-							<TeamStats
+						<Tab id="tab-boxscore" tabTitle="Boxscore">
+							<BoxscoreTeams
 								showLoader={showLoader}
-								showNoResults={isTeamStatsError}
-								teamStats={dataTeamStats} />
+								showNoResults={isBoxscoreTeamsError}
+								boxscoreTeams={dataBoxscoreTeams} />
 
 							<PlayerStatsByTeam
 								showLoader={showLoader}

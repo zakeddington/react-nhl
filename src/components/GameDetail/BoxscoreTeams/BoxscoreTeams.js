@@ -4,14 +4,14 @@ import CONSTANTS from '../../../config/Constants';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
-import './TeamStats.scss';
+import './BoxscoreTeams.scss';
 
-function renderTeamStatsRow(stats) {
+function renderBoxscoreTeamRow(stats) {
 	return (
 		<tr key={stats.name}>
-			<td className="stats-table--pinned team-stats--team">
+			<td className="stats-table--pinned boxscore-teams--team">
 				<Icon iconId={`${stats.id}`} iconType={CONSTANTS.iconType.logo}/>
-				<span className="team-stats--team-name">{stats.name}</span>
+				<span className="boxscore-teams--team-name">{stats.name}</span>
 			</td>
 			<td className="stats-table--spacer">{stats.shots}</td>
 			<td>{stats.faceOffWinPercentage}</td>
@@ -27,7 +27,7 @@ function renderTeamStatsRow(stats) {
 
 function renderContent(data) {
 	return (
-		<div className="stats-table team-stats">
+		<div className="stats-table boxscore-teams">
 			<table>
 				<thead>
 				<tr>
@@ -48,7 +48,7 @@ function renderContent(data) {
 				<tbody>
 				{
 					data.map((team) => {
-						return renderTeamStatsRow(team);
+						return renderBoxscoreTeamRow(team);
 					})
 				}
 				</tbody>
@@ -57,11 +57,11 @@ function renderContent(data) {
 	)
 }
 
-function TeamStats(props) {
+function BoxscoreTeams(props) {
 	const {
 		showLoader,
 		showNoResults,
-		teamStats,
+		boxscoreTeams,
 	} = props;
 	let content;
 
@@ -71,7 +71,7 @@ function TeamStats(props) {
 		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No game stats available."/>;
 		} else {
-			content = renderContent(teamStats);
+			content = renderContent(boxscoreTeams);
 		}
 	}
 
@@ -82,11 +82,11 @@ function TeamStats(props) {
 	)
 }
 
-TeamStats.propTypes = {
+BoxscoreTeams.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
 	gameStatus: PropTypes.string,
-	teamStats: PropTypes.arrayOf(PropTypes.shape({
+	boxscoreTeams: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
 		shots: PropTypes.number,
@@ -101,4 +101,4 @@ TeamStats.propTypes = {
 	})),
 }
 
-export default TeamStats;
+export default BoxscoreTeams;
