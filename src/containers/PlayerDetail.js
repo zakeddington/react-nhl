@@ -7,11 +7,11 @@ import PlayerDetailStats from '../components/PlayerDetail/PlayerDetailStats/Play
 class PlayerDetail extends Component {
 	state = {
 		showLoader: true,
-		dataPlayerInfo: {},
-		dataStats: [],
+		dataPlayerDetailHero: {},
+		dataPlayerDetailStats: [],
 		dataPlayerPosition: '',
-		isPlayerInfoError: false,
-		isStatsError: false,
+		isPlayerDetailHeroError: false,
+		isPlayerDetailStatsError: false,
 	};
 
 	fetchPlayerDetail(playerId) {
@@ -20,44 +20,44 @@ class PlayerDetail extends Component {
 				const data = await PlayerDetailService.getPlayerData(playerId);
 
 				let {
-					dataPlayerInfo,
-					dataStats,
+					dataPlayerDetailHero,
+					dataPlayerDetailStats,
 					dataPlayerPosition,
-					isPlayerInfoError,
-					isStatsError,
+					isPlayerDetailHeroError,
+					isPlayerDetailStatsError,
 				} = this.state;
 
 				try {
-					dataPlayerInfo = await PlayerDetailService.processPlayerInfo(data);
+					dataPlayerDetailHero = await PlayerDetailService.processPlayerDetailHeroData(data);
 				} catch (error) {
 					console.error(error);
-					isPlayerInfoError = true;
+					isPlayerDetailHeroError = true;
 				}
 
 				try {
-					const statsResults = await PlayerDetailService.processPlayerStats(data);
+					const statsResults = await PlayerDetailService.processPlayerDetailStats(data);
 					dataPlayerPosition = statsResults.playerPosition;
-					dataStats = statsResults.playerStatsByType;
+					dataPlayerDetailStats = statsResults.playerDetailStatsByType;
 				} catch (error) {
 					console.error(error);
-					isStatsError = true;
+					isPlayerDetailStatsError = true;
 				}
 
 				this.setState({
 					showLoader: false,
-					dataPlayerInfo,
-					dataStats,
+					dataPlayerDetailHero,
+					dataPlayerDetailStats,
 					dataPlayerPosition,
-					isPlayerInfoError,
-					isStatsError,
+					isPlayerDetailHeroError,
+					isPlayerDetailStatsError,
 				});
 
 			} catch (error) {
 				console.error(error);
 				this.setState({
 					showLoader: false,
-					isPlayerInfoError: true,
-					isStatsError: true,
+					isPlayerDetailHeroError: true,
+					isPlayerDetailStatsError: true,
 				});
 			}
 		})();
@@ -71,28 +71,28 @@ class PlayerDetail extends Component {
 	render() {
 		const {
 			showLoader,
-			dataPlayerInfo,
-			dataStats,
+			dataPlayerDetailHero,
+			dataPlayerDetailStats,
 			dataPlayerPosition,
-			isPlayerInfoError,
-			isStatsError,
+			isPlayerDetailHeroError,
+			isPlayerDetailStatsError,
 		} = this.state;
 		let content;
 
-		if (isPlayerInfoError && isStatsError) {
+		if (isPlayerDetailHeroError && isPlayerDetailStatsError) {
 			content = <ErrorMessage errorMsg="No player details available." />;
 		} else {
 			content =
 				<>
 					<PlayerDetailHero
 						showLoader={showLoader}
-						showNoResults={isPlayerInfoError}
-						playerInfo={dataPlayerInfo} />
+						showNoResults={isPlayerDetailHeroError}
+						playerDetailHero={dataPlayerDetailHero} />
 					<PlayerDetailStats
 						showLoader={showLoader}
-						showNoResults={isStatsError}
+						showNoResults={isPlayerDetailStatsError}
 						playerPosition={dataPlayerPosition}
-						playerStatsByType={dataStats} />
+						playerDetailStatsByType={dataPlayerDetailStats} />
 				</>
 		}
 

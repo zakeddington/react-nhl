@@ -9,7 +9,7 @@ class PlayerDetailService {
 		return await API.getPlayerDetail(playerId);
 	}
 
-	async processPlayerInfo(playerData) {
+	async processPlayerDetailHeroData(playerData) {
 		const data = playerData.people[0];
 		const id = data.id;
 		const birthDate = moment(data.birthDate).format(CONSTANTS.momentOptions.birthFormat);
@@ -60,14 +60,14 @@ class PlayerDetailService {
 		});
 	}
 
-	async processPlayerStats(playerData) {
+	async processPlayerDetailStats(playerData) {
 		const data = playerData.people[0];
 		const stats = data.stats;
 		const position = data.primaryPosition.abbreviation;
 
 		const results = {
 			playerPosition: position,
-			playerStatsByType: GetStats(stats, position),
+			playerDetailStatsByType: GetStats(stats, position),
 		};
 
 		return results;

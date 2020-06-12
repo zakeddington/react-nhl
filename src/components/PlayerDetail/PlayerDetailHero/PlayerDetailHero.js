@@ -5,34 +5,34 @@ import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import './PlayerDetailHero.scss';
 
 function renderContent(props) {
-	const { playerInfo } = props;
+	const { playerDetailHero } = props;
 
 	return (
 		<>
-			<div className="player-detail-hero" style={{backgroundImage: 'url(' + playerInfo.heroImg + ')'}} />
+			<div className="player-detail-hero" style={{backgroundImage: 'url(' + playerDetailHero.heroImg + ')'}} />
 			<div className="player-detail-bio">
-				<PlayerPhoto playerId={playerInfo.id} photoClass="player-detail-bio--photo" />
+				<PlayerPhoto playerId={playerDetailHero.id} photoClass="player-detail-bio--photo" />
 				<div className="player-detail-bio--info">
-					<div className="player-detail-bio--name">{playerInfo.name} #{playerInfo.number}</div>
+					<div className="player-detail-bio--name">{playerDetailHero.name} #{playerDetailHero.number}</div>
 					<div>
-						<span className="player-detail-bio--stat">{playerInfo.pos} | {playerInfo.height} | {playerInfo.weight} lbs</span>
+						<span className="player-detail-bio--stat">{playerDetailHero.pos} | {playerDetailHero.height} | {playerDetailHero.weight} lbs</span>
 					</div>
 					<div>
 						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Shoots:</span> {playerInfo.shoots}
+							<span className="player-detail-bio--label">Shoots:</span> {playerDetailHero.shoots}
 						</span>
 					</div>
 					<div>
 						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Born:</span> {playerInfo.birthDate}
+							<span className="player-detail-bio--label">Born:</span> {playerDetailHero.birthDate}
 						</span>
 						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Age:</span> {playerInfo.age}
+							<span className="player-detail-bio--label">Age:</span> {playerDetailHero.age}
 						</span>
 					</div>
 					<div>
 						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Birthplace:</span> {playerInfo.birthPlace}
+							<span className="player-detail-bio--label">Birthplace:</span> {playerDetailHero.birthPlace}
 						</span>
 					</div>
 				</div>
@@ -68,7 +68,7 @@ function PlayerDetailHero(props) {
 PlayerDetailHero.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
-	playerInfo: PropTypes.shape({
+	playerDetailHero: PropTypes.shape({
 		age: PropTypes.number,
 		birthDate: PropTypes.string,
 		birthPlace: PropTypes.string,

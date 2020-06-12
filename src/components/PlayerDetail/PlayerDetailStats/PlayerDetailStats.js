@@ -7,12 +7,12 @@ import PlayerDetailGoalieStats from './PlayerDetailGoalieStats';
 import PlayerDetailSkaterStats from './PlayerDetailSkaterStats';
 
 function renderContent(props) {
-	const { playerPosition, playerStatsByType } = props;
+	const { playerPosition, playerDetailStatsByType } = props;
 
 	return (
 		<Tabs key="tabs-player-details">
 			{
-				playerStatsByType.map((type) => {
+				playerDetailStatsByType.map((type) => {
 					let content;
 
 					if (playerPosition === 'G') {
@@ -60,7 +60,7 @@ PlayerDetailStats.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
 	playerPosition: PropTypes.string,
-	playerStatsByType: PropTypes.arrayOf(PropTypes.shape({
+	playerDetailStatsByType: PropTypes.arrayOf(PropTypes.shape({
 		typeName: PropTypes.string,
 		statsBySeason: PropTypes.arrayOf(PropTypes.object),
 	})),
