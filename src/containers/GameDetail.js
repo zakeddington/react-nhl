@@ -247,7 +247,6 @@ class GameDetail extends Component {
 								showLoader={showLoader}
 								showNoResults={isBoxscoreTeamsError}
 								boxscoreTeams={dataBoxscoreTeams} />
-
 							<BoxscorePlayersByTeam
 								showLoader={showLoader}
 								showNoResults={isBoxscorePlayersError}

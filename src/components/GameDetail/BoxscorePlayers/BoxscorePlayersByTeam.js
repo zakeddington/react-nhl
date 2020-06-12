@@ -37,7 +37,7 @@ function BoxscorePlayersByTeam(props) {
 		content = <Loader/>;
 	} else {
 		if (showNoResults) {
-			content = <ErrorMessage errorMsg="No team stats available."/>;
+			content = <ErrorMessage errorMsg="No player boxscore available."/>;
 		} else {
 			content = renderContent(boxscorePlayersByTeam);
 		}

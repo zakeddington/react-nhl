@@ -6,21 +6,21 @@ import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
 import './BoxscoreTeams.scss';
 
-function renderBoxscoreTeamRow(stats) {
+function renderBoxscoreTeamRow(team) {
 	return (
-		<tr key={stats.name}>
+		<tr key={team.name}>
 			<td className="stats-table--pinned boxscore-teams--team">
-				<Icon iconId={`${stats.id}`} iconType={CONSTANTS.iconType.logo}/>
-				<span className="boxscore-teams--team-name">{stats.name}</span>
+				<Icon iconId={`${team.id}`} iconType={CONSTANTS.iconType.logo}/>
+				<span className="boxscore-teams--team-name">{team.name}</span>
 			</td>
-			<td className="stats-table--spacer">{stats.shots}</td>
-			<td>{stats.faceOffWinPercentage}</td>
-			<td>{stats.powerPlayGoals}/{stats.powerPlayOpportunities}</td>
-			<td>{stats.pim}</td>
-			<td>{stats.hits}</td>
-			<td>{stats.blocked}</td>
-			<td>{stats.giveaways}</td>
-			<td>{stats.takeaways}</td>
+			<td className="stats-table--spacer">{team.shots}</td>
+			<td>{team.faceOffWinPercentage}</td>
+			<td>{team.powerPlayGoals}/{team.powerPlayOpportunities}</td>
+			<td>{team.pim}</td>
+			<td>{team.hits}</td>
+			<td>{team.blocked}</td>
+			<td>{team.giveaways}</td>
+			<td>{team.takeaways}</td>
 		</tr>
 	)
 }
@@ -69,7 +69,7 @@ function BoxscoreTeams(props) {
 		content = <Loader/>;
 	} else {
 		if (showNoResults) {
-			content = <ErrorMessage errorMsg="No game stats available."/>;
+			content = <ErrorMessage errorMsg="No team boxscore available."/>;
 		} else {
 			content = renderContent(boxscoreTeams);
 		}
