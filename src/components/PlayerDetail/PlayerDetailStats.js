@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../Shared/Loader/Loader';
-import ErrorMessage from '../Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../Shared/Tabs/Tabs';
 import Tab from '../Shared/Tabs/Tab';
 import PlayerDetailGoalieStats from './PlayerDetailGoalieStats';
@@ -44,7 +43,7 @@ function PlayerDetailStats(props) {
 		content = <Loader />;
 	} else {
 		if (showNoResults) {
-			content = <ErrorMessage errorMsg="No stats available." />;
+			content = null;
 		} else {
 			content = renderContent(props);
 		}

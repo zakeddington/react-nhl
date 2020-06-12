@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PlayerDetailService from '../services/PlayerDetail/PlayerDetailService';
+import ErrorMessage from '../components/Shared/ErrorMessage/ErrorMessage';
 import PlayerDetailHero from '../components/PlayerDetail/PlayerDetailHero';
 import PlayerDetailStats from '../components/PlayerDetail/PlayerDetailStats';
 
@@ -76,18 +77,28 @@ class PlayerDetail extends Component {
 			isPlayerInfoError,
 			isStatsError,
 		} = this.state;
+		let content;
+
+		if (isPlayerInfoError && isStatsError) {
+			content = <ErrorMessage errorMsg="No player details available." />;
+		} else {
+			content =
+				<>
+					<PlayerDetailHero
+						showLoader={showLoader}
+						showNoResults={isPlayerInfoError}
+						playerInfo={dataPlayerInfo} />
+					<PlayerDetailStats
+						showLoader={showLoader}
+						showNoResults={isStatsError}
+						playerPosition={dataPlayerPosition}
+						playerStatsByType={dataStats} />
+				</>
+		}
 
 		return (
 			<div className="modal--content">
-				<PlayerDetailHero
-					showLoader={showLoader}
-					showNoResults={isPlayerInfoError}
-					playerInfo={dataPlayerInfo} />
-				<PlayerDetailStats
-					showLoader={showLoader}
-					showNoResults={isStatsError}
-					playerPosition={dataPlayerPosition}
-					playerStatsByType={dataStats} />
+				{content}
 			</div>
 		)
 	}

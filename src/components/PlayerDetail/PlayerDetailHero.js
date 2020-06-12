@@ -1,8 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Loader from '../Shared/Loader/Loader';
 import PlayerPhoto from '../Shared/PlayerPhoto/PlayerPhoto';
-import Loader from "../Shared/Loader/Loader";
-import ErrorMessage from "../Shared/ErrorMessage/ErrorMessage";
-import PropTypes from "prop-types";
 
 
 function renderContent(props) {
@@ -53,7 +52,7 @@ function PlayerDetailHero(props) {
 		content = <Loader />;
 	} else {
 		if (showNoResults) {
-			content = <ErrorMessage errorMsg="No player info available." />;
+			content = null;
 		} else {
 			content = renderContent(props);
 		}
