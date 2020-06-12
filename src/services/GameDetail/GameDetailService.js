@@ -115,7 +115,7 @@ const GameDetailService = {
 		return curStars;
 	},
 
-	async processPeriodSummary(data) {
+	async processPeriodSummaryData(data) {
 		const periods = data.liveData.linescore.periods;
 		const scoringIds = data.liveData.plays.scoringPlays;
 		const penaltyIds = data.liveData.plays.penaltyPlays;

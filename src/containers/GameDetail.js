@@ -89,7 +89,7 @@ class GameDetail extends Component {
 				}
 
 				try {
-					dataPeriodSummary = await GameDetailService.processPeriodSummary(data);
+					dataPeriodSummary = await GameDetailService.processPeriodSummaryData(data);
 				} catch (error) {
 					console.error(error);
 					isPeriodSummaryError = true;
