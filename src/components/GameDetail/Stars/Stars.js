@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Loader from '../../Shared/Loader/Loader';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
-import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
+import PlayerDetail from '../../../containers/PlayerDetail';
 import './Stars.scss';
 
 function renderContent(starsArray) {
@@ -13,12 +13,12 @@ function renderContent(starsArray) {
 
 		return (
 			<div key={Math.random()} className="stars-player">
-				<Modal content={<ModalPlayerDetailContent contentId={id}/>} modalClass="player-detail">
+				<Modal content={<PlayerDetail playerId={id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={id}/>
 					<span className="offscreen">Open player details for {name} in modal window</span>
 				</Modal>
 				<span className="stars-name">
-						<Modal content={<ModalPlayerDetailContent contentId={id}/>} modalClass="player-detail">
+						<Modal content={<PlayerDetail playerId={id} />} modalClass="player-detail">
 							{name}
 						</Modal>
 						<span className="stars-team-name">{teamName}</span>

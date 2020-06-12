@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CONSTANTS from '../../../config/Constants';
-import PlayerDetailService from '../../../services/PlayerDetailService';
+import PlayerDetailService from '../../../services/PlayerDetail/PlayerDetailService';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import PlayerPhoto from '../PlayerPhoto/PlayerPhoto';
@@ -316,6 +316,8 @@ class ModalPlayerDetailContent extends Component {
 
 	renderContent() {
 		const { data } = this.state;
+
+		console.log(data);
 
 		return (
 			<div className="modal--content">
