@@ -5,7 +5,7 @@ import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
 import Stars from '../components/GameDetail/Stars/Stars';
 import PeriodSummary from '../components/GameDetail/PeriodSummary/PeriodSummary';
 import BoxscoreTeams from '../components/GameDetail/BoxscoreTeams/BoxscoreTeams';
-import PlayerStatsByTeam from '../components/GameDetail/PlayerStats/PlayerStatsByTeam';
+import BoxscorePlayersByTeam from '../components/GameDetail/BoxscorePlayers/BoxscorePlayersByTeam';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
 
@@ -28,7 +28,7 @@ class GameDetail extends Component {
 		dataStars: [],
 		dataPeriodSummary: [],
 		dataBoxscoreTeams: [],
-		dataPlayerStats: [],
+		dataBoxscorePlayers: [],
 		dataGameContent: {
 			intro: {},
 			videos: [],
@@ -39,7 +39,7 @@ class GameDetail extends Component {
 		isStarsError: false,
 		isPeriodSummaryError: false,
 		isBoxscoreTeamsError: false,
-		isPlayerStatsError: false,
+		isBoxscorePlayersError: false,
 		isGameContentError: false,
 	};
 
@@ -58,13 +58,13 @@ class GameDetail extends Component {
 					dataStars,
 					dataPeriodSummary,
 					dataBoxscoreTeams,
-					dataPlayerStats,
+					dataBoxscorePlayers,
 					isGameHeaderError,
 					isScoreBoardError,
 					isStarsError,
 					isPeriodSummaryError,
 					isBoxscoreTeamsError,
-					isPlayerStatsError,
+					isBoxscorePlayersError,
 				} = this.state;
 
 				try {
@@ -103,10 +103,10 @@ class GameDetail extends Component {
 				}
 
 				try {
-					dataPlayerStats = await GameDetailService.processPlayerStats(data);
+					dataBoxscorePlayers = await GameDetailService.processBoxscorePlayersData(data);
 				} catch (error) {
 					console.error(error);
-					isPlayerStatsError = true;
+					isBoxscorePlayersError = true;
 				}
 
 				this.setState({
@@ -119,13 +119,13 @@ class GameDetail extends Component {
 					dataStars,
 					dataPeriodSummary,
 					dataBoxscoreTeams,
-					dataPlayerStats,
+					dataBoxscorePlayers,
 					isGameHeaderError,
 					isScoreBoardError,
 					isStarsError,
 					isPeriodSummaryError,
 					isBoxscoreTeamsError,
-					isPlayerStatsError,
+					isBoxscorePlayersError,
 				});
 
 			} catch (error) {
@@ -189,7 +189,7 @@ class GameDetail extends Component {
 			dataStars,
 			dataPeriodSummary,
 			dataBoxscoreTeams,
-			dataPlayerStats,
+			dataBoxscorePlayers,
 			dataGameContent,
 			isGameContentError,
 			isGameHeaderError,
@@ -197,7 +197,7 @@ class GameDetail extends Component {
 			isStarsError,
 			isPeriodSummaryError,
 			isBoxscoreTeamsError,
-			isPlayerStatsError,
+			isBoxscorePlayersError,
 		} = this.state;
 
 		return (
@@ -248,10 +248,10 @@ class GameDetail extends Component {
 								showNoResults={isBoxscoreTeamsError}
 								boxscoreTeams={dataBoxscoreTeams} />
 
-							<PlayerStatsByTeam
+							<BoxscorePlayersByTeam
 								showLoader={showLoader}
-								showNoResults={isPlayerStatsError}
-								playerStatsByTeam={dataPlayerStats} />
+								showNoResults={isBoxscorePlayersError}
+								boxscorePlayersByTeam={dataBoxscorePlayers} />
 						</Tab>
 					</Tabs>
 				}

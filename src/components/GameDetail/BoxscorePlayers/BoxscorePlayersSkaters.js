@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
-import './PlayerStats.scss';
 
-function renderSkaterStats(data) {
+function renderBoxscoreSkaterRow(data) {
 	return (
 		<tr key={data.id}>
 			<td className="stats-table--pinned stats-table--jersey">{data.number}</td>
@@ -13,7 +12,7 @@ function renderSkaterStats(data) {
 					{data.name}
 					<span className="offscreen">Open player details for {data.name} in modal window</span>
 				</Modal>, {data.pos}</td>
-			<td className="stats-table--spacer">{data.goals}</td>
+			<td className="stats-table--spacer-wide">{data.goals}</td>
 			<td>{data.assists}</td>
 			<td>{data.goals + data.assists}</td>
 			<td>{data.plusMinus}</td>
@@ -32,20 +31,20 @@ function renderSkaterStats(data) {
 	);
 }
 
-function PlayerStatsSkaters(props) {
+function BoxscorePlayersSkaters(props) {
 	const {
 		position,
-		playerStats,
+		boxscorePlayers,
 	} = props;
 
 	return (
-		<div className="stats-table player-stats">
+		<div className="stats-table">
 			<table>
 				<thead>
 				<tr>
 					<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
 					<th className="stats-table--pinned stats-table--name text-left">{position}</th>
-					<th className="stats-table--spacer"><span className="tooltip">G <span className="tooltip-content">Goals</span></span></th>
+					<th className="stats-table--spacer-wide"><span className="tooltip">G <span className="tooltip-content">Goals</span></span></th>
 					<th><span className="tooltip">A <span className="tooltip-content">Assists</span></span></th>
 					<th><span className="tooltip">P <span className="tooltip-content">Points</span></span></th>
 					<th><span className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></span></th>
@@ -64,8 +63,8 @@ function PlayerStatsSkaters(props) {
 				</thead>
 				<tbody>
 				{
-					playerStats.map((player) => {
-						return (renderSkaterStats(player))
+					boxscorePlayers.map((player) => {
+						return (renderBoxscoreSkaterRow(player))
 					})
 				}
 				</tbody>
@@ -74,9 +73,9 @@ function PlayerStatsSkaters(props) {
 	)
 }
 
-PlayerStatsSkaters.propTypes = {
+BoxscorePlayersSkaters.propTypes = {
 	position: PropTypes.string,
-	playerStats: PropTypes.arrayOf(PropTypes.shape({
+	boxscorePlayers: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
 		number: PropTypes.string,
@@ -107,4 +106,4 @@ PlayerStatsSkaters.propTypes = {
 	})),
 }
 
-export default PlayerStatsSkaters;
+export default BoxscorePlayersSkaters;

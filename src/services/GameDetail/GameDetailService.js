@@ -8,7 +8,7 @@ import GetBoxscoreTeam from './GetBoxscoreTeam';
 import GetShootoutPlays from './GetShootoutPlays';
 import GetScoringPlays from './GetScoringPlays';
 import GetPenaltyPlays from './GetPenaltyPlays';
-import GetPlayerStatsByTeam from './GetPlayerStatsByTeam';
+import GetBoxscorePlayersByTeam from './GetBoxscorePlayersByTeam';
 import GetVideoData from './GetVideoData';
 
 export const GameDetailInitialState = {
@@ -169,15 +169,15 @@ const GameDetailService = {
 		return [awayBoxscoreTeam, homeBoxscoreTeam];
 	},
 
-	async processPlayerStats(data) {
+	async processBoxscorePlayersData(data) {
 		const awayTeam = data.gameData.teams.away;
 		const homeTeam = data.gameData.teams.home;
 		const awayPlayers = data.liveData.boxscore.teams.away.players;
 		const homePlayers = data.liveData.boxscore.teams.home.players;
-		const awayPlayerStats = GetPlayerStatsByTeam(awayTeam, awayPlayers);
-		const homePlayerStats = GetPlayerStatsByTeam(homeTeam, homePlayers);
+		const awayBoxscorePlayers = GetBoxscorePlayersByTeam(awayTeam, awayPlayers);
+		const homeBoxscorePlayers = GetBoxscorePlayersByTeam(homeTeam, homePlayers);
 
-		return [awayPlayerStats, homePlayerStats];
+		return [awayBoxscorePlayers, homeBoxscorePlayers];
 	},
 
 	async getGameContent(gameId) {

@@ -5,18 +5,18 @@ import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../../Shared/Tabs/Tabs';
 import Tab from '../../Shared/Tabs/Tab';
-import PlayerStatsByPosition from './PlayerStatsByPosition';
-import './PlayerStatsByTeam.scss';
+import BoxscorePlayersByPosition from './BoxscorePlayersByPosition';
+import './BoxscorePlayersByTeam.scss';
 
-function renderContent(playerStatsByTeam) {
+function renderContent(boxscorePlayersByTeam) {
 	return (
-		<Tabs key="tabs-player-stats" tabsClass="player-stats--tabs">
+		<Tabs key="tabs-boxscore-players" tabsClass="tabs-boxscore-players">
 			{
-				playerStatsByTeam.map((team) => {
+				boxscorePlayersByTeam.map((team) => {
 					return (
-						<Tab key={team.id} id={`tab-player-stats-${team.id}`} tabTitle={team.name} iconId={`${team.id}`}
+						<Tab key={team.id} id={`tab-boxscore-players-${team.id}`} tabTitle={team.name} iconId={`${team.id}`}
 							iconType={CONSTANTS.iconType.logo}>
-							<PlayerStatsByPosition playerStatsByPosition={team.playerStatsByPosition}/>
+							<BoxscorePlayersByPosition boxscorePlayersByPosition={team.boxscorePlayersByPosition}/>
 						</Tab>
 					)
 				})
@@ -25,11 +25,11 @@ function renderContent(playerStatsByTeam) {
 	);
 }
 
-function PlayerStatByTeam(props) {
+function BoxscorePlayersByTeam(props) {
 	const {
 		showLoader,
 		showNoResults,
-		playerStatsByTeam,
+		boxscorePlayersByTeam,
 	} = props;
 	let content;
 
@@ -39,7 +39,7 @@ function PlayerStatByTeam(props) {
 		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No team stats available."/>;
 		} else {
-			content = renderContent(playerStatsByTeam);
+			content = renderContent(boxscorePlayersByTeam);
 		}
 	}
 
@@ -50,14 +50,14 @@ function PlayerStatByTeam(props) {
 	)
 }
 
-PlayerStatByTeam.propTypes = {
+BoxscorePlayersByTeam.propTypes = {
 	showLoader: PropTypes.bool,
 	showNoResults: PropTypes.bool,
-	playerStatsByTeam: PropTypes.arrayOf(PropTypes.shape({
+	boxscorePlayersByTeam: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		name: PropTypes.string,
-		playerStatsByPosition: PropTypes.arrayOf(PropTypes.object),
+		boxscorePlayersByPosition: PropTypes.arrayOf(PropTypes.object),
 	})),
 }
 
-export default PlayerStatByTeam;
+export default BoxscorePlayersByTeam;

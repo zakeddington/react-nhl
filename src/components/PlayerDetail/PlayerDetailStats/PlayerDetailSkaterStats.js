@@ -38,7 +38,7 @@ function PlayerDetailSkaterStats(props) {
 	}
 
 	return (
-		<div key="player-detail-skater-stats" className="stats-table player-stats">
+		<div key="player-detail-skater-stats" className="stats-table">
 			<table>
 				<thead>
 					<tr>

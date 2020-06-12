@@ -10,7 +10,7 @@ function renderContent(props) {
 	const { playerPosition, playerStatsByType } = props;
 
 	return (
-		<Tabs key="tabs-player-stats" tabsClass="player-stats--tabs">
+		<Tabs key="tabs-player-details">
 			{
 				playerStatsByType.map((type) => {
 					let content;
@@ -22,7 +22,7 @@ function renderContent(props) {
 					}
 
 					return (
-						<Tab key={type.typeName} id={`tab-player-stats-${type.typeName}`} tabTitle={type.typeName}>
+						<Tab key={type.typeName} id={`tab-player-details-${type.typeName}`} tabTitle={type.typeName}>
 							{content}
 						</Tab>
 					)

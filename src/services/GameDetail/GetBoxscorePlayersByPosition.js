@@ -13,8 +13,8 @@ function GetSavePercent(saves, shots) {
 	return '-';
 }
 
-function GetPlayerStatsByPosition(players) {
-	const playerStatsByPosition = [];
+function GetBoxscorePlayersByPosition(players) {
+	const boxscorePlayersByPosition = [];
 	const forwards = [];
 	const defense = [];
 	const goalies = [];
@@ -58,22 +58,22 @@ function GetPlayerStatsByPosition(players) {
 	defense.sort((a, b) => a.number - b.number);
 	goalies.sort((a, b) => a.number - b.number);
 
-	playerStatsByPosition.push({
+	boxscorePlayersByPosition.push({
 		position: 'Forwards',
-		playerStats: forwards,
+		boxscorePlayers: forwards,
 	});
 
-	playerStatsByPosition.push({
+	boxscorePlayersByPosition.push({
 		position: 'Defense',
-		playerStats: defense,
+		boxscorePlayers: defense,
 	});
 
-	playerStatsByPosition.push({
+	boxscorePlayersByPosition.push({
 		position: 'Goalies',
-		playerStats: goalies,
+		boxscorePlayers: goalies,
 	});
 
-	return playerStatsByPosition;
+	return boxscorePlayersByPosition;
 }
 
-export default GetPlayerStatsByPosition;
+export default GetBoxscorePlayersByPosition;
