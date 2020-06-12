@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ErrorMessage from '../Shared/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 
 function renderSkaterStats(data, i) {
 	return (

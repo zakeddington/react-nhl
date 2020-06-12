@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../Shared/Modal/Modal';
-import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
+import PlayerDetail from '../../../containers/PlayerDetail';
 import './PlayerStats.scss';
 
 function renderSkaterStats(data) {
@@ -9,7 +9,7 @@ function renderSkaterStats(data) {
 		<tr key={data.id}>
 			<td className="stats-table--pinned stats-table--jersey">{data.number}</td>
 			<td className="stats-table--pinned text-left stats-table--name">
-				<Modal content={<ModalPlayerDetailContent contentId={data.id}/>} modalClass="player-detail">
+				<Modal content={<PlayerDetail playerId={data.id} />} modalClass="player-detail">
 					{data.name}
 					<span className="offscreen">Open player details for {data.name} in modal window</span>
 				</Modal>, {data.pos}</td>

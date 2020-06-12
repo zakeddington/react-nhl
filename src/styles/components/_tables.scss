@@ -52,10 +52,18 @@
 		font-weight: 500;
 	}
 
-	@media (max-width: $breakpoint-mobile-max) {
-		.stats-table--pinned {
+	&--pinned {
+		@media (max-width: $breakpoint-mobile-max) {
 			border-right: 1px solid $color-grey-med;
 			position: absolute;
+			min-width: 7rem;
+			width: 7rem;
+		}
+	}
+
+	&--spacer {
+		@media (max-width: $breakpoint-mobile-max) {
+			padding-left: 8rem;
 		}
 	}
 }

@@ -4,7 +4,7 @@ import CONSTANTS from '../../../config/Constants';
 import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
-import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
+import PlayerDetail from '../../../containers/PlayerDetail';
 import './PeriodSummary.scss';
 
 function PeriodSummaryPenalty(props) {
@@ -23,7 +23,7 @@ function PeriodSummaryPenalty(props) {
 			</div>
 			<div className="period-summary-time">{time}</div>
 			<div className="period-summary-photo">
-				<Modal content={<ModalPlayerDetailContent contentId={penaltyOn.id}/>} modalClass="player-detail">
+				<Modal content={<PlayerDetail playerId={penaltyOn.id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={penaltyOn.id}/>
 					<span className="offscreen">Open player details for {penaltyOn.name} in modal window</span>
 				</Modal>
@@ -31,7 +31,7 @@ function PeriodSummaryPenalty(props) {
 			<div className="period-summary-player-info">
 				<span className="period-summary-player">
 					<span className="period-summary-name">
-						<Modal content={<ModalPlayerDetailContent contentId={penaltyOn.id}/>}
+						<Modal content={<PlayerDetail playerId={penaltyOn.id} />}
 							modalClass="player-detail">
 							{penaltyOn.name}
 							<span className="offscreen">Open player details for {penaltyOn.name} in modal window</span>

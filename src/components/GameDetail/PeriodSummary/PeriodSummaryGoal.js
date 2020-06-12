@@ -4,7 +4,7 @@ import CONSTANTS from '../../../config/Constants';
 import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
-import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
+import PlayerDetail from '../../../containers/PlayerDetail';
 import './PeriodSummary.scss';
 
 function PeriodSummaryGoal(props) {
@@ -26,7 +26,7 @@ function PeriodSummaryGoal(props) {
 			</div>
 			<div className="period-summary-time">{time}</div>
 			<div className="period-summary-photo">
-				<Modal content={<ModalPlayerDetailContent contentId={scorer.id}/>} modalClass="player-detail">
+				<Modal content={<PlayerDetail playerId={scorer.id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={scorer.id}/>
 					<span className="offscreen">Open player details for {scorer.name} in modal window</span>
 				</Modal>
@@ -34,7 +34,7 @@ function PeriodSummaryGoal(props) {
 			<div className="period-summary-player-info">
 				<span className="period-summary-player">
 					<span className="period-summary-name">
-						<Modal content={<ModalPlayerDetailContent contentId={scorer.id}/>} modalClass="player-detail">
+						<Modal content={<PlayerDetail playerId={scorer.id} />} modalClass="player-detail">
 							{scorer.name}
 							<span className="offscreen">Open player details for {scorer.name} in modal window</span>
 						</Modal> ({scorer.total}),
@@ -58,7 +58,7 @@ function PeriodSummaryGoal(props) {
 						assists.map((assist, i) => {
 							return (
 								<span key={assist.name}>
-									<Modal content={<ModalPlayerDetailContent contentId={assist.id}/>} modalClass="player-detail">
+									<Modal content={<PlayerDetail playerId={assist.id} />} modalClass="player-detail">
 										{assist.name}
 										<span className="offscreen">Open player details for {assist.name} in modal window</span>
 									</Modal> ({assist.total}){i < assists.length - 1 && ', '}

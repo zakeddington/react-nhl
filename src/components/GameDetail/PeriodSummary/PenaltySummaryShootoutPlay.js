@@ -4,7 +4,7 @@ import CONSTANTS from '../../../config/Constants';
 import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
-import ModalPlayerDetailContent from '../../Shared/Modal/ModalPlayerDetailContent';
+import PlayerDetail from '../../../containers/PlayerDetail';
 import './PeriodSummary.scss';
 
 function PeriodSummaryShootoutPlay(props) {
@@ -22,7 +22,7 @@ function PeriodSummaryShootoutPlay(props) {
 			</div>
 			<div className="period-summary-time"/>
 			<div className="period-summary-photo">
-				<Modal content={<ModalPlayerDetailContent contentId={shooter.id}/>} modalClass="player-detail">
+				<Modal content={<PlayerDetail playerId={shooter.id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={shooter.id}/>
 					<span className="offscreen">Open player details for {shooter.name} in modal window</span>
 				</Modal>
@@ -30,7 +30,7 @@ function PeriodSummaryShootoutPlay(props) {
 			<div className="period-summary-player-info">
 						<span className="period-summary-player">
 							<span className="period-summary-name">
-								<Modal content={<ModalPlayerDetailContent contentId={shooter.id}/>} modalClass="player-detail">
+								<Modal content={<PlayerDetail playerId={shooter.id} />} modalClass="player-detail">
 									{shooter.name}
 									<span className="offscreen">Open player details for {shooter.name} in modal window</span>
 								</Modal>

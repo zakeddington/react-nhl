@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PlayerDetailService from '../services/PlayerDetail/PlayerDetailService';
 import ErrorMessage from '../components/Shared/ErrorMessage/ErrorMessage';
-import PlayerDetailHero from '../components/PlayerDetail/PlayerDetailHero';
-import PlayerDetailStats from '../components/PlayerDetail/PlayerDetailStats';
+import PlayerDetailHero from '../components/PlayerDetail/PlayerDetailHero/PlayerDetailHero';
+import PlayerDetailStats from '../components/PlayerDetail/PlayerDetailStats/PlayerDetailStats';
 
 class PlayerDetail extends Component {
 	state = {
@@ -95,6 +95,13 @@ class PlayerDetail extends Component {
 						playerStatsByType={dataStats} />
 				</>
 		}
+
+
+
+		// TODO: update class so it can be used outside modal
+		// need modal css somewhere
+
+
 
 		return (
 			<div className="modal--content">

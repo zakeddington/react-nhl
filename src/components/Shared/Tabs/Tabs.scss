@@ -41,6 +41,11 @@
 
 	&--content {
 		display: none;
+		overflow-x: hidden;
+
+		@media (max-width: $breakpoint-tablet-max) {
+			overflow-x: auto;
+		}
 
 		&.is-active {
 			animation: fade-in $anim-speed-base forwards $anim-ease;

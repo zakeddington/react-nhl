@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../Shared/Loader/Loader';
-import Tabs from '../Shared/Tabs/Tabs';
-import Tab from '../Shared/Tabs/Tab';
+import Loader from '../../Shared/Loader/Loader';
+import Tabs from '../../Shared/Tabs/Tabs';
+import Tab from '../../Shared/Tabs/Tab';
 import PlayerDetailGoalieStats from './PlayerDetailGoalieStats';
 import PlayerDetailSkaterStats from './PlayerDetailSkaterStats';
 
