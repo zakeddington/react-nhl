@@ -4,7 +4,7 @@
 // -----------------------------------------------------------------+
 
 .scoreboard-stars {
-	margin: 2em auto;
+	margin: $space-base-vertical auto;
 
 	@media (min-width: $breakpoint-desktop-min) {
 		display: flex;
@@ -20,7 +20,7 @@
 	border-bottom: 1px solid $color-grey-med;
 	display: flex;
 	flex-direction: column;
-	margin: 0 auto 2em;
+	margin: 0 auto $space-base-vertical;
 	width: 100%;
 
 	@media (min-width: $breakpoint-desktop-min) {

@@ -80,29 +80,39 @@ class PlayerDetail extends Component {
 			isPlayerDetailStatsError,
 		} = this.state;
 		let content;
-		let containerClass = isFullPage ? 'site-content container bg-white' : '';
+
+		const components =
+			<>
+				<PlayerDetailHero
+					showLoader={showLoader}
+					showNoResults={isPlayerDetailHeroError}
+					playerDetailHero={dataPlayerDetailHero} />
+				<PlayerDetailStats
+					showLoader={showLoader}
+					showNoResults={isPlayerDetailStatsError}
+					playerPosition={dataPlayerPosition}
+					playerDetailStatsByType={dataPlayerDetailStats} />
+			</>;
 
 		if (isPlayerDetailHeroError && isPlayerDetailStatsError) {
 			content = <ErrorMessage errorMsg="No player details available." />;
 		} else {
-			content =
-				<>
-					<PlayerDetailHero
-						showLoader={showLoader}
-						showNoResults={isPlayerDetailHeroError}
-						playerDetailHero={dataPlayerDetailHero} />
-					<PlayerDetailStats
-						showLoader={showLoader}
-						showNoResults={isPlayerDetailStatsError}
-						playerPosition={dataPlayerPosition}
-						playerDetailStatsByType={dataPlayerDetailStats} />
-				</>
+			if (isFullPage) {
+				content =
+					<div className="site-content container">
+						<div className="bg-white content-padding">
+							{components}
+						</div>
+					</div>
+			} else {
+				content = components;
+			}
 		}
 
 		return (
-			<div className={containerClass}>
+			<>
 				{content}
-			</div>
+			</>
 		)
 	}
 }

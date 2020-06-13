@@ -4,13 +4,13 @@
 // -----------------------------------------------------------------+
 
 .period-summary {
-	margin: 0 auto 2em;
+	margin: 0 auto $space-base-vertical;
 	width: 100%;
 }
 
 .period-summary-period {
 	background: $color-white;
-	margin-bottom: 2em;
+	margin-bottom: $space-base-vertical;
 
 	&:last-child {
 		border-bottom: 1px solid $color-grey-med;
@@ -23,7 +23,7 @@
 	display: flex;
 	flex-direction: row;
 	font-size: 1.125rem;
-	padding: 1em 2em;
+	padding: #{$space-base-vertical / 2} $space-base-horizontal;
 
 	@media (max-width: $breakpoint-mobile-max) {
 		padding: 1em 0.5em;

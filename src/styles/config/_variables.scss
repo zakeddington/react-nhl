@@ -38,14 +38,19 @@ $breakpoint-tablet-max: 1023px;
 $breakpoint-desktop-min: 1024px;
 $breakpoint-desktop-wide: 1260px;
 
+// Grid
+$grid-gutter-width: 2rem;
+$grid-margin-width: 2rem;
+
+// Spacing
+$space-base-horizontal: $grid-gutter-width;
+$space-base-vertical: $grid-gutter-width;
+
 // Container Sizes
 $container-width-mobile: 360px;
 $container-width-tablet: 750px;
 $container-width-desktop: 970px;
 $container-width-desktop-wide: 1260px;
-$gutter-width: 20px;
-$margin-width: 20px;
-$vertical-pad: 20px;
 
 // z-index
 $z-index-default: 1;

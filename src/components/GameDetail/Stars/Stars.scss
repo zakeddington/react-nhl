@@ -8,13 +8,13 @@
 	border-bottom: 1px solid $color-grey-med;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 2em;
+	margin-bottom: $space-base-vertical;
 	width: 100%;
 
 	@media (min-width: $breakpoint-desktop-min) {
 		margin-bottom: 0;
-		margin-right: 2em;
-		width: calc(60% - 2em);
+		margin-right: $space-base-horizontal;
+		width: calc(60% - #{$space-base-horizontal});
 	}
 }
 
