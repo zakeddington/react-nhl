@@ -33,7 +33,9 @@ class Modal extends Component {
 						<Icon iconId="close"/>
 						<span className="offscreen">close modal</span>
 					</button>
-					{content}
+					<div className="modal--content">
+						{content}
+					</div>
 				</div>
 			</div>;
 

@@ -5,6 +5,7 @@ import breakpointChange from './utilities/BreakpointChange';
 import Header from './components/Global/GlobalHeader';
 import Schedule from './containers/Schedule';
 import GameDetail from './containers/GameDetail';
+import PlayerDetail from './containers/PlayerDetail';
 
 class App extends Component {
 	constructor(props) {
@@ -20,6 +21,9 @@ class App extends Component {
 					<Route exact path="/" component={Schedule} />
 					<Route exact path={`${CONSTANTS.routePaths.schedule}:id`} component={Schedule} />
 					<Route path={`${CONSTANTS.routePaths.game}:id`} component={GameDetail} />
+					<Route path={`${CONSTANTS.routePaths.player}:id`} render={(props) => {
+						return <PlayerDetail playerId={props.match.params.id} isFullPage={true} {...props} />
+					}} />
 					<Redirect to="/" />
 				</Switch>
 			</div>

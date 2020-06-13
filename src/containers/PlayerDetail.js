@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PlayerDetailService from '../services/PlayerDetail/PlayerDetailService';
 import ErrorMessage from '../components/Shared/ErrorMessage/ErrorMessage';
 import PlayerDetailHero from '../components/PlayerDetail/PlayerDetailHero/PlayerDetailHero';
@@ -69,6 +70,7 @@ class PlayerDetail extends Component {
 	}
 
 	render() {
+		const { isFullPage } = this.props;
 		const {
 			showLoader,
 			dataPlayerDetailHero,
@@ -78,6 +80,7 @@ class PlayerDetail extends Component {
 			isPlayerDetailStatsError,
 		} = this.state;
 		let content;
+		let containerClass = isFullPage ? 'site-content container bg-white' : '';
 
 		if (isPlayerDetailHeroError && isPlayerDetailStatsError) {
 			content = <ErrorMessage errorMsg="No player details available." />;
@@ -96,19 +99,20 @@ class PlayerDetail extends Component {
 				</>
 		}
 
-
-
-		// TODO: update class so it can be used outside modal
-		// need modal css somewhere
-
-
-
 		return (
-			<div className="modal--content">
+			<div className={containerClass}>
 				{content}
 			</div>
 		)
 	}
+}
+
+PlayerDetail.propTypes = {
+	playerId: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	]),
+	isFullPage: PropTypes.bool,
 }
 
 export default PlayerDetail;

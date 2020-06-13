@@ -7,6 +7,7 @@ const Constants = {
 	routePaths: {
 		schedule: '/schedule/',
 		game: '/game/',
+		player: '/player/',
 	},
 
 	iconType: {
