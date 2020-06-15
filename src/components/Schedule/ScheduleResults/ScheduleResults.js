@@ -77,11 +77,11 @@ function ScheduleResults(props) {
 		content = <Loader/>;
 	} else {
 		if (showError) {
-			content = <ErrorMessage errorMsg="Something went terribly wrong, and it's probably your fault." />;
+			content = <ErrorMessage errorMsg="Something went terribly wrong, and it's probably your fault." errorClass="text-center" />;
 		} else if (results.length) {
 			content = renderContent(results);
 		} else {
-			content = <ErrorMessage errorMsg="There are no games scheduled on this date." />;
+			content = <ErrorMessage errorMsg="There are no games scheduled on this date." errorClass="text-center" />;
 		}
 	}
 

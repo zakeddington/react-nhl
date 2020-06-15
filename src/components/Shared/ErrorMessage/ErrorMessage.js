@@ -6,12 +6,13 @@ function ErrorMessage(props) {
 	const msg = props.errorMsg ? props.errorMsg : 'No content available.';
 
 	return (
-		<h2 className="error-msg">{msg}</h2>
+		<h2 className={`error-msg ${props.errorClass}`}>{msg}</h2>
 	);
 }
 
 ErrorMessage.propTypes = {
 	errorMsg: PropTypes.string,
+	errorClass: PropTypes.string,
 }
 
 export default ErrorMessage;

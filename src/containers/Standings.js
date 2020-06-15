@@ -108,7 +108,7 @@ class Standings extends Component {
 		let content;
 
 		if (isDivisionStandingsError && isConferenceStandingsError && isLeagueStandingsError && isWildcardStandingsError) {
-			content = <ErrorMessage errorMsg="No standings available." />;
+			content = <ErrorMessage errorMsg="No standings available." errorClass="text-center" />;
 		} else if (showLoader) {
 			content = <Loader />;
 		} else {
