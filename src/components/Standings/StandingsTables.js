@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Shared/Icon/Icon';
 import CONSTANTS from '../../config/Constants';
+import './StandingsTables.scss';
 
 function renderStandingsTable(standingsName, division) {
 	const {
@@ -10,7 +11,7 @@ function renderStandingsTable(standingsName, division) {
 	} = division;
 
 	return (
-		<div key={`${standingsName}-${divisionName}`} className="stats-table standings--group">
+		<div key={`${standingsName}-${divisionName}`} className="stats-table standings-tables--division">
 			<table>
 				<thead>
 				<tr>
@@ -28,9 +29,9 @@ function renderStandingsTable(standingsName, division) {
 						return (
 							<tr key={team.name}>
 								<td>{team.rank}</td>
-								<td className="standings--team text-left">
+								<td className="standings-tables--team text-left">
 									<Icon iconId={`${team.id}`} iconType={CONSTANTS.iconType.logo} />
-									<span className="standings--team-name">{team.name}</span>
+									<span className="standings-tables--team-name">{team.name}</span>
 								</td>
 								<td>{team.games}</td>
 								<td>{team.wins}</td>
@@ -58,7 +59,7 @@ function StandingsTables(props) {
 			{
 				standings.map((conference) => {
 					return (
-						<div key={`${standingsName}-${conference.conferenceName}`} className="standings--conference">
+						<div key={`${standingsName}-${conference.conferenceName}`} className="standings-tables">
 							<h2>{conference.conferenceName}</h2>
 							{
 								conference.divisions.map((division) => {

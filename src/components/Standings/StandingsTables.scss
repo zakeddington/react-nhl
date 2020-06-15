@@ -1,0 +1,56 @@
+@import '../../styles/config/variables';
+
+// Standings content within tab switcher
+// -----------------------------------------------------------------+
+
+.standings-tables {
+	margin-bottom: 2rem;
+
+	h2 {
+		font-size: 1.25rem;
+	}
+
+	&--division {
+		overflow-x: visible;
+	}
+
+	table {
+		font-size: 0.75rem;
+	}
+
+	th,
+	td {
+		min-width: 1.5rem;
+		padding: 0.25rem;
+
+		&:first-child {
+			padding-left: 0.5rem;
+		}
+
+		&:last-child {
+			padding-right: 1rem;
+		}
+	}
+
+	th {
+		background: $color-grey-dark;
+		color: $color-white;
+	}
+
+	&--team {
+		width: 12.5rem;
+	}
+
+	.team-logo {
+		display: inline-block;
+		height: 25px;
+		vertical-align: middle;
+		width: 25px;
+	}
+
+	&--team-name {
+		display: inline-block;
+		padding-left: 0.5em;
+		vertical-align: middle;
+	}
+}

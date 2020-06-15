@@ -5,7 +5,6 @@ import ErrorMessage from '../components/Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
 import StandingsTables from '../components/Standings/StandingsTables';
-import './Standings.scss';
 
 class Standings extends Component {
 
@@ -116,7 +115,7 @@ class Standings extends Component {
 			content = <Loader />;
 		} else {
 			content =
-				<Tabs key="tabs-standings" tabsClass="standings--tabs">
+				<Tabs key="tabs-standings" tabsClass="tabs-small">
 					{
 						!isDivisionStandingsError &&
 						<Tab id={`tab-${dataDivisionStandings.standingsName}-standings`} tabTitle={dataDivisionStandings.standingsName}>
@@ -153,9 +152,9 @@ class Standings extends Component {
 		}
 
 		return (
-			<div className="standings">
+			<>
 				{content}
-			</div>
+			</>
 		)
 	}
 }
