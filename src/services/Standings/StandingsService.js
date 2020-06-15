@@ -43,10 +43,12 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'Atlantic',
+							isWildCard: false,
 							teams: atl,
 						},
 						{
 							divisionName: 'Metropolitan',
+							isWildCard: false,
 							teams: met,
 						}
 					]
@@ -56,10 +58,12 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'Central',
+							isWildCard: false,
 							teams: cen,
 						},
 						{
 							divisionName: 'Pacific',
+							isWildCard: false,
 							teams: pac,
 						}
 					]
@@ -97,6 +101,7 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'Eastern',
+							isWildCard: false,
 							teams: east,
 						},
 					]
@@ -106,6 +111,7 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'Western',
+							isWildCard: false,
 							teams: west,
 						},
 					]
@@ -134,6 +140,7 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'League',
+							isWildCard: false,
 							teams: teams,
 						},
 					]
@@ -183,14 +190,17 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'Atlantic',
+							isWildCard: false,
 							teams: atl,
 						},
 						{
 							divisionName: 'Metropolitan',
+							isWildCard: false,
 							teams: met,
 						},
 						{
 							divisionName: 'Wild Card',
+							isWildCard: true,
 							teams: wildEast,
 						}
 					]
@@ -200,14 +210,17 @@ class StandingsService {
 					divisions: [
 						{
 							divisionName: 'Central',
+							isWildCard: false,
 							teams: cen,
 						},
 						{
 							divisionName: 'Pacific',
+							isWildCard: false,
 							teams: pac,
 						},
 						{
 							divisionName: 'Wild Card',
+							isWildCard: true,
 							teams: wildWest,
 						}
 					]

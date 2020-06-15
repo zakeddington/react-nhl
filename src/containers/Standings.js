@@ -107,8 +107,6 @@ class Standings extends Component {
 		} = this.state;
 		let content;
 
-		console.log(this.state);
-
 		if (isDivisionStandingsError && isConferenceStandingsError && isLeagueStandingsError && isWildcardStandingsError) {
 			content = <ErrorMessage errorMsg="No standings available." />;
 		} else if (showLoader) {

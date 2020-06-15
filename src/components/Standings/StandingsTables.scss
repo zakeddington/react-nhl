@@ -12,6 +12,12 @@
 
 	&--division {
 		overflow-x: visible;
+
+		&.is-wildcard {
+			tr:nth-child(2) {
+				border-color: $color-grey-dark;
+			}
+		}
 	}
 
 	table {

@@ -7,11 +7,14 @@ import './StandingsTables.scss';
 function renderStandingsTable(standingsName, division) {
 	const {
 		divisionName,
+		isWildCard,
 		teams,
 	} = division;
 
+	const classWildCard = isWildCard ? 'is-wildcard' : '';
+
 	return (
-		<div key={`${standingsName}-${divisionName}`} className="stats-table standings-tables--division">
+		<div key={`${standingsName}-${divisionName}`} className={`stats-table standings-tables--division ${classWildCard}`}>
 			<table>
 				<thead>
 				<tr>
@@ -80,6 +83,7 @@ StandingsTables.propTypes = {
 		conferenceName: PropTypes.string,
 		divisions: PropTypes.arrayOf(PropTypes.shape({
 			divisionName: PropTypes.string,
+			isWildCard: PropTypes.bool,
 			teams: PropTypes.arrayOf(PropTypes.shape({
 				games: PropTypes.number,
 				id: PropTypes.number,
