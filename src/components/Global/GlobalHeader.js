@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import CONSTANTS from '../../config/Constants';
 import Drawer from '../Shared/Drawer/Drawer';
-import DrawerStandings from '../Shared/Drawer/DrawerStandings';
+import Standings from '../../containers/Standings';
 import Icon from '../Shared/Icon/Icon';
 import './GlobalHeader.scss';
 
@@ -25,7 +25,7 @@ function GlobalHeader(props) {
 					<span className="offscreen">NHL Stats</span>
 				</Link>
 
-				<Drawer label="Standings" content={<DrawerStandings />} iconId="standings" />
+				<Drawer label="Standings" content={<Standings />} iconId="standings" />
 			</div>
 		</header>
 	)

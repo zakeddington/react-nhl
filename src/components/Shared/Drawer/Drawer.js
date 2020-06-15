@@ -73,7 +73,9 @@ class Drawer extends Component {
 						<Icon iconId="close" iconClass="drawer--close-icon" />
 						<span className="offscreen">close drawer</span>
 					</button>
-					{content}
+					<div className="drawer--content">
+						{content}
+					</div>
 				</div>
 			</div>
 		)

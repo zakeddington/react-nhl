@@ -5,12 +5,12 @@ import './Tabs.scss';
 
 class Tabs extends Component {
 	state = {
-		tabs: this.props.children,
-		activeTab: this.props.children[0],
+		tabs: React.Children.toArray(this.props.children),
+		activeTab: React.Children.toArray(this.props.children)[0],
 	};
 
 	onTabClick(e, i) {
-		this.setState({activeTab: this.props.children[i]});
+		this.setState({activeTab: this.state.tabs[i]});
 	}
 
 	render() {
@@ -37,7 +37,7 @@ class Tabs extends Component {
 						})}
 					</ol>
 					<div>
-						{this.props.children.map((child) => {
+						{tabs.map((child) => {
 							const classActive = child.props.id === activeTab.props.id ? 'is-active' : '';
 							return (
 								<div key={child.props.id} className={`tabs--content ${classActive}`}>{child}</div>
