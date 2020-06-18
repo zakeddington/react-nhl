@@ -1,9 +1,5 @@
 const Constants = {
 
-	NO_DATA: {
-		showNoResults: true,
-	},
-
 	routePaths: {
 		schedule: '/schedule/',
 		game: '/game/',
