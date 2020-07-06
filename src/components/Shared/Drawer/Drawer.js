@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CONSTANTS from '../../../config/Constants';
 import Icon from '../Icon/Icon';
-import './Drawer.scss';
+// import './Drawer.scss';
+import { StyledDrawer, DrawerTrigger, DrawerClose, DrawerOverlay, DrawerContainer, DrawerContent } from './DrawerStyle';
+import { Offscreen } from '../../../globalStyles/utilities/Utilities';
 
 class Drawer extends Component {
 
@@ -67,17 +69,17 @@ class Drawer extends Component {
 		const containerClass = drawerClass ? drawerClass : '';
 
 		return (
-			<div className="drawer--overlay" onClick={() => this.onCloseClick()}>
-				<div className={`drawer--container ${containerClass}`} onClick={(e) => this.onContentClick(e)} ref={this.drawerContainer}>
-					<button className="drawer--close" onClick={() => this.onCloseClick()}>
-						<Icon iconId="close" iconClass="drawer--close-icon" />
-						<span className="offscreen">close drawer</span>
-					</button>
-					<div className="drawer--content">
+			<DrawerOverlay onClick={() => this.onCloseClick()}>
+				<DrawerContainer className={containerClass} onClick={(e) => this.onContentClick(e)} ref={this.drawerContainer}>
+					<DrawerClose onClick={() => this.onCloseClick()}>
+						<Icon iconId="close" />
+						<Offscreen>close drawer</Offscreen>
+					</DrawerClose>
+					<DrawerContent>
 						{content}
-					</div>
-				</div>
-			</div>
+					</DrawerContent>
+				</DrawerContainer>
+			</DrawerOverlay>
 		)
 	}
 
@@ -85,16 +87,16 @@ class Drawer extends Component {
 		const { iconId, label } = this.props;
 		const { isDisabled } = this.state;
 		return (
-			<div className="drawer">
-				<button className="drawer--trigger button button--icon-right" onClick={() => this.onTriggerClick()} disabled={isDisabled}>
+			<StyledDrawer>
+				<DrawerTrigger onClick={() => this.onTriggerClick()} disabled={isDisabled}>
 					{label}
 					{
 						iconId &&
 						<Icon iconId={iconId} />
 					}
-				</button>
+				</DrawerTrigger>
 				{this.state.drawer}
-			</div>
+			</StyledDrawer>
 		);
 	}
 }

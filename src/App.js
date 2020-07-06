@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import CONSTANTS from './config/Constants';
 import breakpointChange from './utilities/BreakpointChange';
-import Header from './components/Global/GlobalHeader';
+import Header from './components/Header/Header';
 import Schedule from './containers/Schedule';
 import GameDetail from './containers/GameDetail';
 import PlayerDetail from './containers/PlayerDetail';
