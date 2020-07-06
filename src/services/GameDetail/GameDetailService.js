@@ -1,4 +1,4 @@
-import CONSTANTS from '../../config/Constants';
+import { Language, DateOptions, TimeOptions } from '../../config/Dates';
 import API from '../API';
 
 import GetGameStatus from './GetGameStatus';
@@ -38,9 +38,9 @@ const GameDetailService = {
 
 	async getGameDateAndStatus() {
 		const date = new Date(this.state.gameData.datetime.dateTime);
-		this.state.gameDate = date.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions);
+		this.state.gameDate = date.toLocaleDateString(Language, DateOptions);
 
-		const startTime = date.toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
+		const startTime = date.toLocaleTimeString(Language, TimeOptions);
 		const startStatus = this.state.gameData.status.detailedState;
 		const gameStatus = GetGameStatus(this.state.liveData.linescore);
 		let curStatus;

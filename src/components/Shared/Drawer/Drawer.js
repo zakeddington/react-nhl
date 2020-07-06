@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { AnimSpeed } from '../../../config/Animation';
 import Icon from '../Icon/Icon';
 // import './Drawer.scss';
 import { StyledDrawer, DrawerTrigger, DrawerClose, DrawerOverlay, DrawerContainer, DrawerContent } from './DrawerStyle';
-import { Offscreen } from '../../../globalStyles/utilities/Utilities';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 class Drawer extends Component {
 
@@ -32,7 +32,7 @@ class Drawer extends Component {
 					isDisabled: false,
 					isOpen: false,
 				})
-			}, CONSTANTS.anim.speed.slow);
+			}, AnimSpeed.slowInt);
 		}
 	}
 
@@ -61,7 +61,7 @@ class Drawer extends Component {
 				isOpen: true,
 				isAnimating: false,
 			})
-		}, CONSTANTS.anim.speed.slow);
+		}, AnimSpeed.slowInt);
 	}
 
 	renderDrawer() {

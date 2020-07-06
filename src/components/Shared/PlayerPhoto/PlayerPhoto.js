@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PlayerPhoto.scss';
-import CONSTANTS from "../../../config/Constants";
+import { PlayerImagePath } from '../../../config/ImageIconConfig';
 
 function PlayerPhoto(props) {
 	const { playerId, photoClass } = props;
-	const url = `${CONSTANTS.imgUrl.player.base}${CONSTANTS.imgUrl.player.headshot}${playerId}${CONSTANTS.imgUrl.player.ext}`;
+	const url = `${PlayerImagePath.base}${PlayerImagePath.headshot}${playerId}${PlayerImagePath.ext}`;
 
 	return (
 		<div className={`player-photo ${photoClass}`}>

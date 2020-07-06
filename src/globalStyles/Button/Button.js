@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import Config from '../../Config';
+import { AnimSpeed } from '../../config/Animation'
 
 export const Button = styled.button`
 	background: none;
@@ -12,7 +12,7 @@ export const Button = styled.button`
 	padding: 0.5rem 1rem;
 	position: relative;
 	text-decoration: none;
-	transition: all ${Config.anim.speed.default} ease-in;
+	transition: all ${AnimSpeed.default} ease-in;
 
 	&:hover,
 	&:focus {

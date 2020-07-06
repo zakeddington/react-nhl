@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import CONSTANTS from './config/Constants';
+import { ScheduleRoute, GameRoute, PlayerRoute } from './config/RoutePaths';
 import breakpointChange from './utilities/BreakpointChange';
 import Header from './components/Header/Header';
 import Schedule from './containers/Schedule';
@@ -19,9 +19,9 @@ class App extends Component {
 				<Header key="global-header"/>
 				<Switch>
 					<Route exact path="/" component={Schedule} />
-					<Route exact path={`${CONSTANTS.routePaths.schedule}:id`} component={Schedule} />
-					<Route path={`${CONSTANTS.routePaths.game}:id`} component={GameDetail} />
-					<Route path={`${CONSTANTS.routePaths.player}:id`} render={(props) => {
+					<Route exact path={`${ScheduleRoute}:id`} component={Schedule} />
+					<Route path={`${GameRoute}:id`} component={GameDetail} />
+					<Route path={`${PlayerRoute}:id`} render={(props) => {
 						return <PlayerDetail playerId={props.match.params.id} isFullPage={true} {...props} />
 					}} />
 					<Redirect to="/" />

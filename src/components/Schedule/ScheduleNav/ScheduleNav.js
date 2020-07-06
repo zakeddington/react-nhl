@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { ScheduleRoute } from '../../../config/RoutePaths';
+import { MomentOptions } from '../../../config/Dates';
+import { isMobileBreakpoint } from '../../../config/Breakpoints';
 import EVENTS from '../../../config/Events';
 import Icon from '../../Shared/Icon/Icon';
 import './DatePicker.scss';
@@ -24,7 +26,7 @@ class ScheduleNav extends Component {
 		arrDateObjs: [],
 	};
 
-	numSideDays = CONSTANTS.isMobileView ? 1 : 3;
+	numSideDays = isMobileBreakpoint ? 1 : 3;
 
 	componentDidMount() {
 		if (this.state.objStartDate) {
@@ -40,10 +42,10 @@ class ScheduleNav extends Component {
 		if (curDate && prevDate) {
 			const curPropsDate = this.props.startDate;
 			const prevPropsDate = prevProps.startDate;
-			const curDateStr = curDate.format(CONSTANTS.momentOptions.displayFormat);
-			const prevDateStr = prevDate.format(CONSTANTS.momentOptions.displayFormat);
-			const curPropsDateStr = curPropsDate.format(CONSTANTS.momentOptions.displayFormat);
-			const prevPropsDateStr = prevPropsDate.format(CONSTANTS.momentOptions.displayFormat);
+			const curDateStr = curDate.format(MomentOptions.displayFormat);
+			const prevDateStr = prevDate.format(MomentOptions.displayFormat);
+			const curPropsDateStr = curPropsDate.format(MomentOptions.displayFormat);
+			const prevPropsDateStr = prevPropsDate.format(MomentOptions.displayFormat);
 
 			if (curDateStr !== prevDateStr) {
 				this.setArrDateObjs(curDate, curPropsDate);
@@ -54,7 +56,7 @@ class ScheduleNav extends Component {
 	}
 
 	onBreakpointChange() {
-		this.numSideDays = CONSTANTS.isMobileView ? 1 : 3;
+		this.numSideDays = isMobileBreakpoint ? 1 : 3;
 		this.setArrDateObjs();
 	}
 
@@ -66,8 +68,8 @@ class ScheduleNav extends Component {
 
 		// check if any date matches current results displayed
 		curDates.forEach((date) => {
-			const curDate = date.day.format(CONSTANTS.momentOptions.displayFormat);
-			const objStartDate = selectedDate.format(CONSTANTS.momentOptions.displayFormat);
+			const curDate = date.day.format(MomentOptions.displayFormat);
+			const objStartDate = selectedDate.format(MomentOptions.displayFormat);
 
 			if (curDate === objStartDate) {
 				date.isActive = true;
@@ -99,8 +101,8 @@ class ScheduleNav extends Component {
 			// set active state on date that matches displayed results
 			if (curResultsDate) {
 				dateObjs.forEach((date) => {
-					const curDate = date.day.format(CONSTANTS.momentOptions.displayFormat);
-					const resultsDate = curResultsDate.format(CONSTANTS.momentOptions.displayFormat);
+					const curDate = date.day.format(MomentOptions.displayFormat);
+					const resultsDate = curResultsDate.format(MomentOptions.displayFormat);
 
 					date.isActive = (curDate === resultsDate);
 				});
@@ -117,8 +119,8 @@ class ScheduleNav extends Component {
 		if (this.props.isScheduleLoading) {
 			e.preventDefault();
 		} else {
-			let urlDate = dateObj.day.format(CONSTANTS.momentOptions.apiFormat);
-			this.props.history.push(`${CONSTANTS.routePaths.schedule}${urlDate}`);
+			let urlDate = dateObj.day.format(MomentOptions.apiFormat);
+			this.props.history.push(`${ScheduleRoute}${urlDate}`);
 		}
 	}
 
@@ -143,8 +145,8 @@ class ScheduleNav extends Component {
 
 	onDatePickerChange(dateStr) {
 		let dateObj = moment(dateStr);
-		let urlDate = dateObj.format(CONSTANTS.momentOptions.apiFormat);
-		this.props.history.push(`${CONSTANTS.routePaths.schedule}${urlDate}`);
+		let urlDate = dateObj.format(MomentOptions.apiFormat);
+		this.props.history.push(`${ScheduleRoute}${urlDate}`);
 	}
 
 	renderNav() {
@@ -156,13 +158,13 @@ class ScheduleNav extends Component {
 		}
 
 		arrDateObjs.forEach((navDate) => {
-			let displayDay = navDate.day.format(CONSTANTS.momentOptions.displayFormat);
-			let urlDate = navDate.day.format(CONSTANTS.momentOptions.apiFormat);
+			let displayDay = navDate.day.format(MomentOptions.displayFormat);
+			let urlDate = navDate.day.format(MomentOptions.apiFormat);
 			let activeClass = navDate.isActive ? 'is-active' : '';
 
 			nav.push(
 				<li key={navDate.day} className="schedule-nav--item">
-					<Link to={`${CONSTANTS.routePaths.schedule}${urlDate}`} className={`schedule-nav--link ${activeClass}`}
+					<Link to={`${ScheduleRoute}${urlDate}`} className={`schedule-nav--link ${activeClass}`}
 						onClick={(e) => this.onNavClick(e, navDate)}>
 						{displayDay}
 					</Link>

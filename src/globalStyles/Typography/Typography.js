@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro';
-import Config from '../../Config';
+import { AnimSpeed, AnimEase } from '../../config/Animation';
 
 export const A = styled.a`
 	color: ${props => props.theme.colorUsage.link};
 	font-family: ${props => props.theme.font.family.primary};
-	transition: color ${Config.anim.speed.default} ease-in;
+	transition: color ${AnimSpeed.default} ${AnimEase.in};
 
 	&:focus,
 	&:hover {

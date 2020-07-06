@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
@@ -10,7 +10,7 @@ function renderBoxscoreTeamRow(team) {
 	return (
 		<tr key={team.name}>
 			<td className="stats-table--pinned boxscore-teams--team">
-				<Icon iconId={`${team.id}`} iconType={CONSTANTS.iconType.logo}/>
+				<Icon iconId={`${team.id}`} iconType={IconType.logo}/>
 				<span className="boxscore-teams--team-name">{team.name}</span>
 			</td>
 			<td className="stats-table--spacer">{team.shots}</td>

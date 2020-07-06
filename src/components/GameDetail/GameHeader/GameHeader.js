@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import Icon from '../../Shared/Icon/Icon';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
@@ -32,7 +32,7 @@ function GameHeader(props) {
 						<span className="game-header-time">{gameStatus}</span>
 					</div>
 					<div className="col game-header-team away">
-						<Icon iconId={`${awayTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${awayTeam.id}`} iconType={IconType.logo}/>
 						<div className="game-header-team-info">
 							<span className="game-header-city">{awayTeam.city}</span>
 							<span className="game-header-name">{awayTeam.name}</span>
@@ -44,7 +44,7 @@ function GameHeader(props) {
 						}
 					</div>
 					<div className="col game-header-team home">
-						<Icon iconId={`${homeTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${homeTeam.id}`} iconType={IconType.logo}/>
 						<div className="game-header-team-info">
 							<span className="game-header-city">{homeTeam.city}</span>
 							<span className="game-header-name">{homeTeam.name}</span>

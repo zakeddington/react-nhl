@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
-import Config from '../../../globalStyles/Config';
+import { Spacing, ContainerSize } from '../../../config/Grid';
 
 const Container = styled.div`
 	margin: 0 auto;
-	max-width: ${Config.containerSize.width.wide};
-	padding-left: ${Config.spacing.horiz};
-	padding-right: ${Config.spacing.horiz};
+	max-width: ${ContainerSize.width.wide};
+	padding-left: ${Spacing.horiz};
+	padding-right: ${Spacing.horiz};
 	position: relative;
 	width: 100%;
 `;

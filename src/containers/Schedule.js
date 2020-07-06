@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import ScheduleService from '../services/ScheduleService';
-import CONSTANTS from '../config/Constants';
+import { ScheduleRoute } from '../config/RoutePaths';
+import { MomentOptions } from '../config/Dates';
 import ScheduleNav from '../components/Schedule/ScheduleNav/ScheduleNav';
 import ScheduleResults from '../components/Schedule/ScheduleResults/ScheduleResults';
 
@@ -30,13 +31,13 @@ class Schedule extends Component {
 	}
 
 	getStartDateObj() {
-		let dateFormat = CONSTANTS.momentOptions.apiFormat;
+		let dateFormat = MomentOptions.apiFormat;
 		let startDate = moment(new Date(), dateFormat);
 		let pathname = window.location.pathname;
 
 		// create moment obj from date string in url if it exists
-		if (pathname.indexOf(CONSTANTS.routePaths.schedule) !== -1) {
-			let date = pathname.replace(CONSTANTS.routePaths.schedule, '');
+		if (pathname.indexOf(ScheduleRoute) !== -1) {
+			let date = pathname.replace(ScheduleRoute, '');
 			startDate = moment(date, dateFormat);
 		}
 		return startDate;
@@ -56,7 +57,7 @@ class Schedule extends Component {
 				const params = [
 					'schedule.linescore'
 				];
-				const dateFormat = CONSTANTS.momentOptions.apiFormat;
+				const dateFormat = MomentOptions.apiFormat;
 				const dateFrom = objDateFrom.format(dateFormat);
 				const dateTo = objDateTo.format(dateFormat);
 				const data = await ScheduleService.getScheduleGames(dateFrom, dateTo, params);

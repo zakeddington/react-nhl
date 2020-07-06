@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro';
-import Config from '../../../globalStyles/Config';
+import { AnimSpeed, AnimEase } from '../../../config/Animation';
 
 export const SvgIcon = styled.svg`
 	display: inline-block;
 	fill: ${props => props.theme.color.greyDark};
 	height: 1rem;
 	line-height: 1rem;
-	transition: all ${Config.anim.speed.default} ${Config.anim.ease.default};
+	transition: all ${AnimSpeed.default} ${AnimEase.default};
 	vertical-align: middle;
 	width: 1rem;
 `;

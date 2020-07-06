@@ -1,5 +1,6 @@
 import * as moment from 'moment';
-import CONSTANTS from '../../config/Constants';
+import { MomentOptions } from '../../config/Dates';
+import { PlayerImagePath } from '../../config/ImageIconConfig'
 import API from '../API';
 import GetStats from './GetStats';
 
@@ -12,7 +13,7 @@ class PlayerDetailService {
 	async processPlayerDetailHeroData(playerData) {
 		const data = playerData.people[0];
 		const id = data.id;
-		const birthDate = moment(data.birthDate).format(CONSTANTS.momentOptions.birthFormat);
+		const birthDate = moment(data.birthDate).format(MomentOptions.birthFormat);
 		const birthCity = data.birthCity;
 		const birthState = data.birthStateProvince;
 		let birthPlace = data.birthCountry;
@@ -25,8 +26,8 @@ class PlayerDetailService {
 			birthPlace = `${birthCity}, ${birthPlace}`;
 		}
 
-		const heroImg = `${CONSTANTS.imgUrl.player.base}${CONSTANTS.imgUrl.player.hero}${data.id}${CONSTANTS.imgUrl.player.ext}`;
-		const arenaImg = `${CONSTANTS.imgUrl.player.base}${CONSTANTS.imgUrl.player.arena}${data.currentTeam.id}${CONSTANTS.imgUrl.player.ext}`;
+		const heroImg = `${PlayerImagePath.base}${PlayerImagePath.hero}${data.id}${PlayerImagePath.ext}`;
+		const arenaImg = `${PlayerImagePath.base}${PlayerImagePath.arena}${data.currentTeam.id}${PlayerImagePath.ext}`;
 		const validateHeroImg = new Image();
 
 		let results = {

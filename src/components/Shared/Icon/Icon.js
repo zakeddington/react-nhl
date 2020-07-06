@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
-// import './Icon.scss';
+import { IconBasePath, TeamLogoBasePath, IconType } from '../../../config/ImageIconConfig';
 import { SvgIcon, SvgLogo } from './IconStyle';
 
 function Icon(props) {
 	const { iconId, iconType, iconClass } = props;
-	let url = CONSTANTS.imgUrl.icon.base + iconId;
+	let url = IconBasePath + iconId;
 
-	if (iconType === 'logo') {
-		url = CONSTANTS.imgUrl.logoTeams.base + iconId;
+	if (iconType === IconType.logo) {
+		url = TeamLogoBasePath + iconId;
 		return (
 			<SvgLogo className={iconClass}>
 				<use xlinkHref={url} />

@@ -1,6 +1,9 @@
 import styled from 'styled-components/macro';
-import Config from '../../../globalStyles/Config';
-import { ButtonWithIcon } from '../../../globalStyles/components/Button/Button';
+import { AnimSpeed, AnimEase } from '../../../config/Animation';
+import { TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints';
+import { Spacing } from '../../../config/Grid';
+import ZIndex from '../../../config/ZIndex';
+import { ButtonWithIcon } from '../../../globalStyles/Button/Button';
 import { SvgIcon } from '../Icon/IconStyle';
 
 export const StyledDrawer = styled.div`
@@ -59,7 +62,7 @@ export const DrawerOverlay = styled.div`
 	position: fixed;
 	top: 0;
 	width: 100vw;
-	z-index: ${Config.zIndex.drawerOverlay};
+	z-index: ${ZIndex.drawerOverlay};
 `;
 
 export const DrawerContainer = styled.div`
@@ -72,15 +75,15 @@ export const DrawerContainer = styled.div`
 	right: -100%;
 	top: 0;
 	// update drawer setTimout if changing $anim-speed-slow
-	transition: all ${Config.anim.speed.slow} ${Config.anim.ease.default};
+	transition: all ${AnimSpeed.slow} ${AnimEase.default};
 	width: calc(100vw - 1rem);
-	z-index: ${Config.zIndex.drawer};
+	z-index: ${ZIndex.drawer};
 
-	@media (min-width: ${Config.breakpoint.tablet.min}) {
+	@media (min-width: ${TabletBreakpoint.min}) {
 		width: 60vw;
 	}
 
-	@media (min-width: ${Config.breakpoint.desktop.min}) {
+	@media (min-width: ${DesktopBreakpoint.min}) {
 		max-width: 500px;
 		width: 50vw;
 	}
@@ -97,5 +100,5 @@ export const DrawerContent = styled.div`
 	height: 100%;
 	max-height: 100%;
 	overflow-y: auto;
-	padding: ${Config.spacing.horiz};
+	padding: ${Spacing.horiz};
 `;

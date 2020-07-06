@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components/macro';
-import Config from './Config';
+import { Spacing } from '../../config/Grid';
 
-const UtilityClasses = createGlobalStyle`
+const Classes = createGlobalStyle`
 	.pull-left {
 		float: left;
 	}
@@ -79,9 +79,9 @@ const UtilityClasses = createGlobalStyle`
 	}
 
 	.content-padding {
-		padding: ${Config.spacing.vert} ${Config.spacing.horiz};
+		padding: ${Spacing.vert} ${Spacing.horiz};
 	}
 
 `;
 
-export default UtilityClasses;
+export default Classes;
