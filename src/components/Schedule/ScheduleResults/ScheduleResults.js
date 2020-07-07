@@ -1,12 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { IconType } from '../../../config/ImageIconConfig';
 import { GameRoute } from '../../../config/RoutePaths';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
-import './ScheduleResults.scss';
+import {
+	ScheduleGames,
+	Game,
+	GameLink,
+	Header,
+	HeaderStatus,
+	HeaderBroadcasts,
+	Team,
+	TeamName,
+	TeamRecord,
+	TeamScore,
+} from './ScheduleResultsStyle';
+import { H2 } from '../../../globalStyles/Typography/Typography';
 
 function renderContent(data) {
 	const dates = data.map((date) => {
@@ -24,45 +35,45 @@ function renderContent(data) {
 			}
 
 			return (
-				<li key={game.id} className={classGameStatus}>
-					<Link to={`${GameRoute}${game.id}`}>
-						<div className="schedule-results--game-status">
-							<span className="schedule-results--status">{game.gameStatus}</span>
-							<span className="schedule-results--broadcasts">{game.broadcasts}</span>
-						</div>
-						<div className="schedule-results--team away">
+				<Game key={game.id} className={classGameStatus}>
+					<GameLink to={`${GameRoute}${game.id}`}>
+						<Header>
+							<HeaderStatus>{game.gameStatus}</HeaderStatus>
+							<HeaderBroadcasts>{game.broadcasts}</HeaderBroadcasts>
+						</Header>
+						<Team className="away">
 							<Icon iconId={`${game.awayTeam.id}`} iconType={IconType.logo} />
-							<span className="schedule-results--name">{game.awayTeam.name}
-								<span className="schedule-results--record">({game.awayTeam.record})</span>
-								</span>
-							<span className="schedule-results--score">{game.awayTeam.score}</span>
-						</div>
-						<div className="schedule-results--team home">
+							<TeamName>{game.awayTeam.name}
+								<TeamRecord>({game.awayTeam.record})</TeamRecord>
+							</TeamName>
+							<TeamScore>{game.awayTeam.score}</TeamScore>
+						</Team>
+						<Team className="home">
 							<Icon iconId={`${game.homeTeam.id}`} iconType={IconType.logo} />
-							<span className="schedule-results--name">{game.homeTeam.name}
-								<span className="schedule-results--record">({game.homeTeam.record})</span>
-								</span>
-							<span className="schedule-results--score">{game.homeTeam.score}</span>
-						</div>
-					</Link>
-				</li>
+							<TeamName>{game.homeTeam.name}
+								<TeamRecord>({game.homeTeam.record})</TeamRecord>
+							</TeamName>
+							<TeamScore>{game.homeTeam.score}</TeamScore>
+						</Team>
+					</GameLink>
+				</Game>
 			)
 		});
 
 		return (
-			<div key={date.gameDate} className="schedule-results--group">
-				<h2>{date.gameDate}</h2>
-				<ul className="schedule-results--games">
+			<div key={date.gameDate}>
+				<H2>{date.gameDate}</H2>
+				<ScheduleGames>
 					{games}
-				</ul>
+				</ScheduleGames>
 			</div>
 		)
 	});
 
 	return (
-		<div className="schedule-results">
+		<>
 			{dates}
-		</div>
+		</>
 	);
 }
 

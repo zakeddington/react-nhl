@@ -5,6 +5,7 @@
   "dependencies": {
     "babel-plugin-macros": "^2.8.0",
     "moment": "^2.25.3",
+    "polished": "^3.6.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-datepicker": "^2.15.0",
@@ -35,7 +36,7 @@
       "last 2 versions"
     ]
   },
-	"styledComponents": {
-		"displayName": true
-	}
+  "styledComponents": {
+    "displayName": true
+  }
 }

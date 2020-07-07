@@ -27,14 +27,14 @@ const Base = createGlobalStyle`
 
 	body {
 		background: ${props => props.theme.color.greyLight};
-		min-width: ${ContainerSize.width.wide};
+		min-width: ${ContainerSize.width.mobile};
+		overflow-x: hidden;
+		padding: 0;
+		width: 100%;
 	}
 
-	// Breakpoint Indicator
-	// -----------------------------------------------------------------+
 	// An element that changes z-index when a breakpoint is crossed
-	// Used in conjunction with /scripts/Utilities/BreakpointChange.js
-
+	// Used in conjunction with src/utilities/BreakpointChange.js
 	#breakpoint-indicator {
 		height: 1px;
 		left: -1px;
@@ -43,23 +43,13 @@ const Base = createGlobalStyle`
 		width: 1px;
 		z-index: 1;
 
-		// Tablet+
 		@media (min-width: ${TabletBreakpoint.min}) {
 			z-index: 2;
 		}
 
-		// Desktop+
 		@media (min-width: ${DesktopBreakpoint.min}) {
 			z-index: 3;
 		}
-	}
-
-	#svg-defs {
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		position: fixed;
-		width: 1px;
 	}
 `;
 
