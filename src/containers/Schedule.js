@@ -6,6 +6,7 @@ import { MomentOptions } from '../config/Dates';
 import { SiteContent } from '../globalStyles/Layout/Layout';
 import ScheduleNav from '../components/Schedule/ScheduleNav/ScheduleNav';
 import ScheduleResults from '../components/Schedule/ScheduleResults/ScheduleResults';
+import { H1 } from '../globalStyles/Typography/Typography';
 
 class Schedule extends Component {
 
@@ -94,7 +95,7 @@ class Schedule extends Component {
 					startDate={startDateObj}
 					isScheduleLoading={isScheduleLoading}
 				/>
-				<h1>Scores</h1>
+				<H1>Scores</H1>
 				<ScheduleResults
 					results={dataScheduleResults}
 					showError={isScheduleResultsError}
