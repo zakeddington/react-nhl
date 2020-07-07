@@ -5,6 +5,17 @@ import Loader from '../../Shared/Loader/Loader';
 import Icon from '../../Shared/Icon/Icon';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import './GameHeader.scss';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
+import {
+	StyledGameHeader,
+	DateColumn,
+	AwayTeamColumn,
+	HomeTeamColumn,
+	TeamInfo,
+	TeamInfoCity,
+	TeamInfoName,
+	TeamScore,
+} from './GameHeaderStyle';
 
 function GameHeader(props) {
 	const {
@@ -26,43 +37,43 @@ function GameHeader(props) {
 		} else {
 			content =
 				<>
-					<h1 className="offscreen">{gameDate} : {awayTeam.name} {awayTeam.score} - {homeTeam.name} {homeTeam.score}</h1>
-					<div className="col game-header-date-info">
+					<Offscreen as="h1">{gameDate} : {awayTeam.name} {awayTeam.score} - {homeTeam.name} {homeTeam.score}</Offscreen>
+					<DateColumn>
 						<span className="game-header-date">{gameDate}</span>
 						<span className="game-header-time">{gameStatus}</span>
-					</div>
-					<div className="col game-header-team away">
+					</DateColumn>
+					<AwayTeamColumn>
 						<Icon iconId={`${awayTeam.id}`} iconType={IconType.logo}/>
-						<div className="game-header-team-info">
-							<span className="game-header-city">{awayTeam.city}</span>
-							<span className="game-header-name">{awayTeam.name}</span>
+						<TeamInfo>
+							<TeamInfoCity>{awayTeam.city}</TeamInfoCity>
+							<TeamInfoName>{awayTeam.name}</TeamInfoName>
 							{/*<span className="game-header-record">{awayRecord}</span>*/}
-						</div>
+						</TeamInfo>
 						{
 							!isPreview &&
-							<div className="game-header-score">{awayTeam.score}</div>
+							<TeamScore>{awayTeam.score}</TeamScore>
 						}
-					</div>
-					<div className="col game-header-team home">
+					</AwayTeamColumn>
+					<HomeTeamColumn>
 						<Icon iconId={`${homeTeam.id}`} iconType={IconType.logo}/>
-						<div className="game-header-team-info">
-							<span className="game-header-city">{homeTeam.city}</span>
-							<span className="game-header-name">{homeTeam.name}</span>
+						<TeamInfo>
+							<TeamInfoCity>{homeTeam.city}</TeamInfoCity>
+							<TeamInfoName>{homeTeam.name}</TeamInfoName>
 							{/*<span className="game-header-record">{homeRecord}</span>*/}
-						</div>
+						</TeamInfo>
 						{
 							!isPreview &&
-							<div className="game-header-score">{homeTeam.score}</div>
+							<TeamScore>{homeTeam.score}</TeamScore>
 						}
-					</div>
+					</HomeTeamColumn>
 				</>;
 		}
 	}
 
 	return (
-		<header className="game-header">
+		<StyledGameHeader>
 			{content}
-		</header>
+		</StyledGameHeader>
 	)
 }
 
