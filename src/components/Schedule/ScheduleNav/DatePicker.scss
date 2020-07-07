@@ -677,3 +677,17 @@ $datepicker__triangle-size: 8px !default;
 		}
 	}
 }
+
+// Datepicker - overrides
+// -----------------------------------------------------------------+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+	display: flex;
+}
+
+.react-datepicker__navigation {
+	height: 0;
+	overflow: hidden;
+	text-indent: 200%;
+	white-space: nowrap;
+}

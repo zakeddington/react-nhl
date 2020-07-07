@@ -3,6 +3,7 @@ import moment from 'moment';
 import ScheduleService from '../services/ScheduleService';
 import { ScheduleRoute } from '../config/RoutePaths';
 import { MomentOptions } from '../config/Dates';
+import { SiteContent } from '../globalStyles/Layout/Layout';
 import ScheduleNav from '../components/Schedule/ScheduleNav/ScheduleNav';
 import ScheduleResults from '../components/Schedule/ScheduleResults/ScheduleResults';
 
@@ -87,7 +88,7 @@ class Schedule extends Component {
 		} = this.state;
 
 		return (
-			<div className="site-content container">
+			<SiteContent>
 				<ScheduleNav
 					history={this.props.history}
 					startDate={startDateObj}
@@ -99,7 +100,7 @@ class Schedule extends Component {
 					showError={isScheduleResultsError}
 					showLoader={isScheduleLoading}
 				/>
-			</div>
+			</SiteContent>
 		);
 	}
 }

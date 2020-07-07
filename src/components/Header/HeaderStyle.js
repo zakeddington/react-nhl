@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import Container from '../Shared/Container/Container';
+import { Container } from '../../globalStyles/Layout/Layout';
 import { ButtonWithIcon } from '../../globalStyles/Button/Button';
 import { DrawerTrigger } from '../Shared/Drawer/DrawerStyle';
 import { SvgIcon } from '../Shared/Icon/IconStyle';

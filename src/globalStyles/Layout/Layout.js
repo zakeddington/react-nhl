@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
-import { Spacing, ContainerSize } from '../../../config/Grid';
+import { Spacing, ContainerSize } from '../../config/Grid';
 
-const Container = styled.div`
+export const Container = styled.div`
 	margin: 0 auto;
 	max-width: ${ContainerSize.width.wide};
 	padding-left: ${Spacing.horiz};
@@ -10,4 +10,7 @@ const Container = styled.div`
 	width: 100%;
 `;
 
-export default Container;
+export const SiteContent = styled(Container)`
+	padding-bottom: 50px;
+	padding-top: 20px;
+`

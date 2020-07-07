@@ -30,6 +30,10 @@ const Reset = createGlobalStyle`
 		display: block;
 	}
 
+	button {
+		cursor: pointer;
+	}
+
 	ol,
 	ul {
 		list-style: none;

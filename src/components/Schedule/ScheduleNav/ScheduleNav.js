@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -7,16 +6,24 @@ import { ScheduleRoute } from '../../../config/RoutePaths';
 import { MomentOptions } from '../../../config/Dates';
 import { isMobileBreakpoint } from '../../../config/Breakpoints';
 import EVENTS from '../../../config/Events';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 import Icon from '../../Shared/Icon/Icon';
 import './DatePicker.scss';
-import './ScheduleNav.scss';
+import {
+	StyledScheduleNav,
+	ScheduleNavItems,
+	ScheduleNavItem,
+	ScheduleNavPrevNext,
+	ScheduleNavLink,
+	StyledDatepickerTrigger,
+} from './ScheduleNavStyle';
 
 function DatepickerTrigger(props) {
 	return (
-		<button className="datepicker-trigger" onClick={() => props.onClick()} value={props.value}>
+		<StyledDatepickerTrigger onClick={() => props.onClick()} value={props.value}>
 			<Icon iconId="calendar"/>
-			<span className="offscreen">Select a date from calendar</span>
-		</button>
+			<Offscreen>Select a date from calendar</Offscreen>
+		</StyledDatepickerTrigger>
 	)
 }
 
@@ -163,12 +170,12 @@ class ScheduleNav extends Component {
 			let activeClass = navDate.isActive ? 'is-active' : '';
 
 			nav.push(
-				<li key={navDate.day} className="schedule-nav--item">
-					<Link to={`${ScheduleRoute}${urlDate}`} className={`schedule-nav--link ${activeClass}`}
+				<ScheduleNavItem key={navDate.day}>
+					<ScheduleNavLink to={`${ScheduleRoute}${urlDate}`} className={activeClass}
 						onClick={(e) => this.onNavClick(e, navDate)}>
 						{displayDay}
-					</Link>
-				</li>
+					</ScheduleNavLink>
+				</ScheduleNavItem>
 			);
 		});
 		return (
@@ -182,28 +189,28 @@ class ScheduleNav extends Component {
 		const { objStartDate } = this.state;
 
 		return (
-			<div className="schedule-nav">
+			<StyledScheduleNav>
 				<DatePicker
 					customInput={DatepickerTrigger(this.props)}
 					selected={objStartDate.toDate()}
 					onChange={(dateStr) => this.onDatePickerChange(dateStr)}
 					todayButton="Today"/>
-				<ul className="schedule-nav--items">
-					<li className="schedule-nav--item schedule-nav--prev">
-						<button className="schedule-nav--link" title="Previous week" onClick={() => this.onNavArrowClick('prev')}>
+				<ScheduleNavItems>
+					<ScheduleNavPrevNext>
+						<ScheduleNavLink as="button" title="Previous week" onClick={() => this.onNavArrowClick('prev')}>
 							<Icon iconId="arrow-left"/>
-							<span className="offscreen">previous week</span>
-						</button>
-					</li>
+							<Offscreen>previous week</Offscreen>
+						</ScheduleNavLink>
+					</ScheduleNavPrevNext>
 					{this.renderNav()}
-					<li className="schedule-nav--item schedule-nav--next">
-						<button className="schedule-nav--link" title="Next week" onClick={() => this.onNavArrowClick('next')}>
+					<ScheduleNavPrevNext>
+						<ScheduleNavLink as="button" title="Next week" onClick={() => this.onNavArrowClick('next')}>
 							<Icon iconId="arrow-right"/>
-							<span className="offscreen">next week</span>
-						</button>
-					</li>
-				</ul>
-			</div>
+							<Offscreen>next week</Offscreen>
+						</ScheduleNavLink>
+					</ScheduleNavPrevNext>
+				</ScheduleNavItems>
+			</StyledScheduleNav>
 		)
 	}
 }

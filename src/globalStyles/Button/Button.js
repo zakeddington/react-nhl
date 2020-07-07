@@ -4,7 +4,6 @@ import { AnimSpeed } from '../../config/Animation'
 export const Button = styled.button`
 	background: none;
 	border: none;
-	cursor: pointer;
 	display: inline-block;
 	font-family: ${props => props.theme.font.family.primary};
 	font-weight: 600;

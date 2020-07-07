@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { SiteContent } from '../globalStyles/Layout/Layout';
 import GameHeader from '../components/GameDetail/GameHeader/GameHeader';
 import GameIntro from '../components/GameDetail/GameIntro/GameIntro';
 import ScoreBoard from '../components/GameDetail/ScoreBoard/ScoreBoard';
@@ -201,7 +202,7 @@ class GameDetail extends Component {
 		} = this.state;
 
 		return (
-			<div className="site-content container">
+			<SiteContent>
 				<GameHeader
 					showLoader={showLoader}
 					showNoResults={isGameHeaderError}
@@ -254,7 +255,7 @@ class GameDetail extends Component {
 						</Tab>
 					</Tabs>
 				}
-			</div>
+			</SiteContent>
 		);
 	}
 }
