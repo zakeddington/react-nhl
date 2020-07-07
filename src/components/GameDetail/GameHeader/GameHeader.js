@@ -4,7 +4,6 @@ import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import Icon from '../../Shared/Icon/Icon';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
-import './GameHeader.scss';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 import {
 	StyledGameHeader,
