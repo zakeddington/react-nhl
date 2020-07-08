@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon';
-import './VideoPlayer.scss';
+import {
+	VideoPlayerVideo,
+	VideoPlayerTrigger,
+	VideoPlayerPosterImg,
+	VideoPlayerTitle,
+	VideoPlayerTriggerIcon
+} from './VideoPlayerStyle';
 
 class VideoPlayer extends Component {
 
@@ -10,18 +15,26 @@ class VideoPlayer extends Component {
 	};
 
 	onPosterClick() {
-		this.setState({showVideo: true});
+		const { onPosterClick } = this.props;
+
+		if (typeof onPosterClick === 'function') {
+			onPosterClick();
+		} else {
+			this.setState({showVideo: true});
+		}
 	}
 
 	renderPoster() {
+		const { poster, altText, title, duration } = this.props;
+
 		return (
-			<button className="video-trigger" onClick={() => this.onPosterClick()}>
-				<img src={this.props.poster} alt={this.props.altText}/>
-				<Icon iconId="play-circle-filled" iconClass="video-play-icon"/>
-				<span className="video-title">
-					{this.props.title}<span> [{this.props.duration}]</span>
-				</span>
-			</button>
+			<VideoPlayerTrigger onClick={() => this.onPosterClick()}>
+				<VideoPlayerPosterImg src={poster} alt={altText} />
+				<VideoPlayerTriggerIcon iconId="play-circle-filled" />
+				<VideoPlayerTitle>
+					{title} [{duration}]
+				</VideoPlayerTitle>
+			</VideoPlayerTrigger>
 		)
 	}
 
@@ -29,8 +42,8 @@ class VideoPlayer extends Component {
 		const { video, poster, isAutoPlay, onVideoEvent } = this.props;
 
 		return (
-			<video src={video} poster={poster} muted controls autoPlay={isAutoPlay}
-				onPlay={(e) => onVideoEvent(e)} onEnded={(e) => onVideoEvent(e)}/>
+			<VideoPlayerVideo src={video} poster={poster} muted controls autoPlay={isAutoPlay}
+				onPlay={(e) => onVideoEvent(e)} onEnded={(e) => onVideoEvent(e)} />
 		)
 	}
 
@@ -52,6 +65,7 @@ VideoPlayer.propTypes = {
 	showVideo: PropTypes.bool,
 	title: PropTypes.string,
 	video: PropTypes.string,
+	onPosterClick: PropTypes.func,
 }
 
 export default VideoPlayer;

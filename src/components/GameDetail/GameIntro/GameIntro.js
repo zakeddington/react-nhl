@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../Shared/Loader/Loader';
 import VideoCarousel from '../../Shared/VideoCarousel/VideoCarousel';
-import './GameIntro.scss';
+import { StyledGameIntro } from './GameIntroStyle';
+import { H2, P } from '../../../globalStyles/Typography/Typography';
 
 function GameIntro(props) {
 	const {
@@ -14,25 +15,23 @@ function GameIntro(props) {
 	let content;
 
 	if (showLoader) {
-		content = <Loader/>;
+		content = <Loader />;
 	} else {
 		if (showNoResults) {
 			content = '';
 		} else {
 			content =
-				<div className="game-intro">
-					<h2>{intro.title}</h2>
-					<p>{intro.desc}</p>
-					<div className="game-intro-media">
-						{
-							videos.length ? (
-								<VideoCarousel videos={videos}/>
-							) : (
-								<img src={intro.poster} alt={intro.posterAltText}/>
-							)
-						}
-					</div>
-				</div>;
+				<StyledGameIntro>
+					<H2>{intro.title}</H2>
+					<P>{intro.desc}</P>
+					{
+						videos.length ? (
+							<VideoCarousel videos={videos} />
+						) : (
+							<img src={intro.poster} alt={intro.posterAltText} />
+						)
+					}
+				</StyledGameIntro>;
 		}
 	}
 
