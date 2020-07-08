@@ -113,7 +113,7 @@ class Standings extends Component {
 			content = <Loader />;
 		} else {
 			content =
-				<Tabs key="tabs-standings" tabsClass="tabs-small">
+				<Tabs key="tabs-standings" modifier="small">
 					{
 						!isDivisionStandingsError &&
 						<Tab id={`tab-${dataDivisionStandings.standingsName}-standings`} tabTitle={dataDivisionStandings.standingsName}>

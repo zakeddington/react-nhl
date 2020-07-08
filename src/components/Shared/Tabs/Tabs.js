@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
-import './Tabs.scss';
+import {
+	StyledTabs,
+	TabsNav,
+	TabsNavItem,
+	TabsNavLink,
+	TabsContent,
+} from './TabsStyle';
 
 class Tabs extends Component {
 	state = {
@@ -17,36 +23,36 @@ class Tabs extends Component {
 	render() {
 		this.tabs = React.Children.toArray(this.props.children);
 		const { activeTab } = this.state;
-		const tabsClass = this.props.tabsClass ? this.props.tabsClass : '';
+		const { modifier } = this.props;
 
 		if (this.tabs) {
 			return (
-				<div className={`tabs ${tabsClass}`}>
-					<ol className="tabs--nav">
+				<StyledTabs modifier={modifier}>
+					<TabsNav>
 						{this.tabs.map((tab, i) => {
 							const classActive = tab.props.id === activeTab.props.id ? 'is-active' : '';
 							return (
-								<li key={tab.props.tabTitle} className="tabs--nav-item">
-									<button className={`tabs--nav-link ${classActive}`} onClick={(e) => this.onTabClick(e, i)}>
+								<TabsNavItem key={tab.props.tabTitle}>
+									<TabsNavLink className={classActive} onClick={(e) => this.onTabClick(e, i)}>
 										{
 											tab.props.iconId &&
 											<Icon iconId={tab.props.iconId} iconType={tab.props.iconType} iconClass={tab.props.iconClass}/>
 										}
 										{tab.props.tabTitle}
-									</button>
-								</li>
+									</TabsNavLink>
+								</TabsNavItem>
 							);
 						})}
-					</ol>
+					</TabsNav>
 					<div>
 						{this.tabs.map((child) => {
 							const classActive = child.props.id === activeTab.props.id ? 'is-active' : '';
 							return (
-								<div key={child.props.id} className={`tabs--content ${classActive}`}>{child}</div>
+								<TabsContent key={child.props.id} className={classActive}>{child}</TabsContent>
 							);
 						})}
 					</div>
-				</div>
+				</StyledTabs>
 			);
 		}
 
@@ -56,7 +62,7 @@ class Tabs extends Component {
 
 Tabs.propTypes = {
 	children: PropTypes.node,
-	tabsClass: PropTypes.string,
+	modifier: PropTypes.string,
 }
 
 export default Tabs;

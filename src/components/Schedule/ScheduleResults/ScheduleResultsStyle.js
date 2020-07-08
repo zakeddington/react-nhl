@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { rgba } from 'polished';
 import { Link } from 'react-router-dom';
-import { AnimSpeed, AnimEase } from '../../../config/Animation';
+import { AnimSpeed, AnimEase, FadeInSlideDown } from '../../../config/Animation';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints';
 import { SvgLogo } from '../../Shared/Icon/IconStyle';
 
@@ -12,7 +12,7 @@ export const ScheduleGames = styled.ul`
 `;
 
 export const Game = styled.li`
-	animation: fade-in-slide-down ${AnimSpeed.default} forwards ${AnimEase.default};
+	animation: ${FadeInSlideDown} ${AnimSpeed.default} forwards ${AnimEase.default};
 	display: flex;
 	flex-direction: column;
 	margin: 0;
