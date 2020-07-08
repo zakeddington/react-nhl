@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
-import './Modal.scss';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
+import {
+	StyledModal,
+	ModalTrigger,
+	ModalOverlay,
+	ModalContainer,
+	ModalContent,
+	ModalClose,
+} from './ModalStyle';
 
 class Modal extends Component {
 
@@ -27,17 +35,17 @@ class Modal extends Component {
 		const { content, modalClass } = this.props;
 
 		const modal =
-			<div className="modal--overlay" onClick={() => this.onCloseClick()}>
-				<div className={`modal--container ${modalClass}`} onClick={(e) => this.onContentClick(e)}>
-					<button className="modal--close" onClick={() => this.onCloseClick()}>
-						<Icon iconId="close"/>
-						<span className="offscreen">close modal</span>
-					</button>
-					<div className="modal--content">
+			<ModalOverlay onClick={() => this.onCloseClick()}>
+				<ModalContainer className={modalClass} onClick={(e) => this.onContentClick(e)}>
+					<ModalClose onClick={() => this.onCloseClick()}>
+						<Icon iconId="close" />
+						<Offscreen>close modal</Offscreen>
+					</ModalClose>
+					<ModalContent>
 						{content}
-					</div>
-				</div>
-			</div>;
+					</ModalContent>
+				</ModalContainer>
+			</ModalOverlay>;
 
 		this.setState({
 			modal: modal,
@@ -46,12 +54,12 @@ class Modal extends Component {
 
 	render() {
 		return (
-			<div className="modal">
-				<button className="modal--trigger" onClick={() => this.onTriggerClick()}>
+			<StyledModal>
+				<ModalTrigger onClick={() => this.onTriggerClick()}>
 					{this.props.children}
-				</button>
+				</ModalTrigger>
 				{this.state.modal}
-			</div>
+			</StyledModal>
 		);
 	}
 }

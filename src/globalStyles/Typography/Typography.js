@@ -79,3 +79,12 @@ export const H6 = styled.h6`
 	line-height: 1.2;
 	margin-bottom: 0.5em;
 `;
+
+export const HeaderTitle = styled(H3)`
+	background: ${props => props.theme.color.greyDark};
+	color: ${props => props.theme.color.white};
+	font-size: 1rem;
+	margin-bottom: 0;
+	padding: 1em;
+	width: 100%;
+`;

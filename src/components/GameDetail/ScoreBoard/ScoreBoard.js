@@ -3,21 +3,29 @@ import PropTypes from 'prop-types';
 import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import Icon from '../../Shared/Icon/Icon';
-import './ScoreBoard.scss';
+import { HeaderTitle } from '../../../globalStyles/Typography/Typography';
+import {
+	StyledScoreBoard,
+	ScoreBoardResults,
+	ScoreBoardTeams,
+	ScoreBoardItem,
+	ScoreBoardItemText,
+	ScoreBoardPeriods,
+} from './ScoreBoardStyle';
 
 function getPeriodGoals(data) {
 	const goals = data.map((goal) => {
 		return (
-			<div key={Math.random()} className="scoreboard-item">
-				<span>{goal}</span>
-			</div>
+			<ScoreBoardItem key={Math.random()}>
+				<ScoreBoardItemText>{goal}</ScoreBoardItemText>
+			</ScoreBoardItem>
 		)
 	});
 
 	return (
-		<div>
+		<>
 			{goals}
-		</div>
+		</>
 	)
 }
 
@@ -30,33 +38,33 @@ function renderContent(props) {
 	} = props;
 
 	return (
-		<div className="scoreboard">
-			<h3 className="header-title">{gameStatus}</h3>
-			<div className="scoreboard-results">
-				<div className="scoreboard-teams">
-					<div className="scoreboard-item">
-						<span>&nbsp;</span>
-					</div>
-					<div className="scoreboard-item">
+		<StyledScoreBoard>
+			<HeaderTitle>{gameStatus}</HeaderTitle>
+			<ScoreBoardResults>
+				<ScoreBoardTeams>
+					<ScoreBoardItem>
+						<ScoreBoardItemText>&nbsp;</ScoreBoardItemText>
+					</ScoreBoardItem>
+					<ScoreBoardItem>
 						<Icon iconId={`${awayTeam.id}`} iconType={IconType.logo}/>
-						<span>{awayTeam.name}</span>
-					</div>
-					<div className="scoreboard-item">
+						<ScoreBoardItemText>{awayTeam.name}</ScoreBoardItemText>
+					</ScoreBoardItem>
+					<ScoreBoardItem>
 						<Icon iconId={`${homeTeam.id}`} iconType={IconType.logo}/>
-						<span>{homeTeam.name}</span>
-					</div>
-				</div>
+						<ScoreBoardItemText>{homeTeam.name}</ScoreBoardItemText>
+					</ScoreBoardItem>
+				</ScoreBoardTeams>
 				{
 					periodGoals.map((periods) => {
 						return (
-							<div key={Math.random()} className="col scoreboard-periods">
+							<ScoreBoardPeriods key={Math.random()}>
 								{getPeriodGoals(periods)}
-							</div>
+							</ScoreBoardPeriods>
 						)
 					})
 				}
-			</div>
-		</div>
+			</ScoreBoardResults>
+		</StyledScoreBoard>
 	);
 }
 

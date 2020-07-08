@@ -1,8 +1,6 @@
 
 export const ImageBasePath = '/assets/images/';
-
 export const IconBasePath = '/assets/images/icons.svg#icon-';
-
 export const TeamLogoBasePath = '/assets/images/logo-teams.svg#team-';
 
 export const PlayerImagePath = {
@@ -11,6 +9,7 @@ export const PlayerImagePath = {
 	headshot: 'headshots/current/168x168/',
 	hero: 'actionshots/',
 	arena: 'arena/default/',
+	headshotFallback: 'player-profile.png',
 };
 
 export const IconType = {

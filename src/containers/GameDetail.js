@@ -13,6 +13,8 @@ import Tab from '../components/Shared/Tabs/Tab';
 import GameDetailService from '../services/GameDetail/GameDetailService';
 import { GameDetailInitialState } from '../services/GameDetail/GameDetailService';
 
+import { ScoreBoardStarsContainer } from '../components/GameDetail/ScoreBoard/ScoreBoardStyle';
+
 class GameDetail extends Component {
 	state = {
 		...GameDetailInitialState,
@@ -218,7 +220,7 @@ class GameDetail extends Component {
 					intro={dataGameContent.intro}
 					videos={dataGameContent.videos} />
 
-				<div className="scoreboard-stars">
+				<ScoreBoardStarsContainer>
 					<ScoreBoard
 						showLoader={showLoader}
 						showNoResults={isScoreBoardError}
@@ -233,7 +235,7 @@ class GameDetail extends Component {
 						showNoResults={isStarsError}
 						isPreview={isPreview}
 						stars={dataStars} />
-				</div>
+				</ScoreBoardStarsContainer>
 				{
 					!isPreview &&
 					<Tabs>

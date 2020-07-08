@@ -4,7 +4,16 @@ import Loader from '../../Shared/Loader/Loader';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
-import './Stars.scss';
+import { HeaderTitle } from '../../../globalStyles/Typography/Typography';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities'
+import {
+	StyledStars,
+	StarsContent,
+	StarsPlayer,
+	StarsPlayerName,
+	StarsPlayerTeam,
+	StarsPlayerStat,
+} from './StarsStyle';
 
 function renderContent(starsArray) {
 
@@ -12,30 +21,30 @@ function renderContent(starsArray) {
 		const { id, name, stat1, stat2, teamName } = star;
 
 		return (
-			<div key={Math.random()} className="stars-player">
+			<StarsPlayer key={Math.random()}>
 				<Modal content={<PlayerDetail playerId={id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={id}/>
-					<span className="offscreen">Open player details for {name} in modal window</span>
+					<Offscreen>Open player details for {name} in modal window</Offscreen>
 				</Modal>
-				<span className="stars-name">
-						<Modal content={<PlayerDetail playerId={id} />} modalClass="player-detail">
-							{name}
-						</Modal>
-						<span className="stars-team-name">{teamName}</span>
-					</span>
-				<span className="stars-stat">{stat1}</span>
-				<span className="stars-stat">{stat2}</span>
-			</div>
+				<StarsPlayerName>
+					<Modal content={<PlayerDetail playerId={id} />} modalClass="player-detail">
+						{name}
+					</Modal>
+					<StarsPlayerTeam>{teamName}</StarsPlayerTeam>
+				</StarsPlayerName>
+				<StarsPlayerStat>{stat1}</StarsPlayerStat>
+				<StarsPlayerStat>{stat2}</StarsPlayerStat>
+			</StarsPlayer>
 		)
 	});
 
 	return (
-		<div className="stars">
-			<h3 className="header-title">Stars of the Game</h3>
-			<div className="stars-content">
+		<StyledStars>
+			<HeaderTitle>Stars of the Game</HeaderTitle>
+			<StarsContent>
 				{stars}
-			</div>
-		</div>
+			</StarsContent>
+		</StyledStars>
 	);
 }
 
@@ -49,7 +58,7 @@ function Stars(props) {
 	let content;
 
 	if (showLoader) {
-		content = <Loader/>;
+		content = <Loader />;
 	} else {
 		if (showNoResults || isPreview) {
 			content = '';

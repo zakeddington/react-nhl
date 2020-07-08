@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './PlayerPhoto.scss';
 import { PlayerImagePath } from '../../../config/ImageIconConfig';
+import { StyledPlayerPhoto, PlayerPhotoImage } from './PlayerPhotoStyle';
 
 function PlayerPhoto(props) {
 	const { playerId, photoClass } = props;
 	const url = `${PlayerImagePath.base}${PlayerImagePath.headshot}${playerId}${PlayerImagePath.ext}`;
 
 	return (
-		<div className={`player-photo ${photoClass}`}>
-			<div className="player-photo--image" style={{backgroundImage: `url(${url})`}} />
-		</div>
+		<StyledPlayerPhoto className={photoClass}>
+			<PlayerPhotoImage style={{backgroundImage: `url(${url})`}} />
+		</StyledPlayerPhoto>
 	)
 }
 
