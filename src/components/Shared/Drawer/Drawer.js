@@ -2,35 +2,37 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AnimSpeed } from '../../../config/Animation';
 import Icon from '../Icon/Icon';
-// import './Drawer.scss';
-import { StyledDrawer, DrawerTrigger, DrawerClose, DrawerOverlay, DrawerContainer, DrawerContent } from './DrawerStyle';
+import {
+	StyledDrawer,
+	DrawerTrigger,
+	DrawerClose,
+	DrawerOverlay,
+	DrawerContainer,
+	DrawerContent
+} from './DrawerStyle';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 class Drawer extends Component {
 
-	constructor(props) {
-		super(props);
-		this.drawerContainer = React.createRef();
-		this.activeClass = 'is-active';
-	}
-
 	state = {
-		drawer: null,
-		isDisabled: false,
 		isOpen: false,
 		isAnimating: false,
+		isActive: false,
 	};
 
 	onCloseClick() {
 		if (this.state.isOpen && !this.state.isAnimating) {
-			this.drawerContainer.current.classList.remove(this.activeClass);
 
-			// wait for css transition to complete ($anim-speed-slow)
+			this.setState({
+				isAnimating: true,
+				isActive: false,
+			})
+
+			// wait for css transition to complete
 			setTimeout(() => {
 				this.setState({
-					drawer: null,
-					isDisabled: false,
 					isOpen: false,
+					isAnimating: false,
 				})
 			}, AnimSpeed.slowInt);
 		}
@@ -43,9 +45,8 @@ class Drawer extends Component {
 	async onTriggerClick() {
 		if (!this.state.isOpen && !this.state.isAnimating) {
 			this.setState({
-				isDisabled: true,
+				isOpen: true,
 				isAnimating: true,
-				drawer: this.renderDrawer()
 			}, () => {
 				this.animateDrawer()
 			})
@@ -53,49 +54,55 @@ class Drawer extends Component {
 	}
 
 	animateDrawer() {
-		this.drawerContainer.current.classList.add(this.activeClass);
+		this.setState({
+			isActive: true,
+		})
 
-		// wait for css transition to complete ($anim-speed-slow)
+		// wait for css transition to complete
 		setTimeout(() => {
 			this.setState({
-				isOpen: true,
 				isAnimating: false,
 			})
 		}, AnimSpeed.slowInt);
 	}
 
 	renderDrawer() {
-		const { content, drawerClass } = this.props;
-		const containerClass = drawerClass ? drawerClass : '';
+		const { content } = this.props;
+		const { isActive, isOpen } = this.state;
 
-		return (
-			<DrawerOverlay onClick={() => this.onCloseClick()}>
-				<DrawerContainer className={containerClass} onClick={(e) => this.onContentClick(e)} ref={this.drawerContainer}>
-					<DrawerClose onClick={() => this.onCloseClick()}>
-						<Icon iconId="close" />
-						<Offscreen>close drawer</Offscreen>
-					</DrawerClose>
-					<DrawerContent>
-						{content}
-					</DrawerContent>
-				</DrawerContainer>
-			</DrawerOverlay>
-		)
+		if (isOpen) {
+			return (
+				<DrawerOverlay onClick={() => this.onCloseClick()}>
+					<DrawerContainer $isActive={isActive} onClick={(e) => this.onContentClick(e)}>
+						<DrawerClose onClick={() => this.onCloseClick()}>
+							<Icon iconId="close" />
+							<Offscreen>close drawer</Offscreen>
+						</DrawerClose>
+						<DrawerContent>
+							{content}
+						</DrawerContent>
+					</DrawerContainer>
+				</DrawerOverlay>
+			)
+		}
+
+		return null;
 	}
 
 	render() {
 		const { iconId, label } = this.props;
-		const { isDisabled } = this.state;
+		const { isOpen } = this.state;
+
 		return (
 			<StyledDrawer>
-				<DrawerTrigger onClick={() => this.onTriggerClick()} disabled={isDisabled}>
+				<DrawerTrigger onClick={() => this.onTriggerClick()} disabled={isOpen}>
 					{label}
 					{
 						iconId &&
 						<Icon iconId={iconId} />
 					}
 				</DrawerTrigger>
-				{this.state.drawer}
+				{this.renderDrawer()}
 			</StyledDrawer>
 		);
 	}

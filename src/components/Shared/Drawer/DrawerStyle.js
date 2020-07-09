@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
@@ -74,8 +74,7 @@ export const DrawerContainer = styled.div`
 	position: fixed;
 	right: -100%;
 	top: 0;
-	// update drawer setTimout if changing $anim-speed-slow
-	transition: all ${AnimSpeed.slow} ${AnimEase.default};
+	transition: all ${AnimSpeed.slow} ${AnimEase.default}; // update drawer setTimout if changing AnimSpeed
 	width: calc(100vw - 1rem);
 	z-index: ${ZIndex.drawer};
 
@@ -88,9 +87,9 @@ export const DrawerContainer = styled.div`
 		width: 50vw;
 	}
 
-	&.is-active {
+	${props => props.$isActive && css`
 		right: 0;
-	}
+	`}
 `;
 
 export const DrawerContent = styled.div`
