@@ -48,9 +48,9 @@ export const TabsNavLink = styled.button`
 		outline: none;
 	}
 
-	&.is-active {
+	${props => props.$isActive && css`
 		background: ${props => props.theme.color.grey};
-	}
+	`}
 `;
 
 export const TabsContent = styled.div`
@@ -61,9 +61,9 @@ export const TabsContent = styled.div`
 		overflow-x: auto;
 	}
 
-	&.is-active {
+	${props => props.$isActive && css`
 		animation: ${FadeIn} ${AnimSpeed.default} forwards ${AnimEase.default};
 		display: block;
 		opacity: 0;
-	}
+	`}
 `;

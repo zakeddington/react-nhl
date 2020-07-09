@@ -30,13 +30,13 @@ class Tabs extends Component {
 				<StyledTabs modifier={modifier}>
 					<TabsNav>
 						{this.tabs.map((tab, i) => {
-							const classActive = tab.props.id === activeTab.props.id ? 'is-active' : '';
+							const isActive = tab.props.id === activeTab.props.id;
 							return (
 								<TabsNavItem key={tab.props.tabTitle}>
-									<TabsNavLink className={classActive} onClick={(e) => this.onTabClick(e, i)}>
+									<TabsNavLink $isActive={isActive} onClick={(e) => this.onTabClick(e, i)}>
 										{
 											tab.props.iconId &&
-											<Icon iconId={tab.props.iconId} iconType={tab.props.iconType} iconClass={tab.props.iconClass}/>
+											<Icon iconId={tab.props.iconId} iconType={tab.props.iconType} iconClass={tab.props.iconClass} />
 										}
 										{tab.props.tabTitle}
 									</TabsNavLink>
@@ -46,9 +46,9 @@ class Tabs extends Component {
 					</TabsNav>
 					<div>
 						{this.tabs.map((child) => {
-							const classActive = child.props.id === activeTab.props.id ? 'is-active' : '';
+							const isActive = child.props.id === activeTab.props.id;
 							return (
-								<TabsContent key={child.props.id} className={classActive}>{child}</TabsContent>
+								<TabsContent key={child.props.id} $isActive={isActive}>{child}</TabsContent>
 							);
 						})}
 					</div>

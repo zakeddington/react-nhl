@@ -57,14 +57,13 @@ class VideoCarousel extends Component {
 
 		let thumbs = videos.map((video, i) => {
 			let isActive = i === selectedVideoIndex;
-			let activeClass = isActive ? 'is-active' : '';
 
 			if (!video.url) {
 				return null;
 			}
 
 			return (
-				<VideoCarouselThumbsItem key={video.url} className={activeClass}>
+				<VideoCarouselThumbsItem key={video.url} $isActive={isActive}>
 					<VideoPlayer key={video.url}
 						showVideo={false}
 						isAutoPlay={false}

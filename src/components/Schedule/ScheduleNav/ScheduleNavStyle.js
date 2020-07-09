@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { SvgIcon } from '../../Shared/Icon/IconStyle';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
@@ -61,11 +61,11 @@ export const ScheduleNavLink = styled(Link)`
 		}
 	}
 
-	&.is-active {
+	${props => props.$isActive && css`
 		background: ${props => props.theme.color.white};
 		color: ${props => props.theme.color.greyDark};
 		cursor: default;
-	}
+	`}
 `;
 
 export const StyledDatepickerTrigger = styled.button`

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { rgba } from 'polished';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
@@ -87,7 +87,7 @@ export const VideoCarouselThumbsItem = styled.div`
 		position: relative;
 	}
 
-	&.is-active {
+	${props => props.$isActive && css`
 		background: ${props => props.theme.color.greyMed};
 		border-left: ${props => `1px solid ${rgba(props.theme.color.black, 0.1)}`};
 		border-right: ${props => `1px solid ${rgba(props.theme.color.black, 0.1)}`};
@@ -127,5 +127,5 @@ export const VideoCarouselThumbsItem = styled.div`
 		${VideoPlayerTriggerIcon} {
 			display: none;
 		}
-	}
+	`}
 `;

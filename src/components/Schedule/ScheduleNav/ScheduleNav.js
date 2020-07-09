@@ -169,11 +169,10 @@ class ScheduleNav extends Component {
 		arrDateObjs.forEach((navDate) => {
 			let displayDay = navDate.day.format(MomentOptions.displayFormat);
 			let urlDate = navDate.day.format(MomentOptions.apiFormat);
-			let activeClass = navDate.isActive ? 'is-active' : '';
 
 			nav.push(
 				<ScheduleNavItem key={navDate.day}>
-					<ScheduleNavLink to={`${ScheduleRoute}${urlDate}`} className={activeClass}
+					<ScheduleNavLink to={`${ScheduleRoute}${urlDate}`} $isActive={navDate.isActive}
 						onClick={(e) => this.onNavClick(e, navDate)}>
 						{displayDay}
 					</ScheduleNavLink>
