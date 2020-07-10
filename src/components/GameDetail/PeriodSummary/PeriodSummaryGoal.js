@@ -5,7 +5,22 @@ import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
-import './PeriodSummary.scss';
+import {
+	PeriodItem,
+	TeamLogoColumn,
+	TimeColumn,
+	PlayerPhotoColumn,
+	PlayDetailsColumn,
+	DetailsRow,
+	PlayerName,
+	PlayerShotType,
+	PlayerGoalType,
+	SecondaryDetails,
+	StatusColumn,
+	GameStatus,
+	TeamScore,
+} from './PeriodSummaryStyle';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 function PeriodSummaryGoal(props) {
 	const {
@@ -20,63 +35,61 @@ function PeriodSummaryGoal(props) {
 	} = props;
 
 	return (
-		<div className="period-summary-item">
-			<div className="period-summary-logo">
-				<Icon iconId={`${teamId}`} iconType={IconType.logo}/>
-			</div>
-			<div className="period-summary-time">{time}</div>
-			<div className="period-summary-photo">
+		<PeriodItem>
+			<TeamLogoColumn>
+				<Icon iconId={`${teamId}`} iconType={IconType.logo} />
+			</TeamLogoColumn>
+			<TimeColumn>{time}</TimeColumn>
+			<PlayerPhotoColumn>
 				<Modal content={<PlayerDetail playerId={scorer.id} />} modalClass="player-detail">
-					<PlayerPhoto playerId={scorer.id}/>
-					<span className="offscreen">Open player details for {scorer.name} in modal window</span>
+					<PlayerPhoto playerId={scorer.id} />
+					<Offscreen>Open player details for {scorer.name} in modal window</Offscreen>
 				</Modal>
-			</div>
-			<div className="period-summary-player-info">
-				<span className="period-summary-player">
-					<span className="period-summary-name">
+			</PlayerPhotoColumn>
+			<PlayDetailsColumn>
+				<DetailsRow>
+					<PlayerName>
 						<Modal content={<PlayerDetail playerId={scorer.id} />} modalClass="player-detail">
 							{scorer.name}
-							<span className="offscreen">Open player details for {scorer.name} in modal window</span>
+							<Offscreen>Open player details for {scorer.name} in modal window</Offscreen>
 						</Modal> ({scorer.total}),
-					</span>
-					<span className="period-summary-goal-desc">
-					{scorer.desc}
+					</PlayerName>
+					<PlayerShotType className="period-summary-goal-desc">
+						{scorer.desc}
 						{
 							isEmptyNet &&
 							" (Empty Net)"
 						}
-					</span>
+					</PlayerShotType>
 					{
 						goalType !== 'EVEN' &&
-						<span className="period-summary-goal-type">
+						<PlayerGoalType>
 							{goalType}
-						</span>
+						</PlayerGoalType>
 					}
-				</span>
-				<span className="period-summary-details">
+				</DetailsRow>
+				<DetailsRow>
 					{
 						assists.map((assist, i) => {
 							return (
-								<span key={assist.name}>
+								<SecondaryDetails key={assist.name}>
 									<Modal content={<PlayerDetail playerId={assist.id} />} modalClass="player-detail">
 										{assist.name}
-										<span className="offscreen">Open player details for {assist.name} in modal window</span>
+										<Offscreen>Open player details for {assist.name} in modal window</Offscreen>
 									</Modal> ({assist.total}){i < assists.length - 1 && ', '}
-								</span>
+								</SecondaryDetails>
 							)
 						})
 					}
-				</span>
-			</div>
-			<div className="period-summary-game-info">
-				<span className={`period-summary-score team-${teamId} team-border`}>
-					<span
-						className={awayScore.isScoringTeam ? 'team-background' : ''}>{awayScore.name} {awayScore.goals}</span>
-					<span
-						className={homeScore.isScoringTeam ? 'team-background' : ''}>{homeScore.name} {homeScore.goals}</span>
-				</span>
-			</div>
-		</div>
+				</DetailsRow>
+			</PlayDetailsColumn>
+			<StatusColumn>
+				<GameStatus className={`team-${teamId} team-border`}>
+					<TeamScore className={awayScore.isScoringTeam ? 'team-background' : ''}>{awayScore.name} {awayScore.goals}</TeamScore>
+					<TeamScore className={homeScore.isScoringTeam ? 'team-background' : ''}>{homeScore.name} {homeScore.goals}</TeamScore>
+				</GameStatus>
+			</StatusColumn>
+		</PeriodItem>
 	)
 }
 

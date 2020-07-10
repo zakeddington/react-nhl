@@ -4,8 +4,15 @@ import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import PeriodSummaryGoal from './PeriodSummaryGoal';
 import PeriodSummaryPenalty from './PeriodSummaryPenalty';
-import './PeriodSummary.scss';
-import PeriodSummaryShootoutPlay from "./PenaltySummaryShootoutPlay";
+import PeriodSummaryShootoutPlay from './PenaltySummaryShootoutPlay';
+import {
+	StyledPeriodSummary,
+	Period,
+	PeriodTitle,
+	PeriodSubtitle,
+	PeriodEmpty,
+	PeriodItem,
+} from './PeriodSummaryStyle';
 
 function renderShootoutPlays(period) {
 	return period.shootoutPlays.map((play, i) => {
@@ -35,10 +42,10 @@ function renderContent(props) {
 		if (period.shootoutPlays.length) {
 			let shootoutPlays = renderShootoutPlays(period);
 			return (
-				<div key={period.periodName} className="period-summary-period">
-					<h3 className="period-summary-title">{period.periodName}</h3>
+				<Period key={period.periodName}>
+					<PeriodTitle>{period.periodName}</PeriodTitle>
 					{shootoutPlays}
-				</div>
+				</Period>
 			)
 		}
 
@@ -71,9 +78,9 @@ function renderContent(props) {
 
 		if (!goals.length) {
 			goals =
-				<div className="period-summary-item">
-					<div className="period-summary-empty">No Goals</div>
-				</div>;
+				<PeriodItem>
+					<PeriodEmpty>No Goals</PeriodEmpty>
+				</PeriodItem>;
 		}
 
 		let penalties = period.penalties.map((penalty, i) => {
@@ -99,26 +106,26 @@ function renderContent(props) {
 
 		if (!penalties.length) {
 			penalties =
-				<div className="period-summary-item">
-					<div className="period-summary-empty">No Penalties</div>
-				</div>;
+				<PeriodItem>
+					<PeriodEmpty>No Penalties</PeriodEmpty>
+				</PeriodItem>;
 		}
 
 		return (
-			<div key={period.periodName} className="period-summary-period">
-				<h3 className="period-summary-title">{period.periodName}</h3>
-				<div className="period-summary-subtitle">Goals</div>
+			<Period key={period.periodName}>
+				<PeriodTitle>{period.periodName}</PeriodTitle>
+				<PeriodSubtitle>Goals</PeriodSubtitle>
 				{goals}
-				<div className="period-summary-subtitle">Penalties</div>
+				<PeriodSubtitle>Penalties</PeriodSubtitle>
 				{penalties}
-			</div>
+			</Period>
 		)
 	});
 
 	return (
-		<div className="period-summary">
+		<StyledPeriodSummary>
 			{periods}
-		</div>
+		</StyledPeriodSummary>
 	)
 }
 
@@ -130,10 +137,10 @@ function PeriodSummary(props) {
 	let content;
 
 	if (showLoader) {
-		content = <Loader/>;
+		content = <Loader />;
 	} else {
 		if (showNoResults) {
-			content = <ErrorMessage errorMsg="No period summary available."/>;
+			content = <ErrorMessage errorMsg="No period summary available." />;
 		} else {
 			content = renderContent(props);
 		}

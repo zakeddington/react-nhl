@@ -5,7 +5,18 @@ import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
-import './PeriodSummary.scss';
+import {
+	PeriodItem,
+	TeamLogoColumn,
+	TimeColumn,
+	PlayerPhotoColumn,
+	PlayDetailsColumn,
+	DetailsRow,
+	PlayerName,
+	SecondaryDetails,
+	StatusColumn,
+} from './PeriodSummaryStyle';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 function PeriodSummaryPenalty(props) {
 	const {
@@ -17,31 +28,33 @@ function PeriodSummaryPenalty(props) {
 	} = props;
 
 	return (
-		<div className="period-summary-item">
-			<div className="period-summary-logo">
+		<PeriodItem>
+			<TeamLogoColumn>
 				<Icon iconId={`${teamId}`} iconType={IconType.logo}/>
-			</div>
-			<div className="period-summary-time">{time}</div>
-			<div className="period-summary-photo">
+			</TeamLogoColumn>
+			<TimeColumn>{time}</TimeColumn>
+			<PlayerPhotoColumn>
 				<Modal content={<PlayerDetail playerId={penaltyOn.id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={penaltyOn.id}/>
-					<span className="offscreen">Open player details for {penaltyOn.name} in modal window</span>
+					<Offscreen>Open player details for {penaltyOn.name} in modal window</Offscreen>
 				</Modal>
-			</div>
-			<div className="period-summary-player-info">
-				<span className="period-summary-player">
-					<span className="period-summary-name">
+			</PlayerPhotoColumn>
+			<PlayDetailsColumn>
+				<DetailsRow>
+					<PlayerName>
 						<Modal content={<PlayerDetail playerId={penaltyOn.id} />}
 							modalClass="player-detail">
 							{penaltyOn.name}
-							<span className="offscreen">Open player details for {penaltyOn.name} in modal window</span>
+							<Offscreen>Open player details for {penaltyOn.name} in modal window</Offscreen>
 						</Modal>
-					</span>
-				</span>
-				<span className="period-summary-details">{penaltyMin} Minutes for {penaltyType}</span>
-			</div>
-			<div className="period-summary-game-info"/>
-		</div>
+					</PlayerName>
+				</DetailsRow>
+				<DetailsRow>
+					<SecondaryDetails>{penaltyMin} Minutes for {penaltyType}</SecondaryDetails>
+				</DetailsRow>
+			</PlayDetailsColumn>
+			<StatusColumn />
+		</PeriodItem>
 	)
 }
 

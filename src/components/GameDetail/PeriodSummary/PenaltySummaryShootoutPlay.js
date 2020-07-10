@@ -5,7 +5,20 @@ import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
-import './PeriodSummary.scss';
+import {
+	PeriodItem,
+	TeamLogoColumn,
+	TimeColumn,
+	PlayerPhotoColumn,
+	PlayDetailsColumn,
+	DetailsRow,
+	PlayerName,
+	PlayerShotType,
+	StatusColumn,
+	ShootoutStatus,
+	ShotResult,
+} from './PeriodSummaryStyle';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 function PeriodSummaryShootoutPlay(props) {
 	const {
@@ -16,38 +29,40 @@ function PeriodSummaryShootoutPlay(props) {
 	} = props;
 
 	return (
-		<div className="period-summary-item">
-			<div className="period-summary-logo">
+		<PeriodItem>
+			<TeamLogoColumn>
 				<Icon iconId={`${teamId}`} iconType={IconType.logo}/>
-			</div>
-			<div className="period-summary-time"/>
-			<div className="period-summary-photo">
+			</TeamLogoColumn>
+			<TimeColumn />
+			<PlayerPhotoColumn>
 				<Modal content={<PlayerDetail playerId={shooter.id} />} modalClass="player-detail">
 					<PlayerPhoto playerId={shooter.id}/>
-					<span className="offscreen">Open player details for {shooter.name} in modal window</span>
+					<Offscreen>Open player details for {shooter.name} in modal window</Offscreen>
 				</Modal>
-			</div>
-			<div className="period-summary-player-info">
-						<span className="period-summary-player">
-							<span className="period-summary-name">
-								<Modal content={<PlayerDetail playerId={shooter.id} />} modalClass="player-detail">
-									{shooter.name}
-									<span className="offscreen">Open player details for {shooter.name} in modal window</span>
-								</Modal>
-								{shooter.desc ? ',' : ''}
-							</span>
-							<span className="period-summary-goal-desc">{shooter.desc}</span>
-						</span>
-			</div>
-			<div className="period-summary-game-info">
-						<span className={`period-summary-score team-${teamId} no-border`}>
-							{
-								isGoal ? <span className="team-background">{shotResult}</span> :
-									<span>{shotResult}</span>
-							}
-						</span>
-			</div>
-		</div>
+			</PlayerPhotoColumn>
+			<PlayDetailsColumn>
+				<DetailsRow>
+					<PlayerName>
+						<Modal content={<PlayerDetail playerId={shooter.id} />} modalClass="player-detail">
+							{shooter.name}
+							<Offscreen>Open player details for {shooter.name} in modal window</Offscreen>
+						</Modal>
+						{shooter.desc ? ',' : ''}
+					</PlayerName>
+					<PlayerShotType>{shooter.desc}</PlayerShotType>
+				</DetailsRow>
+			</PlayDetailsColumn>
+			<StatusColumn>
+				<ShootoutStatus className={`team-${teamId}`}>
+					{
+						isGoal ?
+							<ShotResult className="team-background">{shotResult}</ShotResult>
+							:
+							<ShotResult>{shotResult}</ShotResult>
+					}
+				</ShootoutStatus>
+			</StatusColumn>
+		</PeriodItem>
 	)
 }
 
