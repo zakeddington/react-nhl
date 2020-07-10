@@ -1,21 +1,22 @@
 import styled from 'styled-components/macro';
-import { AnimSpeed } from '../../config/Animation'
+import { AnimSpeed, AnimEase } from '../../config/Animation'
 
 export const Button = styled.button`
 	background: none;
 	border: none;
+	cursor: pointer;
 	display: inline-block;
 	font-family: ${props => props.theme.font.family.primary};
+	font-size: 1rem;
 	font-weight: 600;
 	margin: 0 auto 0.5rem;
 	padding: 0.5rem 1rem;
 	position: relative;
 	text-decoration: none;
-	transition: all ${AnimSpeed.default} ease-in;
+	transition: all ${AnimSpeed.default} ${AnimEase.in};
 
 	&:hover,
 	&:focus {
-		color: ${props => props.theme.colorUsage.linkHover};
 		text-decoration: none;
 
 		//.svg-icon {

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components/macro';
 import { AnimSpeed, AnimEase, FadeIn } from '../../../config/Animation';
 import { TabletBreakpoint } from '../../../config/Breakpoints';
+import { Button } from '../../../globalStyles/Button/Button';
 
 export const StyledTabs = styled.div`
 	// modifier class as a prop
@@ -32,19 +33,16 @@ export const TabsNavItem = styled.li`
 	padding: 0;
 `;
 
-export const TabsNavLink = styled.button`
-	background: none;
-	border: none;
+export const TabsNavLink = styled(Button)`
 	color: ${props => props.theme.color.white};
-	font-size: 1rem;
 	font-weight: 700;
 	margin: 0;
 	padding: 1rem;
-	transition: all ${AnimSpeed.default} ${AnimEase.in};
 
 	&:hover,
 	&:focus {
 		background: ${props => props.theme.color.greyMedDark};
+		color: ${props => props.theme.color.white};
 		outline: none;
 	}
 

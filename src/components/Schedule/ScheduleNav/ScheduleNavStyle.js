@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { SvgIcon } from '../../Shared/Icon/IconStyle';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
+import { Button } from '../../../globalStyles/Button/Button';
 
 export const StyledScheduleNav = styled.div`
 	align-items: center;
@@ -68,7 +69,7 @@ export const ScheduleNavLink = styled(Link)`
 	`}
 `;
 
-export const StyledDatepickerTrigger = styled.button`
+export const StyledDatepickerTrigger = styled(Button)`
 	align-items: center;
 	background: ${props => props.theme.color.greyDark};
 	border: none;

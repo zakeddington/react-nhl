@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { rgba } from 'polished';
+import { Button } from '../../../globalStyles/Button/Button';
 import { ContainerSize, Spacing } from '../../../config/Grid';
 import ZIndex from '../../../config/ZIndex';
 import { SvgIcon } from '../Icon/IconStyle';
@@ -8,9 +9,7 @@ export const StyledModal = styled.div`
 	display: inline;
 `;
 
-export const ModalTrigger = styled.button`
-	background: none;
-	border: none;
+export const ModalTrigger = styled(Button)`
 	font-size: inherit;
 	font-weight: inherit;
 	margin: 0;
@@ -51,12 +50,10 @@ export const ModalContainer = styled.div`
 	z-index: ${ZIndex.modalWindow};
 `;
 
-export const ModalClose = styled.button`
+export const ModalClose = styled(Button)`
 	align-self: flex-end;
-	background: none;
-	border: none;
 	height: 2rem;
-	margin-bottom: 0.5rem;
+	margin: 0 0 0.5rem;
 	padding: 0.25rem;
 	width: 2rem;
 

@@ -12,12 +12,6 @@ export const A = styled.a`
 	}
 `;
 
-export const Button = styled.button`
-	cursor: pointer;
-	font-family: ${props => props.theme.font.family.primary};
-	font-size: 1rem;
-`;
-
 export const P = styled.p`
 	color: ${props => props.theme.colorUsage.text};
 	font-family: ${props => props.theme.font.family.primary};

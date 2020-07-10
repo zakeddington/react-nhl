@@ -4,6 +4,7 @@ import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
 import ZIndex from '../../../config/ZIndex';
 import Icon from '../Icon/Icon';
+import { Button } from '../../../globalStyles/Button/Button';
 
 export const VideoPlayerVideo = styled.video`
 	display: block;
@@ -39,13 +40,10 @@ export const VideoPlayerTriggerIcon = styled(Icon)`
 	}
 `;
 
-export const VideoPlayerTrigger = styled.button`
-	background: none;
-	border: none;
+export const VideoPlayerTrigger = styled(Button)`
 	display: block;
 	overflow: hidden;
 	padding: 56.25% 0 0;
-	position: relative;
 	width: 100%;
 
 	&:hover,
