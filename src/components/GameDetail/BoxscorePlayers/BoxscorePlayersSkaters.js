@@ -11,8 +11,8 @@ import {
 } from '../../../globalStyles/Tables/StatsTable';
 import {
 	PINNED,
-	JERSEY,
-	NAME,
+	PLAYER_JERSEY,
+	PLAYER_NAME,
 	SPACER_WIDE,
 	ALIGN_LEFT,
 } from '../../../globalStyles/Tables/StatsTableModifiers';
@@ -22,8 +22,8 @@ import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 function renderBoxscoreSkaterRow(data) {
 	return (
 		<StatsTableRow key={data.id}>
-			<StatsTableTd modifiers={[PINNED, JERSEY]}>{data.number}</StatsTableTd>
-			<StatsTableTd modifiers={[PINNED, NAME]} className="text-left">
+			<StatsTableTd modifiers={[PINNED, PLAYER_JERSEY]}>{data.number}</StatsTableTd>
+			<StatsTableTd modifiers={[PINNED, PLAYER_NAME]} className="text-left">
 				<Modal content={<PlayerDetail playerId={data.id} />} modalClass="player-detail">
 					{data.name}
 					<Offscreen>Open player details for {data.name} in modal window</Offscreen>
@@ -58,8 +58,8 @@ function BoxscorePlayersSkaters(props) {
 			<StatsTable>
 				<thead>
 				<StatsTableRow>
-					<StatsTableTh modifiers={[PINNED, JERSEY]}>&nbsp;</StatsTableTh>
-					<StatsTableTh modifiers={[PINNED, NAME, ALIGN_LEFT]}>{position}</StatsTableTh>
+					<StatsTableTh modifiers={[PINNED, PLAYER_JERSEY]}>&nbsp;</StatsTableTh>
+					<StatsTableTh modifiers={[PINNED, PLAYER_NAME, ALIGN_LEFT]}>{position}</StatsTableTh>
 					<StatsTableTh modifiers={[SPACER_WIDE]}><Tooltip>G <TooltipContent>Goals</TooltipContent></Tooltip></StatsTableTh>
 					<StatsTableTh><Tooltip>A <TooltipContent>Assists</TooltipContent></Tooltip></StatsTableTh>
 					<StatsTableTh><Tooltip>P <TooltipContent>Points</TooltipContent></Tooltip></StatsTableTh>

@@ -17,9 +17,7 @@ export const BoxscoreTeamsTable = styled(StatsTable)`
 	text-align: center;
 `;
 
-export const BoxscoreTeamsRow = styled(StatsTableRow)`
-
-`;
+export const BoxscoreTeamsRow = styled(StatsTableRow)``;
 
 const BoxscoreTeamsCell = css`
 	@media (max-width: ${MobileBreakpoint.max}) {
@@ -42,20 +40,20 @@ const BoxscoreTeamsCell = css`
 
 export const BoxscoreTeamsTh = styled(StatsTableTh)`
 	${BoxscoreTeamsCell};
-		font-weight: 400;
+	font-weight: 400;
 
-		@media (max-width: ${MobileBreakpoint.max}) {
-			height: 30px;
-		}
+	@media (max-width: ${MobileBreakpoint.max}) {
+		height: 30px;
+	}
 `;
 
 export const BoxscoreTeamsTd = styled(StatsTableTd)`
 	${BoxscoreTeamsCell};
-		font-weight: 600;
+	font-weight: 600;
 
-		@media (min-width: ${TabletBreakpoint.min}) {
-			font-size: 1.5rem;
-		}
+	@media (min-width: ${TabletBreakpoint.min}) {
+		font-size: 1.5rem;
+	}
 `;
 
 export const BoxscoreTeamsTdName = styled(BoxscoreTeamsTd)`

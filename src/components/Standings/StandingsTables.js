@@ -2,7 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Shared/Icon/Icon';
 import { IconType } from '../../config/ImageIconConfig';
-import './StandingsTables.scss';
+import {
+	StyledStandingsTable,
+	StandingsTableContainer,
+	StandingsTableTitle,
+	StandingsTable,
+	StandingsTableRow,
+	StandingsTableTh,
+	StandingsTableTd,
+	StandingsTableTeamName,
+} from './StandingsTablesStyle';
+import {
+	Tooltip,
+	TooltipContent,
+} from '../../globalStyles/Tooltip/Tooltip';
+import { ALIGN_LEFT, TEAM_NAME } from '../../globalStyles/Tables/StatsTableModifiers';
 
 function renderStandingsTable(standingsName, division) {
 	const {
@@ -11,43 +25,41 @@ function renderStandingsTable(standingsName, division) {
 		teams,
 	} = division;
 
-	const classWildCard = isWildCard ? 'is-wildcard' : '';
-
 	return (
-		<div key={`${standingsName}-${divisionName}`} className={`stats-table standings-tables--division ${classWildCard}`}>
-			<table>
+		<StandingsTableContainer key={`${standingsName}-${divisionName}`} $isWildcard={isWildCard}>
+			<StandingsTable>
 				<thead>
-				<tr>
-					<th className="text-left" colSpan="2">{divisionName}</th>
-					<th className="tooltip">GP <span className="tooltip-content">Games Played</span></th>
-					<th className="tooltip">W <span className="tooltip-content">Wins (2pts)</span></th>
-					<th className="tooltip">L <span className="tooltip-content">Losses (0pts)</span></th>
-					<th className="tooltip">OT <span className="tooltip-content">Overtime/Shootout Loss (1pt)</span></th>
-					<th className="tooltip">PTS <span className="tooltip-content">Points</span></th>
-				</tr>
+					<StandingsTableRow>
+						<StandingsTableTh modifiers={[ALIGN_LEFT]} colSpan="2">{divisionName}</StandingsTableTh>
+						<StandingsTableTh><Tooltip>GP <TooltipContent>Games Played</TooltipContent></Tooltip></StandingsTableTh>
+						<StandingsTableTh><Tooltip>W <TooltipContent>Wins (2pts)</TooltipContent></Tooltip></StandingsTableTh>
+						<StandingsTableTh><Tooltip>L <TooltipContent>Losses (0pts)</TooltipContent></Tooltip></StandingsTableTh>
+						<StandingsTableTh><Tooltip>OT <TooltipContent>Overtime/Shootout Loss (1pt)</TooltipContent></Tooltip></StandingsTableTh>
+						<StandingsTableTh><Tooltip>PTS <TooltipContent>Points</TooltipContent></Tooltip></StandingsTableTh>
+					</StandingsTableRow>
 				</thead>
 				<tbody>
 				{
 					teams.map((team) => {
 						return (
-							<tr key={team.name}>
-								<td>{team.rank}</td>
-								<td className="standings-tables--team text-left">
+							<StandingsTableRow key={team.name}>
+								<StandingsTableTd>{team.rank}</StandingsTableTd>
+								<StandingsTableTd modifiers={[TEAM_NAME, ALIGN_LEFT]}>
 									<Icon iconId={`${team.id}`} iconType={IconType.logo} />
-									<span className="standings-tables--team-name">{team.name}</span>
-								</td>
-								<td>{team.games}</td>
-								<td>{team.wins}</td>
-								<td>{team.losses}</td>
-								<td>{team.ot}</td>
-								<td>{team.points}</td>
-							</tr>
+									<StandingsTableTeamName>{team.name}</StandingsTableTeamName>
+								</StandingsTableTd>
+								<StandingsTableTd>{team.games}</StandingsTableTd>
+								<StandingsTableTd>{team.wins}</StandingsTableTd>
+								<StandingsTableTd>{team.losses}</StandingsTableTd>
+								<StandingsTableTd>{team.ot}</StandingsTableTd>
+								<StandingsTableTd>{team.points}</StandingsTableTd>
+							</StandingsTableRow>
 						)
 					})
 				}
 				</tbody>
-			</table>
-		</div>
+			</StandingsTable>
+		</StandingsTableContainer>
 	)
 }
 
@@ -62,14 +74,14 @@ function StandingsTables(props) {
 			{
 				standings.map((conference) => {
 					return (
-						<div key={`${standingsName}-${conference.conferenceName}`} className="standings-tables">
-							<h2>{conference.conferenceName}</h2>
+						<StyledStandingsTable key={`${standingsName}-${conference.conferenceName}`}>
+							<StandingsTableTitle>{conference.conferenceName}</StandingsTableTitle>
 							{
 								conference.divisions.map((division) => {
 									return renderStandingsTable(standingsName, division)
 								})
 							}
-						</div>
+						</StyledStandingsTable>
 					)
 				})
 			}

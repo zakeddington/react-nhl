@@ -2,11 +2,12 @@ import { css } from 'styled-components/macro';
 import { MobileBreakpoint } from '../../config/Breakpoints';
 
 export const PINNED = 'pinned';
-export const JERSEY = 'jersey';
-export const NAME = 'name';
+export const PLAYER_JERSEY = 'playerJersey';
+export const PLAYER_NAME = 'playerName';
 export const SPACER = 'spacer';
 export const SPACER_WIDE = 'spacerWide';
 export const ALIGN_LEFT = 'alignLeft';
+export const TEAM_NAME = 'teamName';
 
 export default {
 	pinned: ({ theme }) => css`
@@ -17,7 +18,7 @@ export default {
 			width: 7rem;
 		}
   `,
-	jersey: () => css`
+	playerJersey: () => css`
 		@media (min-width: ${MobileBreakpoint.min}) {
 			border-right: none;
 			min-width: 2.5rem;
@@ -28,7 +29,7 @@ export default {
 			left: 20px;
 		}
 	`,
-	name: () => css`
+	playerName: () => css`
 		@media (min-width: ${MobileBreakpoint.min}) {
 			min-width: 14rem;
 			width: 14rem;
@@ -52,5 +53,8 @@ export default {
 	`,
 	alignLeft: () => css`
 		text-align: left;
+	`,
+	teamName: () => css`
+		width: 12.5rem;
 	`,
 };
