@@ -1,20 +1,12 @@
 import styled, { css } from 'styled-components/macro';
+import { applyStyleModifiers } from 'styled-components-modifiers';
 import { AnimSpeed, AnimEase, FadeIn } from '../../../config/Animation';
 import { TabletBreakpoint } from '../../../config/Breakpoints';
 import { Button } from '../../../globalStyles/Button/Button';
+import TabsModifiers from './TabsModifiers';
 
 export const StyledTabs = styled.div`
-	// modifier class as a prop
-	${props => props.modifier === 'small' && css`
-		${TabsNavLink} {
-			font-size: 0.875rem;
-			padding: 0.5rem 0.75rem;
-		}
-
-		${TabsNav} {
-			margin-bottom: 1rem;
-		}
-	`}
+	${applyStyleModifiers(TabsModifiers)};
 `;
 
 export const TabsNav = styled.ol`

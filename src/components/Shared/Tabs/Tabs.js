@@ -23,11 +23,11 @@ class Tabs extends Component {
 	render() {
 		this.tabs = React.Children.toArray(this.props.children);
 		const { activeTab } = this.state;
-		const { modifier } = this.props;
+		const { modifiers } = this.props;
 
 		if (this.tabs) {
 			return (
-				<StyledTabs modifier={modifier}>
+				<StyledTabs modifiers={modifiers}>
 					<TabsNav>
 						{this.tabs.map((tab, i) => {
 							const isActive = tab.props.id === activeTab.props.id;
@@ -62,7 +62,7 @@ class Tabs extends Component {
 
 Tabs.propTypes = {
 	children: PropTypes.node,
-	modifier: PropTypes.string,
+	modifiers: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default Tabs;

@@ -4,46 +4,56 @@ import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
-import './BoxscoreTeams.scss';
+import {
+	StyledBoxscoreTeams,
+	BoxscoreTeamsTable,
+	BoxscoreTeamsRow,
+	BoxscoreTeamsTh,
+	BoxscoreTeamsTd,
+	BoxscoreTeamsTdName,
+	BoxscoreTeamName,
+} from './BoxscoreTeamsStyle';
+import {
+	PINNED,
+	SPACER,
+} from '../../../globalStyles/Tables/StatsTableModifiers';
+import { Tooltip, TooltipContent } from '../../../globalStyles/Tooltip/Tooltip';
 
 function renderBoxscoreTeamRow(team) {
 	return (
-		<tr key={team.name}>
-			<td className="stats-table--pinned boxscore-teams--team">
-				<Icon iconId={`${team.id}`} iconType={IconType.logo}/>
-				<span className="boxscore-teams--team-name">{team.name}</span>
-			</td>
-			<td className="stats-table--spacer">{team.shots}</td>
-			<td>{team.faceOffWinPercentage}</td>
-			<td>{team.powerPlayGoals}/{team.powerPlayOpportunities}</td>
-			<td>{team.pim}</td>
-			<td>{team.hits}</td>
-			<td>{team.blocked}</td>
-			<td>{team.giveaways}</td>
-			<td>{team.takeaways}</td>
-		</tr>
+		<BoxscoreTeamsRow key={team.name}>
+			<BoxscoreTeamsTdName modifiers={[PINNED]}>
+				<Icon iconId={`${team.id}`} iconType={IconType.logo} />
+				<BoxscoreTeamName >{team.name}</BoxscoreTeamName>
+			</BoxscoreTeamsTdName>
+			<BoxscoreTeamsTd modifiers={[SPACER]}>{team.shots}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.faceOffWinPercentage}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.powerPlayGoals}/{team.powerPlayOpportunities}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.pim}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.hits}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.blocked}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.giveaways}</BoxscoreTeamsTd>
+			<BoxscoreTeamsTd>{team.takeaways}</BoxscoreTeamsTd>
+		</BoxscoreTeamsRow>
 	)
 }
 
 function renderContent(data) {
 	return (
-		<div className="stats-table boxscore-teams">
-			<table>
+		<StyledBoxscoreTeams>
+			<BoxscoreTeamsTable>
 				<thead>
-				<tr>
-					<th className="stats-table--pinned">&nbsp;</th>
-					<th className="stats-table--spacer"><span className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></span>
-					</th>
-					<th><span className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></span>
-					</th>
-					<th><span className="tooltip">PP <span
-						className="tooltip-content">Power Play Goals/Opportunities</span></span></th>
-					<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
-					<th><span className="tooltip">HT <span className="tooltip-content">Hits</span></span></th>
-					<th><span className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></span></th>
-					<th><span className="tooltip">GV <span className="tooltip-content">Giveaways</span></span></th>
-					<th><span className="tooltip">TK <span className="tooltip-content">Takeaways</span></span></th>
-				</tr>
+					<BoxscoreTeamsRow>
+						<BoxscoreTeamsTh modifiers={[PINNED]}>&nbsp;</BoxscoreTeamsTh>
+						<BoxscoreTeamsTh modifiers={[SPACER]}><Tooltip>SOG <TooltipContent>Shots on Goal</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>FO% <TooltipContent>Faceoff Win Percentage</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>PP <TooltipContent>Power Play Goals/Opportunities</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>PIM <TooltipContent>Penalty Minutes</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>HT <TooltipContent>Hits</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>BS <TooltipContent>Blocked Shots</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>GV <TooltipContent>Giveaways</TooltipContent></Tooltip></BoxscoreTeamsTh>
+						<BoxscoreTeamsTh><Tooltip>TK <TooltipContent>Takeaways</TooltipContent></Tooltip></BoxscoreTeamsTh>
+					</BoxscoreTeamsRow>
 				</thead>
 				<tbody>
 				{
@@ -52,8 +62,8 @@ function renderContent(data) {
 					})
 				}
 				</tbody>
-			</table>
-		</div>
+			</BoxscoreTeamsTable>
+		</StyledBoxscoreTeams>
 	)
 }
 

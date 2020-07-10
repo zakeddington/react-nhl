@@ -6,11 +6,10 @@ import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../../Shared/Tabs/Tabs';
 import Tab from '../../Shared/Tabs/Tab';
 import BoxscorePlayersByPosition from './BoxscorePlayersByPosition';
-import './BoxscorePlayersByTeam.scss';
 
 function renderContent(boxscorePlayersByTeam) {
 	return (
-		<Tabs key="tabs-boxscore-players" tabsClass="tabs-boxscore-players">
+		<Tabs key="tabs-boxscore-players" modifiers={['teamLogos']}>
 			{
 				boxscorePlayersByTeam.map((team) => {
 					return (
@@ -34,7 +33,7 @@ function BoxscorePlayersByTeam(props) {
 	let content;
 
 	if (showLoader) {
-		content = <Loader/>;
+		content = <Loader />;
 	} else {
 		if (showNoResults) {
 			content = <ErrorMessage errorMsg="No player boxscore available."/>;

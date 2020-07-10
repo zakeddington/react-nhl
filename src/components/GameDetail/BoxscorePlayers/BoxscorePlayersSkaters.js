@@ -2,32 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
+import {
+	StatsTableContainer,
+	StatsTable,
+	StatsTableRow,
+	StatsTableTh,
+	StatsTableTd,
+} from '../../../globalStyles/Tables/StatsTable';
+import {
+	PINNED,
+	JERSEY,
+	NAME,
+	SPACER_WIDE,
+	ALIGN_LEFT,
+} from '../../../globalStyles/Tables/StatsTableModifiers';
+import { Tooltip, TooltipContent } from '../../../globalStyles/Tooltip/Tooltip';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 function renderBoxscoreSkaterRow(data) {
 	return (
-		<tr key={data.id}>
-			<td className="stats-table--pinned stats-table--jersey">{data.number}</td>
-			<td className="stats-table--pinned text-left stats-table--name">
+		<StatsTableRow key={data.id}>
+			<StatsTableTd modifiers={[PINNED, JERSEY]}>{data.number}</StatsTableTd>
+			<StatsTableTd modifiers={[PINNED, NAME]} className="text-left">
 				<Modal content={<PlayerDetail playerId={data.id} />} modalClass="player-detail">
 					{data.name}
-					<span className="offscreen">Open player details for {data.name} in modal window</span>
-				</Modal>, {data.pos}</td>
-			<td className="stats-table--spacer-wide">{data.goals}</td>
-			<td>{data.assists}</td>
-			<td>{data.goals + data.assists}</td>
-			<td>{data.plusMinus}</td>
-			<td>{data.penaltyMinutes}</td>
-			<td>{data.shots}</td>
-			<td>{data.hits}</td>
-			<td>{data.blocked}</td>
-			<td>{data.giveaways}</td>
-			<td>{data.takeaways}</td>
-			<td>{data.faceOffWins}</td>
-			<td>{data.faceoffTaken}</td>
-			<td>{data.faceOffPercent}</td>
-			<td>{data.timeOnIce}</td>
-			<td>{data.powerPlayTimeOnIce}</td>
-		</tr>
+					<Offscreen>Open player details for {data.name} in modal window</Offscreen>
+				</Modal>, {data.pos}</StatsTableTd>
+			<StatsTableTd modifiers={[SPACER_WIDE]}>{data.goals}</StatsTableTd>
+			<StatsTableTd>{data.assists}</StatsTableTd>
+			<StatsTableTd>{data.goals + data.assists}</StatsTableTd>
+			<StatsTableTd>{data.plusMinus}</StatsTableTd>
+			<StatsTableTd>{data.penaltyMinutes}</StatsTableTd>
+			<StatsTableTd>{data.shots}</StatsTableTd>
+			<StatsTableTd>{data.hits}</StatsTableTd>
+			<StatsTableTd>{data.blocked}</StatsTableTd>
+			<StatsTableTd>{data.giveaways}</StatsTableTd>
+			<StatsTableTd>{data.takeaways}</StatsTableTd>
+			<StatsTableTd>{data.faceOffWins}</StatsTableTd>
+			<StatsTableTd>{data.faceoffTaken}</StatsTableTd>
+			<StatsTableTd>{data.faceOffPercent}</StatsTableTd>
+			<StatsTableTd>{data.timeOnIce}</StatsTableTd>
+			<StatsTableTd>{data.powerPlayTimeOnIce}</StatsTableTd>
+		</StatsTableRow>
 	);
 }
 
@@ -38,28 +54,28 @@ function BoxscorePlayersSkaters(props) {
 	} = props;
 
 	return (
-		<div className="stats-table">
-			<table>
+		<StatsTableContainer>
+			<StatsTable>
 				<thead>
-				<tr>
-					<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
-					<th className="stats-table--pinned stats-table--name text-left">{position}</th>
-					<th className="stats-table--spacer-wide"><span className="tooltip">G <span className="tooltip-content">Goals</span></span></th>
-					<th><span className="tooltip">A <span className="tooltip-content">Assists</span></span></th>
-					<th><span className="tooltip">P <span className="tooltip-content">Points</span></span></th>
-					<th><span className="tooltip">+/- <span className="tooltip-content">Plus / Minus</span></span></th>
-					<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
-					<th><span className="tooltip">SOG <span className="tooltip-content">Shots on Goal</span></span></th>
-					<th><span className="tooltip">HT <span className="tooltip-content">Hits</span></span></th>
-					<th><span className="tooltip">BS <span className="tooltip-content">Blocked Shots</span></span></th>
-					<th><span className="tooltip">GV <span className="tooltip-content">Giveaways</span></span></th>
-					<th><span className="tooltip">TK <span className="tooltip-content">Takeaways</span></span></th>
-					<th><span className="tooltip">FW <span className="tooltip-content">Faceoff Win</span></span></th>
-					<th><span className="tooltip">FL <span className="tooltip-content">Faceoff Loss</span></span></th>
-					<th><span className="tooltip">FO% <span className="tooltip-content">Faceoff Win Percentage</span></span></th>
-					<th><span className="tooltip">TOI <span className="tooltip-content">Total On Ice Time</span></span></th>
-					<th><span className="tooltip">PP TOI <span className="tooltip-content">Power Play Total On Ice Time</span></span></th>
-				</tr>
+				<StatsTableRow>
+					<StatsTableTh modifiers={[PINNED, JERSEY]}>&nbsp;</StatsTableTh>
+					<StatsTableTh modifiers={[PINNED, NAME, ALIGN_LEFT]}>{position}</StatsTableTh>
+					<StatsTableTh modifiers={[SPACER_WIDE]}><Tooltip>G <TooltipContent>Goals</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>A <TooltipContent>Assists</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>P <TooltipContent>Points</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>+/- <TooltipContent>Plus / Minus</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>PIM <TooltipContent>Penalty Minutes</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>SOG <TooltipContent>Shots on Goal</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>HT <TooltipContent>Hits</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>BS <TooltipContent>Blocked Shots</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>GV <TooltipContent>Giveaways</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>TK <TooltipContent>Takeaways</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>FW <TooltipContent>Faceoff Win</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>FL <TooltipContent>Faceoff Loss</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>FO% <TooltipContent>Faceoff Win Percentage</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>TOI <TooltipContent>Total On Ice Time</TooltipContent></Tooltip></StatsTableTh>
+					<StatsTableTh><Tooltip>PP TOI <TooltipContent>Power Play Total On Ice Time</TooltipContent></Tooltip></StatsTableTh>
+				</StatsTableRow>
 				</thead>
 				<tbody>
 				{
@@ -68,8 +84,8 @@ function BoxscorePlayersSkaters(props) {
 					})
 				}
 				</tbody>
-			</table>
-		</div>
+			</StatsTable>
+		</StatsTableContainer>
 	)
 }
 

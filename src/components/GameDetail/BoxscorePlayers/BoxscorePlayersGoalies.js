@@ -2,26 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../Shared/Modal/Modal';
 import PlayerDetail from '../../../containers/PlayerDetail';
+import {
+	StatsTableContainer,
+	StatsTable,
+	StatsTableRow,
+	StatsTableTh,
+	StatsTableTd,
+} from '../../../globalStyles/Tables/StatsTable';
+import {
+	PINNED,
+	JERSEY,
+	NAME,
+	SPACER_WIDE,
+	ALIGN_LEFT,
+} from '../../../globalStyles/Tables/StatsTableModifiers';
+import { Tooltip, TooltipContent } from '../../../globalStyles/Tooltip/Tooltip';
+import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 function renderBoxscoreGoalieRow(data) {
 	return (
-		<tr key={data.id}>
-			<td className="stats-table--pinned stats-table--jersey">{data.number}</td>
-			<td className="stats-table--pinned stats-table--name text-left">
+		<StatsTableRow key={data.id}>
+			<StatsTableTd modifiers={[PINNED, JERSEY]}>{data.number}</StatsTableTd>
+			<StatsTableTd modifiers={[PINNED, NAME, ALIGN_LEFT]}>
 				<Modal content={<PlayerDetail playerId={data.id} />} modalClass="player-detail">
 					{data.name}
-					<span className="offscreen">Open player details for {data.name} in modal window</span>
-				</Modal>, {data.pos}</td>
-			<td className="stats-table--spacer-wide">{data.shots - data.saves}</td>
-			<td>{data.shots}</td>
-			<td>{data.saves}</td>
-			<td>{data.savePercent}</td>
-			<td>{data.evenSaves} - {data.evenShotsAgainst}</td>
-			<td>{data.powerPlaySaves} - {data.powerPlayShotsAgainst}</td>
-			<td>{data.shortHandedSaves} - {data.shortHandedShotsAgainst}</td>
-			<td>{data.pim}</td>
-			<td>{data.timeOnIce}</td>
-		</tr>
+					<Offscreen>Open player details for {data.name} in modal window</Offscreen>
+				</Modal>, {data.pos}</StatsTableTd>
+			<StatsTableTd modifiers={[SPACER_WIDE]}>{data.shots - data.saves}</StatsTableTd>
+			<StatsTableTd>{data.shots}</StatsTableTd>
+			<StatsTableTd>{data.saves}</StatsTableTd>
+			<StatsTableTd>{data.savePercent}</StatsTableTd>
+			<StatsTableTd>{data.evenSaves} - {data.evenShotsAgainst}</StatsTableTd>
+			<StatsTableTd>{data.powerPlaySaves} - {data.powerPlayShotsAgainst}</StatsTableTd>
+			<StatsTableTd>{data.shortHandedSaves} - {data.shortHandedShotsAgainst}</StatsTableTd>
+			<StatsTableTd>{data.pim}</StatsTableTd>
+			<StatsTableTd>{data.timeOnIce}</StatsTableTd>
+		</StatsTableRow>
 	);
 }
 
@@ -32,22 +48,22 @@ function BoxscorePlayersGoalies(props) {
 	} = props;
 
 	return (
-		<div className="stats-table goalie-stats">
-			<table>
+		<StatsTableContainer>
+			<StatsTable>
 				<thead>
-				<tr>
-					<th className="stats-table--pinned stats-table--jersey">&nbsp;</th>
-					<th className="stats-table--pinned stats-table--name text-left">{position}</th>
-					<th className="stats-table--spacer-wide"><span className="tooltip">GA <span className="tooltip-content">Goals Against</span></span></th>
-					<th><span className="tooltip">SA <span className="tooltip-content">Shots Against</span></span></th>
-					<th><span className="tooltip">SV <span className="tooltip-content">Saves</span></span></th>
-					<th><span className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></span></th>
-					<th><span className="tooltip">EV <span className="tooltip-content">Even Strength Saves-Shots</span></span></th>
-					<th><span className="tooltip">PP <span className="tooltip-content">Power Play Saves-Shots</span></span></th>
-					<th><span className="tooltip">SH <span className="tooltip-content">Shorthanded Saves-Shots</span></span></th>
-					<th><span className="tooltip">PIM <span className="tooltip-content">Penalty Minutes</span></span></th>
-					<th><span className="tooltip">TOI <span className="tooltip-content">Total On Ice Time</span></span></th>
-				</tr>
+					<StatsTableRow>
+						<StatsTableTh modifiers={[PINNED, JERSEY]}>&nbsp;</StatsTableTh>
+						<StatsTableTh modifiers={[PINNED, NAME, ALIGN_LEFT]}>{position}</StatsTableTh>
+						<StatsTableTh modifiers={[SPACER_WIDE]}><Tooltip>GA <TooltipContent>Goals Against</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SA <TooltipContent>Shots Against</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SV <TooltipContent>Saves</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SV% <TooltipContent>Save Percentage</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>EV <TooltipContent>Even StrengStatsTableTh Saves-Shots</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>PP <TooltipContent>Power Play Saves-Shots</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SH <TooltipContent>ShorStatsTableThanded Saves-Shots</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>PIM <TooltipContent>Penalty Minutes</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>TOI <TooltipContent>Total On Ice Time</TooltipContent></Tooltip></StatsTableTh>
+					</StatsTableRow>
 				</thead>
 				<tbody>
 				{
@@ -56,8 +72,8 @@ function BoxscorePlayersGoalies(props) {
 					})
 				}
 				</tbody>
-			</table>
-		</div>
+			</StatsTable>
+		</StatsTableContainer>
 	)
 }
 

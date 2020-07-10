@@ -27,6 +27,7 @@ export const Breakpoints = {
 };
 
 export const MobileBreakpoint = {
+	min: '1px',
 	max: '767px',
 };
 

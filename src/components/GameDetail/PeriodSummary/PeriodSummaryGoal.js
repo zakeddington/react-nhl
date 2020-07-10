@@ -93,6 +93,13 @@ function PeriodSummaryGoal(props) {
 	)
 }
 
+//
+//
+// TODO
+// Figure out global brand colors as props?
+//
+//
+
 PeriodSummaryGoal.propTypes = {
 	time: PropTypes.string,
 	isEmptyNet: PropTypes.bool,
