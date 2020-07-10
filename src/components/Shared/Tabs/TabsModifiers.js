@@ -3,8 +3,11 @@ import { TabsNav, TabsNavLink } from './TabsStyle';
 import { SvgLogo } from '../Icon/IconStyle';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
 
+export const TABS_SMALL = 'tabsSmall';
+export const TABS_LOGOS = 'tabsLogos';
+
 export default {
-	small: () => css`
+	tabsSmall: () => css`
 		${TabsNav} {
 			margin-bottom: 1rem;
 		}
@@ -14,7 +17,7 @@ export default {
 			padding: 0.5rem 0.75rem;
 		}
 	`,
-	teamLogos: ({ theme }) => css`
+	tabsLogos: ({ theme }) => css`
 		${SvgLogo} {
 			background: ${theme.color.white};
 			border-radius: 50%;

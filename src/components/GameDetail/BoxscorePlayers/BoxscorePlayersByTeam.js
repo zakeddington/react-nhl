@@ -5,11 +5,12 @@ import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../../Shared/Tabs/Tabs';
 import Tab from '../../Shared/Tabs/Tab';
+import { TABS_LOGOS } from '../../Shared/Tabs/TabsModifiers';
 import BoxscorePlayersByPosition from './BoxscorePlayersByPosition';
 
 function renderContent(boxscorePlayersByTeam) {
 	return (
-		<Tabs key="tabs-boxscore-players" modifiers={['teamLogos']}>
+		<Tabs key="tabs-boxscore-players" modifiers={[TABS_LOGOS]}>
 			{
 				boxscorePlayersByTeam.map((team) => {
 					return (

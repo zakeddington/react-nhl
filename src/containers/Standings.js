@@ -4,6 +4,7 @@ import Loader from '../components/Shared/Loader/Loader';
 import ErrorMessage from '../components/Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
+import { TABS_SMALL } from '../components/Shared/Tabs/TabsModifiers';
 import StandingsTables from '../components/Standings/StandingsTables';
 
 class Standings extends Component {
@@ -113,7 +114,7 @@ class Standings extends Component {
 			content = <Loader />;
 		} else {
 			content =
-				<Tabs key="tabs-standings" modifiers={['small']}>
+				<Tabs key="tabs-standings" modifiers={[TABS_SMALL]}>
 					{
 						!isDivisionStandingsError &&
 						<Tab id={`tab-${dataDivisionStandings.standingsName}-standings`} tabTitle={dataDivisionStandings.standingsName}>
