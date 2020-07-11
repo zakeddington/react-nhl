@@ -4,11 +4,11 @@ import { PlayerImagePath } from '../../../config/ImageIconConfig';
 import { StyledPlayerPhoto, PlayerPhotoImage } from './PlayerPhotoStyle';
 
 function PlayerPhoto(props) {
-	const { playerId, photoClass } = props;
+	const { playerId } = props;
 	const url = `${PlayerImagePath.base}${PlayerImagePath.headshot}${playerId}${PlayerImagePath.ext}`;
 
 	return (
-		<StyledPlayerPhoto className={photoClass}>
+		<StyledPlayerPhoto>
 			<PlayerPhotoImage style={{backgroundImage: `url(${url})`}} />
 		</StyledPlayerPhoto>
 	)
@@ -16,7 +16,6 @@ function PlayerPhoto(props) {
 
 PlayerPhoto.propTypes = {
 	playerId: PropTypes.number,
-	photoClass: PropTypes.string,
 }
 
 export default PlayerPhoto;

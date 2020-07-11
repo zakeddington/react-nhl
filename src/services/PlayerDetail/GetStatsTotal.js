@@ -1,5 +1,6 @@
 import GetStatsGoalie from './GetStatsGoalie';
 import GetStatsSkater from './GetStatsSkater';
+import { TOTAL } from '../../globalStyles/Tables/StatsTableModifiers'
 
 function GetStatsTotal(data, position) {
 	if (data.length) {
@@ -15,7 +16,7 @@ function GetStatsTotal(data, position) {
 
 		return {
 			season: 'Total',
-			rowClass: 'total',
+			cellModifier: TOTAL,
 			team: '',
 			...curStats,
 		};

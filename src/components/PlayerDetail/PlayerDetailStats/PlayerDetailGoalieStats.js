@@ -1,26 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
+import {
+	StatsTableContainer,
+	StatsTable,
+	StatsTableRow,
+	StatsTableTh,
+	StatsTableTd,
+} from '../../../globalStyles/Tables/StatsTable';
+import { ALIGN_LEFT } from '../../../globalStyles/Tables/StatsTableModifiers';
+import { Tooltip, TooltipContent } from '../../../globalStyles/Tooltip/Tooltip';
 
 function renderGoalieStats(data, i) {
 	return (
-		<tr key={`player-detail-goalie-stats-${i}`} className={data.rowClass}>
-			<td className="text-left">{data.season}</td>
-			<td className="text-left">{data.team}</td>
-			<td>{data.games}</td>
-			<td>{data.gamesStarted}</td>
-			<td>{data.wins}</td>
-			<td>{data.losses}</td>
-			<td>{data.ties}</td>
-			<td>{data.ot}</td>
-			<td>{data.shotsAgainst}</td>
-			<td>{data.goalsAgainst}</td>
-			<td>{data.goalAgainstAverage}</td>
-			<td>{data.saves}</td>
-			<td>{data.savePercentage}</td>
-			<td>{data.shutouts}</td>
-			<td>{data.timeOnIce}</td>
-		</tr>
+		<StatsTableRow key={`player-detail-goalie-stats-${i}`}>
+			<StatsTableTd modifiers={[ALIGN_LEFT, data.cellModifier]}>{data.season}</StatsTableTd>
+			<StatsTableTd modifiers={[ALIGN_LEFT, data.cellModifier]}>{data.team}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.games}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.gamesStarted}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.wins}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.losses}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.ties}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.ot}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.shotsAgainst}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.goalsAgainst}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.goalAgainstAverage}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.saves}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.savePercentage}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.shutouts}</StatsTableTd>
+			<StatsTableTd modifiers={[data.cellModifier]}>{data.timeOnIce}</StatsTableTd>
+		</StatsTableRow>
 	);
 }
 
@@ -34,26 +43,26 @@ function PlayerDetailGoalieStats(props) {
 	}
 
 	return (
-		<div key="player-detail-goalie-stats" className="stats-table">
-			<table>
+		<StatsTableContainer key="player-detail-goalie-stats">
+			<StatsTable>
 				<thead>
-				<tr>
-					<th className="text-left">Season</th>
-					<th className="text-left">Team</th>
-					<th><span className="tooltip">GP <span className="tooltip-content">Games Played</span></span></th>
-					<th><span className="tooltip">GS <span className="tooltip-content">Games Started</span></span></th>
-					<th><span className="tooltip">W <span className="tooltip-content">Wins</span></span></th>
-					<th><span className="tooltip">L <span className="tooltip-content">Losses</span></span></th>
-					<th><span className="tooltip">T <span className="tooltip-content">Ties</span></span></th>
-					<th><span className="tooltip">OT <span className="tooltip-content">Overtime Losses</span></span></th>
-					<th><span className="tooltip">SA <span className="tooltip-content">Shots Against</span></span></th>
-					<th><span className="tooltip">GA <span className="tooltip-content">Goals Against</span></span></th>
-					<th><span className="tooltip">GAA <span className="tooltip-content">Goals Against Average</span></span></th>
-					<th><span className="tooltip">SV <span className="tooltip-content">Saves</span></span></th>
-					<th><span className="tooltip">SV% <span className="tooltip-content">Save Percentage</span></span></th>
-					<th><span className="tooltip">SO <span className="tooltip-content">Shutouts</span></span></th>
-					<th><span className="tooltip">MIN <span className="tooltip-content">Minutes</span></span></th>
-				</tr>
+					<StatsTableRow>
+						<StatsTableTh modifiers={[ALIGN_LEFT]}>Season</StatsTableTh>
+						<StatsTableTh modifiers={[ALIGN_LEFT]}>Team</StatsTableTh>
+						<StatsTableTh><Tooltip>GP <TooltipContent>Games Played</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>GS <TooltipContent>Games Started</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>W <TooltipContent>Wins</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>L <TooltipContent>Losses</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>T <TooltipContent>Ties</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>OT <TooltipContent>Overtime Losses</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SA <TooltipContent>Shots Against</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>GA <TooltipContent>Goals Against</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>GAA <TooltipContent>Goals Against Average</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SV <TooltipContent>Saves</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SV% <TooltipContent>Save Percentage</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>SO <TooltipContent>Shutouts</TooltipContent></Tooltip></StatsTableTh>
+						<StatsTableTh><Tooltip>MIN <TooltipContent>Minutes</TooltipContent></Tooltip></StatsTableTh>
+					</StatsTableRow>
 				</thead>
 				<tbody>
 				{
@@ -62,13 +71,14 @@ function PlayerDetailGoalieStats(props) {
 					})
 				}
 				</tbody>
-			</table>
-		</div>
+			</StatsTable>
+		</StatsTableContainer>
 	)
 }
 
 PlayerDetailGoalieStats.propTypes = {
 	statsBySeason: PropTypes.arrayOf(PropTypes.shape({
+		cellModifier: PropTypes.string,
 		evenSaves: PropTypes.number,
 		evenShots: PropTypes.number,
 		evenStrengthSavePercentage: PropTypes.number,
@@ -81,7 +91,6 @@ PlayerDetailGoalieStats.propTypes = {
 		powerPlaySavePercentage: PropTypes.number,
 		powerPlaySaves: PropTypes.number,
 		powerPlayShots: PropTypes.number,
-		rowClass: PropTypes.string,
 		savePercentage: PropTypes.number,
 		saves: PropTypes.number,
 		season: PropTypes.string,

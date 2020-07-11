@@ -18,7 +18,7 @@ function GetStatsSeasons(data, position) {
 
 			const results = {
 				season,
-				rowClass: '',
+				cellModifier: '',
 				team: item.team.abbreviation,
 				...curStats,
 			};

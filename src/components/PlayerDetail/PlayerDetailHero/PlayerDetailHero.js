@@ -2,41 +2,49 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../Shared/Loader/Loader';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
-import './PlayerDetailHero.scss';
+import {
+	StyledPlayerDetailHero,
+	PlayerDetailBio,
+	BioContent,
+	BioRow,
+	BioName,
+	BioStat,
+	BioLabel,
+} from './PlayerDetailHeroStyle';
 
 function renderContent(props) {
 	const { playerDetailHero } = props;
 
 	return (
 		<>
-			<div className="player-detail-hero" style={{backgroundImage: 'url(' + playerDetailHero.heroImg + ')'}} />
-			<div className="player-detail-bio">
-				<PlayerPhoto playerId={playerDetailHero.id} photoClass="player-detail-bio--photo" />
-				<div className="player-detail-bio--info">
-					<div className="player-detail-bio--name">{playerDetailHero.name} #{playerDetailHero.number}</div>
-					<div>
-						<span className="player-detail-bio--stat">{playerDetailHero.pos} | {playerDetailHero.height} | {playerDetailHero.weight} lbs</span>
-					</div>
-					<div>
-						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Shoots:</span> {playerDetailHero.shoots}
-						</span>
-					</div>
-					<div>
-						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Born:</span> {playerDetailHero.birthDate}
-						</span>
-						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Age:</span> {playerDetailHero.age}
-						</span>
-					</div>
-					<div>
-						<span className="player-detail-bio--stat">
-							<span className="player-detail-bio--label">Birthplace:</span> {playerDetailHero.birthPlace}
-						</span>
-					</div>
-				</div>
-			</div>
+			<StyledPlayerDetailHero style={{backgroundImage: 'url(' + playerDetailHero.heroImg + ')'}} />
+			<PlayerDetailBio>
+				<PlayerPhoto playerId={playerDetailHero.id} />
+				<BioContent>
+					<BioName>{playerDetailHero.name} #{playerDetailHero.number}</BioName>
+					<BioRow>
+						<BioStat>{playerDetailHero.pos} | {playerDetailHero.height} | {playerDetailHero.weight} lbs</BioStat>
+					</BioRow>
+					<BioRow>
+						<BioStat>
+							<BioLabel>Shoots:</BioLabel> {playerDetailHero.shoots}
+						</BioStat>
+					</BioRow>
+					<BioRow>
+						<BioStat>
+							<BioLabel>Born:</BioLabel> {playerDetailHero.birthDate}
+						</BioStat>
+						<BioStat>
+							<BioLabel>Age:</BioLabel> {playerDetailHero.age}
+						</BioStat>
+					</BioRow>
+					<BioRow>
+						<BioStat>
+							<BioLabel>Birthplace:</BioLabel> {playerDetailHero.birthPlace}
+						</BioStat>
+					</BioRow>
+				</BioContent>
+			</PlayerDetailBio>
 		</>
 	)
 }

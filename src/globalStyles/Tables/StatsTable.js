@@ -23,12 +23,7 @@ export const StatsTableRow = styled.tr`
 	border-bottom: 1px solid ${props => props.theme.color.greyMed};
 	position: relative;
 
-	&.total {
-		td {
-			background: ${props => props.theme.color.greyMed};
-			font-weight: 600;
-		}
-	}
+	${applyStyleModifiers(StatsTableModifiers)};
 `;
 
 const StatsTableCell = css`
@@ -53,6 +48,7 @@ export const StatsTableTd = styled.td`
 
 	${StatsTableRow}:hover & {
 		background: ${props => props.theme.color.greyLight};
+		${applyStyleModifiers(StatsTableModifiers)};
 	}
 
 	${applyStyleModifiers(StatsTableModifiers)};

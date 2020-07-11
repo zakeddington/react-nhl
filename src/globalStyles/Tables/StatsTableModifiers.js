@@ -8,6 +8,7 @@ export const SPACER = 'spacer';
 export const SPACER_WIDE = 'spacerWide';
 export const ALIGN_LEFT = 'alignLeft';
 export const TEAM_NAME = 'teamName';
+export const TOTAL = 'total';
 
 export default {
 	pinned: ({ theme }) => css`
@@ -56,5 +57,9 @@ export default {
 	`,
 	teamName: () => css`
 		width: 12.5rem;
+	`,
+	total: ({ theme }) => css`
+		background: ${theme.color.greyMed};
+		font-weight: 600;
 	`,
 };

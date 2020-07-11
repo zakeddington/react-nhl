@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components/macro';
 import Themes from './globalStyles/Themes';
 import GlobalStyles from './globalStyles';
-// import './styles/app.scss';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
