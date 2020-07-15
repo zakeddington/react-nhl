@@ -16,7 +16,8 @@ import {
 	Tooltip,
 	TooltipContent,
 } from '../../globalStyles/Tooltip/Tooltip';
-import { ALIGN_LEFT, TEAM_NAME } from '../../globalStyles/Tables/StatsTableModifiers';
+import { TEAM_NAME } from '../../globalStyles/Tables/StatsTableModifiers';
+import { ALIGN_LEFT } from '../../globalStyles/Utilities/Modifiers';
 
 function renderStandingsTable(standingsName, division) {
 	const {

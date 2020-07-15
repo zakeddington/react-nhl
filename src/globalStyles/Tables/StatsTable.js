@@ -2,6 +2,12 @@ import styled, { css } from 'styled-components/macro';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 import { MobileBreakpoint } from '../../config/Breakpoints';
 import StatsTableModifiers from './StatsTableModifiers';
+import Modifiers from '../Utilities/Modifiers';
+
+const CombinedModifiers = {
+	...StatsTableModifiers,
+	...Modifiers,
+}
 
 export const StatsTableContainer = styled.div`
 	width: 100%;
@@ -23,7 +29,7 @@ export const StatsTableRow = styled.tr`
 	border-bottom: 1px solid ${props => props.theme.color.greyMed};
 	position: relative;
 
-	${applyStyleModifiers(StatsTableModifiers)};
+	${applyStyleModifiers(CombinedModifiers)};
 `;
 
 const StatsTableCell = css`
@@ -40,7 +46,7 @@ export const StatsTableTh = styled.th`
 	background: ${props => props.theme.color.greyMed};
 	font-weight: 600;
 
-	${applyStyleModifiers(StatsTableModifiers)};
+	${applyStyleModifiers(CombinedModifiers)};
 `;
 
 export const StatsTableTd = styled.td`
@@ -48,8 +54,8 @@ export const StatsTableTd = styled.td`
 
 	${StatsTableRow}:hover & {
 		background: ${props => props.theme.color.greyLight};
-		${applyStyleModifiers(StatsTableModifiers)};
+		${applyStyleModifiers(CombinedModifiers)};
 	}
 
-	${applyStyleModifiers(StatsTableModifiers)};
+	${applyStyleModifiers(CombinedModifiers)};
 `;

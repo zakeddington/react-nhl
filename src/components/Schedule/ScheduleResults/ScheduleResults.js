@@ -18,7 +18,7 @@ import {
 	TeamScore,
 } from './ScheduleResultsStyle';
 import { H2 } from '../../../globalStyles/Typography/Typography';
-import { ALIGN_CENTER } from '../../Shared/ErrorMessage/ErrorMessageModifiers';
+import { ALIGN_CENTER } from '../../../globalStyles/Utilities/Modifiers';
 
 function renderContent(data) {
 	const dates = data.map((date) => {

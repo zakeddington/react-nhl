@@ -8,7 +8,7 @@ import {
 	StatsTableTh,
 	StatsTableTd,
 } from '../../../globalStyles/Tables/StatsTable';
-import { ALIGN_LEFT } from '../../../globalStyles/Tables/StatsTableModifiers';
+import { ALIGN_LEFT } from '../../../globalStyles/Utilities/Modifiers';
 import { Tooltip, TooltipContent } from '../../../globalStyles/Tooltip/Tooltip';
 
 function renderSkaterStats(data, i) {

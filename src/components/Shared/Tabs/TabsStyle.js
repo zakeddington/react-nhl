@@ -4,9 +4,15 @@ import { AnimSpeed, AnimEase, FadeIn } from '../../../config/Animation';
 import { TabletBreakpoint } from '../../../config/Breakpoints';
 import { Button } from '../../../globalStyles/Button/Button';
 import TabsModifiers from './TabsModifiers';
+import Modifiers from '../../../globalStyles/Utilities/Modifiers';
+
+const CombinedModifiers = {
+	...TabsModifiers,
+	...Modifiers,
+}
 
 export const StyledTabs = styled.div`
-	${applyStyleModifiers(TabsModifiers)};
+	${applyStyleModifiers(CombinedModifiers)};
 `;
 
 export const TabsNav = styled.ol`

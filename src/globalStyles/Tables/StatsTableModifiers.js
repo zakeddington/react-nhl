@@ -6,7 +6,6 @@ export const PLAYER_JERSEY = 'playerJersey';
 export const PLAYER_NAME = 'playerName';
 export const SPACER = 'spacer';
 export const SPACER_WIDE = 'spacerWide';
-export const ALIGN_LEFT = 'alignLeft';
 export const TEAM_NAME = 'teamName';
 export const TOTAL = 'total';
 
@@ -51,9 +50,6 @@ export default {
 		@media (max-width: ${MobileBreakpoint.max}) {
 			padding-left: calc(16.5rem + 5px);
 		}
-	`,
-	alignLeft: () => css`
-		text-align: left;
 	`,
 	teamName: () => css`
 		width: 12.5rem;

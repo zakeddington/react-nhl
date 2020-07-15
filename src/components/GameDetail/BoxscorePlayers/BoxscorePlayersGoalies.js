@@ -14,8 +14,8 @@ import {
 	PLAYER_JERSEY,
 	PLAYER_NAME,
 	SPACER_WIDE,
-	ALIGN_LEFT,
 } from '../../../globalStyles/Tables/StatsTableModifiers';
+import { ALIGN_LEFT } from '../../../globalStyles/Utilities/Modifiers';
 import { Tooltip, TooltipContent } from '../../../globalStyles/Tooltip/Tooltip';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 import { H2 } from '../../../globalStyles/Typography/Typography';
-import ErrorMessageModifiers from './ErrorMessageModifiers';
+import Modifiers from '../../../globalStyles/Utilities/Modifiers';
 
 export const StyledErrorMessage = styled(H2)`
 	margin: 0;
@@ -11,5 +11,5 @@ export const StyledErrorMessage = styled(H2)`
 		padding-top: 0;
 	}
 
-	${applyStyleModifiers(ErrorMessageModifiers)};
+	${applyStyleModifiers(Modifiers)};
 `;
