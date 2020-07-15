@@ -6,6 +6,7 @@ import Tabs from '../components/Shared/Tabs/Tabs';
 import Tab from '../components/Shared/Tabs/Tab';
 import { TABS_SMALL } from '../components/Shared/Tabs/TabsModifiers';
 import StandingsTables from '../components/Standings/StandingsTables';
+import {ALIGN_CENTER} from '../components/Shared/ErrorMessage/ErrorMessageModifiers';
 
 class Standings extends Component {
 
@@ -109,7 +110,7 @@ class Standings extends Component {
 		let content;
 
 		if (isDivisionStandingsError && isConferenceStandingsError && isLeagueStandingsError && isWildcardStandingsError) {
-			content = <ErrorMessage errorMsg="No standings available." errorClass="text-center" />;
+			content = <ErrorMessage errorMsg="No standings available." modifiers={[ALIGN_CENTER]} />;
 		} else if (showLoader) {
 			content = <Loader />;
 		} else {

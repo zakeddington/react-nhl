@@ -18,6 +18,7 @@ import {
 	TeamScore,
 } from './ScheduleResultsStyle';
 import { H2 } from '../../../globalStyles/Typography/Typography';
+import { ALIGN_CENTER } from '../../Shared/ErrorMessage/ErrorMessageModifiers';
 
 function renderContent(data) {
 	const dates = data.map((date) => {
@@ -89,11 +90,11 @@ function ScheduleResults(props) {
 		content = <Loader/>;
 	} else {
 		if (showError) {
-			content = <ErrorMessage errorMsg="Something went terribly wrong, and it's probably your fault." errorClass="text-center" />;
+			content = <ErrorMessage errorMsg="Something went terribly wrong, and it's probably your fault." modifiers={[ALIGN_CENTER]} />;
 		} else if (results.length) {
 			content = renderContent(results);
 		} else {
-			content = <ErrorMessage errorMsg="There are no games scheduled on this date." errorClass="text-center" />;
+			content = <ErrorMessage errorMsg="There are no games scheduled on this date." modifiers={[ALIGN_CENTER]} />;
 		}
 	}
 

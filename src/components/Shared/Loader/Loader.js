@@ -1,13 +1,13 @@
 import React from 'react';
-import './Loader.scss';
+import { StyledLoader, LoaderCircle1, LoaderCircle2, LoaderCircle3 } from './LoaderStyle';
 
 function Loader() {
 	return (
-		<div className="loader">
-			<div className="loader-circle bounce1"/>
-			<div className="loader-circle bounce2"/>
-			<div className="loader-circle bounce3"/>
-		</div>
+		<StyledLoader>
+			<LoaderCircle1 />
+			<LoaderCircle2 />
+			<LoaderCircle3 />
+		</StyledLoader>
 	)
 }
 

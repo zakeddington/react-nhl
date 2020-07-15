@@ -12,6 +12,7 @@ export const AnimSpeed = {
 export const AnimEase = {
 	default: 'ease-out',
 	in: 'ease-in',
+	inOut: 'ease-in-out',
 };
 
 export const FadeIn = keyframes`
@@ -27,5 +28,17 @@ export const FadeInSlideDown = keyframes`
 	100% {
 		opacity: 1;
 		transform: translateY(0px);
+	}
+`;
+
+export const Bounce = keyframes`
+	0%,
+	80%,
+	100% {
+		transform: scale(0);
+	}
+
+	40% {
+		transform: scale(1);
 	}
 `;
