@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components/macro';
 import { IconType } from '../../../config/ImageIconConfig';
 import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
@@ -21,6 +22,7 @@ import {
 	TeamScore,
 } from './PeriodSummaryStyle';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
+import TeamBrands from '../../../globalStyles/Themes/TeamBrands';
 
 function PeriodSummaryGoal(props) {
 	const {
@@ -84,21 +86,16 @@ function PeriodSummaryGoal(props) {
 				</DetailsRow>
 			</PlayDetailsColumn>
 			<StatusColumn>
-				<GameStatus className={`team-${teamId} team-border`}>
-					<TeamScore className={awayScore.isScoringTeam ? 'team-background' : ''}>{awayScore.name} {awayScore.goals}</TeamScore>
-					<TeamScore className={homeScore.isScoringTeam ? 'team-background' : ''}>{homeScore.name} {homeScore.goals}</TeamScore>
-				</GameStatus>
+				<ThemeProvider theme={TeamBrands[teamId]}>
+					<GameStatus>
+						<TeamScore $isScoringTeam={awayScore.isScoringTeam}>{awayScore.name} {awayScore.goals}</TeamScore>
+						<TeamScore $isScoringTeam={homeScore.isScoringTeam}>{homeScore.name} {homeScore.goals}</TeamScore>
+					</GameStatus>
+				</ThemeProvider>
 			</StatusColumn>
 		</PeriodItem>
 	)
 }
-
-//
-//
-// TODO
-// Figure out global brand colors as props?
-//
-//
 
 PeriodSummaryGoal.propTypes = {
 	time: PropTypes.string,

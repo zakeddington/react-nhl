@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
 import { HeaderTitle } from '../../../globalStyles/Typography/Typography';
@@ -117,7 +117,7 @@ export const StatusColumn = styled.div`
 `;
 
 export const GameStatus = styled.span`
-	border: 1px solid;
+	border: 1px solid ${props => props.theme.teamColor};
 	border-radius: 3px;
 	display: flex;
 	font-size: 0.875rem;
@@ -135,6 +135,11 @@ export const TeamScore = styled.span`
 	@media (max-width: ${MobileBreakpoint.max}) {
 		width: 100%;
 	}
+
+	${props => props.$isScoringTeam && css`
+		background-color: ${props => props.theme.teamColor};
+		color: ${props => props.theme.color.white};
+	`}
 `;
 
 export const ShootoutStatus = styled(GameStatus)`
@@ -142,5 +147,13 @@ export const ShootoutStatus = styled(GameStatus)`
 `;
 
 export const ShotResult = styled.span`
+	border: 1px solid ${props => props.theme.color.greyMed};
+	border-radius: 3px;
 	width: 100%;
+
+	${props => props.$isGoal && css`
+		background-color: ${props => props.theme.teamColor};
+		border-color: transparent;
+		color: ${props => props.theme.color.white};
+	`}
 `;

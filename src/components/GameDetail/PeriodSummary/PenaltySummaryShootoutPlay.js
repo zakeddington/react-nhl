@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components/macro';
 import { IconType } from '../../../config/ImageIconConfig';
 import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
@@ -19,6 +20,7 @@ import {
 	ShotResult,
 } from './PeriodSummaryStyle';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
+import TeamBrands from '../../../globalStyles/Themes/TeamBrands';
 
 function PeriodSummaryShootoutPlay(props) {
 	const {
@@ -53,13 +55,10 @@ function PeriodSummaryShootoutPlay(props) {
 				</DetailsRow>
 			</PlayDetailsColumn>
 			<StatusColumn>
-				<ShootoutStatus className={`team-${teamId}`}>
-					{
-						isGoal ?
-							<ShotResult className="team-background">{shotResult}</ShotResult>
-							:
-							<ShotResult>{shotResult}</ShotResult>
-					}
+				<ShootoutStatus>
+					<ThemeProvider theme={TeamBrands[teamId]}>
+						<ShotResult $isGoal={isGoal}>{shotResult}</ShotResult>
+					</ThemeProvider>
 				</ShootoutStatus>
 			</StatusColumn>
 		</PeriodItem>
