@@ -23,38 +23,48 @@ import { ALIGN_CENTER } from '../../../globalStyles/Utilities/Modifiers';
 function renderContent(data) {
 	const dates = data.map((date) => {
 		let games = date.games.map((game) => {
-			let classGameStatus = '';
+			let isPreview = game.gameStatus === "Preview";
+			let isFinal = false;
+			let isAwayWinner = false;
+			let isHomeWinner = false;
 
 			if (game.gameStatus.includes("Final")) {
+				isFinal = true;
 				if (game.homeTeam.score > game.awayTeam.score) {
-					classGameStatus = 'is-home-winner';
+					isHomeWinner = true;
 				} else {
-					classGameStatus = 'is-away-winner';
+					isAwayWinner = true;
 				}
-			} else if (game.gameStatus === "Preview") {
-				classGameStatus = 'is-preview';
 			}
 
+			console.log(isHomeWinner, isAwayWinner);
+
 			return (
-				<Game key={game.id} className={classGameStatus}>
+				<Game key={game.id}>
 					<GameLink to={`${GameRoute}${game.id}`}>
 						<Header>
 							<HeaderStatus>{game.gameStatus}</HeaderStatus>
 							<HeaderBroadcasts>{game.broadcasts}</HeaderBroadcasts>
 						</Header>
-						<Team className="away">
+						<Team $isFinal={isFinal} $isWinner={isAwayWinner}>
 							<Icon iconId={`${game.awayTeam.id}`} iconType={IconType.logo} />
 							<TeamName>{game.awayTeam.name}
 								<TeamRecord>({game.awayTeam.record})</TeamRecord>
 							</TeamName>
-							<TeamScore>{game.awayTeam.score}</TeamScore>
+							{
+								!isPreview &&
+								<TeamScore>{game.awayTeam.score}</TeamScore>
+							}
 						</Team>
-						<Team className="home">
+						<Team $isFinal={isFinal} $isWinner={isHomeWinner}>
 							<Icon iconId={`${game.homeTeam.id}`} iconType={IconType.logo} />
 							<TeamName>{game.homeTeam.name}
 								<TeamRecord>({game.homeTeam.record})</TeamRecord>
 							</TeamName>
-							<TeamScore>{game.homeTeam.score}</TeamScore>
+							{
+								!isPreview &&
+								<TeamScore>{game.homeTeam.score}</TeamScore>
+							}
 						</Team>
 					</GameLink>
 				</Game>

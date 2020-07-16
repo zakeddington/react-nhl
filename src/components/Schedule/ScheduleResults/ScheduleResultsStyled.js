@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { rgba } from 'polished';
 import { Link } from 'react-router-dom';
 import { AnimSpeed, AnimEase, FadeInSlideDown } from '../../../config/Animation';
@@ -37,26 +37,6 @@ export const Game = styled.li`
 	@media (max-width: ${MobileBreakpoint.max}) {
 		flex-basis: 100%;
 		padding-right: 0;
-	}
-
-	&.is-away-winner {
-		.home {
-			color: ${props => props.theme.color.greyMedDark};
-		}
-
-		.away {
-			font-weight: 700;
-		}
-	}
-
-	&.is-home-winner {
-		.home {
-			font-weight: 700;
-		}
-
-		.away {
-			color: ${props => props.theme.color.greyMedDark};
-		}
 	}
 `;
 
@@ -103,6 +83,15 @@ export const Team = styled.div`
 		margin-right: 1em;
 		width: 2em;
 	}
+
+	${props => props.$isFinal && css`
+		color: ${props => props.theme.color.greyMedDark};
+	`}
+
+	${props => props.$isWinner && css`
+		color: ${props => props.theme.color.greyDark};
+		font-weight: 700;
+	`}
 `;
 
 export const TeamName = styled.span`
@@ -124,8 +113,4 @@ export const TeamScore = styled.span`
 	font-size: 1.5rem;
 	font-weight: normal;
 	text-align: right;
-
-	.is-preview & {
-		display: none;
-	}
 `;
