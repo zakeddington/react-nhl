@@ -26,8 +26,8 @@ class ScheduleService {
 				const homeOTL = game.teams.home.leagueRecord.ot ? `-${game.teams.home.leagueRecord.ot}` : '';
 				let curStatus = '';
 				let broadcasts = [];
-				let awayScore = '';
-				let homeScore = '';
+				let awayScore = null;
+				let homeScore = null;
 
 				if (gameStatus.length) {
 					curStatus = gameStatus;

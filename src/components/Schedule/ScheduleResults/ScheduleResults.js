@@ -37,8 +37,6 @@ function renderContent(data) {
 				}
 			}
 
-			console.log(isHomeWinner, isAwayWinner);
-
 			return (
 				<Game key={game.id}>
 					<GameLink to={`${GameRoute}${game.id}`}>
