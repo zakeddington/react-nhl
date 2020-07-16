@@ -5,13 +5,13 @@ import Loader from '../../Shared/Loader/Loader';
 import Icon from '../../Shared/Icon/Icon';
 import { HeaderTitle } from '../../../globalStyles/Typography/Typography';
 import {
-	StyledScoreBoard,
+	ScoreBoardStyled,
 	ScoreBoardResults,
 	ScoreBoardTeams,
 	ScoreBoardItem,
 	ScoreBoardItemText,
 	ScoreBoardPeriods,
-} from './ScoreBoardStyle';
+} from './ScoreBoardStyled';
 
 function getPeriodGoals(data) {
 	const goals = data.map((goal) => {
@@ -38,7 +38,7 @@ function renderContent(props) {
 	} = props;
 
 	return (
-		<StyledScoreBoard>
+		<ScoreBoardStyled>
 			<HeaderTitle>{gameStatus}</HeaderTitle>
 			<ScoreBoardResults>
 				<ScoreBoardTeams>
@@ -64,7 +64,7 @@ function renderContent(props) {
 					})
 				}
 			</ScoreBoardResults>
-		</StyledScoreBoard>
+		</ScoreBoardStyled>
 	);
 }
 

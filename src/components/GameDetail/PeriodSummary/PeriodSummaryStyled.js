@@ -3,7 +3,7 @@ import { MobileBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
 import { HeaderTitle } from '../../../globalStyles/Typography/Typography';
 
-export const StyledPeriodSummary = styled.div`
+export const PeriodSummaryStyled = styled.div`
 	margin: 0 auto ${Spacing.vert};
 	width: 100%;
 `;

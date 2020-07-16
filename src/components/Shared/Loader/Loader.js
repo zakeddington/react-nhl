@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyledLoader, LoaderCircle1, LoaderCircle2, LoaderCircle3 } from './LoaderStyle';
+import { LoaderStyled, LoaderCircle1, LoaderCircle2, LoaderCircle3 } from './LoaderStyled';
 
 function Loader() {
 	return (
-		<StyledLoader>
+		<LoaderStyled>
 			<LoaderCircle1 />
 			<LoaderCircle2 />
 			<LoaderCircle3 />
-		</StyledLoader>
+		</LoaderStyled>
 	)
 }
 

@@ -20,7 +20,7 @@ import {
 	StatusColumn,
 	GameStatus,
 	TeamScore,
-} from './PeriodSummaryStyle';
+} from './PeriodSummaryStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 import TeamBrands from '../../../globalStyles/Themes/TeamBrands';
 

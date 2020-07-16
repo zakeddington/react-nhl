@@ -1,6 +1,6 @@
 import { css } from 'styled-components/macro';
-import { TabsNav, TabsNavLink } from './TabsStyle';
-import { SvgLogo } from '../Icon/IconStyle';
+import { TabsNav, TabsNavLink } from './TabsStyled';
+import { SvgLogo } from '../Icon/IconStyled';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
 
 export const TABS_SMALL = 'tabsSmall';

@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { SvgIcon } from '../../Shared/Icon/IconStyle';
+import { SvgIcon } from '../../Shared/Icon/IconStyled';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { Button } from '../../../globalStyles/Button/Button';
 
-export const StyledScheduleNav = styled.div`
+export const ScheduleNavStyled = styled.div`
 	align-items: center;
 	background: ${props => props.theme.color.greyDark};
 	border: 1px solid ${props => props.theme.color.greyDark};
@@ -69,7 +69,7 @@ export const ScheduleNavLink = styled(Link)`
 	`}
 `;
 
-export const StyledDatepickerTrigger = styled(Button)`
+export const DatepickerTrigger = styled(Button)`
 	align-items: center;
 	background: ${props => props.theme.color.greyDark};
 	border: none;
@@ -77,7 +77,9 @@ export const StyledDatepickerTrigger = styled(Button)`
 	display: flex;
 	font-weight: 700;
 	height: 100%;
+	margin: 0;
 	min-height: 2rem;
+	padding: 0 0.25rem;
 	text-transform: uppercase;
 	transition: all ${AnimSpeed.default} ${AnimEase.default};
 

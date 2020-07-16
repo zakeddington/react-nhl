@@ -5,14 +5,14 @@ import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
 import {
-	StyledBoxscoreTeams,
+	BoxscoreTeamsStyled,
 	BoxscoreTeamsTable,
 	BoxscoreTeamsRow,
 	BoxscoreTeamsTh,
 	BoxscoreTeamsTd,
 	BoxscoreTeamsTdName,
 	BoxscoreTeamName,
-} from './BoxscoreTeamsStyle';
+} from './BoxscoreTeamsStyled';
 import {
 	PINNED,
 	SPACER,
@@ -40,7 +40,7 @@ function renderBoxscoreTeamRow(team) {
 
 function renderContent(data) {
 	return (
-		<StyledBoxscoreTeams>
+		<BoxscoreTeamsStyled>
 			<BoxscoreTeamsTable>
 				<thead>
 					<BoxscoreTeamsRow>
@@ -63,7 +63,7 @@ function renderContent(data) {
 				}
 				</tbody>
 			</BoxscoreTeamsTable>
-		</StyledBoxscoreTeams>
+		</BoxscoreTeamsStyled>
 	)
 }
 

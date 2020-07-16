@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { Bounce, AnimEase } from '../../../config/Animation';
 
-export const StyledLoader = styled.div`
+export const LoaderStyled = styled.div`
 	margin: auto;
 	padding: 2rem 0;
 	text-align: center;

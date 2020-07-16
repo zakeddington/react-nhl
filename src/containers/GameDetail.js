@@ -13,7 +13,7 @@ import Tab from '../components/Shared/Tabs/Tab';
 import GameDetailService from '../services/GameDetail/GameDetailService';
 import { GameDetailInitialState } from '../services/GameDetail/GameDetailService';
 
-import { ScoreBoardStarsContainer } from '../components/GameDetail/ScoreBoard/ScoreBoardStyle';
+import { ScoreBoardStarsContainer } from '../components/GameDetail/ScoreBoard/ScoreBoardStyled';
 
 class GameDetail extends Component {
 	state = {

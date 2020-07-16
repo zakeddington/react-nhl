@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledErrorMessage } from './ErrorMessageStyle';
+import { ErrorMessageStyled } from './ErrorMessageStyled';
 
 function ErrorMessage(props) {
 	const { errorMsg, modifiers } = props;
 	const msg = errorMsg ? errorMsg : 'No content available.';
 
 	return (
-		<StyledErrorMessage modifiers={modifiers}>{msg}</StyledErrorMessage>
+		<ErrorMessageStyled modifiers={modifiers}>{msg}</ErrorMessageStyled>
 	);
 }
 

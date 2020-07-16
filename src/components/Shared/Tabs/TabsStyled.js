@@ -11,7 +11,7 @@ const CombinedModifiers = {
 	...Modifiers,
 }
 
-export const StyledTabs = styled.div`
+export const TabsStyled = styled.div`
 	${applyStyleModifiers(CombinedModifiers)};
 `;
 

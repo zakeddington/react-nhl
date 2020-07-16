@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import Loader from '../../Shared/Loader/Loader';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import {
-	StyledPlayerDetailHero,
+	PlayerDetailHeroStyled,
 	PlayerDetailBio,
 	BioContent,
 	BioRow,
 	BioName,
 	BioStat,
 	BioLabel,
-} from './PlayerDetailHeroStyle';
+} from './PlayerDetailHeroStyled';
 
 function renderContent(props) {
 	const { playerDetailHero } = props;
 
 	return (
 		<>
-			<StyledPlayerDetailHero style={{backgroundImage: 'url(' + playerDetailHero.heroImg + ')'}} />
+			<PlayerDetailHeroStyled style={{backgroundImage: 'url(' + playerDetailHero.heroImg + ')'}} />
 			<PlayerDetailBio>
 				<PlayerPhoto playerId={playerDetailHero.id} />
 				<BioContent>

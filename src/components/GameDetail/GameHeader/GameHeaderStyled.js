@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
 import { MobileBreakpoint, TabletBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
-import { SvgLogo } from '../../Shared/Icon/IconStyle';
+import { SvgLogo } from '../../Shared/Icon/IconStyled';
 
-export const StyledGameHeader = styled.div`
+export const GameHeaderStyled = styled.div`
 	align-items: center;
 	background: ${props => props.theme.color.white};
 	border-bottom: 1px solid ${props => props.theme.color.greyMed};

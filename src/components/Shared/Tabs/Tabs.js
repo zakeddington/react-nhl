@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 import {
-	StyledTabs,
+	TabsStyled,
 	TabsNav,
 	TabsNavItem,
 	TabsNavLink,
 	TabsContent,
-} from './TabsStyle';
+} from './TabsStyled';
 
 class Tabs extends Component {
 	state = {
@@ -27,7 +27,7 @@ class Tabs extends Component {
 
 		if (this.tabs) {
 			return (
-				<StyledTabs modifiers={modifiers}>
+				<TabsStyled modifiers={modifiers}>
 					<TabsNav>
 						{this.tabs.map((tab, i) => {
 							const isActive = tab.props.id === activeTab.props.id;
@@ -52,7 +52,7 @@ class Tabs extends Component {
 							);
 						})}
 					</div>
-				</StyledTabs>
+				</TabsStyled>
 			);
 		}
 

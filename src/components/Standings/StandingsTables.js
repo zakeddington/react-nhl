@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../Shared/Icon/Icon';
 import { IconType } from '../../config/ImageIconConfig';
 import {
-	StyledStandingsTable,
+	StandingsTableStyled,
 	StandingsTableContainer,
 	StandingsTableTitle,
 	StandingsTable,
@@ -11,7 +11,7 @@ import {
 	StandingsTableTh,
 	StandingsTableTd,
 	StandingsTableTeamName,
-} from './StandingsTablesStyle';
+} from './StandingsTablesStyled';
 import {
 	Tooltip,
 	TooltipContent,
@@ -75,14 +75,14 @@ function StandingsTables(props) {
 			{
 				standings.map((conference) => {
 					return (
-						<StyledStandingsTable key={`${standingsName}-${conference.conferenceName}`}>
+						<StandingsTableStyled key={`${standingsName}-${conference.conferenceName}`}>
 							<StandingsTableTitle>{conference.conferenceName}</StandingsTableTitle>
 							{
 								conference.divisions.map((division) => {
 									return renderStandingsTable(standingsName, division)
 								})
 							}
-						</StyledStandingsTable>
+						</StandingsTableStyled>
 					)
 				})
 			}

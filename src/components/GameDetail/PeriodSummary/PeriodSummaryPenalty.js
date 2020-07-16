@@ -15,7 +15,7 @@ import {
 	PlayerName,
 	SecondaryDetails,
 	StatusColumn,
-} from './PeriodSummaryStyle';
+} from './PeriodSummaryStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 function PeriodSummaryPenalty(props) {

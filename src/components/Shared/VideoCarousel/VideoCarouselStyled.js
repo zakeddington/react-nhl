@@ -8,7 +8,7 @@ import {
 	VideoPlayerTriggerIcon,
 	VideoPlayerPosterImg,
 	VideoPlayerTitle,
-} from '../VideoPlayer/VideoPlayerStyle';
+} from '../VideoPlayer/VideoPlayerStyled';
 
 export const VideoCarouselPlayer = styled.div`
 	background: ${props => props.theme.color.greyDark};

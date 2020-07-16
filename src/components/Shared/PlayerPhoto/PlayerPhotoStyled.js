@@ -2,9 +2,9 @@ import styled from 'styled-components/macro';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { DesktopBreakpoint, MobileBreakpoint } from '../../../config/Breakpoints';
 import { ImageBasePath, PlayerImagePath } from '../../../config/ImageIconConfig';
-import { ModalTrigger } from '../Modal/ModalStyle';
+import { ModalTrigger } from '../Modal/ModalStyled';
 
-export const StyledPlayerPhoto = styled.div`
+export const PlayerPhotoStyled = styled.div`
 	background: url(${ImageBasePath}${PlayerImagePath.headshotFallback}) center center no-repeat;
 	background-size: contain;
 	border: 1px solid ${props => props.theme.color.greyMed};

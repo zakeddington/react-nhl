@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 import {
-	StyledModal,
+	ModalStyled,
 	ModalTrigger,
 	ModalOverlay,
 	ModalContainer,
 	ModalContent,
 	ModalClose,
-} from './ModalStyle';
+} from './ModalStyled';
 
 class Modal extends Component {
 
@@ -54,12 +54,12 @@ class Modal extends Component {
 
 	render() {
 		return (
-			<StyledModal>
+			<ModalStyled>
 				<ModalTrigger onClick={() => this.onTriggerClick()}>
 					{this.props.children}
 				</ModalTrigger>
 				{this.state.modal}
-			</StyledModal>
+			</ModalStyled>
 		);
 	}
 }

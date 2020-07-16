@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { AnimSpeed } from '../../../config/Animation';
 import Icon from '../Icon/Icon';
 import {
-	StyledDrawer,
+	DrawerStyled,
 	DrawerTrigger,
 	DrawerClose,
 	DrawerOverlay,
 	DrawerContainer,
 	DrawerContent
-} from './DrawerStyle';
+} from './DrawerStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
 class Drawer extends Component {
@@ -94,7 +94,7 @@ class Drawer extends Component {
 		const { isOpen } = this.state;
 
 		return (
-			<StyledDrawer>
+			<DrawerStyled>
 				<DrawerTrigger onClick={() => this.onTriggerClick()} disabled={isOpen}>
 					{label}
 					{
@@ -103,7 +103,7 @@ class Drawer extends Component {
 					}
 				</DrawerTrigger>
 				{this.renderDrawer()}
-			</StyledDrawer>
+			</DrawerStyled>
 		);
 	}
 }

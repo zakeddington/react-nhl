@@ -2,10 +2,10 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { Container } from '../../globalStyles/Layout/Layout';
 import { ButtonWithIcon } from '../../globalStyles/Button/Button';
-import { DrawerTrigger } from '../Shared/Drawer/DrawerStyle';
-import { SvgIcon } from '../Shared/Icon/IconStyle';
+import { DrawerTrigger } from '../Shared/Drawer/DrawerStyled';
+import { SvgIcon } from '../Shared/Icon/IconStyled';
 
-export const StyledHeader = styled.div`
+export const HeaderStyled = styled.div`
 	background: ${props => props.theme.color.greyDark};
 	border-bottom: ${props => `4px solid ${props.theme.color.white}`};
 	height: 5rem;
@@ -32,7 +32,7 @@ export const StyledHeader = styled.div`
 	}
 `;
 
-export const StyledContainer = styled(Container)`
+export const ContainerStyled = styled(Container)`
 	align-items: center;
 	display: flex;
 	height: 100%;

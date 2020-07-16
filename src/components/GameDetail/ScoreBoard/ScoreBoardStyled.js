@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { DesktopBreakpoint, MobileBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
-import { SvgLogo } from '../../Shared/Icon/IconStyle';
+import { SvgLogo } from '../../Shared/Icon/IconStyled';
 
 export const ScoreBoardStarsContainer = styled.div`
 	margin: ${Spacing.vert} auto;
@@ -12,7 +12,7 @@ export const ScoreBoardStarsContainer = styled.div`
 	}
 `;
 
-export const StyledScoreBoard = styled.div`
+export const ScoreBoardStyled = styled.div`
 	background: ${props => props.theme.color.white};
 	border-bottom: 1px solid ${props => props.theme.color.greyMed};
 	display: flex;

@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
-import { StyledPlayerPhoto } from '../../Shared/PlayerPhoto/PlayerPhotoStyle';
+import { PlayerPhotoStyled } from '../../Shared/PlayerPhoto/PlayerPhotoStyled';
 
-export const StyledPlayerDetailHero = styled.div`
+export const PlayerDetailHeroStyled = styled.div`
 	background: center center no-repeat;
 	background-size: cover;
 	display: block;
@@ -26,7 +26,7 @@ export const PlayerDetailBio = styled.div`
 		flex-direction: column;
 	}
 
-	${StyledPlayerPhoto} {
+	${PlayerPhotoStyled} {
 		border-width: 5px;
 		height: 12rem;
 		margin: -3rem 2rem 0 1rem;

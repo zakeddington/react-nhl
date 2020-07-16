@@ -6,13 +6,13 @@ import PeriodSummaryGoal from './PeriodSummaryGoal';
 import PeriodSummaryPenalty from './PeriodSummaryPenalty';
 import PeriodSummaryShootoutPlay from './PenaltySummaryShootoutPlay';
 import {
-	StyledPeriodSummary,
+	PeriodSummaryStyled,
 	Period,
 	PeriodTitle,
 	PeriodSubtitle,
 	PeriodEmpty,
 	PeriodItem,
-} from './PeriodSummaryStyle';
+} from './PeriodSummaryStyled';
 
 function renderShootoutPlays(period) {
 	return period.shootoutPlays.map((play, i) => {
@@ -123,9 +123,9 @@ function renderContent(props) {
 	});
 
 	return (
-		<StyledPeriodSummary>
+		<PeriodSummaryStyled>
 			{periods}
-		</StyledPeriodSummary>
+		</PeriodSummaryStyled>
 	)
 }
 

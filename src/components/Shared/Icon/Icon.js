@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IconBasePath, TeamLogoBasePath, IconType } from '../../../config/ImageIconConfig';
-import { SvgIcon, SvgLogo } from './IconStyle';
+import { SvgIcon, SvgLogo } from './IconStyled';
 
 function Icon(props) {
 	// must pass a "className" prop so extending styles via styled-components will work

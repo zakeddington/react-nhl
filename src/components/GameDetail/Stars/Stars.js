@@ -7,13 +7,13 @@ import PlayerDetail from '../../../containers/PlayerDetail';
 import { HeaderTitle } from '../../../globalStyles/Typography/Typography';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities'
 import {
-	StyledStars,
+	StarsStyled,
 	StarsContent,
 	StarsPlayer,
 	StarsPlayerName,
 	StarsPlayerTeam,
 	StarsPlayerStat,
-} from './StarsStyle';
+} from './StarsStyled';
 
 function renderContent(starsArray) {
 
@@ -39,12 +39,12 @@ function renderContent(starsArray) {
 	});
 
 	return (
-		<StyledStars>
+		<StarsStyled>
 			<HeaderTitle>Stars of the Game</HeaderTitle>
 			<StarsContent>
 				{stars}
 			</StarsContent>
-		</StyledStars>
+		</StarsStyled>
 	);
 }
 

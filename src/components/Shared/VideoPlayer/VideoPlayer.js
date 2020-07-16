@@ -6,7 +6,7 @@ import {
 	VideoPlayerPosterImg,
 	VideoPlayerTitle,
 	VideoPlayerTriggerIcon
-} from './VideoPlayerStyle';
+} from './VideoPlayerStyled';
 
 class VideoPlayer extends Component {
 

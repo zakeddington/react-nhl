@@ -7,9 +7,9 @@ import {
 	StatsTableTd,
 } from '../../../globalStyles/Tables/StatsTable';
 import { DesktopBreakpoint, TabletBreakpoint, MobileBreakpoint } from '../../../config/Breakpoints';
-import { SvgLogo } from '../../Shared/Icon/IconStyle';
+import { SvgLogo } from '../../Shared/Icon/IconStyled';
 
-export const StyledBoxscoreTeams = styled(StatsTableContainer)`
+export const BoxscoreTeamsStyled = styled(StatsTableContainer)`
 	margin-bottom: 0;
 `;
 

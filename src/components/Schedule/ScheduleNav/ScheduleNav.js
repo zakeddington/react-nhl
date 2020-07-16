@@ -10,20 +10,20 @@ import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 import Icon from '../../Shared/Icon/Icon';
 import './DatePicker.scss';
 import {
-	StyledScheduleNav,
+	ScheduleNavStyled,
 	ScheduleNavItems,
 	ScheduleNavItem,
 	ScheduleNavPrevNext,
 	ScheduleNavLink,
-	StyledDatepickerTrigger,
-} from './ScheduleNavStyle';
+	DatepickerTrigger,
+} from './ScheduleNavStyled';
 
-function DatepickerTrigger(props) {
+function RenderDatepickerTrigger(props) {
 	return (
-		<StyledDatepickerTrigger onClick={() => props.onClick()} value={props.value}>
+		<DatepickerTrigger onClick={() => props.onClick()} value={props.value}>
 			<Icon iconId="calendar"/>
 			<Offscreen>Select a date from calendar</Offscreen>
-		</StyledDatepickerTrigger>
+		</DatepickerTrigger>
 	)
 }
 
@@ -190,9 +190,9 @@ class ScheduleNav extends Component {
 		const { objStartDate } = this.state;
 
 		return (
-			<StyledScheduleNav>
+			<ScheduleNavStyled>
 				<DatePicker
-					customInput={DatepickerTrigger(this.props)}
+					customInput={RenderDatepickerTrigger(this.props)}
 					selected={objStartDate.toDate()}
 					onChange={(dateStr) => this.onDatePickerChange(dateStr)}
 					todayButton="Today"/>
@@ -211,7 +211,7 @@ class ScheduleNav extends Component {
 						</ScheduleNavLink>
 					</ScheduleNavPrevNext>
 				</ScheduleNavItems>
-			</StyledScheduleNav>
+			</ScheduleNavStyled>
 		)
 	}
 }

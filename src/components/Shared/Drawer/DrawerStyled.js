@@ -4,9 +4,9 @@ import { TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints
 import { Spacing } from '../../../config/Grid';
 import ZIndex from '../../../config/ZIndex';
 import { ButtonWithIcon } from '../../../globalStyles/Button/Button';
-import { SvgIcon } from '../Icon/IconStyle';
+import { SvgIcon } from '../Icon/IconStyled';
 
-export const StyledDrawer = styled.div`
+export const DrawerStyled = styled.div`
 	display: inline;
 `;
 

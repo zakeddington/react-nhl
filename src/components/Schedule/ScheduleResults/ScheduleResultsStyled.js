@@ -3,7 +3,7 @@ import { rgba } from 'polished';
 import { Link } from 'react-router-dom';
 import { AnimSpeed, AnimEase, FadeInSlideDown } from '../../../config/Animation';
 import { MobileBreakpoint, TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints';
-import { SvgLogo } from '../../Shared/Icon/IconStyle';
+import { SvgLogo } from '../../Shared/Icon/IconStyled';
 
 export const ScheduleGames = styled.ul`
 	display: flex;

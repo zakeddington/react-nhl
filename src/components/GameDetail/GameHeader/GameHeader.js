@@ -6,7 +6,7 @@ import Icon from '../../Shared/Icon/Icon';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 import {
-	StyledGameHeader,
+	GameHeaderStyled,
 	DateColumn,
 	AwayTeamColumn,
 	HomeTeamColumn,
@@ -14,7 +14,7 @@ import {
 	TeamInfoCity,
 	TeamInfoName,
 	TeamScore,
-} from './GameHeaderStyle';
+} from './GameHeaderStyled';
 
 function GameHeader(props) {
 	const {
@@ -70,9 +70,9 @@ function GameHeader(props) {
 	}
 
 	return (
-		<StyledGameHeader>
+		<GameHeaderStyled>
 			{content}
-		</StyledGameHeader>
+		</GameHeaderStyled>
 	)
 }
 

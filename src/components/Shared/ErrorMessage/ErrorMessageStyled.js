@@ -3,7 +3,7 @@ import { applyStyleModifiers } from 'styled-components-modifiers';
 import { H2 } from '../../../globalStyles/Typography/Typography';
 import Modifiers from '../../../globalStyles/Utilities/Modifiers';
 
-export const StyledErrorMessage = styled(H2)`
+export const ErrorMessageStyled = styled(H2)`
 	margin: 0;
 	padding: 2rem;
 

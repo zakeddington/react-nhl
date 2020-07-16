@@ -7,9 +7,9 @@ import {
 	StatsTableTd,
 } from '../../globalStyles/Tables/StatsTable';
 import { H2 } from '../../globalStyles/Typography/Typography';
-import { SvgLogo } from '../Shared/Icon/IconStyle';
+import { SvgLogo } from '../Shared/Icon/IconStyled';
 
-export const StyledStandingsTable = styled.div`
+export const StandingsTableStyled = styled.div`
 	margin-bottom: 2rem;
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../Shared/Loader/Loader';
 import VideoCarousel from '../../Shared/VideoCarousel/VideoCarousel';
-import { StyledGameIntro } from './GameIntroStyle';
+import { GameIntroStyled } from './GameIntroStyled';
 import { H2, P } from '../../../globalStyles/Typography/Typography';
 
 function GameIntro(props) {
@@ -21,7 +21,7 @@ function GameIntro(props) {
 			content = '';
 		} else {
 			content =
-				<StyledGameIntro>
+				<GameIntroStyled>
 					<H2>{intro.title}</H2>
 					<P>{intro.desc}</P>
 					{
@@ -31,7 +31,7 @@ function GameIntro(props) {
 							<img src={intro.poster} alt={intro.posterAltText} />
 						)
 					}
-				</StyledGameIntro>;
+				</GameIntroStyled>;
 		}
 	}
 

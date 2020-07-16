@@ -6,7 +6,7 @@ import {
 	VideoCarouselPlayer,
 	VideoCarouselThumbs,
 	VideoCarouselThumbsItem,
-} from './VideoCarouselStyle';
+} from './VideoCarouselStyled';
 
 class VideoCarousel extends Component {
 

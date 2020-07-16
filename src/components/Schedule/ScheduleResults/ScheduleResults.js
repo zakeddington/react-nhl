@@ -16,7 +16,7 @@ import {
 	TeamName,
 	TeamRecord,
 	TeamScore,
-} from './ScheduleResultsStyle';
+} from './ScheduleResultsStyled';
 import { H2 } from '../../../globalStyles/Typography/Typography';
 import { ALIGN_CENTER } from '../../../globalStyles/Utilities/Modifiers';
 

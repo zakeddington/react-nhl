@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
 import { DesktopBreakpoint, MobileBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
-import { StyledPlayerPhoto } from '../../Shared/PlayerPhoto/PlayerPhotoStyle';
+import { PlayerPhotoStyled } from '../../Shared/PlayerPhoto/PlayerPhotoStyled';
 
-export const StyledStars = styled.div`
+export const StarsStyled = styled.div`
 	background: ${props => props.theme.color.white};
 	border-bottom: 1px solid ${props => props.theme.color.greyMed};
 	display: flex;
@@ -37,7 +37,7 @@ export const StarsPlayer = styled.div`
 	flex-direction: column;
 	text-align: center;
 
-	${StyledPlayerPhoto} {
+	${PlayerPhotoStyled} {
 		margin-bottom: 0.5em;
 
 		@media (max-width: ${MobileBreakpoint.max}) {

@@ -3,9 +3,9 @@ import { rgba } from 'polished';
 import { Button } from '../../../globalStyles/Button/Button';
 import { ContainerSize, Spacing } from '../../../config/Grid';
 import ZIndex from '../../../config/ZIndex';
-import { SvgIcon } from '../Icon/IconStyle';
+import { SvgIcon } from '../Icon/IconStyled';
 
-export const StyledModal = styled.div`
+export const ModalStyled = styled.div`
 	display: inline;
 `;
 

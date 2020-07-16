@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PlayerImagePath } from '../../../config/ImageIconConfig';
-import { StyledPlayerPhoto, PlayerPhotoImage } from './PlayerPhotoStyle';
+import { PlayerPhotoStyled, PlayerPhotoImage } from './PlayerPhotoStyled';
 
 function PlayerPhoto(props) {
 	const { playerId } = props;
 	const url = `${PlayerImagePath.base}${PlayerImagePath.headshot}${playerId}${PlayerImagePath.ext}`;
 
 	return (
-		<StyledPlayerPhoto>
+		<PlayerPhotoStyled>
 			<PlayerPhotoImage style={{backgroundImage: `url(${url})`}} />
-		</StyledPlayerPhoto>
+		</PlayerPhotoStyled>
 	)
 }
 
