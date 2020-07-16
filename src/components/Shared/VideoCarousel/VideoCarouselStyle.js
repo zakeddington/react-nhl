@@ -85,6 +85,7 @@ export const VideoCarouselThumbsItem = styled.div`
 		font-size: 0.75rem;
 		padding: 0.25rem 0;
 		position: relative;
+		z-index: auto;
 	}
 
 	${props => props.$isActive && css`
