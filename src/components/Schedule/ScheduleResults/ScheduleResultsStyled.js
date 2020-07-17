@@ -41,9 +41,9 @@ export const Game = styled.li`
 `;
 
 export const GameLink = styled(Link)`
-	background: ${props => rgba(props.theme.color.white, 0.5)};
-	border: ${props => `1px solid ${rgba(props.theme.color.grey, 0.2)}`};
-	color: ${props => props.theme.color.greyDark};
+	background: ${props => rgba(props.theme.color.backgroundContent, 0.5)};
+	border: 1px solid ${props => props.theme.color.border};
+	color: ${props => props.theme.color.text};
 	height: 100%;
 	padding: 0.5em 1em;
 	text-decoration: none;
@@ -51,14 +51,13 @@ export const GameLink = styled(Link)`
 
 	&:hover,
 	&:focus {
-		background: ${props => props.theme.color.white};
-		box-shadow: ${props => `0 3px 10px 0 ${rgba(props.theme.color.black, 0.2)}`};
-		color: ${props => props.theme.color.greyDark};
+		background: ${props => props.theme.color.backgroundContent};
+		box-shadow: ${props => `0 3px 10px 0 ${props.theme.color.shadowMinimal}`};
 	}
 `;
 
 export const Header = styled.div`
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	display: flex;
 	font-size: 0.75rem;
 	justify-content: space-between;
@@ -69,7 +68,7 @@ export const HeaderStatus = styled.span`
 `;
 
 export const HeaderBroadcasts = styled.span`
-	color: ${props => props.theme.color.greyMedDark};
+	color: ${props => rgba(props.theme.color.text, 0.6)};
 	font-size: 0.5rem;
 `;
 
@@ -85,11 +84,11 @@ export const Team = styled.div`
 	}
 
 	${props => props.$isFinal && css`
-		color: ${props => props.theme.color.greyMedDark};
+		color: ${props => rgba(props.theme.color.text, 0.6)};
 	`}
 
 	${props => props.$isWinner && css`
-		color: ${props => props.theme.color.greyDark};
+		color: ${props => props.theme.color.text};
 		font-weight: 700;
 	`}
 `;

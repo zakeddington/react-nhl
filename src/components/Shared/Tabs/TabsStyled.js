@@ -16,8 +16,8 @@ export const TabsStyled = styled.div`
 `;
 
 export const TabsNav = styled.ol`
-	background: ${props => props.theme.color.greyDark};
-	color: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.tabButtonBackground};
+	color: ${props => props.theme.color.tabButtonText};
 	display: flex;
 	font-size: 1rem;
 	justify-content: center;
@@ -32,20 +32,29 @@ export const TabsNavItem = styled.li`
 `;
 
 export const TabsNavLink = styled(Button)`
-	color: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.tabButtonBackground};
+	color: ${props => props.theme.color.tabButtonText};
 	font-weight: 700;
 	margin: 0;
 	padding: 1rem;
 
 	&:hover,
 	&:focus {
-		background: ${props => props.theme.color.greyMedDark};
-		color: ${props => props.theme.color.white};
+		background: ${props => props.theme.color.tabButtonBackgroundHover};
+		color: ${props => props.theme.color.tabButtonTextHover};
 		outline: none;
 	}
 
 	${props => props.$isActive && css`
-		background: ${props => props.theme.color.grey};
+		background: ${props => props.theme.color.tabButtonBackgroundActive};
+		color: ${props => props.theme.color.tabButtonTextActive};
+
+		&:hover,
+		&:focus {
+			background: ${props => props.theme.color.tabButtonBackgroundActive};
+			color: ${props => props.theme.color.tabButtonTextActive};
+			cursor: default;
+		}
 	`}
 `;
 

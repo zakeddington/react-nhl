@@ -3,7 +3,7 @@ import { AnimSpeed, AnimEase } from '../../../config/Animation';
 
 export const SvgIcon = styled.svg`
 	display: inline-block;
-	fill: ${props => props.theme.color.greyDark};
+	fill: ${props => props.theme.color.primary};
 	height: 1rem;
 	line-height: 1rem;
 	transition: all ${AnimSpeed.default} ${AnimEase.default};

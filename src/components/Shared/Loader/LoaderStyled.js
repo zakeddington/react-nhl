@@ -10,7 +10,7 @@ export const LoaderStyled = styled.div`
 
 export const LoaderCircle1 = styled.div`
 	animation: ${Bounce} 1.4s infinite ${AnimEase.inOut} both;
-	background-color: ${props => props.theme.color.greyDark};
+	background-color: ${props => props.theme.color.primary};
 	border-radius: 100%;
 	display: inline-block;
 	height: 1em;

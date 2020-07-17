@@ -1,32 +1,31 @@
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { Container } from '../../globalStyles/Layout/Layout';
-import { ButtonWithIcon } from '../../globalStyles/Button/Button';
+import { TextButtonWithIcon } from '../../globalStyles/Button/Button';
 import { DrawerTrigger } from '../Shared/Drawer/DrawerStyled';
 import { SvgIcon } from '../Shared/Icon/IconStyled';
 
 export const HeaderStyled = styled.div`
-	background: ${props => props.theme.color.greyDark};
-	border-bottom: ${props => `4px solid ${props.theme.color.white}`};
+	background: ${props => props.theme.color.backgroundPrimary};
+	border-bottom: ${props => `4px solid ${props.theme.color.backgroundPrimaryText}`};
 	height: 5rem;
 
 	${DrawerTrigger} {
-		color: ${props => props.theme.color.white};
+		color: ${props => props.theme.color.backgroundPrimaryText};
 		font-size: 0.875rem;
 
 		${SvgIcon} {
-			fill: ${props => props.theme.color.greyMed};
+			fill: ${props => props.theme.color.backgroundPrimaryText};
 			height: 1.5rem;
 			width: 1.5rem;
 		}
 
 		&:hover,
 		&:focus {
-			color: ${props => props.theme.color.white};
-			text-decoration: underline;
+			color: ${props => props.theme.color.backgroundPrimaryText};
 
 			${SvgIcon} {
-				fill: ${props => props.theme.color.white};
+				fill: ${props => props.theme.color.backgroundPrimaryText};
 			}
 		}
 	}
@@ -56,23 +55,22 @@ export const HomeLinkImg = styled.img`
 	height: 100%;
 `;
 
-export const BackButton = styled(ButtonWithIcon)`
-	color: ${props => props.theme.color.white};
+export const BackButton = styled(TextButtonWithIcon)`
+	color: ${props => props.theme.color.backgroundPrimaryText};
 	font-size: 0.875rem;
 
 	${SvgIcon} {
-		fill: ${props => props.theme.color.greyMed};
+		fill: ${props => props.theme.color.backgroundPrimaryText};
 		height: 1.5rem;
 		width: 1.5rem;
 	}
 
 	&:hover,
 	&:focus {
-		color: ${props => props.theme.color.white};
-		text-decoration: underline;
+		color: ${props => props.theme.color.backgroundPrimaryText};
 
 		${SvgIcon} {
-			fill: ${props => props.theme.color.white};
+			fill: ${props => props.theme.color.backgroundPrimaryText};
 		}
 	}
 `

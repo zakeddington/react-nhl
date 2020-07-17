@@ -1,10 +1,9 @@
 import styled from 'styled-components/macro';
-import { rgba } from 'polished';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
 import ZIndex from '../../../config/ZIndex';
 import Icon from '../Icon/Icon';
-import { Button } from '../../../globalStyles/Button/Button';
+import { TextButton } from '../../../globalStyles/Button/Button';
 
 export const VideoPlayerVideo = styled.video`
 	display: block;
@@ -23,8 +22,8 @@ export const VideoPlayerPosterImg = styled.img`
 export const VideoPlayerTriggerIcon = styled(Icon)`
 	border-radius: 50%;
 	display: block;
-	fill: ${props => props.theme.color.white};
-	filter: drop-shadow(0 0 1rem ${props => rgba(props.theme.color.black, 0.5)});
+	fill: ${props => props.theme.color.videoPlayerButtonIcon};
+	filter: drop-shadow(0 0 1rem ${props => props.theme.color.shadow});
 	height: 8rem;
 	left: 50%;
 	opacity: 0.9;
@@ -34,13 +33,13 @@ export const VideoPlayerTriggerIcon = styled(Icon)`
 	width: 8rem;
 
 	@media (max-width: ${MobileBreakpoint.max}) {
-		filter: drop-shadow(0 0 0.25rem ${props => rgba(props.theme.color.black, 0.5)});
+		filter: drop-shadow(0 0 0.25rem ${props => props.theme.color.shadow});
 		height: 5rem;
 		width: 5rem;
 	}
 `;
 
-export const VideoPlayerTrigger = styled(Button)`
+export const VideoPlayerTrigger = styled(TextButton)`
 	display: block;
 	overflow: hidden;
 	padding: 56.25% 0 0;
@@ -53,15 +52,15 @@ export const VideoPlayerTrigger = styled(Button)`
 		}
 
 		${VideoPlayerTriggerIcon} {
-			background: ${props => rgba(props.theme.color.black, 0.5)};
+			background: ${props => props.theme.color.videoPlayerButtonBackground};
 			opacity: 1;
 		}
 	}
 `;
 
 export const VideoPlayerTitle = styled.span`
-	background: ${props => rgba(props.theme.color.black, 0.5)};
-	color: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.videoPlayerTitleBackground};
+	color: ${props => props.theme.color.videoPlayerTitle};
 	display: block;
 	font-size: 1rem;
 	font-weight: 600;

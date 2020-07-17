@@ -2,8 +2,9 @@ import styled from 'styled-components/macro';
 import { AnimSpeed, AnimEase } from '../../config/Animation'
 
 export const Button = styled.button`
-	background: none;
+	background: ${props => props.theme.color.buttonBackground};
 	border: none;
+	color: ${props => props.theme.color.buttonText};
 	cursor: pointer;
 	display: inline-block;
 	font-family: ${props => props.theme.font.family.primary};
@@ -17,33 +18,27 @@ export const Button = styled.button`
 
 	&:hover,
 	&:focus {
+		background: ${props => props.theme.color.buttonBackgroundHover};
+		color: ${props => props.theme.color.buttonTextHover};
 		text-decoration: none;
-
-		//.svg-icon {
-		//	fill: $color-link-hover;
-		//}
 	}
 `;
 
-export const ButtonWithIcon = styled(Button)`
+export const TextButton = styled(Button)`
+	background: ${props => props.theme.color.textButtonBackground};
+	color: ${props => props.theme.color.textButtonText};
+
+	&:hover,
+	&:focus {
+		background: ${props => props.theme.color.textButtonBackgroundHover};
+		color: ${props => props.theme.color.textButtonTextHover};
+		text-decoration: underline;
+	}
+`;
+
+export const TextButtonWithIcon = styled(TextButton)`
 	align-items: center;
 	display: flex;
 	margin: 0;
 	padding: 0;
-
-	//.svg-icon {
-	//	fill: $color-grey-dark;
-	//	height: 1.5rem;
-	//	width: 1.5rem;
-	//}
-
-	&:hover,
-	&:focus {
-		color: ${props => props.theme.colorUsage.linkHover};
-		text-decoration: none;
-
-		//.svg-icon {
-		//	fill: $color-link-hover;
-		//}
-	}
 `;

@@ -1,13 +1,12 @@
 import styled from 'styled-components/macro';
-import { rgba } from 'polished';
 import { AnimSpeed, AnimEase } from '../../config/Animation';
 import { TabletBreakpoint, MobileBreakpoint } from '../../config/Breakpoints';
 import ZIndex from '../../config/ZIndex';
 
 export const TooltipContent = styled.span`
-	background: ${props => rgba(props.theme.color.black, 0.8)};
+	background: ${props => props.theme.color.tooltipBackground};
 	border-radius: 3px;
-	color: ${props => props.theme.color.white};
+	color: ${props => props.theme.color.tooltipText};
 	font-size: 0.625rem;
 	font-weight: 500;
 	left: 50%;

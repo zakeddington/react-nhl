@@ -3,30 +3,25 @@ import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints';
 import { Spacing } from '../../../config/Grid';
 import ZIndex from '../../../config/ZIndex';
-import { ButtonWithIcon } from '../../../globalStyles/Button/Button';
+import { Button, TextButtonWithIcon } from '../../../globalStyles/Button/Button';
 import { SvgIcon } from '../Icon/IconStyled';
 
 export const DrawerStyled = styled.div`
 	display: inline;
 `;
 
-export const DrawerTrigger = styled(ButtonWithIcon)`
+export const DrawerTrigger = styled(TextButtonWithIcon)`
 	margin: 0;
 	padding: 0;
-
-	&:hover,
-	&:focus {
-		text-decoration: underline;
-	}
 
 	${SvgIcon} {
 		margin-left: 0.5rem;
 	}
 `;
 
-export const DrawerClose = styled(ButtonWithIcon)`
-	background: ${props => props.theme.color.greyMed};
-	border: none;
+export const DrawerClose = styled(Button)`
+	background: ${props => props.theme.color.drawerCloseBackground};
+	color: ${props => props.theme.color.drawerCloseText};
 	border-bottom-left-radius: 50%;
 	border-top-left-radius: 50%;
 	height: 2.5rem;
@@ -37,7 +32,7 @@ export const DrawerClose = styled(ButtonWithIcon)`
 	width: 2.5rem;
 
 	${SvgIcon} {
-		fill: ${props => props.theme.color.greyDark};
+		fill: ${props => props.theme.color.drawerCloseText};
 		height: 50%;
 		margin: auto;
 		width: 50%;
@@ -45,8 +40,11 @@ export const DrawerClose = styled(ButtonWithIcon)`
 
 	&:hover,
 	&:focus {
+		background: ${props => props.theme.color.drawerCloseBackground};
+		color: ${props => props.theme.color.drawerCloseTextHover};
+
 		${SvgIcon} {
-			fill: ${props => props.theme.colorUsage.linkHover};
+			fill: ${props => props.theme.color.drawerCloseTextHover};
 		}
 	}
 `;
@@ -93,8 +91,8 @@ export const DrawerContainer = styled.div`
 `;
 
 export const DrawerContent = styled.div`
-	background: ${props => props.theme.color.greyMed};
-	box-shadow: ${`0 0 1rem rgba(${props => props.theme.color.black}, 0.5)`};
+	background: ${props => props.theme.color.drawerBackground};
+	box-shadow: ${props => `0 0 1rem ${props.theme.color.shadow}`};
 	display: block;
 	height: 100%;
 	max-height: 100%;

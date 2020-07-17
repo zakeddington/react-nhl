@@ -22,7 +22,7 @@ export const StandingsTableContainer = styled(StatsTableContainer)`
 
 	${props => props.$isWildcard && css`
 		${StandingsTableRow}:nth-child(2) {
-			border-color: ${props => props.theme.color.greyDark};
+			border-color: ${props => props.theme.color.backgroundPrimary};
 		}
 	`}
 `;
@@ -48,8 +48,8 @@ const StandingsTableCell = css`
 
 export const StandingsTableTh = styled(StatsTableTh)`
 	${StandingsTableCell};
-	background: ${props => props.theme.color.greyDark};
-	color: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.backgroundPrimary};
+	color: ${props => props.theme.color.backgroundPrimaryText};
 `;
 
 export const StandingsTableTd = styled(StatsTableTd)`

@@ -19,7 +19,7 @@ export default {
 	`,
 	tabsLogos: ({ theme }) => css`
 		${SvgLogo} {
-			background: ${theme.color.white};
+			background: ${theme.color.tabButtonText};
 			border-radius: 50%;
 			display: inline-block;
 			margin-right: 0.5rem;

@@ -4,8 +4,8 @@ import { Spacing } from '../../../config/Grid';
 import { PlayerPhotoStyled } from '../../Shared/PlayerPhoto/PlayerPhotoStyled';
 
 export const StarsStyled = styled.div`
-	background: ${props => props.theme.color.white};
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	background: ${props => props.theme.color.backgroundContent};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	display: flex;
 	flex-direction: column;
 	margin-bottom: ${Spacing.vert};

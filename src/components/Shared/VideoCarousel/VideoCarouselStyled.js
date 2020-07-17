@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components/macro';
-import { rgba } from 'polished';
 import { AnimSpeed, AnimEase } from '../../../config/Animation';
 import { MobileBreakpoint } from '../../../config/Breakpoints';
 import {
@@ -9,9 +8,10 @@ import {
 	VideoPlayerPosterImg,
 	VideoPlayerTitle,
 } from '../VideoPlayer/VideoPlayerStyled';
+import ZIndex from '../../../config/ZIndex';
 
 export const VideoCarouselPlayer = styled.div`
-	background: ${props => props.theme.color.greyDark};
+	background: ${props => props.theme.color.videoPlayerBackground};
 	display: block;
 	height: 0;
 	overflow: hidden;
@@ -21,8 +21,8 @@ export const VideoCarouselPlayer = styled.div`
 
 	${VideoPlayerVideo},
 	${VideoPlayerTrigger} {
-		background: ${props => props.theme.color.greyDark};
-		border: 1px solid ${props => props.theme.color.greyMed};
+		background: ${props => props.theme.color.videoPlayerBackground};
+		border: 1px solid ${props => props.theme.color.border};
 		display: block;
 		height: 100%;
 		left: 0;
@@ -38,8 +38,8 @@ export const VideoCarouselPlayer = styled.div`
 `;
 
 export const VideoCarouselThumbs = styled.div`
-	background: ${props => props.theme.color.greyLight};
-	border: 1px solid ${props => props.theme.color.greyMed};
+	background: ${props => props.theme.color.videoCarouselThumbBackground};
+	border: 1px solid ${props => props.theme.color.border};
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -64,7 +64,7 @@ export const VideoCarouselThumbsItem = styled.div`
 	}
 
 	${VideoPlayerPosterImg} {
-		border: 1px solid ${props => props.theme.color.greyMed};
+		border: 1px solid ${props => props.theme.color.border};
 		position: relative;
 	}
 
@@ -81,7 +81,7 @@ export const VideoCarouselThumbsItem = styled.div`
 
 	${VideoPlayerTitle} {
 		background: none;
-		color: ${props => props.theme.colorUsage.text};
+		color: ${props => props.theme.color.text};
 		font-size: 0.75rem;
 		padding: 0.25rem 0;
 		position: relative;
@@ -89,13 +89,13 @@ export const VideoCarouselThumbsItem = styled.div`
 	}
 
 	${props => props.$isActive && css`
-		background: ${props => props.theme.color.greyMed};
-		border-left: ${props => `1px solid ${rgba(props.theme.color.black, 0.1)}`};
-		border-right: ${props => `1px solid ${rgba(props.theme.color.black, 0.1)}`};
+		background: ${props => props.theme.color.videoCarouselThumbBackgroundActive};
+		border-left: ${props => `1px solid ${props.theme.color.videoCarouselBorder}`};
+		border-right: ${props => `1px solid ${props.theme.color.videoCarouselBorder}`};
 		cursor: default;
 
 		&:before {
-			border-bottom: 15px solid ${props => props.theme.color.white};
+			border-bottom: 15px solid ${props => props.theme.color.videoCarouselBorderActive};
 			border-left: 20px solid transparent;
 			border-right: 20px solid transparent;
 			content: '';
@@ -105,6 +105,7 @@ export const VideoCarouselThumbsItem = styled.div`
 			top: 0;
 			transform: translate(-50%, 0);
 			width: 0;
+			z-index: ${ZIndex.default};
 		}
 
 		&:first-child {
@@ -120,9 +121,9 @@ export const VideoCarouselThumbsItem = styled.div`
 		}
 
 		${VideoPlayerPosterImg} {
-			border-color: ${props => props.theme.color.white};
+			border-color: ${props => props.theme.color.videoCarouselBorderActive};
 			filter: brightness(1);
-			outline: 3px solid ${props => props.theme.color.white};
+			outline: 3px solid ${props => props.theme.color.videoCarouselBorderActive};
 		}
 
 		${VideoPlayerTriggerIcon} {

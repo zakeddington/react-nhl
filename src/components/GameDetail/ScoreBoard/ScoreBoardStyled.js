@@ -13,8 +13,8 @@ export const ScoreBoardStarsContainer = styled.div`
 `;
 
 export const ScoreBoardStyled = styled.div`
-	background: ${props => props.theme.color.white};
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	background: ${props => props.theme.color.backgroundContent};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto ${Spacing.vert};
@@ -44,7 +44,7 @@ export const ScoreBoardTeams = styled.div`
 `;
 
 export const ScoreBoardItem = styled.div`
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	height: 50px;
 	line-height: 30px;
 	padding: 10px 0;
@@ -59,7 +59,7 @@ export const ScoreBoardItem = styled.div`
 	}
 
 	&:first-child {
-		color: ${props => props.theme.color.grey};
+		color: ${props => props.theme.color.secondary};
 		font-size: 0.875rem;
 		line-height: 1.2;
 

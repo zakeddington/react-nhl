@@ -5,8 +5,8 @@ import { SvgLogo } from '../../Shared/Icon/IconStyled';
 
 export const GameHeaderStyled = styled.div`
 	align-items: center;
-	background: ${props => props.theme.color.white};
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	background: ${props => props.theme.color.backgroundContent};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	display: flex;
 	flex-wrap: wrap;
 	padding: ${Spacing.vert} 0;

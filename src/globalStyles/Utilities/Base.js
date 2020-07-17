@@ -4,7 +4,7 @@ import { ContainerSize } from '../../config/Grid';
 
 const Base = createGlobalStyle`
 	html {
-		color: ${props => props.theme.colorUsage.text};
+		color: ${props => props.theme.color.text};
 		font-family: ${props => props.theme.font.family.primary};
 		// uncomment appropriate line to set default type size
 		// font-size: 100%; //16px
@@ -26,7 +26,7 @@ const Base = createGlobalStyle`
 	}
 
 	body {
-		background: ${props => props.theme.color.greyLight};
+		background: ${props => props.theme.color.backgroundPage};
 		min-width: ${ContainerSize.width.mobile};
 		overflow-x: hidden;
 		padding: 0;

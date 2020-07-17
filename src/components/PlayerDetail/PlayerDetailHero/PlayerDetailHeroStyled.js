@@ -13,9 +13,9 @@ export const PlayerDetailHeroStyled = styled.div`
 `;
 
 export const PlayerDetailBio = styled.div`
-	background: ${props => props.theme.color.greyMed};
-	border-bottom: 4px solid ${props => props.theme.color.white};
-	border-top: 4px solid ${props => props.theme.color.white};
+	background: ${props => props.theme.color.backgroundQuaternary};
+	border-bottom: 4px solid ${props => props.theme.color.backgroundQuaternaryText};
+	border-top: 4px solid ${props => props.theme.color.backgroundQuaternaryText};
 	display: flex;
 	font-weight: 400;
 	padding: 1rem;
@@ -40,7 +40,7 @@ export const PlayerDetailBio = styled.div`
 
 		&:hover,
 		&:focus {
-			border-color: ${props => props.theme.color.greyMed};
+			border-color: ${props => props.theme.color.backgroundQuaternary};
 		}
 	}
 `;

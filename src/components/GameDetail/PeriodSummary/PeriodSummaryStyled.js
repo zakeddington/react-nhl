@@ -9,21 +9,22 @@ export const PeriodSummaryStyled = styled.div`
 `;
 
 export const Period = styled.div`
-	background: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.backgroundContent};
 	margin-bottom: ${Spacing.vert};
 
 	&:last-child {
-		border-bottom: 1px solid ${props => props.theme.color.greyMed};
+		border-bottom: 1px solid ${props => props.theme.color.border};
 	}
 `;
 
 export const PeriodTitle = styled(HeaderTitle)`
-	background: ${props => props.theme.color.grey};
+	background: ${props => props.theme.color.secondary};
 	padding: 0.5em 1em;
 `;
 
 export const PeriodSubtitle = styled.div`
-	background: ${props => props.theme.color.greyLight};
+	background: ${props => props.theme.color.backgroundTertiary};
+	color: ${props => props.theme.color.backgroundTertiaryText};
 	font-size: 1.125rem;
 	font-weight: 700;
 	margin: 0;
@@ -37,7 +38,7 @@ export const PeriodEmpty = styled.div`
 
 export const PeriodItem = styled.div`
 	align-items: center;
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	display: flex;
 	flex-direction: row;
 	font-size: 1.125rem;
@@ -94,9 +95,9 @@ export const PlayerShotType = styled.span`
 `;
 
 export const PlayerGoalType = styled.span`
-	background: ${props => props.theme.color.greyDark};
+	background: ${props => props.theme.color.backgroundPrimary};
 	border-radius: 3px;
-	color: ${props => props.theme.color.white};
+	color: ${props => props.theme.color.backgroundPrimaryText};
 	font-size: 0.875rem;
 	font-weight: 600;
 	margin-left: 0.5em;
@@ -138,7 +139,7 @@ export const TeamScore = styled.span`
 
 	${props => props.$isScoringTeam && css`
 		background-color: ${props => props.theme.teamColor};
-		color: ${props => props.theme.color.white};
+		color: ${props => props.theme.teamColorInvert};
 	`}
 `;
 
@@ -147,13 +148,13 @@ export const ShootoutStatus = styled(GameStatus)`
 `;
 
 export const ShotResult = styled.span`
-	border: 1px solid ${props => props.theme.color.greyMed};
+	border: 1px solid ${props => props.theme.color.border};
 	border-radius: 3px;
 	width: 100%;
 
 	${props => props.$isGoal && css`
 		background-color: ${props => props.theme.teamColor};
 		border-color: transparent;
-		color: ${props => props.theme.color.white};
+		color: ${props => props.theme.teamColorInvert};
 	`}
 `;

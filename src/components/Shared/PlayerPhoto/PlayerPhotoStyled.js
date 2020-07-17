@@ -7,7 +7,7 @@ import { ModalTrigger } from '../Modal/ModalStyled';
 export const PlayerPhotoStyled = styled.div`
 	background: url(${ImageBasePath}${PlayerImagePath.headshotFallback}) center center no-repeat;
 	background-size: contain;
-	border: 1px solid ${props => props.theme.color.greyMed};
+	border: 1px solid ${props => props.theme.color.border};
 	border-radius: 50%;
 	display: block;
 	height: 60px;
@@ -27,7 +27,7 @@ export const PlayerPhotoStyled = styled.div`
 
 	${ModalTrigger}:hover &,
 	${ModalTrigger}:focus & {
-		border-color: ${props => props.theme.color.greyDark};
+		border-color: ${props => props.theme.color.borderHover};
 	}
 `;
 

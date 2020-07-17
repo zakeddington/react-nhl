@@ -12,7 +12,7 @@ export const TOTAL = 'total';
 export default {
 	pinned: ({ theme }) => css`
 		@media (max-width: ${MobileBreakpoint.max}) {
-			border-right: 1px solid ${theme.color.greyMed};
+			border-right: 1px solid ${theme.color.border};
 			position: absolute;
 			min-width: 7rem;
 			width: 7rem;
@@ -55,7 +55,7 @@ export default {
 		width: 12.5rem;
 	`,
 	total: ({ theme }) => css`
-		background: ${theme.color.greyMed};
+		background: ${theme.color.tableHeaderBackground};
 		font-weight: 600;
 	`,
 };

@@ -18,7 +18,7 @@ export const StatsTableContainer = styled.div`
 `;
 
 export const StatsTable = styled.table`
-	background: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.tableBackground};
 	font-size: 0.875rem;
 	margin: 0;
 	text-align: right;
@@ -26,14 +26,14 @@ export const StatsTable = styled.table`
 `;
 
 export const StatsTableRow = styled.tr`
-	border-bottom: 1px solid ${props => props.theme.color.greyMed};
+	border-bottom: 1px solid ${props => props.theme.color.border};
 	position: relative;
 
 	${applyStyleModifiers(CombinedModifiers)};
 `;
 
 const StatsTableCell = css`
-	background: ${props => props.theme.color.white};
+	background: ${props => props.theme.color.tableCellBackground};
 	font-weight: 500;
 	min-width: 2rem;
 	padding: 5px;
@@ -43,7 +43,7 @@ const StatsTableCell = css`
 
 export const StatsTableTh = styled.th`
 	${StatsTableCell};
-	background: ${props => props.theme.color.greyMed};
+	background: ${props => props.theme.color.tableHeaderBackground};
 	font-weight: 600;
 
 	${applyStyleModifiers(CombinedModifiers)};
@@ -53,7 +53,7 @@ export const StatsTableTd = styled.td`
 	${StatsTableCell};
 
 	${StatsTableRow}:hover & {
-		background: ${props => props.theme.color.greyLight};
+		background: ${props => props.theme.color.tableCellBackgroundHover};
 		${applyStyleModifiers(CombinedModifiers)};
 	}
 
