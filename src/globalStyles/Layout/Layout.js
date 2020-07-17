@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const SiteContent = styled(Container)`
+	min-height: 50vh;
 	padding-bottom: 50px;
 	padding-top: 20px;
 `
