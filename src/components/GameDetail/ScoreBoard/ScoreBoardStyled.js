@@ -59,7 +59,7 @@ export const ScoreBoardItem = styled.div`
 	}
 
 	&:first-child {
-		color: ${props => props.theme.color.secondary};
+		color: ${props => props.theme.color.textLight};
 		font-size: 0.875rem;
 		line-height: 1.2;
 

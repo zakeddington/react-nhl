@@ -1,78 +1,85 @@
-import { rgba } from 'polished';
+import { rgba, darken, lighten } from 'polished';
 
 const Palette = {
+	white: '#fff',
+	grey100: '#efefef',
+	grey300: '#ddd',
+	grey500: '#666',
+	grey700: '#333',
+	grey900: '#222',
 	black: '#000',
 	blue: '#5cc1ef',
-	blueDark: '#2eafea',
-	grey: '#666',
-	greyDark: '#333',
-	greyLight: '#efefef',
-	greyMed: '#ddd',
-	greyMedDark: '#999',
-	white: '#fff',
 };
 
 const ColorTokens = {
-	primary: Palette.greyDark,
-	secondary: Palette.grey,
-	tertiary: Palette.greyLight,
-	quaternary: Palette.greyMed,
+	primary: Palette.grey700,
+	secondary: Palette.grey500,
+	tertiary: Palette.grey100,
+	quaternary: Palette.grey300,
+	// primary: '#0076B6',
+	// secondary: '#B0B7BC',
+	// tertiary: Palette.grey100,
+	// quaternary: Palette.grey300,
+	accent: Palette.blue,
+	content: Palette.grey700,
+	body: Palette.grey100,
 	black: Palette.black,
 	white: Palette.white,
 };
 
 const UtilityTokens = {
-	backgroundPage: ColorTokens.tertiary,
-	backgroundContent: Palette.white,
+	backgroundPage: ColorTokens.body,
+	backgroundContent: ColorTokens.white,
 
 	backgroundPrimary: ColorTokens.primary,
-	backgroundPrimaryText: Palette.white,
+	backgroundPrimaryText: ColorTokens.white,
 
 	backgroundSecondary: ColorTokens.secondary,
 	backgroundSecondaryText: ColorTokens.white,
 
 	backgroundTertiary: ColorTokens.tertiary,
-	backgroundTertiaryText: ColorTokens.primary,
+	backgroundTertiaryText: ColorTokens.content,
 
 	backgroundQuaternary: ColorTokens.quaternary,
-	backgroundQuaternaryText: Palette.white,
+	backgroundQuaternaryText: ColorTokens.white,
 
 	border: ColorTokens.quaternary,
 	borderHover: ColorTokens.primary,
 
-	shadow: rgba(Palette.black, 0.5),
-	shadowMinimal: rgba(Palette.black, 0.2),
+	shadow: rgba(ColorTokens.black, 0.5),
+	shadowLight: rgba(ColorTokens.black, 0.2),
 };
 
 const ComponentTokens = {
-	text: ColorTokens.primary,
+	text: ColorTokens.content,
+	textLight: lighten(0.2, ColorTokens.content),
 
-	link: Palette.blue,
-	linkHover: Palette.blueDark,
+	link: ColorTokens.accent,
+	linkHover: darken(0.2, ColorTokens.accent),
 
-	buttonBackground: Palette.blue,
-	buttonText: Palette.white,
-	buttonBackgroundHover: Palette.blueDark,
-	buttonTextHover: Palette.white,
+	buttonBackground: ColorTokens.accent,
+	buttonText: ColorTokens.white,
+	buttonBackgroundHover: darken(0.2, ColorTokens.accent),
+	buttonTextHover: ColorTokens.white,
 
 	textButtonBackground: 'transparent',
-	textButtonText: ColorTokens.primary,
+	textButtonText: ColorTokens.content,
 	textButtonBackgroundHover: 'transparent',
-	textButtonTextHover: ColorTokens.primary,
+	textButtonTextHover: ColorTokens.content,
 
 	drawerBackground: ColorTokens.tertiary,
 	drawerCloseBackground: ColorTokens.tertiary,
-	drawerCloseText: ColorTokens.primary,
+	drawerCloseText: ColorTokens.content,
 	drawerCloseTextHover: ColorTokens.secondary,
 
-	overlay: rgba(Palette.black, 0.8),
+	overlay: rgba(ColorTokens.black, 0.8),
 
-	modalBackground: Palette.white,
-	modalCloseText: Palette.white,
-	modalCloseTextHover: rgba(Palette.white, 0.5),
+	modalBackground: ColorTokens.white,
+	modalCloseText: ColorTokens.white,
+	modalCloseTextHover: ColorTokens.accent,
 
-	tableBackground: Palette.white,
-	tableCellBackground: Palette.white,
+	tableBackground: ColorTokens.white,
+	tableCellBackground: ColorTokens.white,
 	tableCellBackgroundHover: ColorTokens.tertiary,
 	tableHeaderBackground: ColorTokens.quaternary,
 
@@ -83,19 +90,21 @@ const ComponentTokens = {
 	tabButtonBackgroundActive: UtilityTokens.backgroundSecondary,
 	tabButtonTextActive: UtilityTokens.backgroundSecondaryText,
 
-	tooltipBackground: rgba(Palette.black, 0.8),
-	tooltipText: Palette.white,
+	tooltipBackground: rgba(ColorTokens.black, 0.8),
+	tooltipText: ColorTokens.white,
 
-	videoPlayerBackground: Palette.black,
-	videoPlayerButtonBackground: rgba(Palette.black, 0.5),
-	videoPlayerButtonIcon: Palette.white,
-	videoPlayerTitleBackground: rgba(Palette.black, 0.5),
-	videoPlayerTitle: Palette.white,
+	videoPlayerBackground: ColorTokens.black,
+	videoPlayerButtonBackground: rgba(ColorTokens.black, 0.5),
+	videoPlayerButtonIcon: ColorTokens.white,
+	videoPlayerTitleBackground: rgba(ColorTokens.black, 0.5),
+	videoPlayerTitle: ColorTokens.white,
 
-	videoCarouselBorder: rgba(Palette.black, 0.1),
-	videoCarouselBorderActive: Palette.white,
-	videoCarouselThumbBackground: ColorTokens.tertiary,
-	videoCarouselThumbBackgroundActive: ColorTokens.quaternary,
+	videoCarouselBorder: darken(0.1, ColorTokens.quaternary),
+	videoCarouselBorderActive: ColorTokens.white,
+	videoCarouselThumbBackground: UtilityTokens.backgroundTertiary,
+	videoCarouselThumbBackgroundActive: UtilityTokens.backgroundSecondary,
+	videoCarouselThumbText: UtilityTokens.backgroundTertiaryText,
+	videoCarouselThumbTextActive: UtilityTokens.backgroundSecondaryText,
 };
 
 export default {

@@ -81,7 +81,7 @@ export const VideoCarouselThumbsItem = styled.div`
 
 	${VideoPlayerTitle} {
 		background: none;
-		color: ${props => props.theme.color.text};
+		color: ${props => props.theme.color.videoCarouselThumbText};
 		font-size: 0.75rem;
 		padding: 0.25rem 0;
 		position: relative;
@@ -117,7 +117,9 @@ export const VideoCarouselThumbsItem = styled.div`
 		}
 
 		${VideoPlayerTrigger} {
+			color: ${props => props.theme.color.videoCarouselThumbTextActive};
 			cursor: default;
+			text-decoration: none;
 		}
 
 		${VideoPlayerPosterImg} {
@@ -128,6 +130,15 @@ export const VideoCarouselThumbsItem = styled.div`
 
 		${VideoPlayerTriggerIcon} {
 			display: none;
+		}
+
+		${VideoPlayerTitle} {
+			color: ${props => props.theme.color.videoCarouselThumbTextActive};
+
+			&:hover,
+			&:focus {
+				color: ${props => props.theme.color.videoCarouselThumbTextActive};
+			}
 		}
 	`}
 `;

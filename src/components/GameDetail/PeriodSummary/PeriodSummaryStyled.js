@@ -18,7 +18,7 @@ export const Period = styled.div`
 `;
 
 export const PeriodTitle = styled(HeaderTitle)`
-	background: ${props => props.theme.color.secondary};
+	background: ${props => props.theme.color.backgroundSecondary};
 	padding: 0.5em 1em;
 `;
 
