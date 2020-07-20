@@ -27,6 +27,7 @@ class ScheduleNav extends Component {
 	};
 
 	numSideDays = isMobileBreakpoint ? 1 : 3;
+	isBreakpointChange = false;
 
 	componentDidMount() {
 		if (this.state.objStartDate) {
@@ -57,11 +58,13 @@ class ScheduleNav extends Component {
 
 	onBreakpointChange() {
 		this.numSideDays = isMobileBreakpoint ? 1 : 3;
+		this.isBreakpointChange = true;
 		this.setArrDateObjs();
+		this.isBreakpointChange = false;
 	}
 
 	setArrDateObjs(selectedDate = this.state.objStartDate, curResultsDate) {
-		const { numSideDays } = this;
+		const { numSideDays, isBreakpointChange } = this;
 		const curDates = this.state.arrDateObjs;
 		let dateObjs = curDates;
 		let createNewDates = true;
@@ -80,7 +83,7 @@ class ScheduleNav extends Component {
 		});
 
 		// only create new dates array if it's not in the current one
-		if (createNewDates) {
+		if (createNewDates || isBreakpointChange) {
 			dateObjs = [{
 				day: selectedDate,
 				isActive: true,
@@ -137,7 +140,6 @@ class ScheduleNav extends Component {
 			newDate = curEndDate.clone().add(numSideDays + 1, 'days');
 		}
 
-		// this.setArrDateObjs(newDate, true);
 		this.setState({
 			objStartDate: newDate,
 		})
