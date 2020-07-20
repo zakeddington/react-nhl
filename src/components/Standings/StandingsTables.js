@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Shared/Icon/Icon';
-import CONSTANTS from '../../config/Constants';
+import { IconType } from '../../config/ImageIconConfig';
 import './StandingsTables.scss';
 
 function renderStandingsTable(standingsName, division) {
@@ -33,7 +33,7 @@ function renderStandingsTable(standingsName, division) {
 							<tr key={team.name}>
 								<td>{team.rank}</td>
 								<td className="standings-tables--team text-left">
-									<Icon iconId={`${team.id}`} iconType={CONSTANTS.iconType.logo} />
+									<Icon iconId={`${team.id}`} iconType={IconType.logo} />
 									<span className="standings-tables--team-name">{team.name}</span>
 								</td>
 								<td>{team.games}</td>

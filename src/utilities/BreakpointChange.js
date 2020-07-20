@@ -3,7 +3,17 @@
  * @description  Create pseudo 'breakpointChange' event
  */
 
-import CONSTANTS from '../config/Constants';
+import {
+	Breakpoints,
+	CurrentBreakpoint,
+	isMobileBreakpoint,
+	isTabletBreakpoint,
+	isDesktopBreakpoint,
+	setCurrentBreakpoint,
+	setIsMobileBreakpoint,
+	setIsTabletBreakpoint,
+	setIsDesktopBreakpoint,
+} from '../config/Breakpoints';
 import EVENTS from '../config/Events';
 
 const BreakpointChange = function() {
@@ -15,10 +25,10 @@ const BreakpointChange = function() {
 	let zIndex = getComputedStyle(elIndicator).zIndex;
 
 	let updateConstants = () => {
-		CONSTANTS.currentBreakpoint = CONSTANTS.breakpoints[zIndex];
-		CONSTANTS.isMobileView = CONSTANTS.currentBreakpoint === 'mobile';
-		CONSTANTS.isTabletView = CONSTANTS.currentBreakpoint === 'tablet';
-		CONSTANTS.isDesktopView = CONSTANTS.currentBreakpoint === 'desktop';
+		setCurrentBreakpoint(Breakpoints[zIndex]);
+		setIsMobileBreakpoint(CurrentBreakpoint === 'mobile');
+		setIsTabletBreakpoint(CurrentBreakpoint === 'tablet');
+		setIsDesktopBreakpoint(CurrentBreakpoint === 'desktop');
 	};
 	updateConstants();
 
@@ -30,10 +40,10 @@ const BreakpointChange = function() {
 			updateConstants();
 
 			let evt = new Event(EVENTS.BREAKPOINT_CHANGE, {
-				breakpoint: CONSTANTS.breakpoints[zIndex],
-				mobile: CONSTANTS.isMobileView,
-				tablet: CONSTANTS.isTabletView,
-				desktop: CONSTANTS.isDesktopView
+				breakpoint: Breakpoints[zIndex],
+				mobile: isMobileBreakpoint,
+				tablet: isTabletBreakpoint,
+				desktop: isDesktopBreakpoint
 			});
 			window.dispatchEvent(evt);
 		}

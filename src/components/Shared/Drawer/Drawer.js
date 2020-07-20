@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { AnimSpeed } from '../../../config/Animation';
 import Icon from '../Icon/Icon';
 import './Drawer.scss';
 
@@ -30,7 +30,7 @@ class Drawer extends Component {
 					isDisabled: false,
 					isOpen: false,
 				})
-			}, CONSTANTS.anim.speed.slow);
+			}, AnimSpeed.slowInt);
 		}
 	}
 
@@ -59,7 +59,7 @@ class Drawer extends Component {
 				isOpen: true,
 				isAnimating: false,
 			})
-		}, CONSTANTS.anim.speed.slow);
+		}, AnimSpeed.slowInt);
 	}
 
 	renderDrawer() {

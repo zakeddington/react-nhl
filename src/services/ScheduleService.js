@@ -1,4 +1,4 @@
-import CONSTANTS from '../config/Constants';
+import { Language, DateOptions, TimeOptions } from '../config/Dates';
 import API from './API';
 import GetGameStatus from './GameDetail/GetGameStatus';
 
@@ -14,12 +14,12 @@ class ScheduleService {
 			let curDate = new Date(date.date.replace(/-/g, '/'));
 
 			let curResults = {
-				gameDate: curDate.toLocaleDateString(CONSTANTS.lang, CONSTANTS.dateOptions),
+				gameDate: curDate.toLocaleDateString(Language, DateOptions),
 				games: []
 			};
 
 			date.games.forEach((game) => {
-				const startTime = new Date(game.gameDate).toLocaleTimeString(CONSTANTS.lang, CONSTANTS.timeOptions);
+				const startTime = new Date(game.gameDate).toLocaleTimeString(Language, TimeOptions);
 				const startStatus = game.status.detailedState;
 				const gameStatus = GetGameStatus(game.linescore);
 				const awayOTL = game.teams.away.leagueRecord.ot ? `-${game.teams.away.leagueRecord.ot}` : '';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import Icon from '../../Shared/Icon/Icon';
 import './ScoreBoard.scss';
@@ -38,11 +38,11 @@ function renderContent(props) {
 						<span>&nbsp;</span>
 					</div>
 					<div className="scoreboard-item">
-						<Icon iconId={`${awayTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${awayTeam.id}`} iconType={IconType.logo}/>
 						<span>{awayTeam.name}</span>
 					</div>
 					<div className="scoreboard-item">
-						<Icon iconId={`${homeTeam.id}`} iconType={CONSTANTS.iconType.logo}/>
+						<Icon iconId={`${homeTeam.id}`} iconType={IconType.logo}/>
 						<span>{homeTeam.name}</span>
 					</div>
 				</div>

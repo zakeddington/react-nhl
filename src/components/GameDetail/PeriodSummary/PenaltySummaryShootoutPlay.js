@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { IconType } from '../../../config/ImageIconConfig';
 import Icon from '../../Shared/Icon/Icon';
 import PlayerPhoto from '../../Shared/PlayerPhoto/PlayerPhoto';
 import Modal from '../../Shared/Modal/Modal';
@@ -18,7 +18,7 @@ function PeriodSummaryShootoutPlay(props) {
 	return (
 		<div className="period-summary-item">
 			<div className="period-summary-logo">
-				<Icon iconId={`${teamId}`} iconType={CONSTANTS.iconType.logo}/>
+				<Icon iconId={`${teamId}`} iconType={IconType.logo}/>
 			</div>
 			<div className="period-summary-time"/>
 			<div className="period-summary-photo">

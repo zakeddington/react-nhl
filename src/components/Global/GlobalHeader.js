@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import CONSTANTS from '../../config/Constants';
+import { ImageBasePath } from '../../config/ImageIconConfig';
 import Drawer from '../Shared/Drawer/Drawer';
 import Standings from '../../containers/Standings';
 import Icon from '../Shared/Icon/Icon';
@@ -21,7 +21,7 @@ function GlobalHeader(props) {
 				</div>
 
 				<Link to="/" className="site-header--link">
-					<img className="site-header--logo" src={`${CONSTANTS.imgUrl.base}logo-nhl.svg`} alt="NHL logo" />
+					<img className="site-header--logo" src={`${ImageBasePath}logo-nhl.svg`} alt="NHL logo" />
 					<span className="offscreen">NHL Stats</span>
 				</Link>
 

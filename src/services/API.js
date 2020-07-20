@@ -1,5 +1,5 @@
 import moment from 'moment';
-import CONSTANTS from '../config/Constants';
+import { MomentOptions } from '../config/Dates';
 
 const API_STATS_URL = 'https://statsapi.web.nhl.com/api/v1/';
 
@@ -35,7 +35,7 @@ class API {
 	}
 
 	getWildcardStandings() {
-		const startDate = moment().format(CONSTANTS.momentOptions.apiFormat);
+		const startDate = moment().format(MomentOptions.apiFormat);
 		return new Promise((resolve, reject) => {
 			try {
 				let url = `${API_STATS_URL}standings/wildCardWithLeaders?date=${startDate}`;

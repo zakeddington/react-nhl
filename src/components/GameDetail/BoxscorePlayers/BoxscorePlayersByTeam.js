@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { IconType } from '../../../config/ImageIconConfig';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Tabs from '../../Shared/Tabs/Tabs';
@@ -15,7 +15,7 @@ function renderContent(boxscorePlayersByTeam) {
 				boxscorePlayersByTeam.map((team) => {
 					return (
 						<Tab key={team.id} id={`tab-boxscore-players-${team.id}`} tabTitle={team.name} iconId={`${team.id}`}
-							iconType={CONSTANTS.iconType.logo}>
+							iconType={IconType.logo}>
 							<BoxscorePlayersByPosition boxscorePlayersByPosition={team.boxscorePlayersByPosition}/>
 						</Tab>
 					)

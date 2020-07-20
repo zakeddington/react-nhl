@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import CONSTANTS from '../../../config/Constants';
+import { IconType } from '../../../config/ImageIconConfig';
+import { GameRoute } from '../../../config/RoutePaths';
 import Loader from '../../Shared/Loader/Loader';
 import ErrorMessage from '../../Shared/ErrorMessage/ErrorMessage';
 import Icon from '../../Shared/Icon/Icon';
@@ -24,20 +25,20 @@ function renderContent(data) {
 
 			return (
 				<li key={game.id} className={classGameStatus}>
-					<Link to={`${CONSTANTS.routePaths.game}${game.id}`}>
+					<Link to={`${GameRoute}${game.id}`}>
 						<div className="schedule-results--game-status">
 							<span className="schedule-results--status">{game.gameStatus}</span>
 							<span className="schedule-results--broadcasts">{game.broadcasts}</span>
 						</div>
 						<div className="schedule-results--team away">
-							<Icon iconId={`${game.awayTeam.id}`} iconType={CONSTANTS.iconType.logo} />
+							<Icon iconId={`${game.awayTeam.id}`} iconType={IconType.logo} />
 							<span className="schedule-results--name">{game.awayTeam.name}
 								<span className="schedule-results--record">({game.awayTeam.record})</span>
 								</span>
 							<span className="schedule-results--score">{game.awayTeam.score}</span>
 						</div>
 						<div className="schedule-results--team home">
-							<Icon iconId={`${game.homeTeam.id}`} iconType={CONSTANTS.iconType.logo} />
+							<Icon iconId={`${game.homeTeam.id}`} iconType={IconType.logo} />
 							<span className="schedule-results--name">{game.homeTeam.name}
 								<span className="schedule-results--record">({game.homeTeam.record})</span>
 								</span>
