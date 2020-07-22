@@ -5,11 +5,13 @@ import { AnimSpeed, AnimEase } from '../../config/Animation';
 export const Anchor = styled(Link)`
 	color: ${props => props.theme.color.link};
 	font-family: ${props => props.theme.font.family.primary};
+	text-decoration: none;
 	transition: color ${AnimSpeed.default} ${AnimEase.in};
 
 	&:focus,
 	&:hover {
 		color: ${props => props.theme.color.linkHover};
+		text-decoration: underline;
 	}
 `;
 

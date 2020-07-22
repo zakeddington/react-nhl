@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components/macro';
-import Default from './globalStyles/Themes/Default';
+import Default from './globalStyles/Themes/Default/DefaultTheme';
 import GlobalStyles from './globalStyles';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';

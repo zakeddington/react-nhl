@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../globalStyles/Layout/Layout';
 import { TextButtonWithIcon } from '../../globalStyles/Button/Button';
 import { DrawerTrigger } from '../Shared/Drawer/DrawerStyled';
-import { SvgIcon } from '../Shared/Icon/IconStyled';
+import { SvgIcon, SvgLogo } from '../Shared/Icon/IconStyled';
 
 export const HeaderStyled = styled.div`
 	background: ${props => props.theme.color.backgroundPrimary};
@@ -12,21 +12,10 @@ export const HeaderStyled = styled.div`
 
 	${DrawerTrigger} {
 		color: ${props => props.theme.color.backgroundPrimaryText};
-		font-size: 0.875rem;
-
-		${SvgIcon} {
-			fill: ${props => props.theme.color.backgroundPrimaryText};
-			height: 1.5rem;
-			width: 1.5rem;
-		}
 
 		&:hover,
 		&:focus {
 			color: ${props => props.theme.color.backgroundPrimaryText};
-
-			${SvgIcon} {
-				fill: ${props => props.theme.color.backgroundPrimaryText};
-			}
 		}
 	}
 `;
@@ -35,7 +24,7 @@ export const ContainerStyled = styled(Container)`
 	align-items: center;
 	display: flex;
 	height: 100%;
-	justify-content: space-between;
+	justify-content: flex-end;
 `;
 
 export const HomeLink = styled(Link)`
@@ -48,16 +37,17 @@ export const HomeLink = styled(Link)`
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 3.5rem;
-`;
 
-export const HomeLinkImg = styled.img`
-	display: block;
-	height: 100%;
+	${SvgLogo} {
+		height: 100%;
+		width: 100%;
+	}
 `;
 
 export const BackButton = styled(TextButtonWithIcon)`
 	color: ${props => props.theme.color.backgroundPrimaryText};
 	font-size: 0.875rem;
+	margin-right: auto;
 
 	${SvgIcon} {
 		fill: ${props => props.theme.color.backgroundPrimaryText};

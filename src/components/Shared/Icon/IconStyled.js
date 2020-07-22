@@ -12,6 +12,7 @@ export const SvgIcon = styled.svg`
 `;
 
 export const SvgLogo = styled(SvgIcon)`
+	fill: unset;
 	display: block;
 	height: 50px;
 	width: 50px;

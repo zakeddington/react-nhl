@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AnimSpeed } from '../../../config/Animation';
+import { IconType } from '../../../config/ImageIconConfig';
 import Icon from '../Icon/Icon';
 import {
 	DrawerStyled,
 	DrawerTrigger,
+	DrawerTriggerLabel,
 	DrawerClose,
 	DrawerOverlay,
 	DrawerContainer,
-	DrawerContent
+	DrawerContent,
 } from './DrawerStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
 
@@ -90,16 +92,16 @@ class Drawer extends Component {
 	}
 
 	render() {
-		const { iconId, label } = this.props;
+		const { iconId, label, iconType = IconType.icon } = this.props;
 		const { isOpen } = this.state;
 
 		return (
 			<DrawerStyled>
 				<DrawerTrigger onClick={() => this.onTriggerClick()} disabled={isOpen}>
-					{label}
+					<DrawerTriggerLabel>{label}</DrawerTriggerLabel>
 					{
 						iconId &&
-						<Icon iconId={iconId} />
+						<Icon iconType={iconType} iconId={iconId} />
 					}
 				</DrawerTrigger>
 				{this.renderDrawer()}
@@ -111,6 +113,7 @@ class Drawer extends Component {
 Drawer.propTypes = {
 	content: PropTypes.element,
 	iconId: PropTypes.string,
+	iconType: PropTypes.string,
 	label: PropTypes.string,
 }
 

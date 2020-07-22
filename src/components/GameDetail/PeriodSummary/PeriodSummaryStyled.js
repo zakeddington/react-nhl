@@ -118,7 +118,7 @@ export const StatusColumn = styled.div`
 `;
 
 export const GameStatus = styled.span`
-	border: 1px solid ${props => props.theme.teamColor};
+	border: 1px solid ${props => props.theme.primary};
 	border-radius: 3px;
 	display: flex;
 	font-size: 0.875rem;
@@ -138,8 +138,8 @@ export const TeamScore = styled.span`
 	}
 
 	${props => props.$isScoringTeam && css`
-		background-color: ${props => props.theme.teamColor};
-		color: ${props => props.theme.teamColorInvert};
+		background-color: ${props => props.theme.color.backgroundPrimary};
+		color: ${props => props.theme.color.backgroundPrimaryText};
 	`}
 `;
 
@@ -153,8 +153,8 @@ export const ShotResult = styled.span`
 	width: 100%;
 
 	${props => props.$isGoal && css`
-		background-color: ${props => props.theme.teamColor};
+		background-color: ${props => props.theme.color.backgroundPrimary};
 		border-color: transparent;
-		color: ${props => props.theme.teamColorInvert};
+		color: ${props => props.theme.color.backgroundPrimaryText};
 	`}
 `;

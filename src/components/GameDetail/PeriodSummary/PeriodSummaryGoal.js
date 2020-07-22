@@ -22,7 +22,7 @@ import {
 	TeamScore,
 } from './PeriodSummaryStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
-import TeamBrands from '../../../globalStyles/Themes/TeamBrands';
+import CreateTeamTheme from '../../../globalStyles/Themes/TeamBrands/CreateTeamTheme';
 
 function PeriodSummaryGoal(props) {
 	const {
@@ -35,6 +35,8 @@ function PeriodSummaryGoal(props) {
 		scorer,
 		assists,
 	} = props;
+
+	const scoringTeamTheme = CreateTeamTheme(teamId);
 
 	return (
 		<PeriodItem>
@@ -86,7 +88,7 @@ function PeriodSummaryGoal(props) {
 				</DetailsRow>
 			</PlayDetailsColumn>
 			<StatusColumn>
-				<ThemeProvider theme={TeamBrands[teamId]}>
+				<ThemeProvider theme={scoringTeamTheme}>
 					<GameStatus>
 						<TeamScore $isScoringTeam={awayScore.isScoringTeam}>{awayScore.name} {awayScore.goals}</TeamScore>
 						<TeamScore $isScoringTeam={homeScore.isScoringTeam}>{homeScore.name} {homeScore.goals}</TeamScore>

@@ -4,19 +4,40 @@ import { TabletBreakpoint, DesktopBreakpoint } from '../../../config/Breakpoints
 import { Spacing } from '../../../config/Grid';
 import ZIndex from '../../../config/ZIndex';
 import { Button, TextButtonWithIcon } from '../../../globalStyles/Button/Button';
-import { SvgIcon } from '../Icon/IconStyled';
+import { SvgIcon, SvgLogo } from '../Icon/IconStyled';
 
 export const DrawerStyled = styled.div`
 	display: inline;
 `;
 
 export const DrawerTrigger = styled(TextButtonWithIcon)`
-	margin: 0;
+	flex-direction: column-reverse;
+	font-size: 0.875rem;
+	margin: 0 0 0 2rem;
 	padding: 0;
 
+
 	${SvgIcon} {
-		margin-left: 0.5rem;
+		fill: ${props => props.theme.color.backgroundPrimaryText};
+		height: 1.5rem;
+		width: 1.5rem;
 	}
+
+	${SvgLogo} {
+		fill: unset;
+	}
+
+	@media (min-width: ${TabletBreakpoint.min}) {
+		flex-direction: row;
+
+		${SvgIcon} {
+			margin-left: 0.5rem;
+		}
+	}
+`;
+
+export const DrawerTriggerLabel = styled.span`
+	display: inline-block;
 `;
 
 export const DrawerClose = styled(Button)`
