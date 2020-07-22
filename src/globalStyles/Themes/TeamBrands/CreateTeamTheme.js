@@ -5,7 +5,6 @@ import TeamBrands from './TeamBrands';
 import DefaultTheme from '../Default/DefaultTheme';
 
 function CreateTeamTheme(teamId) {
-	console.log('CreateTeamTheme', teamId);
 	if (!teamId) {
 		return DefaultTheme;
 	}

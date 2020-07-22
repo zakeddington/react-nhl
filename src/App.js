@@ -7,19 +7,28 @@ import Header from './components/Header/Header';
 import Schedule from './containers/Schedule';
 import GameDetail from './containers/GameDetail';
 import PlayerDetail from './containers/PlayerDetail';
-import Default from './globalStyles/Themes/Default/DefaultTheme';
+import DefaultTheme from './globalStyles/Themes/Default/DefaultTheme';
 import TeamBrands from './globalStyles/Themes/TeamBrands/TeamBrands';
 import CreateTeamTheme from './globalStyles/Themes/TeamBrands/CreateTeamTheme';
 import ThemeContext from './globalStyles/Themes/ThemeContext';
 import GlobalStyles from './globalStyles';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
 
-	state = {
-		selectedTheme: Default,
-		selectedThemeId: 0,
-		themes: {},
-		updateTheme: (teamId) => this.onThemeClick(teamId),
+		this.storageKey = 'nhlThemeId';
+		let storageThemeId = localStorage.getItem(this.storageKey);
+		if (!storageThemeId) {
+			storageThemeId = 0;
+		}
+
+		this.state = {
+			selectedTheme: DefaultTheme,
+			selectedThemeId: storageThemeId,
+			themes: {},
+			updateTheme: (teamId) => this.onThemeClick(teamId),
+		}
 	}
 
 	componentDidMount() {
@@ -36,18 +45,21 @@ class App extends Component {
 
 		this.setState({
 			themes,
+			selectedTheme: themes[this.state.selectedThemeId]
 		});
 	}
 
 	onThemeClick(teamId) {
 		const { themes } = this.state;
-		let newTheme = Default;
+		let newTheme = DefaultTheme;
 		let newThemeId = 0;
 
 		if (teamId) {
 			newTheme = themes[teamId];
 			newThemeId = teamId;
 		}
+
+		localStorage.setItem(this.storageKey, `${newThemeId}`);
 
 		this.setState({
 			selectedTheme: newTheme,
