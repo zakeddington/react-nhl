@@ -20,7 +20,7 @@ import {
 	ShotResult,
 } from './PeriodSummaryStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
-import CreateTeamTheme from '../../../globalStyles/Themes/TeamBrands/CreateTeamTheme';
+import ThemeContext from '../../../globalStyles/Themes/ThemeContext';
 
 function PeriodSummaryShootoutPlay(props) {
 	const {
@@ -29,8 +29,6 @@ function PeriodSummaryShootoutPlay(props) {
 		shotResult,
 		teamId,
 	} = props;
-
-	const teamTheme = CreateTeamTheme(teamId);
 
 	return (
 		<PeriodItem>
@@ -58,9 +56,15 @@ function PeriodSummaryShootoutPlay(props) {
 			</PlayDetailsColumn>
 			<StatusColumn>
 				<ShootoutStatus>
-					<ThemeProvider theme={teamTheme}>
-						<ShotResult $isGoal={isGoal}>{shotResult}</ShotResult>
-					</ThemeProvider>
+					<ThemeContext.Consumer>
+						{
+							(contextState) => (
+								<ThemeProvider theme={contextState.themes[teamId]}>
+									<ShotResult $isGoal={isGoal}>{shotResult}</ShotResult>
+								</ThemeProvider>
+							)
+						}
+					</ThemeContext.Consumer>
 				</ShootoutStatus>
 			</StatusColumn>
 		</PeriodItem>

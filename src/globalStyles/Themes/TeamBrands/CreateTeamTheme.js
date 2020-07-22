@@ -2,10 +2,12 @@ import Palette from '../Default/Palette';
 import UtilityTokens from '../Default/UtilityTokens';
 import ComponentTokens from '../Default/ComponentTokens';
 import TeamBrands from './TeamBrands';
+import DefaultTheme from '../Default/DefaultTheme';
 
 function CreateTeamTheme(teamId) {
+	console.log('CreateTeamTheme', teamId);
 	if (!teamId) {
-		return null;
+		return DefaultTheme;
 	}
 
 	let teamStyles = {};

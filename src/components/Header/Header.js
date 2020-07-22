@@ -9,7 +9,7 @@ import { HeaderStyled, ContainerStyled, HomeLink, BackButton } from './HeaderSty
 import { Offscreen } from '../../globalStyles/Utilities/Utilities';
 
 function Header(props) {
-	const { themeClickCallback, themeId } = props;
+	const { themeId } = props;
 
 	return (
 		<HeaderStyled>
@@ -30,7 +30,7 @@ function Header(props) {
 				</HomeLink>
 
 				<Drawer label="Theme" iconType={IconType.logo} iconId={`${themeId}`} content={
-					<ThemePicker themeId={themeId} onClickCallback={themeClickCallback} />
+					<ThemePicker themeId={themeId} />
 				} />
 
 				<Drawer label="Standings" content={<Standings />} iconId="standings" />

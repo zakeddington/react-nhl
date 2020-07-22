@@ -22,7 +22,7 @@ import {
 	TeamScore,
 } from './PeriodSummaryStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
-import CreateTeamTheme from '../../../globalStyles/Themes/TeamBrands/CreateTeamTheme';
+import ThemeContext from '../../../globalStyles/Themes/ThemeContext';
 
 function PeriodSummaryGoal(props) {
 	const {
@@ -35,8 +35,6 @@ function PeriodSummaryGoal(props) {
 		scorer,
 		assists,
 	} = props;
-
-	const scoringTeamTheme = CreateTeamTheme(teamId);
 
 	return (
 		<PeriodItem>
@@ -88,12 +86,18 @@ function PeriodSummaryGoal(props) {
 				</DetailsRow>
 			</PlayDetailsColumn>
 			<StatusColumn>
-				<ThemeProvider theme={scoringTeamTheme}>
-					<GameStatus>
-						<TeamScore $isScoringTeam={awayScore.isScoringTeam}>{awayScore.name} {awayScore.goals}</TeamScore>
-						<TeamScore $isScoringTeam={homeScore.isScoringTeam}>{homeScore.name} {homeScore.goals}</TeamScore>
-					</GameStatus>
-				</ThemeProvider>
+				<ThemeContext.Consumer>
+					{
+						(contextState) => (
+							<ThemeProvider theme={contextState.themes[teamId]}>
+								<GameStatus>
+									<TeamScore $isScoringTeam={awayScore.isScoringTeam}>{awayScore.name} {awayScore.goals}</TeamScore>
+									<TeamScore $isScoringTeam={homeScore.isScoringTeam}>{homeScore.name} {homeScore.goals}</TeamScore>
+								</GameStatus>
+							</ThemeProvider>
+						)
+					}
+				</ThemeContext.Consumer>
 			</StatusColumn>
 		</PeriodItem>
 	)

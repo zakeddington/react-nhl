@@ -8,53 +8,73 @@ import Schedule from './containers/Schedule';
 import GameDetail from './containers/GameDetail';
 import PlayerDetail from './containers/PlayerDetail';
 import Default from './globalStyles/Themes/Default/DefaultTheme';
+import TeamBrands from './globalStyles/Themes/TeamBrands/TeamBrands';
 import CreateTeamTheme from './globalStyles/Themes/TeamBrands/CreateTeamTheme';
+import ThemeContext from './globalStyles/Themes/ThemeContext';
 import GlobalStyles from './globalStyles';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		breakpointChange();
 
-		this.state = {
-			theme: Default,
-			themeId: 0,
-		}
+	state = {
+		selectedTheme: Default,
+		selectedThemeId: 0,
+		themes: {},
+		updateTheme: (teamId) => this.onThemeClick(teamId),
+	}
+
+	componentDidMount() {
+		this.createThemes();
+		breakpointChange();
+	}
+
+	createThemes() {
+		const themes = {};
+
+		TeamBrands.forEach((team) => {
+			themes[team.id] = CreateTeamTheme(team.id);
+		});
+
+		this.setState({
+			themes,
+		});
 	}
 
 	onThemeClick(teamId) {
+		const { themes } = this.state;
 		let newTheme = Default;
 		let newThemeId = 0;
 
 		if (teamId) {
-			newTheme = CreateTeamTheme(teamId);
+			newTheme = themes[teamId];
 			newThemeId = teamId;
 		}
 
 		this.setState({
-			theme: newTheme,
-			themeId: newThemeId,
+			selectedTheme: newTheme,
+			selectedThemeId: newThemeId,
 		});
 	}
 
 	render() {
-		const { theme, themeId } = this.state;
+		const { selectedTheme, selectedThemeId } = this.state;
 
 		return (
-			<ThemeProvider theme={theme}>
-				<GlobalStyles />
-				<div className="app">
-					<Header key="global-header" themeId={themeId} themeClickCallback={(teamId) => this.onThemeClick(teamId)} />
-					<Switch>
-						<Route exact path="/" component={Schedule} />
-						<Route exact path={`${ScheduleRoute}:id`} component={Schedule} />
-						<Route path={`${GameRoute}:id`} component={GameDetail} />
-						<Route path={`${PlayerRoute}:id`} render={(props) => {
-							return <PlayerDetail playerId={props.match.params.id} isFullPage={true} {...props} />
-						}} />
-						<Redirect to="/" />
-					</Switch>
-				</div>
+			<ThemeProvider theme={selectedTheme}>
+				<ThemeContext.Provider value={this.state}>
+					<GlobalStyles />
+					<div className="app">
+						<Header key="global-header" themeId={selectedThemeId} />
+						<Switch>
+							<Route exact path="/" component={Schedule} />
+							<Route exact path={`${ScheduleRoute}:id`} component={Schedule} />
+							<Route path={`${GameRoute}:id`} component={GameDetail} />
+							<Route path={`${PlayerRoute}:id`} render={(props) => {
+								return <PlayerDetail playerId={props.match.params.id} isFullPage={true} {...props} />
+							}} />
+							<Redirect to="/" />
+						</Switch>
+					</div>
+				</ThemeContext.Provider>
 			</ThemeProvider>
 		);
 	}
