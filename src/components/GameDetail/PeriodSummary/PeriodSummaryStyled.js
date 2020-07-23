@@ -118,7 +118,7 @@ export const StatusColumn = styled.div`
 `;
 
 export const GameStatus = styled.span`
-	border: 1px solid ${props => props.theme.primary};
+	border: 1px solid ${props => props.theme.color.backgroundPrimary};
 	border-radius: 3px;
 	display: flex;
 	font-size: 0.875rem;
