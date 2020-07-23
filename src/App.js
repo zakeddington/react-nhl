@@ -10,7 +10,7 @@ import PlayerDetail from './containers/PlayerDetail';
 import DefaultTheme from './globalStyles/Themes/Default/DefaultTheme';
 import TeamBrands from './globalStyles/Themes/TeamBrands/TeamBrands';
 import CreateTeamTheme from './globalStyles/Themes/TeamBrands/CreateTeamTheme';
-import ThemeContext from './globalStyles/Themes/ThemeContext';
+import { InitialContext, ThemeContext } from './globalStyles/Themes/ThemeContext';
 import GlobalStyles from './globalStyles';
 
 class App extends Component {
@@ -18,15 +18,14 @@ class App extends Component {
 		super(props);
 
 		this.storageKey = 'nhlThemeId';
-		let storageThemeId = localStorage.getItem(this.storageKey);
+		let storageThemeId = parseInt(localStorage.getItem(this.storageKey), 10);
 		if (!storageThemeId) {
 			storageThemeId = 0;
 		}
 
 		this.state = {
-			selectedTheme: DefaultTheme,
+			...InitialContext,
 			selectedThemeId: storageThemeId,
-			themes: {},
 			updateTheme: (teamId) => this.onThemeClick(teamId),
 		}
 	}

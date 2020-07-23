@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {IconType,} from '../../config/ImageIconConfig';
 import Drawer from '../Shared/Drawer/Drawer';
 import Standings from '../../containers/Standings';
@@ -40,3 +41,7 @@ function Header(props) {
 }
 
 export default withRouter(Header);
+
+Header.propTypes = {
+	themeId: PropTypes.number,
+}

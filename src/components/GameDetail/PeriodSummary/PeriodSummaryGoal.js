@@ -22,7 +22,7 @@ import {
 	TeamScore,
 } from './PeriodSummaryStyled';
 import { Offscreen } from '../../../globalStyles/Utilities/Utilities';
-import ThemeContext from '../../../globalStyles/Themes/ThemeContext';
+import { ThemeContext } from '../../../globalStyles/Themes/ThemeContext';
 
 function PeriodSummaryGoal(props) {
 	const {

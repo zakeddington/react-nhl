@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components/macro';
 import Icon from '../Shared/Icon/Icon';
 import { IconType } from '../../config/ImageIconConfig';
 import TeamBrands from '../../globalStyles/Themes/TeamBrands/TeamBrands';
-import ThemeContext from '../../globalStyles/Themes/ThemeContext';
+import { ThemeContext } from '../../globalStyles/Themes/ThemeContext';
 import {
 	ThemePickerStyled,
 	ThemePickerTitle,
