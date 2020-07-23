@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
-import Icon from '../Icon/Icon';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import './VideoCarousel.scss';
 
@@ -61,16 +60,17 @@ class VideoCarousel extends Component {
 
 			return (
 				<div key={video.url} className={`video-carousel--thumbs-item ${activeClass}`}>
-					<button className="video-carousel--thumbs-trigger" onClick={() => this.setCurrentVideo(i, true)}>
-						<div className="video-carousel--thumbs-poster">
-							<img src={video.thumb} alt={video.posterAltText}/>
-							<Icon iconClass="video-play-icon" iconId="play-circle-filled"/>
-						</div>
-						<div className="video-carousel--thumbs-title">
-							{video.title}
-							<span className="video-carousel--thumbs-duration">[{video.duration}]</span>
-						</div>
-					</button>
+					<VideoPlayer key={video.url}
+						showVideo={false}
+						isAutoPlay={false}
+						video={null}
+						poster={video.poster}
+						altText={video.posterAltText}
+						title={video.title}
+						duration={video.duration}
+						onPosterClick={() => this.setCurrentVideo(i, true)}
+						onVideoEvent={null}
+					/>
 				</div>
 			)
 		});
@@ -78,10 +78,14 @@ class VideoCarousel extends Component {
 		return (
 			<div className="video-carousel">
 				<div className="video-carousel--player">
-					<VideoPlayer key={selectedVideo.url} showVideo={selectedVideo.showVideoPlayer} isAutoPlay={true}
+					<VideoPlayer key={selectedVideo.url}
+						showVideo={selectedVideo.showVideoPlayer}
+						isAutoPlay={true}
 						video={selectedVideo.url}
-						poster={selectedVideo.poster} altText={selectedVideo.posterAltText}
-						title={selectedVideo.title} duration={selectedVideo.duration}
+						poster={selectedVideo.poster}
+						altText={selectedVideo.posterAltText}
+						title={selectedVideo.title}
+						duration={selectedVideo.duration}
 						onVideoEvent={(e) => this.onVideoPlayerCallback(e)}
 					/>
 				</div>

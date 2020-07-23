@@ -3,7 +3,7 @@
 .video-carousel {
 
 	&--player {
-		background: $color-grey-dark;
+		background: $color-videoPlayerBackground;
 		display: block;
 		height: 0;
 		overflow: hidden;
@@ -12,10 +12,10 @@
 		width: 100%;
 	}
 
-	.video-trigger,
-	video {
-		background: $color-grey-dark;
-		border: 1px solid $color-grey-med;
+	.video,
+	.video-trigger {
+		background: $color-videoPlayerBackground;
+		border: 1px solid $color-border;
 		display: block;
 		height: 100%;
 		left: 0;
@@ -25,8 +25,8 @@
 	}
 
 	&--thumbs {
-		background: $color-grey-light;
-		border: 1px solid $color-grey-med;
+		background: $color-videoCarouselThumbBackground;
+		border: 1px solid $color-border;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
@@ -36,6 +36,7 @@
 
 		&-item {
 			min-width: 24%;
+			position: relative;
 			width: 24%;
 
 			@media (max-width: $breakpoint-mobile-max) {
@@ -44,10 +45,24 @@
 			}
 
 			&.is-active {
-				background: $color-grey-med;
-				border-left: 1px solid rgba($color-black, 0.1);
-				border-right: 1px solid rgba($color-black, 0.1);
+				background: $color-videoCarouselThumbBackgroundActive;
+				border-left: 1px solid $color-videoCarouselBorder;
+				border-right: 1px solid $color-videoCarouselBorder;
 				cursor: default;
+
+				&:before {
+					border-bottom: 15px solid $color-videoCarouselBorderActive;
+					border-left: 20px solid transparent;
+					border-right: 20px solid transparent;
+					content: '';
+					height: 0;
+					left: 50%;
+					position: absolute;
+					top: 0;
+					transform: translate(-50%, 0);
+					width: 0;
+					z-index: $z-index-default;
+				}
 
 				&:first-child {
 					border-left: none;
@@ -57,91 +72,49 @@
 					border-right: none;
 				}
 
+				.video-trigger {
+					color: $color-videoCarouselThumbTextActive;
+					cursor: default;
+					text-decoration: none;
+				}
+
+				.video-poster {
+					border-color: $color-videoCarouselBorderActive;
+					filter: brightness(1);
+					outline: 3px solid $color-videoCarouselBorderActive;
+				}
+
 				.video-play-icon {
 					display: none;
 				}
+
+				.video-title {
+					color: $color-videoCarouselThumbTextActive;
+
+					&:hover,
+					&:focus {
+						color: $color-videoCarouselThumbTextActive;
+					}
+				}
 			}
 		}
 
-		&-trigger {
+		.video-trigger {
 			background: none;
-			border: 1px solid transparent;
-			cursor: pointer;
-			display: inline-block;
-			font-size: 0.75rem;
-			height: 100%;
-			padding: 1rem;
-			text-align: left;
-			white-space: normal;
-			width: 100%;
-
-			&:hover,
-			&:focus {
-				.video-carousel--thumbs-poster {
-					border-color: $color-grey-dark;
-				}
-
-				img {
-					transform: scale(1.05);
-				}
-			}
-
-			&:focus {
-				background: $color-white;
-				outline: none;
-			}
-
-			.is-active & {
-				cursor: default;
-
-				&:hover,
-				&:focus {
-					.video-carousel--thumbs-poster {
-						border-color: $color-white;
-					}
-
-					img {
-						transform: none;
-					}
-				}
-			}
+			border: none;
+			height: auto;
+			padding: 1rem 1rem 0.5rem;
+			position: relative;
 		}
 
-		&-poster {
-			border: 1px solid $color-grey-med;
-			display: block;
-			margin-bottom: 0.5rem;
-			overflow: hidden;
+		.video-poster {
+			border: 1px solid $color-border;
 			position: relative;
-
-			img {
-				display: block;
-				position: relative;
-				transition: all $anim-speed-fast $anim-ease;
-			}
-
-			.is-active & {
-				border-color: $color-white;
-				overflow: visible;
-				outline: 3px solid $color-white;
-
-				&:before {
-					border-bottom: 15px solid $color-white;
-					border-left: 20px solid transparent;
-					border-right: 20px solid transparent;
-					content: '';
-					height: 0;
-					left: 50%;
-					position: absolute;
-					top: 0;
-					transform: translate(-50%, -100%);
-					width: 0;
-				}
-			}
 		}
 
 		.video-play-icon {
 			height: 4rem;
+			transform: translate(-50%, calc(-50% - 0.5rem));
 			width: 4rem;
 
 			@media (max-width: $breakpoint-mobile-max) {
@@ -150,8 +123,13 @@
 			}
 		}
 
-		&-title {
-			font-weight: 600;
+		.video-title {
+			background: none;
+			color: $color-videoCarouselThumbText;
+			font-size: 0.75rem;
+			padding: 0.25rem 0;
+			position: relative;
+			z-index: auto;
 		}
 	}
 }
