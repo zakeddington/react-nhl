@@ -151,6 +151,12 @@ export default [
 		secondary: '#EA7200',
 	},
 	{
+		id: 55,
+		teamName: 'Seattle Kraken',
+		primary: '#001628',
+		secondary: '#99d9d9',
+	},
+	{
 		id: 19,
 		teamName: 'St. Louis Blues',
 		primary: '#002F87',
