@@ -4,8 +4,8 @@
 // -----------------------------------------------------------------+
 
 .site-header {
-	background: $color-grey-dark;
-	border-bottom: 4px solid $color-white;
+	background: $color-backgroundPrimary;
+	border-bottom: 4px solid $color-backgroundPrimaryText;
 	height: 5rem;
 
 	&--container {
@@ -40,22 +40,21 @@
 
 	&--back,
 	.drawer--trigger {
-		color: $color-white;
+		color: $color-backgroundPrimaryText;
 		font-size: 0.875rem;
 
 		.svg-icon {
-			fill: $color-grey-med;
+			fill: $color-backgroundPrimaryText;
 			height: 1.5rem;
 			width: 1.5rem;
 		}
 
 		&:hover,
 		&:focus {
-			color: $color-white;
-			text-decoration: underline;
+			color: $color-backgroundPrimaryText;
 
 			.svg-icon {
-				fill: $color-white;
+				fill: $color-backgroundPrimaryText;
 			}
 		}
 	}

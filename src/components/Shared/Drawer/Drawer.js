@@ -86,7 +86,7 @@ class Drawer extends Component {
 		const { isDisabled } = this.state;
 		return (
 			<div className="drawer">
-				<button className="drawer--trigger button button--icon-right" onClick={() => this.onTriggerClick()} disabled={isDisabled}>
+				<button className="drawer--trigger button button-text-button button-with-icon" onClick={() => this.onTriggerClick()} disabled={isDisabled}>
 					{label}
 					{
 						iconId &&

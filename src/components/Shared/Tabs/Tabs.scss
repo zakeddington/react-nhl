@@ -3,8 +3,8 @@
 
 .tabs {
 	&--nav {
-		background: $color-grey-dark;
-		color: $color-white;
+		background: $color-tabButtonBackground;
+		color: $color-tabButtonText;
 		display: flex;
 		font-size: 1rem;
 		justify-content: center;
@@ -18,9 +18,9 @@
 		}
 
 		&-link {
-			background: none;
+			background: $color-tabButtonBackground;
 			border: none;
-			color: $color-white;
+			color: $color-tabButtonText;
 			font-size: 1rem;
 			font-weight: 700;
 			margin: 0;
@@ -29,12 +29,21 @@
 
 			&:hover,
 			&:focus {
-				background: $color-grey-med-dark;
+				background: $color-tabButtonBackgroundHover;
+				color: $color-tabButtonTextHover;
 				outline: none;
 			}
 
 			&.is-active {
-				background: $color-grey;
+				background: $color-tabButtonBackgroundActive;
+				color: $color-tabButtonTextActive;
+
+				&:hover,
+				&:focus {
+					background: $color-tabButtonBackgroundActive;
+					color: $color-tabButtonTextActive;
+					cursor: default;
+				}
 			}
 		}
 	}

@@ -16,8 +16,8 @@
 // -----------------------------------------------------------------+
 
 .scoreboard {
-	background: $color-white;
-	border-bottom: 1px solid $color-grey-med;
+	background: $color-backgroundContent;
+	border-bottom: 1px solid $color-border;
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto $space-base-vertical;
@@ -54,7 +54,7 @@
 	}
 
 	.scoreboard-item {
-		border-bottom: 1px solid $color-grey-med;
+		border-bottom: 1px solid $color-border;
 		height: 50px;
 		line-height: 30px;
 		padding: 10px 0;
@@ -74,7 +74,7 @@
 		}
 
 		&:first-child {
-			color: $color-grey;
+			color: $color-textLight;
 			font-size: 0.875rem;
 			line-height: 1.2;
 

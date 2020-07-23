@@ -6,8 +6,8 @@
 
 .schedule-nav {
 	align-items: center;
-	background: $color-grey-dark;
-	border: 1px solid $color-grey-dark;
+	background: $color-backgroundPrimary;
+	border: 1px solid $color-backgroundPrimary;
 	display: flex;
 	flex-wrap: wrap;
 	line-height: 2rem;
@@ -34,16 +34,16 @@
 		max-width: 2rem;
 
 		.svg-icon {
-			fill: $color-white;
+			fill: $color-backgroundPrimaryText;
 			height: 1.5rem;
 			width: 1.5rem;
 		}
 	}
 
 	&--link {
-		background: $color-grey-dark;
+		background: $color-backgroundPrimary;
 		border: none;
-		color: $color-white;
+		color: $color-backgroundPrimaryText;
 		display: block;
 		font-size: 0.875rem;
 		padding: 0;
@@ -53,18 +53,18 @@
 
 		&:hover,
 		&:focus {
-			background: $color-grey-light;
-			color: $color-grey-dark;
+			background: rgba($color-backgroundPrimaryText, 0.85);
+			color: $color-backgroundPrimary;
 			outline: none;
 
 			.svg-icon {
-				fill: $color-grey-dark;
+				fill: $color-backgroundPrimary;
 			}
 		}
 
 		&.is-active {
-			background: $color-white;
-			color: $color-grey-dark;
+			background: $color-backgroundPrimaryText;
+			color: $color-backgroundPrimary;
 			cursor: default;
 		}
 	}
@@ -82,9 +82,9 @@
 
 .datepicker-trigger {
 	align-items: center;
-	background: $color-grey-dark;
+	background: $color-backgroundPrimary;
 	border: none;
-	color: $color-white;
+	color: $color-backgroundPrimaryText;
 	display: flex;
 	font-weight: 700;
 	height: 100%;
@@ -93,19 +93,19 @@
 	transition: all $anim-speed-base $anim-ease;
 
 	.svg-icon {
-		fill: $color-white;
+		fill: $color-backgroundPrimaryText;
 		height: 1.5rem;
 		width: 1.5rem;
 	}
 
 	&:hover,
 	&:focus {
-		background: $color-grey-light;
-		color: $color-grey-dark;
+		background: $color-backgroundPrimaryText;
+		color: $color-backgroundPrimary;
 		outline: none;
 
 		.svg-icon {
-			fill: $color-grey-dark;
+			fill: $color-backgroundPrimary;
 		}
 	}
 }

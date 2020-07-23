@@ -2,20 +2,110 @@
 // Config Variables
 // -----------------------------------------------------------------+
 
-// Colors
-$color-black: #000;
-$color-blue: #5cc1ef;
-$color-blue-dark: darken($color-blue, 10%);
+// Color Palette
 $color-grey: #666;
 $color-grey-dark: #333;
 $color-grey-light: #efefef;
 $color-grey-med: #ddd;
 $color-grey-med-dark: #999;
-$color-white: #fff;
 
-$color-text-default: $color-grey-dark;
-$color-link: $color-blue;
-$color-link-hover: $color-blue-dark;
+$color-white: #fff;
+$color-grey100: #efefef;
+$color-grey300: #ddd;
+$color-grey500: #666;
+$color-grey700: #333;
+$color-grey900: #222;
+$color-black: #000;
+
+// Color Tokens
+$color-primary: $color-grey700;
+$color-secondary: $color-grey500;
+$color-tertiary: $color-grey100;
+$color-quaternary: $color-grey300;
+$color-interactive1:$color-primary;
+$color-interactive2: $color-secondary;
+$color-content: $color-grey700;
+$color-body: $color-grey100;
+
+// Utility Tokens
+$color-backgroundPage: $color-body;
+$color-backgroundContent: $color-white;
+
+$color-backgroundPrimary: $color-primary;
+$color-backgroundPrimaryText: $color-white;
+
+$color-backgroundSecondary: $color-secondary;
+$color-backgroundSecondaryText: $color-white;
+
+$color-backgroundTertiary: $color-tertiary;
+$color-backgroundTertiaryText: $color-content;
+
+$color-backgroundQuaternary: $color-quaternary;
+$color-backgroundQuaternaryText: $color-white;
+
+$color-border: $color-quaternary;
+$color-borderHover: $color-primary;
+
+$color-shadow: rgba($color-black, 0.5);
+$color-shadowLight: rgba($color-black, 0.2);
+
+// Component Tokens
+$color-text: $color-content;
+$color-textLight: lighten($color-content, 0.2);
+
+$color-link: $color-interactive1;
+$color-linkHover: darken($color-interactive1, 0.2);
+
+$color-buttonBackground: $color-interactive2;
+$color-buttonText: $color-white;
+$color-buttonBackgroundHover: darken($color-interactive2, 0.2);
+$color-buttonTextHover: $color-white;
+
+$color-textButtonBackground: transparent;
+$color-textButtonText: $color-interactive1;
+$color-textButtonBackgroundHover: transparent;
+$color-textButtonTextHover: $color-interactive1;
+
+$color-drawerBackground: $color-tertiary;
+$color-drawerCloseBackground: $color-tertiary;
+$color-drawerCloseText: $color-interactive1;
+$color-drawerCloseTextHover: $color-secondary;
+
+$color-overlay: rgba($color-black, 0.8);
+
+$color-modalBackground: $color-white;
+$color-modalCloseText: $color-white;
+$color-modalCloseTextHover: $color-interactive1;
+
+$color-tableBackground: $color-white;
+$color-tableCellBackground: $color-white;
+$color-tableCellBackgroundHover: $color-tertiary;
+$color-tableHeaderBackground: $color-quaternary;
+
+$color-tabButtonBackground: $color-backgroundPrimary;
+$color-tabButtonText: $color-backgroundPrimaryText;
+$color-tabButtonBackgroundHover: rgba($color-backgroundPrimaryText, 0.5);
+$color-tabButtonTextHover: $color-backgroundPrimaryText;
+$color-tabButtonBackgroundActive: $color-backgroundSecondary;
+$color-tabButtonTextActive: $color-backgroundSecondaryText;
+
+$color-themePickerActiveBackground: $color-white;
+
+$color-tooltipBackground: rgba($color-black, 0.8);
+$color-tooltipText: $color-white;
+
+$color-videoPlayerBackground: $color-black;
+$color-videoPlayerButtonBackground: rgba($color-black, 0.5);
+$color-videoPlayerButtonIcon: $color-white;
+$color-videoPlayerTitleBackground: rgba($color-black, 0.5);
+$color-videoPlayerTitle: $color-white;
+
+$color-videoCarouselBorder: darken($color-quaternary, 0.1);
+$color-videoCarouselBorderActive: $color-white;
+$color-videoCarouselThumbBackground: $color-backgroundTertiary;
+$color-videoCarouselThumbBackgroundActive: $color-backgroundSecondary;
+$color-videoCarouselThumbText: $color-backgroundTertiaryText;
+$color-videoCarouselThumbTextActive: $color-backgroundSecondaryText;
 
 // Paths
 $image-path: '/assets/images';

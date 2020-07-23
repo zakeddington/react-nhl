@@ -6,7 +6,7 @@
 .player-photo {
 	background: url($image-path + '/player-profile.png') center center no-repeat;
 	background-size: contain;
-	border: 1px solid $color-grey-med;
+	border: 1px solid $color-border;
 	border-radius: 50%;
 	display: block;
 	height: 60px;
@@ -26,7 +26,7 @@
 
 	.modal--trigger:hover &,
 	.modal--trigger:focus & {
-		border-color: $color-grey-dark;
+		border-color: $color-borderHover;
 	}
 
 	&--image {

@@ -2,8 +2,9 @@
 // -----------------------------------------------------------------+
 
 .button {
-	background: none;
+	background: $color-buttonBackground;
 	border: none;
+	color: $color-buttonText;
 	display: inline-block;
 	font-family: $font-main;
 	font-weight: 600;
@@ -15,35 +16,27 @@
 
 	&:hover,
 	&:focus {
-		color: $color-link-hover;
+		background: $color-buttonBackgroundHover;
+		color: $color-buttonTextHover;
 		text-decoration: none;
+	}
 
-		.svg-icon {
-			fill: $color-link-hover;
+	&-text-button {
+		background: $color-textButtonBackground;
+		color: $color-textButtonText;
+
+		&:hover,
+		&:focus {
+			background: $color-textButtonBackgroundHover;
+			color: $color-textButtonTextHover;
+			text-decoration: underline;
 		}
 	}
 
-	&--icon-left,
-	&--icon-right {
+	&-with-icon {
 		align-items: center;
 		display: flex;
 		margin: 0;
 		padding: 0;
-
-		.svg-icon {
-			fill: $color-grey-dark;
-			height: 1.5rem;
-			width: 1.5rem;
-		}
-
-		&:hover,
-		&:focus {
-			color: $color-link-hover;
-			text-decoration: none;
-
-			.svg-icon {
-				fill: $color-link-hover;
-			}
-		}
 	}
 }

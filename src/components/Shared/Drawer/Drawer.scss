@@ -6,20 +6,28 @@
 	display: inline;
 
 	&--trigger {
-		background: none;
-		border: none;
-		font-size: inherit;
-		font-weight: 600;
-		margin: 0;
+		flex-direction: column-reverse;
+		font-size: 0.875rem;
+		margin: 0 0 0 2rem;
 		padding: 0;
 
-		&:hover,
-		&:focus {
-			text-decoration: underline;
-		}
 
 		.svg-icon {
-			margin-left: 0.5rem;
+			fill: $color-backgroundPrimaryText;
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+
+		.svg-logo {
+			fill: unset;
+		}
+
+		@media (min-width: $breakpoint-tablet-min) {
+			flex-direction: row;
+
+			.svg-icon {
+				margin-left: 0.5rem;
+			}
 		}
 	}
 
@@ -66,7 +74,7 @@
 	}
 
 	&--close {
-		background: $color-grey-med;
+		background: $color-drawerCloseBackground;
 		border: none;
 		border-bottom-left-radius: 50%;
 		border-top-left-radius: 50%;
@@ -78,7 +86,7 @@
 		width: 2.5rem;
 
 		.svg-icon {
-			fill: $color-grey-dark;
+			fill: $color-drawerCloseText;
 			height: 50%;
 			width: 50%;
 		}
@@ -86,14 +94,14 @@
 		&:hover,
 		&:focus {
 			.svg-icon {
-				fill: $color-link-hover;
+				fill: $color-drawerCloseTextHover;
 			}
 		}
 	}
 
 	&--content {
-		background: $color-grey-med;
-		box-shadow: 0 0 1rem rgba($color-black, 0.5);
+		background: $color-drawerBackground;
+		box-shadow: 0 0 1rem $color-shadow;
 		display: block;
 		height: 100%;
 		max-height: 100%;

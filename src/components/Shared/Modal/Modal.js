@@ -29,7 +29,7 @@ class Modal extends Component {
 		const modal =
 			<div className="modal--overlay" onClick={() => this.onCloseClick()}>
 				<div className={`modal--container ${modalClass}`} onClick={(e) => this.onContentClick(e)}>
-					<button className="modal--close" onClick={() => this.onCloseClick()}>
+					<button className="modal--close button button-text-button" onClick={() => this.onCloseClick()}>
 						<Icon iconId="close"/>
 						<span className="offscreen">close modal</span>
 					</button>
@@ -47,7 +47,7 @@ class Modal extends Component {
 	render() {
 		return (
 			<div className="modal">
-				<button className="modal--trigger" onClick={() => this.onTriggerClick()}>
+				<button className="modal--trigger button button-text-button" onClick={() => this.onTriggerClick()}>
 					{this.props.children}
 				</button>
 				{this.state.modal}

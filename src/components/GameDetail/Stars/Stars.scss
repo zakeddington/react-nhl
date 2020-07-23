@@ -4,8 +4,8 @@
 // -----------------------------------------------------------------+
 
 .stars {
-	background: $color-white;
-	border-bottom: 1px solid $color-grey-med;
+	background: $color-backgroundContent;
+	border-bottom: 1px solid $color-border;
 	display: flex;
 	flex-direction: column;
 	margin-bottom: $space-base-vertical;

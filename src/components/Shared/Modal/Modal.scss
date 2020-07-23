@@ -6,22 +6,15 @@
 	display: inline;
 
 	&--trigger {
-		background: none;
-		border: none;
 		font-size: inherit;
 		font-weight: inherit;
 		margin: 0;
 		padding: 0;
-
-		&:hover,
-		&:focus {
-			text-decoration: underline;
-		}
 	}
 
 	&--overlay {
 		align-items: center;
-		background: rgba($color-black, 0.8);
+		background: $color-overlay;
 		display: flex;
 		flex-direction: column;
 		height: 100vh;
@@ -50,15 +43,13 @@
 
 	&--close {
 		align-self: flex-end;
-		background: none;
-		border: none;
 		height: 2rem;
-		margin-bottom: 0.5rem;
+		margin: 0 0 0.5rem;
 		padding: 0.25rem;
 		width: 2rem;
 
 		.svg-icon {
-			fill: $color-white;
+			fill: $color-modalCloseText;
 			height: 100%;
 			width: 100%;
 		}
@@ -66,13 +57,13 @@
 		&:hover,
 		&:focus {
 			.svg-icon {
-				fill: $color-link-hover;
+				fill: $color-modalCloseTextHover;
 			}
 		}
 	}
 
 	&--content {
-		background: $color-white;
+		background: $color-modalBackground;
 		display: block;
 		max-height: 100%;
 		overflow-y: auto;
