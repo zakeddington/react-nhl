@@ -15,9 +15,9 @@
 // Player Detail Hero bio
 // -----------------------------------------------------------------+
 .player-detail-bio {
-	background: $color-backgroundQuaternary;
-	border-bottom: 4px solid $color-backgroundQuaternaryText;
-	border-top: 4px solid $color-backgroundQuaternaryText;
+	background: var(--color-backgroundQuaternary);
+	border-bottom: 4px solid var(--color-backgroundQuaternaryText);
+	border-top: 4px solid var(--color-backgroundQuaternaryText);
 	display: flex;
 	font-weight: 400;
 	padding: 1rem;
@@ -64,7 +64,7 @@
 
 		&:hover,
 		&:focus {
-			border-color: $color-backgroundQuaternary;
+			border-color: var(--color-backgroundQuaternary);
 		}
 	}
 }

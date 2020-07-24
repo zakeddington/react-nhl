@@ -9,9 +9,9 @@
 	}
 
 	.tooltip-content {
-		background: $color-tooltipBackground;
+		background: var(--color-tooltipBackground);
 		border-radius: 3px;
-		color: $color-tooltipText;
+		color: var(--color-tooltipText);
 		font-size: 0.625rem;
 		font-weight: 500;
 		left: 50%;

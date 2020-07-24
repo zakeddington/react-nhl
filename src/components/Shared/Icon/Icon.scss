@@ -10,7 +10,7 @@
 
 .svg-icon {
 	display: inline-block;
-	fill: $color-text;
+	fill: var(--color-text);
 	height: 1rem;
 	line-height: 1rem;
 	transition: all $anim-speed-base $anim-ease;

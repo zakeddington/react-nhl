@@ -1,0 +1,119 @@
+
+:root {
+	// RGB Color Palette
+	--palette-primary: 51, 51, 51; // #333
+	--palette-secondary: 102, 102, 102; // #666
+	--palette-tertiary: 239, 239, 239; // #efefef
+	--palette-quaternary: 221, 221, 221; // #ddd
+	--palette-interactive1: var(--palette-primary);
+	--palette-interactive2: var(--palette-secondary);
+	--palette-content: var(--palette-primary);
+	--palette-body: var(--palette-tertiary);
+	--palette-black: 0, 0, 0; // #000
+	--palette-white: 255, 255, 255; // #fff
+
+	// RGBA Opacity
+	--alpha-10: 0.1;
+	--alpha-20: 0.2;
+	--alpha-50: 0.5;
+	--alpha-60: 0.6;
+	--alpha-80: 0.80;
+	--alpha-85: 0.85;
+	--alpha-100: 1;
+
+	// Color Tokens
+	--color-primary: rgba(var(--palette-primary), var(--alpha-100));
+	--color-secondary: rgba(var(--palette-secondary), var(--alpha-100));
+	--color-tertiary: rgba(var(--palette-tertiary), var(--alpha-100));
+	--color-quaternary: rgba(var(--palette-quaternary), var(--alpha-100));
+	--color-interactive1: var(--color-primary);
+	--color-interactive2: var(--color-secondary);
+	--color-content: var(--color-primary);
+	--color-body: var(--color-tertiary);
+	--color-black: rgba(var(--palette-black), var(--alpha-100));
+	--color-white: rgba(var(--palette-white), var(--alpha-100));
+
+	// Utility Tokens
+	--color-backgroundPage: var(--color-body);
+	--color-backgroundContent: var(--color-white);
+	--color-backgroundContent50: rgba(var(--palette-white), var(--alpha-50));
+
+	--color-backgroundPrimary: var(--color-primary);
+	--color-backgroundPrimaryText: var(--color-white);
+	--color-backgroundPrimaryText50: rgba(var(--palette-white), var(--alpha-50));
+
+	--color-backgroundSecondary: var(--color-secondary);
+	--color-backgroundSecondaryText: var(--color-white);
+
+	--color-backgroundTertiary: var(--color-tertiary);
+	--color-backgroundTertiaryText: var(--color-content);
+
+	--color-backgroundQuaternary: var(--color-quaternary);
+	--color-backgroundQuaternaryText: var(--color-white);
+
+	--color-border: var(--color-quaternary);
+	--color-borderHover: var(--color-primary);
+
+	--color-shadow: rgba(var(--palette-black), var(--alpha-50));
+	--color-shadow20: rgba(var(--palette-black), var(--alpha-20));
+
+	// Component Tokens
+	--color-text: var(--color-content);
+	--color-text60: rgba(var(--palette-content), var(--alpha-60));
+	--color-text20: lighten(rgba(var(--palette-content), var(--alpha-20)));
+
+	--color-link: var(--color-interactive1);
+	--color-linkHover: darken(rgba(var(--palette-interactive1), var(--alpha-20)));
+
+	--color-buttonBackground: var(--color-interactive2);
+	--color-buttonText: var(--color-white);
+	--color-buttonBackgroundHover: darken(rgba(var(--palette-interactive2), var(--alpha-20)));
+	--color-buttonTextHover: var(--color-white);
+
+	--color-textButtonBackground: transparent;
+	--color-textButtonText: var(--color-interactive1);
+	--color-textButtonBackgroundHover: transparent;
+	--color-textButtonTextHover: var(--color-interactive1);
+
+	--color-drawerBackground: var(--color-tertiary);
+	--color-drawerCloseBackground: var(--color-tertiary);
+	--color-drawerCloseText: var(--color-interactive1);
+	--color-drawerCloseTextHover: var(--color-secondary);
+
+	--color-overlay: rgba(var(--palette-black), var(--alpha-80));
+
+	--color-modalBackground: var(--color-white);
+	--color-modalCloseText: var(--color-white);
+	--color-modalCloseTextHover: var(--color-interactive1);
+
+	--color-tableBackground: var(--color-white);
+	--color-tableCellBackground: var(--color-white);
+	--color-tableCellBackgroundHover: var(--color-tertiary);
+	--color-tableHeaderBackground: var(--color-quaternary);
+
+	--color-tabButtonBackground: var(--color-backgroundPrimary);
+	--color-tabButtonText: var(--color-backgroundPrimaryText);
+	--color-tabButtonBackgroundHover: var(--color-backgroundPrimaryText50);
+	--color-tabButtonTextHover: var(--color-backgroundPrimaryText);
+	--color-tabButtonBackgroundActive: var(--color-backgroundSecondary);
+	--color-tabButtonTextActive: var(--color-backgroundSecondaryText);
+	--color-tabIconBackground: var(--color-white);
+
+	--color-themePickerActiveBackground: var(--color-white);
+
+	--color-tooltipBackground: rgba(var(--palette-black), var(--alpha-80));
+	--color-tooltipText: var(--color-white);
+
+	--color-videoPlayerBackground: var(--color-black);
+	--color-videoPlayerButtonBackground: rgba(var(--palette-black), var(--alpha-50));
+	--color-videoPlayerButtonIcon: var(--color-white);
+	--color-videoPlayerTitleBackground: rgba(var(--palette-black), var(--alpha-50));
+	--color-videoPlayerTitle: var(--color-white);
+
+	--color-videoCarouselBorder: darken(rgba(var(--palette-quaternary), var(--alpha-10)));
+	--color-videoCarouselBorderActive: var(--color-white);
+	--color-videoCarouselThumbBackground: var(--color-backgroundTertiary);
+	--color-videoCarouselThumbBackgroundActive: var(--color-backgroundSecondary);
+	--color-videoCarouselThumbText: var(--color-backgroundTertiaryText);
+	--color-videoCarouselThumbTextActive: var(--color-backgroundSecondaryText);
+}

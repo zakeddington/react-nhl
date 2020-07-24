@@ -58,7 +58,7 @@
 }
 
 .bg-white {
-	background: $color-white;
+	background: var(--color-backgroundContent);
 }
 
 .content-padding {

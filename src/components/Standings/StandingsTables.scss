@@ -15,7 +15,7 @@
 
 		&.is-wildcard {
 			tr:nth-child(2) {
-				border-color: $color-border;
+				border-color: var(--color-border);
 			}
 		}
 	}
@@ -39,8 +39,8 @@
 	}
 
 	th {
-		background: $color-backgroundPrimary;
-		color: $color-backgroundPrimaryText;
+		background: var(--color-backgroundPrimary);
+		color: var(--color-backgroundPrimaryText);
 	}
 
 	&--team {

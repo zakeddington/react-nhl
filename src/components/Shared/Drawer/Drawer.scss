@@ -13,7 +13,7 @@
 
 
 		.svg-icon {
-			fill: $color-backgroundPrimaryText;
+			fill: var(--color-backgroundPrimaryText);
 			height: 1.5rem;
 			width: 1.5rem;
 		}
@@ -74,7 +74,7 @@
 	}
 
 	&--close {
-		background: $color-drawerCloseBackground;
+		background: var(--color-drawerCloseBackground);
 		border: none;
 		border-bottom-left-radius: 50%;
 		border-top-left-radius: 50%;
@@ -86,7 +86,7 @@
 		width: 2.5rem;
 
 		.svg-icon {
-			fill: $color-drawerCloseText;
+			fill: var(--color-drawerCloseText);
 			height: 50%;
 			width: 50%;
 		}
@@ -94,14 +94,14 @@
 		&:hover,
 		&:focus {
 			.svg-icon {
-				fill: $color-drawerCloseTextHover;
+				fill: var(--color-drawerCloseTextHover);
 			}
 		}
 	}
 
 	&--content {
-		background: $color-drawerBackground;
-		box-shadow: 0 0 1rem $color-shadow;
+		background: var(--color-drawerBackground);
+		box-shadow: 0 0 1rem var(--color-shadow);
 		display: block;
 		height: 100%;
 		max-height: 100%;

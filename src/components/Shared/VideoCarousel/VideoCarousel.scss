@@ -3,7 +3,7 @@
 .video-carousel {
 
 	&--player {
-		background: $color-videoPlayerBackground;
+		background: var(--color-videoPlayerBackground);
 		display: block;
 		height: 0;
 		overflow: hidden;
@@ -14,8 +14,8 @@
 
 	.video,
 	.video-trigger {
-		background: $color-videoPlayerBackground;
-		border: 1px solid $color-border;
+		background: var(--color-videoPlayerBackground);
+		border: 1px solid var(--color-border);
 		display: block;
 		height: 100%;
 		left: 0;
@@ -25,8 +25,8 @@
 	}
 
 	&--thumbs {
-		background: $color-videoCarouselThumbBackground;
-		border: 1px solid $color-border;
+		background: var(--color-videoCarouselThumbBackground);
+		border: 1px solid var(--color-border);
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
@@ -45,13 +45,13 @@
 			}
 
 			&.is-active {
-				background: $color-videoCarouselThumbBackgroundActive;
-				border-left: 1px solid $color-videoCarouselBorder;
-				border-right: 1px solid $color-videoCarouselBorder;
+				background: var(--color-videoCarouselThumbBackgroundActive);
+				border-left: 1px solid var(--color-videoCarouselBorder);
+				border-right: 1px solid var(--color-videoCarouselBorder);
 				cursor: default;
 
 				&:before {
-					border-bottom: 15px solid $color-videoCarouselBorderActive;
+					border-bottom: 15px solid var(--color-videoCarouselBorderActive);
 					border-left: 20px solid transparent;
 					border-right: 20px solid transparent;
 					content: '';
@@ -73,15 +73,15 @@
 				}
 
 				.video-trigger {
-					color: $color-videoCarouselThumbTextActive;
+					color: var(--color-videoCarouselThumbTextActive);
 					cursor: default;
 					text-decoration: none;
 				}
 
 				.video-poster {
-					border-color: $color-videoCarouselBorderActive;
+					border-color: var(--color-videoCarouselBorderActive);
 					filter: brightness(1);
-					outline: 3px solid $color-videoCarouselBorderActive;
+					outline: 3px solid var(--color-videoCarouselBorderActive);
 				}
 
 				.video-play-icon {
@@ -89,11 +89,11 @@
 				}
 
 				.video-title {
-					color: $color-videoCarouselThumbTextActive;
+					color: var(--color-videoCarouselThumbTextActive);
 
 					&:hover,
 					&:focus {
-						color: $color-videoCarouselThumbTextActive;
+						color: var(--color-videoCarouselThumbTextActive);
 					}
 				}
 			}
@@ -108,7 +108,7 @@
 		}
 
 		.video-poster {
-			border: 1px solid $color-border;
+			border: 1px solid var(--color-border);
 			position: relative;
 		}
 
@@ -125,7 +125,7 @@
 
 		.video-title {
 			background: none;
-			color: $color-videoCarouselThumbText;
+			color: var(--color-videoCarouselThumbText);
 			font-size: 0.75rem;
 			padding: 0.25rem 0;
 			position: relative;

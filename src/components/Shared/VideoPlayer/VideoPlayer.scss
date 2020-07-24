@@ -31,8 +31,8 @@
 .video-play-icon {
 	border-radius: 50%;
 	display: block;
-	fill: $color-videoPlayerButtonIcon;
-	filter: drop-shadow(0 0 1rem $color-shadow);
+	fill: var(--color-videoPlayerButtonIcon);
+	filter: drop-shadow(0 0 1rem var(--color-shadow));
 	height: 8rem;
 	left: 50%;
 	opacity: 0.9;
@@ -42,21 +42,21 @@
 	width: 8rem;
 
 	@media (max-width: $breakpoint-mobile-max) {
-		filter: drop-shadow(0 0 0.25rem $color-shadow);
+		filter: drop-shadow(0 0 0.25rem var(--color-shadow));
 		height: 5rem;
 		width: 5rem;
 	}
 
 	[class*='trigger']:hover &,
 	[class*='trigger']:focus & {
-		background: $color-videoPlayerButtonBackground;
+		background: var(--color-videoPlayerButtonBackground);
 		opacity: 1;
 	}
 }
 
 .video-title {
-	background: rgba($color-black, 0.5);
-	color: $color-white;
+	background: var(--color-videoPlayerTitleBackground);
+	color: var(--color-videoPlayerTitle);
 	display: block;
 	font-size: 1rem;
 	font-weight: 600;

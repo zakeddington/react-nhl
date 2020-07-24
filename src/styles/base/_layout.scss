@@ -6,7 +6,7 @@ html {
 }
 
 body {
-	background: $color-backgroundPage;
+	background: var(--color-backgroundPage);
 	min-width: $container-width-mobile;
 	overflow-x: hidden;
 	padding: 0;

@@ -9,17 +9,17 @@
 }
 
 .period-summary-period {
-	background: $color-backgroundContent;
+	background: var(--color-backgroundContent);
 	margin-bottom: $space-base-vertical;
 
 	&:last-child {
-		border-bottom: 1px solid $color-border;
+		border-bottom: 1px solid var(--color-border);
 	}
 }
 
 .period-summary-item {
 	align-items: center;
-	border-bottom: 1px solid $color-border;
+	border-bottom: 1px solid var(--color-border);
 	display: flex;
 	flex-direction: row;
 	font-size: 1.125rem;
@@ -48,8 +48,8 @@
 }
 
 .period-summary-title {
-	background: $color-backgroundSecondary;
-	color: $color-backgroundSecondaryText;
+	background: var(--color-backgroundSecondary);
+	color: var(--color-backgroundSecondaryText);
 	font-size: 1rem;
 	margin: 0;
 	padding: 0.5em 1em;
@@ -57,8 +57,8 @@
 }
 
 .period-summary-subtitle {
-	background: $color-backgroundTertiary;
-	color: $color-backgroundTertiaryText;
+	background: var(--color-backgroundTertiary);
+	color: var(--color-backgroundTertiaryText);
 	font-size: 1.125rem;
 	font-weight: 700;
 	margin: 0;
@@ -98,9 +98,9 @@
 		}
 
 		.period-summary-goal-type {
-			background: $color-backgroundPrimary;
+			background: var(--color-backgroundPrimary);
 			border-radius: 3px;
-			color: $color-backgroundPrimaryText;
+			color: var(--color-backgroundPrimaryText);
 			font-size: 0.875rem;
 			font-weight: 600;
 			padding: 0 0.4em;

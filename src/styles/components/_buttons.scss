@@ -2,9 +2,9 @@
 // -----------------------------------------------------------------+
 
 .button {
-	background: $color-buttonBackground;
+	background: var(--color-buttonBackground);
 	border: none;
-	color: $color-buttonText;
+	color: var(--color-buttonText);
 	display: inline-block;
 	font-family: $font-main;
 	font-weight: 600;
@@ -16,19 +16,19 @@
 
 	&:hover,
 	&:focus {
-		background: $color-buttonBackgroundHover;
-		color: $color-buttonTextHover;
+		background: var(--color-buttonBackgroundHover);
+		color: var(--color-buttonTextHover);
 		text-decoration: none;
 	}
 
 	&-text-button {
-		background: $color-textButtonBackground;
-		color: $color-textButtonText;
+		background: var(--color-textButtonBackground);
+		color: var(--color-textButtonText);
 
 		&:hover,
 		&:focus {
-			background: $color-textButtonBackgroundHover;
-			color: $color-textButtonTextHover;
+			background: var(--color-textButtonBackgroundHover);
+			color: var(--color-textButtonTextHover);
 			text-decoration: underline;
 		}
 	}

@@ -14,7 +14,7 @@
 
 	&--overlay {
 		align-items: center;
-		background: $color-overlay;
+		background: var(--color-overlay);
 		display: flex;
 		flex-direction: column;
 		height: 100vh;
@@ -49,7 +49,7 @@
 		width: 2rem;
 
 		.svg-icon {
-			fill: $color-modalCloseText;
+			fill: var(--color-modalCloseText);
 			height: 100%;
 			width: 100%;
 		}
@@ -57,13 +57,13 @@
 		&:hover,
 		&:focus {
 			.svg-icon {
-				fill: $color-modalCloseTextHover;
+				fill: var(--color-modalCloseTextHover);
 			}
 		}
 	}
 
 	&--content {
-		background: $color-modalBackground;
+		background: var(--color-modalBackground);
 		display: block;
 		max-height: 100%;
 		overflow-y: auto;

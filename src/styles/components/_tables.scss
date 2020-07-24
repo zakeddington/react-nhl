@@ -9,7 +9,7 @@
 	}
 
 	table {
-		background: $color-tableBackground;
+		background: var(--color-tableBackground);
 		font-size: 0.875rem;
 		margin: 0;
 		text-align: right;
@@ -17,18 +17,18 @@
 	}
 
 	tr {
-		border-bottom: 1px solid $color-border;
+		border-bottom: 1px solid var(--color-border);
 		position: relative;
 
 		&:hover {
 			> td {
-				background: $color-tableCellBackgroundHover;
+				background: var(--color-tableCellBackgroundHover);
 			}
 		}
 
 		&.total {
 			td {
-				background: $color-tableHeaderBackground;
+				background: var(--color-tableHeaderBackground);
 				font-weight: 600;
 			}
 		}
@@ -43,12 +43,12 @@
 	}
 
 	th {
-		background: $color-tableHeaderBackground;
+		background: var(--color-tableHeaderBackground);
 		font-weight: 600;
 	}
 
 	td {
-		background: $color-tableCellBackground;
+		background: var(--color-tableCellBackground);
 		font-weight: 500;
 	}
 
@@ -56,7 +56,7 @@
 	th {
 		&.stats-table--pinned {
 			@media (max-width: $breakpoint-mobile-max) {
-				border-right: 1px solid $color-border;
+				border-right: 1px solid var(--color-border);
 				position: absolute;
 				min-width: 7rem;
 				width: 7rem;

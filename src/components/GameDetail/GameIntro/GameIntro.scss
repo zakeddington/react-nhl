@@ -4,6 +4,6 @@
 // -----------------------------------------------------------------+
 
 .game-intro {
-	background: $color-backgroundContent;
+	background: var(--color-backgroundContent);
 	padding: $space-base-vertical $space-base-horizontal;
 }

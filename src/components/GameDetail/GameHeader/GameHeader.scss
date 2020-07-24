@@ -5,8 +5,8 @@
 
 .game-header {
 	align-items: center;
-	background: $color-backgroundContent;
-	border-bottom: 1px solid $color-border;
+	background: var(--color-backgroundContent);
+	border-bottom: 1px solid var(--color-border);
 	display: flex;
 	flex-wrap: wrap;
 	padding: $space-base-vertical 0;

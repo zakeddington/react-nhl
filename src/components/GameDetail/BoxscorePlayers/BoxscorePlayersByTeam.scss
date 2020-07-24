@@ -5,7 +5,7 @@
 
 .tabs-boxscore-players {
 	.team-logo {
-		background: $color-white;
+		background: var(--color-tabIconBackground);
 		border-radius: 50%;
 		display: inline-block;
 		margin-right: 0.5rem;
