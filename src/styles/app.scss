@@ -2,7 +2,8 @@
 // Utilities and Global styles
 // -----------------------------------------------------------------+
 
-@import 'themes/colors';
+@import 'themes/base-theme';
+@import 'themes/team-themes';
 
 @import 'config/variables';
 @import 'config/mixins';
@@ -15,8 +16,7 @@
 
 @import 'components/buttons';
 @import 'components/tables';
-@import 'components/tooltip';
-
 @import 'components/team-branding';
+@import 'components/tooltip';
 
 @import 'base/classes';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AnimSpeed } from '../../../config/Animation';
+import { IconType } from '../../../config/ImageIconConfig';
 import Icon from '../Icon/Icon';
 import './Drawer.scss';
 
@@ -82,7 +83,7 @@ class Drawer extends Component {
 	}
 
 	render() {
-		const { iconId, label } = this.props;
+		const { iconId, label, iconType = IconType.icon } = this.props;
 		const { isDisabled } = this.state;
 		return (
 			<div className="drawer">
@@ -90,7 +91,7 @@ class Drawer extends Component {
 					{label}
 					{
 						iconId &&
-						<Icon iconId={iconId} />
+						<Icon iconType={iconType} iconId={iconId} />
 					}
 				</button>
 				{this.state.drawer}
@@ -102,6 +103,7 @@ class Drawer extends Component {
 Drawer.propTypes = {
 	content: PropTypes.element,
 	iconId: PropTypes.string,
+	iconType: PropTypes.string,
 	label: PropTypes.string,
 }
 

@@ -1,5 +1,5 @@
 
-:root {
+@mixin base-theme {
 	// RGB Color Palette
 	--palette-primary: 51, 51, 51; // #333
 	--palette-secondary: 102, 102, 102; // #666
@@ -7,7 +7,7 @@
 	--palette-quaternary: 221, 221, 221; // #ddd
 	--palette-interactive1: var(--palette-primary);
 	--palette-interactive2: var(--palette-secondary);
-	--palette-content: var(--palette-primary);
+	--palette-content: 51, 51, 51; // #333
 	--palette-body: var(--palette-tertiary);
 	--palette-black: 0, 0, 0; // #000
 	--palette-white: 255, 255, 255; // #fff
@@ -28,8 +28,8 @@
 	--color-quaternary: rgba(var(--palette-quaternary), var(--alpha-100));
 	--color-interactive1: var(--color-primary);
 	--color-interactive2: var(--color-secondary);
-	--color-content: var(--color-primary);
-	--color-body: var(--color-tertiary);
+	--color-content: rgba(var(--palette-content), var(--alpha-100));
+	--color-body: rgba(var(--palette-body), var(--alpha-100));
 	--color-black: rgba(var(--palette-black), var(--alpha-100));
 	--color-white: rgba(var(--palette-white), var(--alpha-100));
 

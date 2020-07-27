@@ -1,0 +1,56 @@
+
+:root {
+	@include base-theme;
+}
+
+$teams:
+	0 #333333 #666666, // NHL
+	24 #F47A38 #B9975B, // Anaheim Ducks
+	53 #8C2633 #E2D6B5, // Arizona Coyotes
+	6 #FFB81C #000000, // Boston Bruins
+	7 #002654 #FCB514, // Buffalo Sabres
+	20 #C8102E #F1BE48, // Calgary Flames
+	12 #CC0000 #000000, // Carolina Hurricanes
+	16 #CF0A2C #000000, // Chicago Blackhawks
+	21 #6F263D #236192, // Colorado Avalanche
+	29 #002654 #CE1126, // Columbus Blue Jackets
+	25 #006847 #8F8F8C, // Dallas Stars
+	17 #CE1126 #DDDDDD, // Detroit Red Wings
+	22 #041E42 #FF4C00, // Edmonton Oilers
+	13 #041E42 #C8102E, // Florida Panthers
+	26 #111111 #A2AAAD, // Los Angeles Kings
+	30 #154734 #A6192E, // Minnesota Wild
+	8 #AF1E2D #192168, // Montreal Canadiens
+	18 #FFB81C #041E42, // Nashville Predators
+	1 #CE1126 #000000, // New Jersey Devils
+	2 #00539B #F47D30, // New York Islanders
+	3 #0038A8 #CE1126, // New York Rangers
+	9 #C52032 #C2912C, // Ottawa Senators
+	4 #F74902 #000000, // Philadelphia Flyers
+	5 #000000 #FCB514, // Pittsburgh Penguins
+	28 #006D75 #EA7200, // San Jose Sharks
+	55 #001628 #99d9d9, // Seattle Kraken
+	19 #002F87 #FCB514, // St. Louis Blues
+	14 #002868 #BBBBBB, // Tampa Bay Lightning
+	10 #00205B #BBBBBB, // Toronto Maple Leafs
+	23 #00205B #00843D, // Vancouver Canucks
+	54 #B4975A #333F42, // Vegas Golden Knights
+	15 #041E42 #C8102E, // Washington Capitals
+	52 #041E42 #004C97, // Winnipeg Jets
+;
+
+@function hexToRgb($color) {
+	@return #{red($color)}, #{green($color)}, #{blue($color)};
+}
+
+@each $team in $teams {
+	$id: nth($team, 1);
+	$color1: hexToRgb(nth($team, 2));
+	$color2: hexToRgb(nth($team, 3));
+
+	.team-#{$id} {
+		@include base-theme;
+		--palette-primary: #{$color1};
+		--palette-secondary: #{$color2};
+	}
+}

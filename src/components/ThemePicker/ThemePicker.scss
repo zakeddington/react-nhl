@@ -1,0 +1,25 @@
+
+
+.theme-picker {
+	&--item {
+		font-size: 0.875rem;
+		padding: 0.25em;
+		text-align: left;
+		width: 100%;
+
+		.svg-icon {
+			height: 2em;
+			margin-right: 1em;
+			width: 2em;
+		}
+
+		&.is-active {
+			background: var(--color-themePickerActiveBackground);
+		}
+
+		&:hover,
+		&:focus {
+			background: var(--color-themePickerActiveBackground);
+		}
+	}
+}
