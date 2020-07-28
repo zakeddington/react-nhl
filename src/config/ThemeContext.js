@@ -1,13 +1,14 @@
 import { createContext } from 'react';
 import PropTypes from 'prop-types';
-import { DefaultTeam } from '../../config/ThemeConfig';
+import { DefaultTeam } from './TeamMap';
 
 export const InitialContext = {
 	selectedThemeId: DefaultTeam.id,
 	selectedThemeName: DefaultTeam.teamName,
-	selectedThemeClass: `team-${DefaultTeam.id}`,
+	selectedThemeClass: DefaultTeam.teamClass,
 	updateTheme: () => {},
 }
+
 export const ThemeContext = createContext(InitialContext);
 
 ThemeContext.Provider.propTypes = {

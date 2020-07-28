@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ScheduleRoute, GameRoute, PlayerRoute } from './config/RoutePaths';
-import { ThemeConfig } from './config/ThemeConfig';
+import { ThemeContext, InitialContext } from './config/ThemeContext';
+import { TeamMap } from './config/TeamMap';
 import breakpointChange from './utilities/BreakpointChange';
 import Header from './components/Global/GlobalHeader';
 import Schedule from './containers/Schedule';
 import GameDetail from './containers/GameDetail';
 import PlayerDetail from './containers/PlayerDetail';
-import { ThemeContext, InitialContext } from './components/ThemePicker/ThemeContext';
 
 class App extends Component {
 	constructor(props) {
@@ -32,11 +32,11 @@ class App extends Component {
 	}
 
 	getThemeValues(teamId) {
-		let theme = ThemeConfig.find(team => team.id === teamId);
+		let theme = TeamMap.find(team => team.id === teamId);
 		return {
 			selectedThemeId: teamId,
 			selectedThemeName: theme.teamName,
-			selectedThemeClass: `team-${teamId}`,
+			selectedThemeClass: theme.teamClass,
 		}
 	}
 

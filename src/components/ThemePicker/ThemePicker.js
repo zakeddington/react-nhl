@@ -1,28 +1,27 @@
 import React from 'react';
 import Icon from '../Shared/Icon/Icon';
 import { IconType } from '../../config/ImageIconConfig';
-import { ThemeConfig } from '../../config/ThemeConfig';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../../config/ThemeContext';
+import { TeamMap } from '../../config/TeamMap';
 import './ThemePicker.scss';
 
 function RenderThemeButtons(contextState) {
 	const { selectedThemeId, updateTheme } = contextState;
 	const teamButtons = [];
 
-	ThemeConfig.forEach((team) => {
-		const id = team.id;
+	TeamMap.forEach((team) => {
+		const { id, teamName, teamClass } = team;
 		const isActive = id === selectedThemeId;
 		const activeClass = isActive ? 'is-active' : '';
-		const themeClass = `team-${id}`;
 
 		teamButtons.push(
 			<button
 				key={id}
-				className={`button button-text-button button-with-icon theme-picker--item ${activeClass} ${themeClass}`}
+				className={`button button-text-button button-with-icon theme-picker--item ${activeClass} ${teamClass}`}
 				onClick={() => updateTheme(id)}
 			>
 				<Icon iconId={`${id}`} iconType={IconType.logo} />
-				{team.teamName}
+				{teamName}
 			</button>
 		)
 	})
