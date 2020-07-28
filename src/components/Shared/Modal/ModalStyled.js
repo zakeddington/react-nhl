@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { TextButton } from '../../../globalStyles/Button/Button';
+import { TextButton, TextButtonWithIcon } from '../../../globalStyles/Button/Button';
 import { ContainerSize, Spacing } from '../../../config/Grid';
 import ZIndex from '../../../config/ZIndex';
 import { SvgIcon } from '../Icon/IconStyled';
@@ -44,8 +44,9 @@ export const ModalContainer = styled.div`
 	z-index: ${ZIndex.modalWindow};
 `;
 
-export const ModalClose = styled(TextButton)`
+export const ModalClose = styled(TextButtonWithIcon)`
 	align-self: flex-end;
+	background: ${props => props.theme.color.modalCloseBackground};
 	height: 2rem;
 	margin: 0 0 0.5rem;
 	padding: 0.25rem;
@@ -59,8 +60,10 @@ export const ModalClose = styled(TextButton)`
 
 	&:hover,
 	&:focus {
+		background: ${props => props.theme.color.modalCloseBackgroundHover};
+
 		${SvgIcon} {
-			 fill: ${props => props.theme.color.modalCloseTextHover};
+			fill: ${props => props.theme.color.modalCloseTextHover};
 		}
 	}
 `;

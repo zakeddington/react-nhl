@@ -26,6 +26,8 @@ export default (ColorTokens, UtilityTokens) => {
 		overlay: rgba(ColorTokens.black, 0.8),
 
 		modalBackground: ColorTokens.white,
+		modalCloseBackground: 'transparent',
+		modalCloseBackgroundHover: ColorTokens.white,
 		modalCloseText: ColorTokens.white,
 		modalCloseTextHover: ColorTokens.interactive1,
 
