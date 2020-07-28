@@ -29,7 +29,7 @@ class Modal extends Component {
 		const modal =
 			<div className="modal--overlay" onClick={() => this.onCloseClick()}>
 				<div className={`modal--container ${modalClass}`} onClick={(e) => this.onContentClick(e)}>
-					<button className="modal--close text-button" onClick={() => this.onCloseClick()}>
+					<button className="modal--close text-button flex-button" onClick={() => this.onCloseClick()}>
 						<Icon iconId="close"/>
 						<span className="offscreen">close modal</span>
 					</button>

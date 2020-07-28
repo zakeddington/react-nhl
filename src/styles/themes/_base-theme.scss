@@ -83,6 +83,8 @@
 	--color-overlay: rgba(var(--palette-black), var(--alpha-80));
 
 	--color-modalBackground: var(--color-white);
+	--color-modalCloseBackground: transparent;
+	--color-modalCloseBackgroundHover: var(--color-white);
 	--color-modalCloseText: var(--color-white);
 	--color-modalCloseTextHover: var(--color-interactive1);
 
