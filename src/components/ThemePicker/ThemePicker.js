@@ -17,7 +17,7 @@ function RenderThemeButtons(contextState) {
 		teamButtons.push(
 			<button
 				key={id}
-				className={`button button-text-button button-with-icon theme-picker--item ${activeClass} ${teamClass}`}
+				className={`text-button flex-button theme-picker--item ${activeClass} ${teamClass}`}
 				onClick={() => updateTheme(id)}
 			>
 				<Icon iconId={`${id}`} iconType={IconType.logo} />

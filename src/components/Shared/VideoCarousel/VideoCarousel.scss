@@ -16,12 +16,18 @@
 	.video-trigger {
 		background: var(--color-videoPlayerBackground);
 		border: 1px solid var(--color-border);
+		color: var(--color-videoCarouselThumbText);
 		display: block;
 		height: 100%;
 		left: 0;
 		position: absolute;
 		top: 0;
 		width: 100%;
+
+		&:hover,
+		&:focus {
+			color: var(--color-videoCarouselThumbText);
+		}
 	}
 
 	&--thumbs {
@@ -76,6 +82,11 @@
 					color: var(--color-videoCarouselThumbTextActive);
 					cursor: default;
 					text-decoration: none;
+
+					&:hover,
+					&:focus {
+						color: var(--color-videoCarouselThumbTextActive);
+					}
 				}
 
 				.video-poster {
@@ -90,11 +101,6 @@
 
 				.video-title {
 					color: var(--color-videoCarouselThumbTextActive);
-
-					&:hover,
-					&:focus {
-						color: var(--color-videoCarouselThumbTextActive);
-					}
 				}
 			}
 		}

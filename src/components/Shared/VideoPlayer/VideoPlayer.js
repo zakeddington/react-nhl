@@ -23,7 +23,7 @@ class VideoPlayer extends Component {
 		const { poster, altText, title, duration } = this.props;
 
 		return (
-			<button className="video-trigger button button-text-button" onClick={() => this.onPosterClick()}>
+			<button className="video-trigger text-button" onClick={() => this.onPosterClick()}>
 				<img className="video-poster" src={poster} alt={altText}/>
 				<Icon iconId="play-circle-filled" iconClass="video-play-icon"/>
 				<span className="video-title">

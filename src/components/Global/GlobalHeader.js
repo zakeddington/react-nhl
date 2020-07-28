@@ -16,7 +16,7 @@ function GlobalHeader(props) {
 			<div className="site-header--container">
 				{
 					props.location.pathname.length > 1 &&
-					<button className="site-header--back button button-text-button button-with-icon" onClick={props.history.goBack}>
+					<button className="site-header--back text-button flex-button" onClick={props.history.goBack}>
 						<Icon iconId="arrow-left" />
 						Back
 					</button>
